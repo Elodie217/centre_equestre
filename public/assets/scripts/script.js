@@ -1,60 +1,37 @@
-function openModal() {
-  console.log("essaie btn");
+function redirect(url) {
+  window.location.href = HOME_URL + url;
 }
 
-function newHorseVerification() {
-  let nameHorse = document.getElementById("nameHorse").value;
-  let imageHorse = document.getElementById("imageHorse").value;
-  let breedHorse = document.getElementById("breedHorse").value;
-  let horseUser = document.getElementById("horseUser").value;
-  let horseBox = document.getElementById("horseBox").value;
-  let errorMessageHorses = document.getElementById("errorMessageHorses");
+function openSuccessMessage(message) {
+  document.querySelector(".successMessage").innerHTML = message;
+  document.querySelector(".toastSuccessMessage").classList.remove("hidden");
 
-  if (
-    nameHorse !== "" &&
-    imageHorse !== "" &&
-    breedHorse !== "" &&
-    horseUser !== "" &&
-    horseBox !== ""
-  ) {
-    if (nameHorse.length <= 50) {
-      if (Number(horseUser) && Number(horseBox)) {
-        if (breedHorse.length <= 50) {
-          newHorse(nameHorse, imageHorse, breedHorse, horseUser, horseBox);
-        } else {
-          errorMessageHorses.innerHTML =
-            "La race doit faire au maximum 50 caractères.";
-        }
-      } else {
-        errorMessageHorses.innerHTML = "Merci de selectionner un champ.";
-      }
-    } else {
-      errorMessageHorses.innerHTML =
-        "Le nom doit faire au maximum 50 caractères.";
-    }
+  setTimeout(() => {
+    closeSuccessMessage();
+  }, 5000);
+}
+
+function closeSuccessMessage() {
+  document.querySelector(".toastSuccessMessage").classList.add("hidden");
+}
+
+function isSelected(idGiven, idBdd) {
+  if (idGiven == idBdd) {
+    console.log("same", idGiven, idBdd);
+    return "selected";
   } else {
-    errorMessageHorses.innerHTML = "Merci de remplir tous les champs.";
+    console.log("Not same", idGiven, idBdd);
+
+    return "";
   }
 }
 
-function newHorse(nameHorse, imageHorse, breedHorse, horseUser, horseBox) {
-  let newHorse = {
-    nameHorse: nameHorse,
-    imageHorse: imageHorse,
-    breedHorse: breedHorse,
-    horseUser: horseUser,
-    horseBox: horseBox,
-  };
+function isValidDateFormat(dateString) {
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+  return regex.test(dateString);
+}
 
-  let params = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify(newHorse),
-  };
-
-  fetch(HOME_URL + "horses/add", params)
-    .then((res) => res.text())
-    .then((data) => reponseInscription(JSON.parse(data)));
+function isValidURL(url) {
+  const regex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
+  return regex.test(url);
 }

@@ -3,8 +3,8 @@
 namespace src\Repositories;
 
 use PDO;
-use src\Models\Cours;
 use src\Models\Database;
+use src\Models\Horse;
 
 class HorseRepository
 {
@@ -16,104 +16,120 @@ class HorseRepository
         $this->db = $database->getDB();
     }
 
-    // public function CoursEtPromoByIdUtilisateurEtJour(int $idUtilisateur)
-    // {
-    //     $time = time();
-    //     $dateDuJour = date('Y', $time) . '-' . date('m', $time) . '-' . date('d', $time);
 
-    //     $sql = "SELECT " . PREFIXE . "cours.Id_cours, " . PREFIXE . "cours.Date_cours, " . PREFIXE . "cours.HeureDebut_cours, " . PREFIXE . "cours.HeureFin_cours, " . PREFIXE . "cours.Code_cours, " . PREFIXE . "cours.Id_promo, " . PREFIXE . "promo.Nom_promo, " . PREFIXE . "promo.DateDebut_promo, " . PREFIXE . "promo.DateFin_promo, " . PREFIXE . "promo.Place_promo 
-    //     FROM " . PREFIXE . "cours 
-    //     INNER JOIN " . PREFIXE . "promo ON " . PREFIXE . "cours.Id_promo = " . PREFIXE . "promo.Id_promo 
-    //     WHERE " . PREFIXE . "cours.Date_cours = :date 
-    //     AND " . PREFIXE . "cours.Id_cours IN (SELECT Id_cours FROM " . PREFIXE . "utilisateurscours WHERE Id_utilisateur = :id)";
+    public function getAllHorses()
+    {
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':id', $idUtilisateur);
-    //     $statement->bindParam(':date', $dateDuJour);
+        $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user, " . PREFIXE . "box
+	    WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
+	    AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box";
 
-    //     $statement->execute();
+        $statement = $this->db->prepare($sql);
 
-    //     $objets = $statement->fetchAll(PDO::FETCH_CLASS, Cours::class);
+        $statement->execute();
 
-    //     $retour =  [];
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Horse::class);
+        $retour =  [];
 
-    //     foreach ($objets as $objet) {
-    //         array_push($retour, $objet->getObjectToArray());
-    //     }
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
+    }
 
-    //     return $retour;
-    // }
+    public function getHorsesById($idHorse)
+    {
 
-    // public function CreerCode($IdCours): int
-    // {
-    //     $newCode = rand(9999, 100000);
+        $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.id_box," . PREFIXE . "horse.id_user," . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user, " . PREFIXE . "box
+	    WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
+	    AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box
+        AND " . PREFIXE . "horse.id_horse = :id_horse";
 
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':id_horse', $idHorse);
 
-    //     $sql = "UPDATE " . PREFIXE . "cours SET Code_cours =:code WHERE Id_cours = :idCours";
+        $statement->execute();
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':code', $newCode);
-    //     $statement->bindParam(':idCours', $IdCours);
+        $statement->setFetchMode(PDO::FETCH_CLASS, Horse::class);
+        $objet = $statement->fetch();
 
-    //     if ($statement->execute()) {
-    //         return $newCode;
-    //     }
-    // }
+        $retour = $objet->getObjectToArray();
 
-    // public function RecupererCode($idCours): int
-    // {
-    //     $sql = "SELECT " . PREFIXE . "cours.Code_cours FROM " . PREFIXE . "cours WHERE Id_cours = :Id_cours";
+        return $retour;
+    }
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':Id_cours', $idCours);
+    public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    {
+        $sql = "INSERT INTO " . PREFIXE . "horse (name_horse, birthdate_horse, image_horse, id_user, id_box) VALUES (:nameHorse, :birthdateHorse, :imageHorse, :horseUser, :horseBox)";
 
-    //     $statement->execute();
-    //     $code = $statement->fetchColumn();
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':nameHorse', $nameHorse);
+        $statement->bindParam(':imageHorse', $imageHorse);
+        $statement->bindParam(':birthdateHorse', $birthdateHorse);
+        $statement->bindParam(':horseUser', $horseUser);
+        $statement->bindParam(':horseBox', $horseBox);
 
-    //     if ($code == NULL) {
-    //         $code = $this->CreerCode($idCours);
-    //         return $code;
-    //     } else {
-    //         return $code;
-    //     }
-    // }
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Nouveau cheval enregistré !"
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
 
-    // public function verificationCodeCours($idCours)
-    // {
-    //     $sql = "SELECT " . PREFIXE . "cours.Code_cours FROM " . PREFIXE . "cours WHERE Id_cours = :Id_cours";
+    public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    {
+        $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse, birthdate_horse = :birthdateHorse, image_horse = :imageHorse, id_user = :horseUser, id_box = :horseBox WHERE id_horse = :idHorse";
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':Id_cours', $idCours);
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idHorse', $idHorse);
+        $statement->bindParam(':nameHorse', $nameHorse);
+        $statement->bindParam(':imageHorse', $imageHorse);
+        $statement->bindParam(':birthdateHorse', $birthdateHorse);
+        $statement->bindParam(':horseUser', $horseUser);
+        $statement->bindParam(':horseBox', $horseBox);
 
-    //     $statement->execute();
-    //     $code = $statement->fetchColumn();
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => $nameHorse . ' a bien été modifié !'
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
 
-    //     if ($code !== NULL) {
-    //         $reponse = array(
-    //             'status' => 'signe',
-    //         );
-    //         return $reponse;
-    //     } else {
-    //         $reponse = array(
-    //             'status' => 'aSigner',
-    //         );
+    public function deleteHorse($idHorse)
+    {
+        $sql = "DELETE FROM " . PREFIXE . "horse WHERE id_horse = :id_horse";
 
-    //         return $reponse;
-    //     }
-    // }
+        $statement = $this->db->prepare($sql);
 
-    // public function signatureApprenant($Id_cours, $Code_cours)
-    // {
+        $statement->bindParam(':id_horse', $idHorse);
 
-    //     $sql = "SELECT * FROM " . PREFIXE . "cours
-    //     WHERE Id_cours = :Id_cours AND  Code_cours = :Code_cours";
-
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->execute([
-    //         ":Id_cours" => $Id_cours,
-    //         ":Code_cours" => $Code_cours
-    //     ]);
-
-    //     return $statement->fetch(PDO::FETCH_ASSOC);
-    // }
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Cheval supprimé !"
+            );
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+        }
+        return $reponse;
+    }
 }

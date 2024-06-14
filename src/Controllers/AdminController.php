@@ -9,16 +9,16 @@ class AdminController
 
     use Reponse;
 
-    // public function index(): void
-    // {
-    //     if (isset($_GET['erreur'])) {
-    //         $erreur = htmlspecialchars($_GET['erreur']);
-    //     } else {
-    //         $erreur = '';
-    //     }
+    public function lesson(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
 
-    //     $this->render("accueil", ["erreur" => $erreur]);
-    // }
+        $this->render("lessonAdmin", ["erreur" => $erreur]);
+    }
 
     public function horses(): void
     {
@@ -28,6 +28,17 @@ class AdminController
             $erreur = '';
         }
 
-        $this->render("horses", ["erreur" => $erreur]);
+        $this->render("horsesAdmin", ["erreur" => $erreur]);
+    }
+
+    public function box(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("boxAdmin", ["erreur" => $erreur]);
     }
 }

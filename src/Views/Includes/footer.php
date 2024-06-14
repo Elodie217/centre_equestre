@@ -40,10 +40,6 @@
     <p class="text-xs w-fit m-auto mt-5">© 2024 Centre équestre – Tous droits réservés – Site réalisé par Moi</p>
 </footer>
 
-</body>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://kit.fontawesome.com/97cd5da9a0.js" crossorigin="anonymous"></script>
-<script src="../../../public/assets/scripts/script.js"></script>
-
-
-</html>
+<?php
+include __DIR__ . '/footerWebsite.php'
+?>

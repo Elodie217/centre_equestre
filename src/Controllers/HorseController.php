@@ -2,23 +2,13 @@
 
 namespace src\Controllers;
 
+use src\Repositories\HorseRepository;
 use src\Services\Reponse;
 
 class HorseController
 {
 
     use Reponse;
-
-    // public function index(): void
-    // {
-    //     if (isset($_GET['erreur'])) {
-    //         $erreur = htmlspecialchars($_GET['erreur']);
-    //     } else {
-    //         $erreur = '';
-    //     }
-
-    //     $this->render("accueil", ["erreur" => $erreur]);
-    // }
 
     public function horses(): void
     {
@@ -31,22 +21,76 @@ class HorseController
         $this->render("horses", ["erreur" => $erreur]);
     }
 
-    public function addhorse($nameHorse, $imageHorse, $breedHorse, $horseUser, $horseBox)
+    public function allHorses()
     {
+        $HorseRepository = new HorseRepository;
+        $reponse = $HorseRepository->getAllHorses();
+        return json_encode($reponse);
+    }
 
-        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($breedHorse) && !empty($breedHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
-
-            $nameHorse = htmlspecialchars($nameHorse);
-            $imageHorse = htmlspecialchars($imageHorse);
-            $breedHorse = htmlspecialchars($breedHorse);
-            $placePromo = htmlspecialchars($horseUser);
-            $placePromo = htmlspecialchars($horseBox);
-
+    function horseById($idHorse)
+    {
+        $HorseRepository = new HorseRepository;
+        $reponse = $HorseRepository->getHorsesById($idHorse);
+        return json_encode($reponse);
+    }
 
 
-            $PromoRepository = new PromoRepository;
-            $reponse = $PromoRepository->sauvegarderPromo($nameHorse, $imageHorse, $breedHorse, $horseUser, $horseBox);
-            return json_encode($reponse);
+
+    public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    {
+        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
+            if (strlen($nameHorse) <= 50) {
+                $nameHorse = htmlspecialchars($nameHorse);
+
+                if (filter_var($imageHorse, FILTER_VALIDATE_URL)) {
+                    $imageHorse = htmlspecialchars($imageHorse);
+
+                    list($year, $month, $day) = explode("-", $birthdateHorse);
+
+                    if (checkdate($month, $day, $year)) {
+                        $birthdateHorse = htmlspecialchars($birthdateHorse);
+
+                        if (is_int($horseUser) && is_int($horseBox)) {
+                            $horseUser = htmlspecialchars($horseUser);
+                            $horseBox = htmlspecialchars($horseBox);
+
+
+                            $HorseRepository = new HorseRepository;
+                            $reponse = $HorseRepository->addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
+                            return json_encode($reponse);
+                        } else {
+                            $response = array(
+                                'status' => 'error',
+                                'message' => 'Merci de selectionner un champ.'
+                            );
+                            return json_encode($response);
+                            die;
+                        }
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => 'Merci de renter une date valide.'
+                        );
+                        return json_encode($response);
+                        die;
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Merci de renter un URL valide.'
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le nom doit faire au maximum 50 caractères.'
+                );
+                return json_encode($response);
+                die;
+            }
         } else {
             $response = array(
                 'status' => 'error',
@@ -55,5 +99,77 @@ class HorseController
             return json_encode($response);
             die;
         }
+    }
+
+
+    public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    {
+        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
+            if (strlen($nameHorse) <= 50) {
+                $nameHorse = htmlspecialchars($nameHorse);
+
+                if (filter_var($imageHorse, FILTER_VALIDATE_URL)) {
+                    $imageHorse = htmlspecialchars($imageHorse);
+
+                    list($year, $month, $day) = explode("-", $birthdateHorse);
+
+                    if (checkdate($month, $day, $year)) {
+                        $birthdateHorse = htmlspecialchars($birthdateHorse);
+
+                        if (is_int($horseUser) && is_int($horseBox)) {
+                            $horseUser = htmlspecialchars($horseUser);
+                            $horseBox = htmlspecialchars($horseBox);
+
+
+                            $HorseRepository = new HorseRepository;
+                            $reponse = $HorseRepository->editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
+                            return json_encode($reponse);
+                        } else {
+                            $response = array(
+                                'status' => 'error',
+                                'message' => 'Merci de selectionner un champ.'
+                            );
+                            return json_encode($response);
+                            die;
+                        }
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => 'Merci de renter une date valide.'
+                        );
+                        return json_encode($response);
+                        die;
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Merci de renter un URL valide.'
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le nom doit faire au maximum 50 caractères.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs.'
+            );
+            return json_encode($response);
+            die;
+        }
+    }
+
+    function deleteHorse($idHorse)
+    {
+        $HorseRepository = new HorseRepository;
+        $reponse = $HorseRepository->deleteHorse($idHorse);
+        return json_encode($reponse);
     }
 }

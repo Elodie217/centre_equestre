@@ -115,5 +115,5 @@ include __DIR__ . '/Includes/headerWebsite.php';
 </div>
 
 <?php
-include 'Includes/footer.php'
+include __DIR__ . '/Includes/footer.php'
 ?>
