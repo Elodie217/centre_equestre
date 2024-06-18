@@ -39,7 +39,7 @@
                 <button onCLick='fermerMenu()' class='md:hidden'>
                     <i class="fa-solid fa-xmark text-xl text-white"></i>
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/cours')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/lessons')">
                     <i class="fa-solid fa-calendar-week mr-2"></i>Cours
                 </button>
 

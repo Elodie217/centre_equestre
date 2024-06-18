@@ -4,9 +4,10 @@ namespace src\Controllers;
 
 use src\Repositories\HorseRepository;
 use src\Repositories\LessonRepository;
+use src\Repositories\LevelRepository;
 use src\Services\Reponse;
 
-class LessonController
+class LevelController
 {
 
     use Reponse;
@@ -23,10 +24,10 @@ class LessonController
     //     $this->render("horses", ["erreur" => $erreur]);
     // }
 
-    public function allLessons()
+    public function allLevels()
     {
-        $LessonRepository = new LessonRepository;
-        $reponse = $LessonRepository->getAllLessons();
+        $LevelRepository = new LevelRepository;
+        $reponse = $LevelRepository->getAllLevels();
         return json_encode($reponse);
     }
 
@@ -39,57 +40,69 @@ class LessonController
 
 
 
-    public function addLesson($dateLessonAdd, $hourLessonAdd, $placeLessonAdd, $levelsLessonAdd, $usersLessonAdd)
-    {
-        if (isset($dateLessonAdd) && !empty($dateLessonAdd) && isset($hourLessonAdd) && !empty($hourLessonAdd) && isset($placeLessonAdd) && !empty($placeLessonAdd)) {
+    // public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    // {
+    //     if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
+    //         if (strlen($nameHorse) <= 50) {
+    //             $nameHorse = htmlspecialchars($nameHorse);
 
-            list($year, $month, $day) = explode("-", $dateLessonAdd);
+    //             if (filter_var($imageHorse, FILTER_VALIDATE_URL)) {
+    //                 $imageHorse = htmlspecialchars($imageHorse);
 
-            if (checkdate($month, $day, $year)) {
-                $dateLessonAdd = htmlspecialchars($dateLessonAdd);
+    //                 list($year, $month, $day) = explode("-", $birthdateHorse);
 
-                if (is_int($placeLessonAdd)) {
-                    $placeLessonAdd = htmlspecialchars($placeLessonAdd);
+    //                 if (checkdate($month, $day, $year)) {
+    //                     $birthdateHorse = htmlspecialchars($birthdateHorse);
 
-                    list($hour, $minute) = explode(":", $hourLessonAdd);
+    //                     if (is_int($horseUser) && is_int($horseBox)) {
+    //                         $horseUser = htmlspecialchars($horseUser);
+    //                         $horseBox = htmlspecialchars($horseBox);
 
-                    if ($hour >= 0 && $hour <= 24 && $minute >= 0 && $minute <= 60) {
-                        $LessonRepository = new LessonRepository;
-                        $reponse = $LessonRepository->addLesson($dateLessonAdd, $hourLessonAdd, $placeLessonAdd, $levelsLessonAdd, $usersLessonAdd);
-                        return json_encode($reponse);
-                    } else {
-                        $response = array(
-                            'status' => 'error',
-                            'message' => "Merci de rentrer une heure valide."
-                        );
-                        return json_encode($response);
-                        die;
-                    }
-                } else {
-                    $response = array(
-                        'status' => 'error',
-                        'message' => "Merci de rentrer un nombre de place plus grand que 0."
-                    );
-                    return json_encode($response);
-                    die;
-                }
-            } else {
-                $response = array(
-                    'status' => 'error',
-                    'message' => 'Merci de renter une date valide.'
-                );
-                return json_encode($response);
-                die;
-            }
-        } else {
-            $response = array(
-                'status' => 'error',
-                'message' => 'Merci de remplir tous les champs.'
-            );
-            return json_encode($response);
-            die;
-        }
-    }
+
+    //                         $HorseRepository = new HorseRepository;
+    //                         $reponse = $HorseRepository->addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
+    //                         return json_encode($reponse);
+    //                     } else {
+    //                         $response = array(
+    //                             'status' => 'error',
+    //                             'message' => 'Merci de selectionner un champ.'
+    //                         );
+    //                         return json_encode($response);
+    //                         die;
+    //                     }
+    //                 } else {
+    //                     $response = array(
+    //                         'status' => 'error',
+    //                         'message' => 'Merci de renter une date valide.'
+    //                     );
+    //                     return json_encode($response);
+    //                     die;
+    //                 }
+    //             } else {
+    //                 $response = array(
+    //                     'status' => 'error',
+    //                     'message' => 'Merci de renter un URL valide.'
+    //                 );
+    //                 return json_encode($response);
+    //                 die;
+    //             }
+    //         } else {
+    //             $response = array(
+    //                 'status' => 'error',
+    //                 'message' => 'Le nom doit faire au maximum 50 caractères.'
+    //             );
+    //             return json_encode($response);
+    //             die;
+    //         }
+    //     } else {
+    //         $response = array(
+    //             'status' => 'error',
+    //             'message' => 'Merci de remplir tous les champs.'
+    //         );
+    //         return json_encode($response);
+    //         die;
+    //     }
+    // }
 
 
     // public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)

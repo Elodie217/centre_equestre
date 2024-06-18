@@ -31,6 +31,11 @@ function isValidDateFormat(dateString) {
   return regex.test(dateString);
 }
 
+function isValidHourFormat(hourString) {
+  const regex = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
+  return regex.test(hourString);
+}
+
 function isValidURL(url) {
   const regex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
   return regex.test(url);

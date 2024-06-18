@@ -10,6 +10,7 @@
 <script src="../../../public/assets/scripts/scriptBoxAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptUserAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptHorsesAdmin.js"></script>
+<script src="../../../public/assets/scripts/scriptLevelAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptLessonAdmin.js"></script>
 
 

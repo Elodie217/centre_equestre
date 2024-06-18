@@ -4,6 +4,8 @@ use src\Controllers\AdminController;
 use src\Controllers\BoxController;
 use src\Controllers\HomeController;
 use src\Controllers\HorseController;
+use src\Controllers\LessonController;
+use src\Controllers\LevelController;
 use src\Controllers\UserController;
 use src\Services\Routing;
 
@@ -19,6 +21,9 @@ $AdminController = new AdminController;
 $HorseController = new HorseController;
 $BoxController = new BoxController;
 $UserController = new UserController;
+$LessonController = new LessonController;
+$LevelController = new LevelController;
+
 
 
 
@@ -43,7 +48,7 @@ switch ($route) {
                 switch ($route) {
                     case $routeComposee[2] == "all":
 
-                        echo $HorseController->allHorses();
+                        echo $LessonController->allLessons();
                         die;
 
                         // case $routeComposee[2] == "id":
@@ -54,10 +59,14 @@ switch ($route) {
                         //     echo $HorseController->horseById($horseid['idHorse']);
                         //     die;
 
-                        // case $routeComposee[2] == "add":
-                        //     $data = file_get_contents("php://input");
+                    case $routeComposee[2] == "add":
+                        $data = file_get_contents("php://input");
 
-                        //     $addhorse = json_decode($data, true);
+                        $addlesson = json_decode($data, true);
+
+                        echo $LessonController->addLesson($addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd'], $addlesson['usersLessonAdd']);
+
+                        die;
 
                         //     echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
                         //     die;
@@ -82,7 +91,46 @@ switch ($route) {
                         $AdminController->lesson();
                         die;
                 }
+            case $routeComposee[1] == "levels":
+                switch ($route) {
+                    case $routeComposee[2] == "all":
 
+                        echo $LevelController->allLevels();
+                        die;
+
+                        // case $routeComposee[2] == "id":
+                        //     $data = file_get_contents("php://input");
+
+                        //     $horseid = json_decode($data, true);
+
+                        //     echo $HorseController->horseById($horseid['idHorse']);
+                        //     die;
+
+                        // case $routeComposee[2] == "add":
+                        //     $data = file_get_contents("php://input");
+
+                        //     $addlesson = json_decode($data, true);
+
+                        //     echo $LevelController->addLesson($addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd']);
+                        //     die;
+
+                        // case $routeComposee[2] == "edit":
+                        //     $data = file_get_contents("php://input");
+
+                        //     $addhorse = json_decode($data, true);
+
+                        //     echo $HorseController->editHorse($addhorse['idHorse'], $addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
+                        //     die;
+
+                        // case $routeComposee[2] == "delete":
+                        //     $data = file_get_contents("php://input");
+
+                        //     $horse = json_decode($data, true);
+
+                        //     echo $HorseController->deleteHorse($horse['idHorse']);
+                        //     die;
+
+                }
             case $routeComposee[1] == "horses":
                 switch ($route) {
                     case $routeComposee[2] == "all":

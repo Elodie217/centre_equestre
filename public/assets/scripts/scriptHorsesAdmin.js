@@ -129,8 +129,7 @@ function newHorseVerification() {
             errorMessageHorsesEdit.innerHTML = "Merci de renter un URL valide.";
           }
         } else {
-          errorMessageHorses.innerHTML =
-            "La race doit faire au maximum 50 caractères.";
+          errorMessageHorses.innerHTML = "Merci de rentrer une date valide.";
         }
       } else {
         errorMessageHorses.innerHTML = "Merci de selectionner un champ.";

@@ -5,6 +5,7 @@ namespace src\Repositories;
 use PDO;
 use src\Models\Database;
 use src\Models\Horse;
+use src\Models\Lesson;
 
 class LessonRepository
 {
@@ -17,25 +18,28 @@ class LessonRepository
     }
 
 
-    // public function getAllHorses()
-    // {
+    public function getAllLessons()
+    {
 
-    //     $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user, " . PREFIXE . "box
-    //     WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
-    //     AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box";
+        $sql = "SELECT " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, " . PREFIXE . "lesson.price_lesson, GROUP_CONCAT(" . PREFIXE . "level.name_level ORDER BY " . PREFIXE . "level.name_level SEPARATOR ', ') as all_name_levels
+            FROM " . PREFIXE . "lesson
+            LEFT JOIN " . PREFIXE . "lesson_level ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "lesson_level.id_lesson
+            LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "lesson_level.id_level = " . PREFIXE . "level.id_level
+            GROUP BY " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, " . PREFIXE . "lesson.price_lesson;
+            ";
 
-    //     $statement = $this->db->prepare($sql);
+        $statement = $this->db->prepare($sql);
 
-    //     $statement->execute();
+        $statement->execute();
 
-    //     $objets = $statement->fetchAll(PDO::FETCH_CLASS, Horse::class);
-    //     $retour =  [];
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Lesson::class);
+        $retour =  [];
 
-    //     foreach ($objets as $objet) {
-    //         array_push($retour, $objet->getObjectToArray());
-    //     }
-    //     return $retour;
-    // }
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
+    }
 
     // public function getHorsesById($idHorse)
     // {
@@ -58,31 +62,80 @@ class LessonRepository
     //     return $retour;
     // }
 
-    // public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
-    // {
-    //     $sql = "INSERT INTO " . PREFIXE . "horse (name_horse, birthdate_horse, image_horse, id_user, id_box) VALUES (:nameHorse, :birthdateHorse, :imageHorse, :horseUser, :horseBox)";
+    public function addLesson($dateLessonAdd, $hourLessonAdd, $placeLessonAdd, $levelsLessonAdd, $usersLessonAdd)
+    {
+        $date = $dateLessonAdd . ' ' . $hourLessonAdd;
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':nameHorse', $nameHorse);
-    //     $statement->bindParam(':imageHorse', $imageHorse);
-    //     $statement->bindParam(':birthdateHorse', $birthdateHorse);
-    //     $statement->bindParam(':horseUser', $horseUser);
-    //     $statement->bindParam(':horseBox', $horseBox);
 
-    //     if ($statement->execute()) {
-    //         $reponse = array(
-    //             'status' => 'success',
-    //             'message' => "Nouveau cheval enregistré !"
-    //         );
-    //         return $reponse;
-    //     } else {
-    //         $reponse = array(
-    //             'status' => 'error',
-    //             'message' => "Une erreur est survenue."
-    //         );
-    //         return $reponse;
-    //     }
-    // }
+        $sql = "INSERT INTO " . PREFIXE . "lesson (date_lesson, places_lesson) VALUES (:dateLessonAdd, :placeLessonAdd)";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':dateLessonAdd', $date);
+        $statement->bindParam(':placeLessonAdd', $placeLessonAdd);
+
+        if ($statement->execute()) {
+
+            $lastInsertedId = $this->db->lastInsertId();
+
+            foreach ($levelsLessonAdd as $level) {
+
+                $sql = "INSERT INTO " . PREFIXE . "lesson_level (id_lesson, id_level) VALUES (:idLesson, :levelsLessonAdd)";
+
+                $statement = $this->db->prepare($sql);
+                $statement->bindParam(':idLesson', $lastInsertedId);
+                $statement->bindParam(':levelsLessonAdd', $level);
+
+                // var_dump($level);
+                if ($statement->execute()) {
+                    foreach ($usersLessonAdd as $user) {
+
+                        $sql = "INSERT INTO " . PREFIXE . "user_lesson (id_user, id_lesson) VALUES (:userLessonAdd, :idLesson)";
+
+                        $statement = $this->db->prepare($sql);
+                        $statement->bindParam(':idLesson', $lastInsertedId);
+                        $statement->bindParam(':userLessonAdd', $user);
+
+                        if ($statement->execute()) {
+                            $reponse = array(
+                                'status' => 'success',
+                                'message' => "Nouvelle lesson enregistrée !"
+                            );
+                        } else {
+                            $reponse = array(
+                                'status' => 'error',
+                                'message' => "Une erreur est survenue."
+                            );
+                            return $reponse;
+                        }
+                    }
+                    return $reponse;
+                } else {
+                    $reponse = array(
+                        'status' => 'error',
+                        'message' => "Une erreur est survenue."
+                    );
+                    return $reponse;
+                }
+            }
+
+            // if ($statement->execute()) {
+
+
+            // } else {
+            //     $reponse = array(
+            //         'status' => 'error',
+            //         'message' => "Une erreur est survenue."
+            //     );
+            //     return $reponse;
+            // }
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
 
     // public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
     // {
