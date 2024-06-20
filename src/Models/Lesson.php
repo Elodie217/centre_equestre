@@ -10,6 +10,8 @@ class Lesson
     private $price_lesson;
     private $name_level;
     private $all_name_levels;
+    private $all_names_user;
+
 
 
     function __construct(array $datas = array())
@@ -135,8 +137,26 @@ class Lesson
         return $this;
     }
 
+    /**
+     * Get the value of all_names_user
+     */
+    public function getAllNamesUser()
+    {
+        return $this->all_names_user;
+    }
+
+    /**
+     * Set the value of all_names_user
+     */
+    public function setAllNamesUser($all_names_user): self
+    {
+        $this->all_names_user = $all_names_user;
+
+        return $this;
+    }
+
     public function getObjectToArray(): array
     {
-        return ['id_lesson' => $this->getIdLesson(), 'date_lesson' => $this->getDateLesson(), 'places_lesson' => $this->getPlacesLesson(), 'price_lesson' => $this->getPriceLesson(), 'name_level' => $this->getNameLevel(), 'all_name_levels' => $this->getAllNameLevels()];
+        return ['id_lesson' => $this->getIdLesson(), 'date_lesson' => $this->getDateLesson(), 'places_lesson' => $this->getPlacesLesson(), 'price_lesson' => $this->getPriceLesson(), 'name_level' => $this->getNameLevel(), 'all_name_levels' => $this->getAllNameLevels(), 'all_names_user' => $this->getAllNamesUser()];
     }
 }

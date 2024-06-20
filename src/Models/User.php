@@ -11,11 +11,14 @@ class User
     private $email_user;
     private $phone_user;
     private $address_user;
+    private $birthdate_user;
     private $role_user;
     private $actif_user;
     private $gdpr_user;
     private $login_user;
     private $id_level;
+    private $name_level;
+
 
 
 
@@ -161,6 +164,24 @@ class User
     }
 
     /**
+     * Get the value of birthdate_user
+     */
+    public function getBirthdateUser()
+    {
+        return $this->birthdate_user;
+    }
+
+    /**
+     * Set the value of birthdate_user
+     */
+    public function setBirthdateUser($birthdate_user): self
+    {
+        $this->birthdate_user = $birthdate_user;
+
+        return $this;
+    }
+
+    /**
      * Get the value of role_user
      */
     public function getRoleUser()
@@ -250,9 +271,26 @@ class User
         return $this;
     }
 
+    /**
+     * Get the value of name_level
+     */
+    public function getNameLevel()
+    {
+        return $this->name_level;
+    }
+
+    /**
+     * Set the value of name_level
+     */
+    public function setNameLevel($name_level): self
+    {
+        $this->name_level = $name_level;
+
+        return $this;
+    }
 
     public function getObjectToArray(): array
     {
-        return ['id_user' => $this->getIdUser(), 'password_user' => $this->getPasswordUser(), 'lastname_user' => $this->getLastnameUser(), 'firstname_user' => $this->getFirstnameUser(), 'email_user' => $this->getEmailUser(), 'phone_user' => $this->getPhoneUser(), 'address_user' => $this->getAddressUser(), 'role_user' => $this->getRoleUser(), 'actif_user' => $this->getActifUser(), 'gdpr_user' => $this->getGdprUser(), 'login_user' => $this->getLoginUser(), 'id_level' => $this->getIdLevel()];
+        return ['id_user' => $this->getIdUser(), 'password_user' => $this->getPasswordUser(), 'lastname_user' => $this->getLastnameUser(), 'firstname_user' => $this->getFirstnameUser(), 'email_user' => $this->getEmailUser(), 'phone_user' => $this->getPhoneUser(), 'address_user' => $this->getAddressUser(), 'birthdate_user' => $this->getBirthdateUser(), 'role_user' => $this->getRoleUser(), 'actif_user' => $this->getActifUser(), 'gdpr_user' => $this->getGdprUser(), 'login_user' => $this->getLoginUser(), 'id_level' => $this->getIdLevel(), 'name_level' => $this->getNameLevel()];
     }
 }

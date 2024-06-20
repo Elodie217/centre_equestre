@@ -92,6 +92,57 @@ class LessonController
     }
 
 
+    public function editLesson($idLessonEdit, $dateLessonEdit, $hourLessonEdit, $placeLessonEdit, $levelsLessonEdit, $usersLessonEdit)
+    {
+        if (isset($dateLessonEdit) && !empty($dateLessonEdit) && isset($hourLessonEdit) && !empty($hourLessonEdit) && isset($placeLessonEdit) && !empty($placeLessonEdit)) {
+
+            list($year, $month, $day) = explode("-", $dateLessonEdit);
+
+            if (checkdate($month, $day, $year)) {
+                $dateLessonEdit = htmlspecialchars($dateLessonEdit);
+
+                if (is_int($placeLessonEdit)) {
+                    $placeLessonEdit = htmlspecialchars($placeLessonEdit);
+
+                    list($hour, $minute) = explode(":", $hourLessonEdit);
+
+                    if ($hour >= 0 && $hour <= 24 && $minute >= 0 && $minute <= 60) {
+                        $LessonRepository = new LessonRepository;
+                        $reponse = $LessonRepository->editLesson($idLessonEdit, $dateLessonEdit, $hourLessonEdit, $placeLessonEdit, $levelsLessonEdit, $usersLessonEdit);
+                        return json_encode($reponse);
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => "Merci de rentrer une heure valide."
+                        );
+                        return json_encode($response);
+                        die;
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => "Merci de rentrer un nombre supérieur à 0."
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Merci de renter une date valide.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs.'
+            );
+            return json_encode($response);
+            die;
+        }
+    }
     // public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
     // {
     //     if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
@@ -156,10 +207,10 @@ class LessonController
     //     }
     // }
 
-    // function deleteHorse($idHorse)
-    // {
-    //     $HorseRepository = new HorseRepository;
-    //     $reponse = $HorseRepository->deleteHorse($idHorse);
-    //     return json_encode($reponse);
-    // }
+    function deleteLesson($idLesson)
+    {
+        $LessonRepository = new LessonRepository;
+        $reponse = $LessonRepository->deleteLesson($idLesson);
+        return json_encode($reponse);
+    }
 }

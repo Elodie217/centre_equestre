@@ -20,9 +20,17 @@ function isSelected(idGiven, idBdd) {
     console.log("same", idGiven, idBdd);
     return "selected";
   } else {
-    console.log("Not same", idGiven, idBdd);
+    // console.log("Not same", idGiven, idBdd);
 
     return "";
+  }
+}
+
+function isNull(value) {
+  if (value == null) {
+    return "";
+  } else {
+    return value;
   }
 }
 

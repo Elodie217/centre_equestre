@@ -19,8 +19,8 @@ class UserRepository
 
     public function getAllUser()
     {
-
-        $sql = "SELECT * FROM " . PREFIXE . "user";
+        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.email_user, " . PREFIXE . "user.phone_user, " . PREFIXE . "user.role_user, " . PREFIXE . "level.name_level FROM " . PREFIXE . "user
+        LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "user.id_level = " . PREFIXE . "level.id_level";
 
         $statement = $this->db->prepare($sql);
 
@@ -32,6 +32,26 @@ class UserRepository
         foreach ($objets as $objet) {
             array_push($retour, $objet->getObjectToArray());
         }
+        return $retour;
+    }
+
+    public function getUserById($idUser)
+    {
+
+        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.email_user, " . PREFIXE . "user.phone_user, " . PREFIXE . "user.address_user, " . PREFIXE . "user.birthdate_user, " . PREFIXE . "user.role_user, " . PREFIXE . "user.actif_user, " . PREFIXE . "user.gdpr_user, " . PREFIXE . "user.login_user, " . PREFIXE . "user.id_level, " . PREFIXE . "level.name_level FROM " . PREFIXE . "user
+        LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "user.id_level = " . PREFIXE . "level.id_level
+	    WHERE " . PREFIXE . "user.id_user = :idUser";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idUser', $idUser);
+
+        $statement->execute();
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $objet = $statement->fetch();
+
+        $retour = $objet->getObjectToArray();
+
         return $retour;
     }
 

@@ -41,4 +41,15 @@ class AdminController
 
         $this->render("boxAdmin", ["erreur" => $erreur]);
     }
+
+    public function user(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("userAdmin", ["erreur" => $erreur]);
+    }
 }

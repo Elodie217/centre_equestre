@@ -13,4 +13,11 @@ class UserController
         $reponse = $UserRepository->getAllUser();
         return json_encode($reponse);
     }
+
+    public function userById($idUser)
+    {
+        $UserRepository = new UserRepository;
+        $reponse = $UserRepository->getUserById($idUser);
+        return json_encode($reponse);
+    }
 }

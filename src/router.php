@@ -68,24 +68,22 @@ switch ($route) {
 
                         die;
 
-                        //     echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
-                        //     die;
+                    case $routeComposee[2] == "edit":
+                        $data = file_get_contents("php://input");
 
-                        // case $routeComposee[2] == "edit":
-                        //     $data = file_get_contents("php://input");
+                        $addlesson = json_decode($data, true);
 
-                        //     $addhorse = json_decode($data, true);
+                        echo $LessonController->editLesson($addlesson['idLesson'], $addlesson['dateLessonEdit'], $addlesson['hourLessonEdit'], $addlesson['placeLessonEdit'], $addlesson['levelsLessonEdit'], $addlesson['usersLessonEdit']);
 
-                        //     echo $HorseController->editHorse($addhorse['idHorse'], $addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
-                        //     die;
+                        die;
 
-                        // case $routeComposee[2] == "delete":
-                        //     $data = file_get_contents("php://input");
+                    case $routeComposee[2] == "delete":
+                        $data = file_get_contents("php://input");
 
-                        //     $horse = json_decode($data, true);
+                        $lesson = json_decode($data, true);
 
-                        //     echo $HorseController->deleteHorse($horse['idHorse']);
-                        //     die;
+                        echo $LessonController->deleteLesson($lesson['idLesson']);
+                        die;
 
                     default:
                         $AdminController->lesson();
@@ -215,13 +213,21 @@ switch ($route) {
                         $AdminController->box();
                         die;
                 }
-            case $routeComposee[1] == "user":
+            case $routeComposee[1] == "users":
                 switch ($route) {
                     case $routeComposee[2] == "all":
 
                         echo $UserController->allUser();
                         die;
-                    case $routeComposee[2] == "add":
+
+                    case $routeComposee[2] == "id":
+                        $data = file_get_contents("php://input");
+
+                        $userId = json_decode($data, true);
+
+                        echo $UserController->userById($userId['idUser']);
+                        die;
+                        // case $routeComposee[2] == "add":
                         // $data = file_get_contents("php://input");
 
                         // $addhorse = json_decode($data, true);
@@ -237,7 +243,7 @@ switch ($route) {
                         // die;
 
                     default:
-                        // $AdminController->horses();
+                        $AdminController->user();
                         die;
                 }
             default:

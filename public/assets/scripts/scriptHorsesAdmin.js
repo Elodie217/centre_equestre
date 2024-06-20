@@ -91,7 +91,7 @@ function openAddHorseModal() {
   document.querySelector(".modalAddHorse").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
   getAllBox();
-  getAllUser();
+  getAllUserSelect();
 }
 
 function closeAddHorseModal() {
@@ -198,7 +198,7 @@ function closeEditHorseModal() {
 }
 
 function openEditHorseModal(horse) {
-  getAllUser(horse.id_user);
+  getAllUserSelect(horse.id_user);
   getAllBox(horse.id_box);
   document.querySelector(".modalEditHorse").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
