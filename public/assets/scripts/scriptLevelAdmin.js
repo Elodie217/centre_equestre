@@ -10,28 +10,29 @@ function getAllLevel(idLevelGiven = 0, div = "select", action = "add") {
     });
 }
 
-// function displayLevel(levels, idLevelHorse) {
-//   divHorseLevel = document.querySelectorAll(".horseLevel");
-//   divHorseLevel.forEach((div) => {
-//     div.innerHTML = "";
-//   });
+function displayLevel(levels, idLevelUser) {
+  divUserLevel = document.querySelectorAll(".levelUser");
+  divUserLevel.forEach((div) => {
+    div.innerHTML =
+      "<option value='' class='mb-3 block text-base font-medium text-[#07074D]'>";
+  });
 
-//   levels.forEach((level) => {
-//     divHorseLevel.forEach((div) => {
-//       div.innerHTML +=
-//         `
-//       <option value=` +
-//         level.id_level +
-//         ` class='mb-3 block text-base font-medium text-[#07074D]'
-//       ` +
-//         isSelected(idLevelHorse, level.id_level) +
-//         `
-//       >` +
-//         level.name_level +
-//         ` </option>`;
-//     });
-//   });
-// }
+  levels.forEach((level) => {
+    divUserLevel.forEach((div) => {
+      div.innerHTML +=
+        `
+      <option value=` +
+        level.id_level +
+        ` class='mb-3 block text-base font-medium text-[#07074D]'
+      ` +
+        isSelected(idLevelUser, level.id_level) +
+        `
+      >` +
+        level.name_level +
+        ` </option>`;
+    });
+  });
+}
 
 function displayLevelCheckbox(levels, idLevelGiven, action) {
   let divLessonLevel;

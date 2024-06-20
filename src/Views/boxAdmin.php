@@ -80,7 +80,7 @@ include __DIR__ . '/Includes/dashboard.php';
                 </button>
                 <h3 class="text-2xl text-center mb-8">Ajouter un nouveau Box</h3>
                 <div class="mb-5">
-                    <label for="birthdateHorse" class='mb-3 block text-base font-medium text-[#07074D]"'>Box</label>
+                    <label for="boxAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Box</label>
                     <input type="text" name="boxAdd" id="boxAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
                 </div>
 

@@ -485,7 +485,7 @@ function reponseEditLesson(data) {
 
 // Delete Lesson
 
-function openDeleteLessonModal(idLesson, nameLesson) {
+function openDeleteLessonModal(idLesson) {
   document.querySelector(".modalViewLesson").classList.add("hidden");
 
   document.querySelector(".modalDeleteLesson").classList.remove("hidden");

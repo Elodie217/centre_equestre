@@ -103,9 +103,10 @@ function newHorseVerification() {
   let nameHorse = document.getElementById("nameHorse").value;
   let imageHorse = document.getElementById("imageHorse").value;
   let birthdateHorse = document.getElementById("birthdateHorse").value;
-  let horseUser = document.getElementById("horseUserAdd").value;
-  let horseBox = document.getElementById("horseBoxAdd").value;
+  let horseUser = parseInt(document.getElementById("horseUserAdd").value);
+  let horseBox = parseInt(document.getElementById("horseBoxAdd").value);
   let errorMessageHorses = document.getElementById("errorMessageHorses");
+  errorMessageHorses.innerHTML = "";
 
   if (
     nameHorse !== "" &&
@@ -126,7 +127,7 @@ function newHorseVerification() {
               horseBox
             );
           } else {
-            errorMessageHorsesEdit.innerHTML = "Merci de renter un URL valide.";
+            errorMessageHorses.innerHTML = "Merci de renter un URL valide.";
           }
         } else {
           errorMessageHorses.innerHTML = "Merci de rentrer une date valide.";
@@ -166,9 +167,13 @@ function newHorse(nameHorse, imageHorse, birthdateHorse, horseUser, horseBox) {
 }
 
 function reponseAddHorse(data) {
-  openSuccessMessage(data.message);
-  getAllHorses();
-  closeAddHorseModal();
+  if (data.status == "success") {
+    openSuccessMessage(data.message);
+    getAllHorses();
+    closeAddHorseModal();
+  } else {
+    document.getElementById("errorMessageHorses").innerHTML = data.message;
+  }
 }
 
 // Edit horse
@@ -343,9 +348,13 @@ function editHorse(
 }
 
 function reponseEditHorse(data) {
-  openSuccessMessage(data.message);
-  getAllHorses();
-  closeEditHorseModal();
+  if (data.status == "success") {
+    openSuccessMessage(data.message);
+    getAllHorses();
+    closeEditHorseModal();
+  } else {
+    document.getElementById("errorMessageHorsesEdit").innerHTML = data.message;
+  }
 }
 
 // Delete horse

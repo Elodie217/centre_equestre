@@ -2,7 +2,7 @@
 include __DIR__ . '/Includes/headerWebsite.php';
 require_once __DIR__ . '/Includes/Button.php';
 
-$buttonNew = new Button('Ajouter un box', 'openAddUserModal()');
+$buttonNew = new Button('Ajouter un cavalier', 'openAddUserModal()');
 $buttonAdd = new Button('Ajouter', 'AddUserVerification()');
 
 
@@ -72,7 +72,7 @@ include __DIR__ . '/Includes/dashboard.php';
     </div>
 </div>
 
-<!--
+
 <div class="modalAddUser hidden">
     <div class="fixed inset-0 z-10 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -80,22 +80,79 @@ include __DIR__ . '/Includes/dashboard.php';
                 <button class="absolute right-8 top-4 text-2xl" onclick="closeAddUserModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
-                <h3 class="text-2xl text-center mb-8">Ajouter un nouveau User</h3>
-                <div class="mb-5">
-                    <label for="birthdateHorse" class='mb-3 block text-base font-medium text-[#07074D]"'>User</label>
-                    <input type="text" name="boxAdd" id="boxAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                <h3 class="text-2xl text-center mb-8">Ajouter un nouveau cavalier</h3>
+
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-full px-3 sm:w-1/2">
+                        <div class="mb-5">
+                            <label for="lastnameUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Nom*</label>
+                            <input type="text" name="lastnameUserAdd" id="lastnameUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-full px-3 sm:w-1/2">
+                        <div class="mb-5">
+                            <label for="firstnameUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Prénom*</label>
+                            <input type="text" name="firstnameUserAdd" id="firstnameUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                        </div>
+                    </div>
                 </div>
 
+                <div class="mb-5">
+                    <label for="emailUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Email*</label>
+                    <input type="text" name="emailUserAdd" id="emailUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                </div>
 
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-full px-3 sm:w-1/2">
+                        <div class="mb-5">
+                            <label for="phoneUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Téléphone</label>
+                            <input type="tel" name="phoneUserAdd" id="phoneUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                        </div>
+                    </div>
+                    <div class="w-full px-3 sm:w-1/2">
+                        <div class="mb-5">
+                            <label for="birthdateUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Date de naissance</label>
+                            <input type="date" name="birthdateUserAdd" id="birthdateUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                        </div>
+                    </div>
+                </div>
 
-                <div id="errorMessageUser"></div>
+                <div class="mb-5">
+                    <label for="addressUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Adresse</label>
+                    <input type="text" name="addressUserAdd" id="addressUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                </div>
+
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-full px-3 sm:w-1/2">
+                        <div class="mb-5">
+                            <label for="roleUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Role*</label>
+                            <select name="roleUserAdd" id="roleUserAdd" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="w-full px-3 sm:w-1/2">
+                        <div class="mb-5">
+                            <label for="levelUserAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Niveau</label>
+
+                            <select name="levelUserAdd" id="levelUserAdd" class="levelUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="errorMessageUserAdd"></div>
 
                 <div class="w-fit m-auto mt-8">
 
-                    <? // $buttonAdd->create_btn() 
+                    <?= $buttonAdd->create_btn()
                     ?>
                 </div>
-
 
             </div>
         </div>
@@ -117,7 +174,21 @@ include __DIR__ . '/Includes/dashboard.php';
         </div>
     </div>
 </div>
--->
+
+<div class="modalDeleteDisableUser hidden">
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
+                <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteDisableUserModal()">
+                    <i class="fa-regular fa-circle-xmark "></i>
+                </button>
+
+                <div class="deleteDisableUserMessage"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modalDeleteUser hidden">
     <div class="fixed inset-0 z-10 overflow-y-auto">

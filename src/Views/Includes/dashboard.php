@@ -49,7 +49,7 @@
                 <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/box')">
                     <i class="fa-solid fa-house mr-2"></i>Box
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/contact')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/contacts')">
                     <i class="fa-solid fa-comments mr-2"></i>Prise de contact
                 </button>
                 <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/users')">

@@ -48,3 +48,14 @@ function isValidURL(url) {
   const regex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
   return regex.test(url);
 }
+
+function checkEmail(email) {
+  let re =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function isValidPhone(phone) {
+  const regex = /^\d{10}$/;
+  return regex.test(phone);
+}
