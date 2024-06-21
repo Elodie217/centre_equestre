@@ -17,7 +17,7 @@ function closeSuccessMessage() {
 
 function isSelected(idGiven, idBdd) {
   if (idGiven == idBdd) {
-    console.log("same", idGiven, idBdd);
+    // console.log("same", idGiven, idBdd);
     return "selected";
   } else {
     // console.log("Not same", idGiven, idBdd);

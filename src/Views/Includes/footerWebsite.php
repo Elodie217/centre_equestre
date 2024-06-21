@@ -12,6 +12,7 @@
 <script src="../../../public/assets/scripts/scriptHorsesAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptLevelAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptLessonAdmin.js"></script>
+<script src="../../../public/assets/scripts/scriptContactAdmin.js"></script>
 
 
 

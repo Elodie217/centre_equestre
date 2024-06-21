@@ -36,7 +36,7 @@ function displayBoxHorses(horses, idHorse) {
 function displayHorses(Horses) {
   document.querySelector(".divCards").innerHTML = "";
   Horses.forEach((horse) => {
-    const maDate = new Date(horse.birthdate_horse);
+    const birthdateHorse = new Date(horse.birthdate_horse);
 
     document.querySelector(".divCards").innerHTML +=
       `
@@ -64,7 +64,7 @@ function displayHorses(Horses) {
       `</p>
 
       <p class='mb-4 text-base'>Date de naissance : ` +
-      maDate.toLocaleDateString("fr") +
+      birthdateHorse.toLocaleDateString("fr") +
       `</p>
 
       <p class='mb-4 text-base text-right font-bold '>` +

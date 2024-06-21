@@ -2,6 +2,7 @@
 
 use src\Controllers\AdminController;
 use src\Controllers\BoxController;
+use src\Controllers\ContactController;
 use src\Controllers\HomeController;
 use src\Controllers\HorseController;
 use src\Controllers\LessonController;
@@ -23,7 +24,7 @@ $BoxController = new BoxController;
 $UserController = new UserController;
 $LessonController = new LessonController;
 $LevelController = new LevelController;
-// $ContactController = new ContactController;
+$ContactController = new ContactController;
 
 
 
@@ -267,42 +268,35 @@ switch ($route) {
                 }
             case $routeComposee[1] == "contacts":
                 switch ($route) {
-                        // case $routeComposee[2] == "all":
+                    case $routeComposee[2] == "all":
 
-                        //     echo $ContactController->allContact();
-                        //     die;
+                        echo $ContactController->allContact();
+                        die;
 
-                        // case $routeComposee[2] == "id":
-                        //     $data = file_get_contents("php://input");
+                    case $routeComposee[2] == "id":
+                        $data = file_get_contents("php://input");
 
-                        //     $userId = json_decode($data, true);
+                        $contactId = json_decode($data, true);
 
-                        //     echo $UserController->userById($userId['idUser']);
-                        //     die;
+                        echo $ContactController->contactById($contactId['idContact']);
+                        die;
 
-                        // case $routeComposee[2] == "add":
-                        //     $data = file_get_contents("php://input");
+                    case $routeComposee[2] == "status":
+                        $data = file_get_contents("php://input");
 
-                        //     $addUser = json_decode($data, true);
+                        $statusId = json_decode($data, true);
 
-                        //     echo $UserController->addUser($addUser['lastnameUserAdd'], $addUser['firstnameUserAdd'], $addUser['emailUserAdd'], $addUser['phoneUserAdd'], $addUser['birthdateUserAdd'], $addUser['addressUserAdd'], $addUser['roleUserAdd'], $addUser['levelUserAdd']);
-                        //     die;
+                        echo $ContactController->changeStatus($statusId['idStatus'], $statusId['idContact']);
 
-                        // case $routeComposee[2] == "edit":
-                        //     $data = file_get_contents("php://input");
+                        die;
 
-                        //     $editUser = json_decode($data, true);
+                    case $routeComposee[2] == "delete":
+                        $data = file_get_contents("php://input");
 
-                        //     echo $UserController->editUser($editUser['idUserEdit'], $editUser['lastnameUserEdit'], $editUser['firstnameUserEdit'], $editUser['emailUserEdit'], $editUser['phoneUserEdit'], $editUser['birthdateUserEdit'], $editUser['addressUserEdit'], $editUser['roleUserEdit'], $editUser['levelUserEdit']);
-                        //     die;
+                        $contact = json_decode($data, true);
 
-                        // case $routeComposee[2] == "delete":
-                        //     $data = file_get_contents("php://input");
-
-                        //     $user = json_decode($data, true);
-
-                        //     echo $UserController->deleteUser($user['idUser']);
-                        //     die;
+                        echo $ContactController->deleteContact($contact['idContact']);
+                        die;
 
                     default:
                         $AdminController->contact();
@@ -314,6 +308,6 @@ switch ($route) {
         }
 
     default:
-        echo 'Bah  mdr';
+        echo 'Bah mdr';
         break;
 }
