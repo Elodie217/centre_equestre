@@ -36,14 +36,14 @@ switch ($route) {
     case HOME_URL . 'photos':
         $HomeController->photos();
         break;
+    case HOME_URL . 'login':
+        $HomeController->login();
+
+        die;
+
     case $routeComposee[0] == "admin":
         switch ($route) {
             case $routeComposee[1] == "accueil":
-                // $data = file_get_contents("php://input");
-
-                // $Cours = json_decode($data, true);
-
-                // echo $CoursController->signatureApprenant($Cours['Id_cours'], $Cours['Code_cours']);
                 die;
 
             case $routeComposee[1] == "lessons":
@@ -52,14 +52,6 @@ switch ($route) {
 
                         echo $LessonController->allLessons();
                         die;
-
-                        // case $routeComposee[2] == "id":
-                        //     $data = file_get_contents("php://input");
-
-                        //     $horseid = json_decode($data, true);
-
-                        //     echo $HorseController->horseById($horseid['idHorse']);
-                        //     die;
 
                     case $routeComposee[2] == "add":
                         $data = file_get_contents("php://input");

@@ -8,6 +8,7 @@
     <title>Centre équestre</title>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
     <script src='fullcalendar/dist/index.global.js'></script>
+    <link rel="stylesheet" href="../../../public/assets/css/style.css">
 
 </head>
 
