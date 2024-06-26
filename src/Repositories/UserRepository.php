@@ -2,6 +2,8 @@
 
 namespace src\Repositories;
 
+// session_start();
+
 use PDO;
 use src\Models\User;
 use src\Models\Database;
@@ -14,6 +16,45 @@ class UserRepository
     {
         $database = new Database;
         $this->db = $database->getDB();
+    }
+
+    public function loginUser($login, $passwordLogin)
+    {
+        $sql = "SELECT * FROM " . PREFIXE . "user WHERE login_user = :login";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':login', $login);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $user = $statement->fetch();
+
+        if ($user) {
+            if (password_verify($passwordLogin, $user->getPasswordUser())) {
+                $_SESSION['role'] = $user->getRoleUser();
+                $_SESSION['idUser'] = $user->getIdUser();
+                $_SESSION['idLevelUser'] = $user->getIdLevel();
+
+
+                $reponse = array(
+                    'status' => 'success',
+                    'message' => "Connected",
+                    'role' => $user->getRoleUser()
+                );
+                return $reponse;
+            } else {
+                $reponse = array(
+                    'status' => 'error',
+                    'message' => "Identifiant ou mot de passe incorrect"
+                );
+                return $reponse;
+            }
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Identifiant ou mot de passe incorrect"
+            );
+            return $reponse;
+        }
     }
 
 

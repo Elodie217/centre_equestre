@@ -11,17 +11,37 @@ class LessonController
 
     use Reponse;
 
+    //User
 
-    // public function horses(): void
-    // {
-    //     if (isset($_GET['erreur'])) {
-    //         $erreur = htmlspecialchars($_GET['erreur']);
-    //     } else {
-    //         $erreur = '';
-    //     }
+    public function allLessonsByIdUser($idUser)
+    {
+        $LessonRepository = new LessonRepository;
+        $reponse = $LessonRepository->getAllLessonsByIdUser($idUser);
+        return json_encode($reponse);
+    }
 
-    //     $this->render("horses", ["erreur" => $erreur]);
-    // }
+    public function allLessonsByIdLevelUser()
+    {
+        $LessonRepository = new LessonRepository;
+        $reponse = $LessonRepository->getAllLessonsByIdLevelUser();
+        return json_encode($reponse);
+    }
+
+    public function changeLessonUser($idNewLesson, $idOldLesson)
+    {
+        $LessonRepository = new LessonRepository;
+        $reponse = $LessonRepository->changeLessonUser($idNewLesson, $idOldLesson);
+        return json_encode($reponse);
+    }
+
+    public   function deleteLessonUser($idLesson)
+    {
+        $LessonRepository = new LessonRepository;
+        $reponse = $LessonRepository->deleteLessonUser($idLesson);
+        return json_encode($reponse);
+    }
+
+    //Admin
 
     public function allLessons()
     {

@@ -4,7 +4,6 @@ namespace src\Repositories;
 
 use PDO;
 use src\Models\Database;
-use src\Models\Horse;
 use src\Models\Lesson;
 
 class LessonRepository
@@ -17,6 +16,123 @@ class LessonRepository
         $this->db = $database->getDB();
     }
 
+    //User
+
+    public function getAllLessonsByIdUser($idUser)
+    {
+        $sql = "SELECT " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, " . PREFIXE . "user.id_user,
+        GROUP_CONCAT(DISTINCT " . PREFIXE . "level.name_level ORDER BY " . PREFIXE . "level.name_level SEPARATOR ', ') as all_name_levels
+            FROM " . PREFIXE . "lesson
+            LEFT JOIN " . PREFIXE . "lesson_level ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "lesson_level.id_lesson
+            LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "lesson_level.id_level = " . PREFIXE . "level.id_level
+            LEFT JOIN " . PREFIXE . "user_lesson ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "user_lesson.id_lesson
+            LEFT JOIN " . PREFIXE . "user ON " . PREFIXE . "user_lesson.id_user = " . PREFIXE . "user.id_user
+            WHERE " . PREFIXE . "user_lesson.id_user =  :idUser
+            GROUP BY " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson;
+            ";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idUser', $idUser);
+
+        $statement->execute();
+
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Lesson::class);
+        $retour =  [];
+
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
+    }
+
+    public function getAllLessonsByIdLevelUser()
+    {
+
+        $sql = "SELECT " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, " . PREFIXE . "lesson.price_lesson, 
+        GROUP_CONCAT(DISTINCT " . PREFIXE . "level.name_level ORDER BY " . PREFIXE . "level.name_level SEPARATOR ', ') as all_name_levels, 
+        GROUP_CONCAT(DISTINCT CONCAT(" . PREFIXE . "user.id_user, ' ', " . PREFIXE . "user.lastname_user, ' ', " . PREFIXE . "user.firstname_user) SEPARATOR ', ') as all_names_user
+            FROM " . PREFIXE . "lesson
+            LEFT JOIN " . PREFIXE . "lesson_level ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "lesson_level.id_lesson
+            LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "lesson_level.id_level = " . PREFIXE . "level.id_level
+            LEFT JOIN " . PREFIXE . "user_lesson ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "user_lesson.id_lesson
+            LEFT JOIN " . PREFIXE . "user ON " . PREFIXE . "user_lesson.id_user = " . PREFIXE . "user.id_user
+            WHERE " . PREFIXE . "lesson_level.id_level = :idLevelUser
+            AND " . PREFIXE . "lesson.date_lesson > CURRENT_DATE
+            AND " . PREFIXE . "lesson.id_lesson NOT IN (
+                SELECT " . PREFIXE . "lesson.id_lesson
+                FROM " . PREFIXE . "lesson
+                JOIN " . PREFIXE . "user_lesson ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "user_lesson.id_lesson
+                WHERE " . PREFIXE . "user_lesson.id_user = :idUser
+            )
+            GROUP BY " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, " . PREFIXE . "lesson.price_lesson;
+            ";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idUser', $_SESSION['idUser']);
+        $statement->bindParam(':idLevelUser', $_SESSION['idLevelUser']);
+
+        $statement->execute();
+
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Lesson::class);
+        $retour =  [];
+
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
+    }
+
+    public function changeLessonUser($idNewLesson, $idOldLesson)
+    {
+        $sql = "UPDATE " . PREFIXE . "user_lesson SET id_lesson = :idNewLesson 
+                WHERE id_user = :idUser
+                AND id_lesson = :idOldLesson";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idNewLesson', $idNewLesson);
+        $statement->bindParam(':idOldLesson', $idOldLesson);
+        $statement->bindParam(':idUser', $_SESSION['idUser']);
+
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => 'Le cours a bien été modifié !'
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
+
+    public function deleteLessonUser($idLesson)
+    {
+        $sql = "DELETE FROM " . PREFIXE . "user_lesson WHERE id_lesson = :id_lesson AND id_user = :id_user;";
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindParam(':id_lesson', $idLesson);
+        $statement->bindParam(':id_user', $_SESSION['idUser']);
+
+
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Votre cours à bien été annulé !"
+            );
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+        }
+        return $reponse;
+    }
+
+    //Admin
 
     public function getAllLessons()
     {
@@ -44,27 +160,6 @@ class LessonRepository
         }
         return $retour;
     }
-
-    // public function getHorsesById($idHorse)
-    // {
-
-    //     $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.id_box," . PREFIXE . "horse.id_user," . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user, " . PREFIXE . "box
-    //     WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
-    //     AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box
-    //     AND " . PREFIXE . "horse.id_horse = :id_horse";
-
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':id_horse', $idHorse);
-
-    //     $statement->execute();
-
-    //     $statement->setFetchMode(PDO::FETCH_CLASS, Horse::class);
-    //     $objet = $statement->fetch();
-
-    //     $retour = $objet->getObjectToArray();
-
-    //     return $retour;
-    // }
 
     public function addLesson($dateLessonAdd, $hourLessonAdd, $placeLessonAdd, $levelsLessonAdd, $usersLessonAdd)
     {
@@ -234,33 +329,6 @@ class LessonRepository
             return $reponse;
         }
     }
-
-    // public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
-    // {
-    //     $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse, birthdate_horse = :birthdateHorse, image_horse = :imageHorse, id_user = :horseUser, id_box = :horseBox WHERE id_horse = :idHorse";
-
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':idHorse', $idHorse);
-    //     $statement->bindParam(':nameHorse', $nameHorse);
-    //     $statement->bindParam(':imageHorse', $imageHorse);
-    //     $statement->bindParam(':birthdateHorse', $birthdateHorse);
-    //     $statement->bindParam(':horseUser', $horseUser);
-    //     $statement->bindParam(':horseBox', $horseBox);
-
-    //     if ($statement->execute()) {
-    //         $reponse = array(
-    //             'status' => 'success',
-    //             'message' => $nameHorse . ' a bien été modifié !'
-    //         );
-    //         return $reponse;
-    //     } else {
-    //         $reponse = array(
-    //             'status' => 'error',
-    //             'message' => "Une erreur est survenue."
-    //         );
-    //         return $reponse;
-    //     }
-    // }
 
     public function deleteLesson($idLesson)
     {

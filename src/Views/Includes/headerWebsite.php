@@ -13,3 +13,4 @@
 </head>
 
 <body class="text-lg">
+    <div class="blurred fixed w-full h-full top-0 backdrop-blur-sm hidden z-10"></div>
