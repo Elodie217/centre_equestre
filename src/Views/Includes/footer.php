@@ -12,7 +12,7 @@
                     <a href="">123 route Victor Hugo, <br>
                         38000 Grenoble
                     </a>
-                    <a href="">06 12 34 56 78</a>
+                    <a href="tel:0612345678">06 12 34 56 78</a>
                 </div>
                 <div class="space-y-4 mr-20 flex flex-col">
                     <a href="" class="">Politique de confidentialité</a> <br>

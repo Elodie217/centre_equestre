@@ -34,6 +34,21 @@ switch ($route) {
     case HOME_URL:
         $HomeController->index();
         die;
+        // case HOME_URL . 'contact':
+    case $routeComposee[0] == "contact":
+        switch ($route) {
+            case $routeComposee[1] == "send":
+                $data = file_get_contents("php://input");
+
+                $contact = json_decode($data, true);
+
+                echo $ContactController->sendContact($contact['lastnameContact'], $contact['firstnameContact'], $contact['emailContact'], $contact['messageContact']);
+
+                die;
+            default:
+                $HomeController->contact();
+                die;
+        }
     case HOME_URL . 'photos':
         $HomeController->photos();
         die;

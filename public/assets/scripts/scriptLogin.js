@@ -1,7 +1,3 @@
-function btnLogin() {
-  window.location.href = HOME_URL + `login`;
-}
-
 function loginVerification() {
   let login = document.getElementById("login").value;
   let passwordLogin = document.getElementById("passwordLogin").value;
@@ -42,10 +38,10 @@ function reponseLogin(data) {
   if (data.status == "success") {
     if (data.role == "User") {
       console.log("User");
-      window.location.href = HOME_URL + `user/lessons`;
+      redirect("user/lessons");
     } else if (data.role == "Admin") {
       console.log("admin");
-      window.location.href = HOME_URL + `admin/lessons`;
+      redirect("admin/lessons");
     }
   } else {
     document.getElementById("errorMessageLogin").innerHTML = data.message;
@@ -57,7 +53,7 @@ function logout() {
     .then((res) => res.text())
     .then((data) => {
       if (data) {
-        window.location.href = HOME_URL + ``;
+        redirect("");
       }
     });
 }

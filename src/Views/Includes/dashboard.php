@@ -1,10 +1,3 @@
-<button type="button" onclick="closeSuccessMessage()" class="hidden toastSuccessMessage fixed right-4 top-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition-all transition duration-300 hover:bg-green-600">
-    <div class="flex items-center space-x-2">
-        <span class="text-3xl"><i class="fa-solid fa-check mr-2"></i></span>
-        <p class="font-bold successMessage"></p>
-    </div>
-</button>
-
 <div class="flex flex-col h-screen">
 
     <!-- Barre de navigation en haut -->

@@ -1,7 +1,3 @@
-function btnMyLessons() {
-  window.location.href = HOME_URL + `user/lessons`;
-}
-
 const months = [
   "Janvier",
   "Février",

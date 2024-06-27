@@ -16,6 +16,34 @@ class ContactRepository
         $this->db = $database->getDB();
     }
 
+    public function sendContact($lastnameContact, $firstnameContact, $emailContact, $messageContact)
+    {
+        $dateContact = date("Y-m-d H:i:s");
+
+        $sql = "INSERT INTO " . PREFIXE . "contact (lastname_contact, firstname_contact, email_contact, message_contact, date_contact, id_status) VALUES (:lastnameContact, :firstnameContact, :emailContact, :messageContact, :dateContact, 1)";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':lastnameContact', $lastnameContact);
+        $statement->bindParam(':firstnameContact', $firstnameContact);
+        $statement->bindParam(':emailContact', $emailContact);
+        $statement->bindParam(':messageContact', $messageContact);
+        $statement->bindParam(':dateContact', $dateContact);
+
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Votre message à bien été envoyé !"
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
+
 
     public function getAllContact()
     {

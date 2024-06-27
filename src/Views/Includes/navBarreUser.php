@@ -29,7 +29,7 @@
             <div class="hidden md:flex justify-between items-end w-full md:w-auto md:order-1" id="mobile-menu-3">
                 <ul class="flex-col md:flex-row flex md:space-x-12 mt-4 md:mt-0 md:text-base md:font-medium items-center">
                     <li>
-                        <button onclick="btnMyLessons()" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mes cours</button>
+                        <button onclick="redirect('user/lessons')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mes cours</button>
                     </li>
                     <li>
                         <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mon compte</button>

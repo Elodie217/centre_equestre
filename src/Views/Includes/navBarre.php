@@ -30,7 +30,7 @@
                 <ul class="flex-col md:flex-row flex md:space-x-12 mt-4 md:mt-0 md:text-base md:font-medium items-center">
 
                     <li>
-                        <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Accueil</button>
+                        <button onclick="redirect('')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Accueil</button>
                     </li>
                     <li>
                         <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Cours</button>
@@ -45,10 +45,10 @@
                         <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Pensions</button>
                     </li>
                     <li>
-                        <button onclick="btnLogin()" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Contact</button>
+                        <button onclick="redirect('contact')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Contact</button>
                     </li>
                     <li>
-                        <button onclick="btnLogin()" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5">Connexion</button>
+                        <button onclick="redirect('login')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5">Connexion</button>
                     </li>
                 </ul>
             </div>
