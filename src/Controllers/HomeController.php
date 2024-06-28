@@ -32,6 +32,17 @@ class HomeController
         $this->render("horse", ["erreur" => $erreur]);
     }
 
+    public function board(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("board", ["erreur" => $erreur]);
+    }
+
     public function contact(): void
     {
         if (isset($_GET['erreur'])) {

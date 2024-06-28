@@ -35,6 +35,21 @@ switch ($route) {
         $HomeController->index();
         die;
 
+    case $routeComposee[0] == "horses":
+        switch ($route) {
+            case $routeComposee[1] == "all":
+
+                echo $HorseController->allHorses();
+                die;
+            default:
+                $HomeController->horses();
+                die;
+        }
+
+    case HOME_URL . 'board':
+        $HomeController->board();
+        die;
+
     case $routeComposee[0] == "contact":
         switch ($route) {
             case $routeComposee[1] == "send":
@@ -47,17 +62,6 @@ switch ($route) {
                 die;
             default:
                 $HomeController->contact();
-                die;
-        }
-
-    case $routeComposee[0] == "horses":
-        switch ($route) {
-            case $routeComposee[1] == "all":
-
-                echo $HorseController->allHorses();
-                die;
-            default:
-                $HomeController->horses();
                 die;
         }
 

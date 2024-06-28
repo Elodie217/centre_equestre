@@ -22,7 +22,8 @@ class HorseRepository
 
         $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user, " . PREFIXE . "box
 	    WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
-	    AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box";
+	    AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box
+        ORDER BY " . PREFIXE . "horse.name_horse ASC";
 
         $statement = $this->db->prepare($sql);
 

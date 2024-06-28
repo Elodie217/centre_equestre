@@ -14,6 +14,7 @@ require_once __DIR__ . '/Includes/Button.php';
     <img src="https://cdn.pixabay.com/photo/2021/11/03/18/25/construction-6766555_1280.jpg" alt="" class="w-1/3">
     <img src="https://cdn.pixabay.com/photo/2016/11/08/16/03/horse-1808727_1280.jpg" alt="" class="w-1/3">
     <img src="https://images.pexels.com/photos/2325007/pexels-photo-2325007.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="w-1/3">
+    <img src="https://images.unsplash.com/photo-1564243938398-2a897f848c86?q=80&w=1417&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="w-1/3">
 </div>
 
 

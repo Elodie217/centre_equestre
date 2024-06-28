@@ -1,3 +1,9 @@
+<?php
+
+$route = $_SERVER['REDIRECT_URL'];
+
+?>
+
 <nav class="border-gray-200 mb-10 py-3 px-6 bg-[#64832F]">
     <div class="w-full mx-auto">
         <div class="mx-2 flex flex-wrap items-center justify-between">
@@ -30,25 +36,59 @@
                 <ul class="flex-col md:flex-row flex md:space-x-12 mt-4 md:mt-0 md:text-base md:font-medium items-center">
 
                     <li>
-                        <button onclick="redirect('')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Accueil</button>
+                        <button onclick="redirect('')" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0 <?php
+                                                                                                                                                                                                if ($route == HOME_URL . '') {
+                                                                                                                                                                                                    echo "md:text-[#C0DF85]";
+                                                                                                                                                                                                } else {
+                                                                                                                                                                                                    echo "text-white ";
+                                                                                                                                                                                                } ?>">Accueil</button>
                     </li>
                     <li>
-                        <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Cours</button>
+                        <button class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0 <?php
+                                                                                                                                                                            if ($route == HOME_URL . '') {
+                                                                                                                                                                                echo "md:text-[#C0DF85]";
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo "text-white ";
+                                                                                                                                                                            } ?>">Cours</button>
                     </li>
                     <li>
-                        <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Installations</button>
+                        <button class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0 <?php
+                                                                                                                                                                            if ($route == HOME_URL . '') {
+                                                                                                                                                                                echo "md:text-[#C0DF85]";
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo "text-white ";
+                                                                                                                                                                            } ?>">Installations</button>
                     </li>
                     <li>
-                        <button onclick="redirect('horses')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Chevaux</button>
+                        <button onclick="redirect('horses')" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0 <?php
+                                                                                                                                                                                                        if ($route == HOME_URL . 'horses') {
+                                                                                                                                                                                                            echo "md:text-[#C0DF85]";
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            echo "text-white ";
+                                                                                                                                                                                                        } ?>">Chevaux</button>
                     </li>
                     <li>
-                        <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Pensions</button>
+                        <button onclick="redirect('board')" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0 <?php
+                                                                                                                                                                                                        if ($route == HOME_URL . 'board') {
+                                                                                                                                                                                                            echo "md:text-[#C0DF85]";
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            echo "text-white ";
+                                                                                                                                                                                                        } ?>">Pensions</button>
                     </li>
                     <li>
-                        <button onclick="redirect('contact')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Contact</button>
+                        <button onclick="redirect('contact')" class="hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0 <?php
+                                                                                                                                                                                                        if ($route == HOME_URL . 'contact') {
+                                                                                                                                                                                                            echo "md:text-[#C0DF85]";
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            echo "text-white ";
+                                                                                                                                                                                                        } ?>">Contact</button>
                     </li>
                     <li>
-                        <button onclick="redirect('login')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5">Connexion</button>
+                        <button onclick="redirect('login')" class="text-white hover:bg-gray-50 border-b border-gray-100   hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5 <?php if ($route == HOME_URL . 'login') {
+                                                                                                                                                                                                                echo "md:bg-[#a16c21cc]";
+                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                echo "bg-[#A16C21]";
+                                                                                                                                                                                                            } ?>">Connexion</button>
                     </li>
                 </ul>
             </div>

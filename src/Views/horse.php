@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__ . '/Includes/Button.php';
 
-// $boutonSend = new Button('Envoyer', 'sendContactVerification()');
-// $boutonContact = new Button('Nous contacter', '#');
-
 include __DIR__ . '/Includes/headerWebsite.php';
 include __DIR__ . '/Includes/navBarre.php';
 
@@ -12,17 +9,6 @@ include __DIR__ . '/Includes/navBarre.php';
 
     <h1 class=" text-5xl text-center py-56 w-2/3 m-auto">La cavalerie</h1>
 </section>
-
-<!--<div class="bg-cover w-full flex justify-center items-center">
-    <div class="w-full backdrop-filter backdrop-blur-lg">
-        <div class="w-full mx-auto rounded-2xl backdrop-filter px-2 backdrop-blur-lg">
-
-            <div class="divCardsSite grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-20">
-
-            </div>
-        </div>
-    </div>
-</div>-->
 
 
 <div class="divCardsSite columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-7 p-6">
