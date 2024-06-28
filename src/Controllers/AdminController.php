@@ -9,6 +9,17 @@ class AdminController
 
     use Reponse;
 
+    public function profileAdmin(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("profileAdmin", ["erreur" => $erreur]);
+    }
+
     public function lesson(): void
     {
         if (isset($_GET['erreur'])) {

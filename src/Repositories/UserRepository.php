@@ -159,6 +159,36 @@ class UserRepository
         }
     }
 
+
+
+    public function editProfileUser($idUserEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit)
+    {
+        $sql = "UPDATE " . PREFIXE . "user SET lastname_user = :lastnameUserEdit, firstname_user = :firstnameUserEdit, email_user = :emailUserEdit, phone_user = :phoneUserEdit, address_user = :addressUserEdit, birthdate_user = :birthdateUserEdit WHERE id_user = :idUserEdit";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':lastnameUserEdit', $lastnameUserEdit);
+        $statement->bindParam(':firstnameUserEdit', $firstnameUserEdit);
+        $statement->bindParam(':emailUserEdit', $emailUserEdit);
+        $statement->bindParam(':phoneUserEdit', $phoneUserEdit);
+        $statement->bindParam(':addressUserEdit', $addressUserEdit);
+        $statement->bindParam(':birthdateUserEdit', $birthdateUserEdit);
+        $statement->bindParam(':idUserEdit', $idUserEdit);
+
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Modification effectuée !"
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
+
     public function disableUser($idUserEdit)
     {
         $sql = "UPDATE " . PREFIXE . "user SET actif_user = 0 WHERE id_user = :idUserEdit";

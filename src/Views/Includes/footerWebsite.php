@@ -11,6 +11,7 @@
 <script src="../../../public/assets/scripts/scriptContactSend.js"></script>
 <script src="../../../public/assets/scripts/scriptLogin.js"></script>
 <script src="../../../public/assets/scripts/scriptLessonUser.js"></script>
+<script src="../../../public/assets/scripts/scriptProfileUser.js"></script>
 <script src="../../../public/assets/scripts/scriptBoxAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptUserAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptHorsesAdmin.js"></script>

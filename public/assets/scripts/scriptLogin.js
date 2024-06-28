@@ -29,7 +29,6 @@ function loginConnection(login, passwordLogin) {
   fetch(HOME_URL + "login/connection", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
       reponseLogin(JSON.parse(data));
     });
 }
@@ -37,10 +36,8 @@ function loginConnection(login, passwordLogin) {
 function reponseLogin(data) {
   if (data.status == "success") {
     if (data.role == "User") {
-      console.log("User");
       redirect("user/lessons");
     } else if (data.role == "Admin") {
-      console.log("admin");
       redirect("admin/lessons");
     }
   } else {
@@ -52,6 +49,7 @@ function logout() {
   fetch(HOME_URL + "logout")
     .then((res) => res.text())
     .then((data) => {
+      console.log(data);
       if (data) {
         redirect("");
       }

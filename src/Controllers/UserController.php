@@ -151,7 +151,7 @@ class UserController
     }
 
 
-    function editUser($idUSerEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit, $roleUserEdit, $levelUserEdit)
+    function editUser($idUserEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit, $roleUserEdit, $levelUserEdit)
     {
 
         if (isset($lastnameUserEdit) && !empty($lastnameUserEdit) && isset($firstnameUserEdit) && !empty($firstnameUserEdit) && isset($emailUserEdit) && !empty($emailUserEdit) && isset($roleUserEdit) && !empty($roleUserEdit)) {
@@ -170,8 +170,6 @@ class UserController
                         } else {
                             $phoneUserEdit = htmlspecialchars($phoneUserEdit);
                         }
-
-
 
                         if (
                             strlen($addressUserEdit) <= 255
@@ -220,7 +218,7 @@ class UserController
                                     }
 
                                     $UserRepository = new UserRepository;
-                                    $reponse = $UserRepository->editUser($idUSerEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit, $roleUserEdit, $levelUserEdit);
+                                    $reponse = $UserRepository->editUser($idUserEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit, $roleUserEdit, $levelUserEdit);
                                     return json_encode($reponse);
                                 } else {
                                     $response = array(
@@ -279,6 +277,134 @@ class UserController
             die;
         }
     }
+
+    function editProfileUser($idUserEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit)
+    {
+
+        if (isset($lastnameUserEdit) && !empty($lastnameUserEdit) && isset($firstnameUserEdit) && !empty($firstnameUserEdit) && isset($emailUserEdit) && !empty($emailUserEdit)) {
+            if (
+                strlen($lastnameUserEdit) <= 50 &&
+                strlen($lastnameUserEdit) <= 50
+            ) {
+                $lastnameUserEdit = htmlspecialchars($lastnameUserEdit);
+                $firstnameUserEdit = htmlspecialchars($firstnameUserEdit);
+
+                if (filter_var($emailUserEdit, FILTER_VALIDATE_EMAIL)) {
+                    $emailUserEdit = htmlspecialchars($emailUserEdit);
+                    if (preg_match('/^[0-9]{10}+$/', $phoneUserEdit) || $phoneUserEdit == '') {
+                        if ($phoneUserEdit == '') {
+                            $phoneUserEdit = NULL;
+                        } else {
+                            $phoneUserEdit = htmlspecialchars($phoneUserEdit);
+                        }
+
+                        if (
+                            strlen($addressUserEdit) <= 255
+                        ) {
+                            if ($addressUserEdit == '') {
+                                $addressUserEdit = NULL;
+                            } else {
+                                $addressUserEdit = htmlspecialchars($addressUserEdit);
+                            }
+
+                            // if (
+                            //     $roleUserEdit == 'Admin' || $roleUserEdit == 'User'
+                            // ) {
+                            //     $roleUserEdit = htmlspecialchars($roleUserEdit);
+
+                            //     if (is_int($levelUserEdit) || $levelUserEdit == '') {
+                            //         if ($levelUserEdit == '') {
+                            //             $levelUserEdit = NULL;
+                            //         } else {
+                            //             $levelUserEdit = htmlspecialchars($levelUserEdit);
+                            //         }
+
+
+                            if ($birthdateUserEdit !== '') {
+                                list($year, $month, $day) = explode("-", $birthdateUserEdit);
+                                if (checkdate($month, $day, $year)) {
+                                    $birthdateUserEdit = htmlspecialchars($birthdateUserEdit);
+                                } else {
+                                    $response = array(
+                                        'status' => 'error',
+                                        'message' => 'Merci de renter une date valide.'
+                                    );
+                                    return json_encode($response);
+                                    die;
+                                }
+                            } else if ($birthdateUserEdit == '') {
+
+                                $birthdateUserEdit = NULL;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => 'Merci de renter une date valide.'
+                                );
+                                return json_encode($response);
+                                die;
+                            }
+
+                            $UserRepository = new UserRepository;
+                            $reponse = $UserRepository->editProfileUser($idUserEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit);
+                            return json_encode($reponse);
+                            //     } else {
+                            //         $response = array(
+                            //             'status' => 'error',
+                            //             'message' => 'Merci de selectionner un niveau.'
+                            //         );
+                            //         return json_encode($response);
+                            //         die;
+                            //     }
+                            // } else {
+                            //     $response = array(
+                            //         'status' => 'error',
+                            //         'message' => 'Merci de séléctionner un role.'
+                            //     );
+                            //     return json_encode($response);
+                            //     die;
+                            // }
+                        } else {
+                            $response = array(
+                                'status' => 'error',
+                                'message' => 'L\'adresse doit faire au maximum 255 caractères.'
+                            );
+                            return json_encode($response);
+                            die;
+                        }
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => 'Merci de rentrer un numéro de téléphone valide.'
+                        );
+                        return json_encode($response);
+                        die;
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Merci de rentrer un email valide.'
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le nom et le prénom doivent faire au maximum 50 caractères.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs avec une *.'
+            );
+            return json_encode($response);
+            die;
+        }
+    }
+
 
     function disableUser($idUser)
     {

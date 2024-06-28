@@ -32,7 +32,7 @@
                         <button onclick="redirect('user/lessons')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mes cours</button>
                     </li>
                     <li>
-                        <button class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mon compte</button>
+                        <button onclick="redirect('user/profile')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mon compte</button>
                     </li>
                     <li>
                         <button onclick="logout()" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5">Déconnexion</button>

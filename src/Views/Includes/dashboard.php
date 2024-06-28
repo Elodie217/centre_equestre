@@ -11,7 +11,7 @@
         </div>
 
         <div class="space-x-6 mr-4 flex">
-            <button class="space-x-6 mr-4 flex items-center" onClick="afficherUser()">
+            <button class="space-x-6 mr-4 flex items-center" onClick="redirect('admin/profile')">
                 <p class='text-white text-xl'>Prénom Nom</p>
                 <i class="fas fa-user text-white text-xl"></i>
             </button>

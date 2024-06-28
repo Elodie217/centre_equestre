@@ -34,7 +34,7 @@ switch ($route) {
     case HOME_URL:
         $HomeController->index();
         die;
-        // case HOME_URL . 'contact':
+
     case $routeComposee[0] == "contact":
         switch ($route) {
             case $routeComposee[1] == "send":
@@ -64,9 +64,7 @@ switch ($route) {
     case HOME_URL . 'photos':
         $HomeController->photos();
         die;
-        // case HOME_URL . 'login':
-        //     $HomeController->login();
-        //     die;
+
 
     case $routeComposee[0] == "login":
         if (isset($_SESSION["role"]) && $_SESSION['role'] == "Admin") {
@@ -131,6 +129,24 @@ switch ($route) {
                             $HomeController->lessonUser();
                             die;
                     }
+                case $routeComposee[1] == "profile":
+                    switch ($route) {
+                        case $routeComposee[2] == "userbyid":
+
+                            echo $UserController->userById($_SESSION['idUser']);
+                            die;
+                        case $routeComposee[2] == "edit":
+                            $data = file_get_contents("php://input");
+
+                            $editProfileUser = json_decode($data, true);
+
+                            echo $UserController->editProfileUser($editProfileUser['idUserProfileEdit'], $editProfileUser['lastnameUserProfileEdit'], $editProfileUser['firstnameUserProfileEdit'], $editProfileUser['emailUserProfileEdit'], $editProfileUser['phoneUserProfileEdit'], $editProfileUser['birthdateUserProfileEdit'], $editProfileUser['addressUserProfileEdit']);
+                            die;
+
+                        default:
+                            $HomeController->profileUser();
+                            die;
+                    }
                 default:
                     header('location: ' . HOME_URL . 'user/lessons');
                     die;
@@ -150,6 +166,24 @@ switch ($route) {
             switch ($route) {
                     // case $routeComposee[1] == "accueil":
                     //     die;
+                case $routeComposee[1] == "profile":
+                    switch ($route) {
+                        case $routeComposee[2] == "userbyid":
+
+                            echo $UserController->userById($_SESSION['idUser']);
+                            die;
+                        case $routeComposee[2] == "edit":
+                            $data = file_get_contents("php://input");
+
+                            $editProfileUser = json_decode($data, true);
+
+                            echo $UserController->editProfileUser($editProfileUser['idUserProfileEdit'], $editProfileUser['lastnameUserProfileEdit'], $editProfileUser['firstnameUserProfileEdit'], $editProfileUser['emailUserProfileEdit'], $editProfileUser['phoneUserProfileEdit'], $editProfileUser['birthdateUserProfileEdit'], $editProfileUser['addressUserProfileEdit']);
+                            die;
+
+                        default:
+                            $AdminController->profileAdmin();
+                            die;
+                    }
 
                 case $routeComposee[1] == "lessons":
                     switch ($route) {
@@ -415,7 +449,7 @@ switch ($route) {
             die;
         }
     case HOME_URL . 'logout':
-        $HomeController->logout();
+        echo $HomeController->logout();
         die;
 
     default:
