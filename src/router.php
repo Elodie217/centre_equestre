@@ -49,6 +49,18 @@ switch ($route) {
                 $HomeController->contact();
                 die;
         }
+
+    case $routeComposee[0] == "horses":
+        switch ($route) {
+            case $routeComposee[1] == "all":
+
+                echo $HorseController->allHorses();
+                die;
+            default:
+                $HomeController->horses();
+                die;
+        }
+
     case HOME_URL . 'photos':
         $HomeController->photos();
         die;

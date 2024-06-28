@@ -55,9 +55,9 @@
 
             <div class='md:fixed md:top-[85%] md:w-52 lg:w-56 '>
                 <!-- Déconnexion -->
-                <a class="block text-white py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white mt-auto" href="">
+                <button onclick="logout()" class="block w-full text-white py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white mt-auto" href="">
                     <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
-                </a>
+                </button>
 
                 <div class="bg-[#C0DF85] h-px mt-2"></div>
 

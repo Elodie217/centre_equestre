@@ -2,7 +2,6 @@
 require_once __DIR__ . '/Includes/Button.php';
 
 $boutonSend = new Button('Envoyer', 'sendContactVerification()');
-// $boutonContact = new Button('Nous contacter', '#');
 
 include __DIR__ . '/Includes/headerWebsite.php';
 include __DIR__ . '/Includes/navBarre.php';
