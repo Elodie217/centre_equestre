@@ -101,3 +101,111 @@
   background-color: #c0df85;
 }
 /* rounded-3xl bg-[#C0DF85] bg-opacity-70 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600 */
+
+/* Register */
+
+.sectionRegister {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1587754296335-e9bf5454306c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow-y: scroll;
+}
+
+.divRegister {
+  border-radius: 12px;
+  margin: 50px 0;
+  background-color: rgba(31, 41, 55, 0.5);
+  padding: 40px 64px;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  backdrop-filter: blur(12px);
+  color: white;
+}
+
+.divRegister h3 {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.divFormRegister {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0 -12px;
+}
+
+.divformhalf {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.divform {
+  width: 100%;
+  padding: 0 12px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 640px) {
+  .divformhalf {
+    width: 50%;
+  }
+}
+
+.divformhalf div {
+  margin-bottom: 20px;
+}
+
+.labelRegister {
+  margin-bottom: 12px;
+  display: block;
+  font-weight: 500;
+  color: white;
+}
+
+.inputRegister {
+  width: 100%;
+  appearance: none;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  padding: 12px 24px;
+  font-weight: 500;
+  color: black;
+  outline: none;
+}
+
+.inputRegister:focus {
+  border-color: #ff9029;
+}
+
+.passwordSpan {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.divbutton {
+  width: fit-content;
+  margin: 32px auto 0;
+}
+
+.btnRegister {
+  background-color: #a16c21;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btnRegister:hover {
+  background-color: #a16c21cc;
+}

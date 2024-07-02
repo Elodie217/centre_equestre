@@ -35,6 +35,38 @@ switch ($route) {
         $HomeController->index();
         die;
 
+    case $routeComposee[0] == "register":
+        switch ($route) {
+            case $routeComposee[1] == "userLogin":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->userLoginVerification($user['idNewUser'], $user['loginUser']);
+                die;
+            case $routeComposee[1] == "user":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->userById($user['idNewUser']);
+                die;
+            case $routeComposee[1] == "registration":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->registration($user['idUser'], $user['loginUser'], $user['lastnameUserRegister'], $user['firstnameUserRegister'], $user['emailUserRegister'], $user['phoneUserRegister'], $user['birthdateUserRegister'], $user['addressUserRegister'], $user['passwordRegister'], $user['passwordRegisterBis']);
+                die;
+            default:
+                if (isset($routeComposee[1]) && !empty($routeComposee[1])) {
+                    $HomeController->register($routeComposee[1]);
+                } else {
+                    var_dump($routeComposee);
+                }
+                die;
+        }
+
     case $routeComposee[0] == "horses":
         switch ($route) {
             case $routeComposee[1] == "all":

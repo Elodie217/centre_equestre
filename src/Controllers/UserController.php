@@ -14,11 +14,138 @@ class UserController
         return json_encode($reponse);
     }
 
+    public function userLoginVerification($idNewUser, $loginUser)
+    {
+        $UserRepository = new UserRepository;
+        $reponse = $UserRepository->userLoginVerification($idNewUser, $loginUser);
+        return json_encode($reponse);
+    }
+
     public function userById($idUser)
     {
         $UserRepository = new UserRepository;
         $reponse = $UserRepository->getUserById($idUser);
         return json_encode($reponse);
+    }
+
+
+    function registration($idUser, $loginUser, $lastnameUserRegister, $firstnameUserRegister, $emailUserRegister, $phoneUserRegister, $birthdateUserRegister, $addressUserRegister, $passwordRegister, $passwordRegisterBis)
+    {
+
+        if (isset($lastnameUserRegister) && !empty($lastnameUserRegister) && isset($firstnameUserRegister) && !empty($firstnameUserRegister) && isset($emailUserRegister) && !empty($emailUserRegister) && isset($passwordRegister) && !empty($passwordRegister)) {
+            if (
+                strlen($lastnameUserRegister) <= 50 &&
+                strlen($lastnameUserRegister) <= 50
+            ) {
+                $lastnameUserRegister = htmlspecialchars($lastnameUserRegister);
+                $firstnameUserRegister = htmlspecialchars($firstnameUserRegister);
+
+                if (filter_var($emailUserRegister, FILTER_VALIDATE_EMAIL)) {
+                    $emailUserRegister = htmlspecialchars($emailUserRegister);
+                    if (preg_match('/^[0-9]{10}+$/', $phoneUserRegister) || $phoneUserRegister == '') {
+                        if ($phoneUserRegister == '') {
+                            $phoneUserRegister = NULL;
+                        } else {
+                            $phoneUserRegister = htmlspecialchars($phoneUserRegister);
+                        }
+
+                        if (
+                            strlen($addressUserRegister) <= 255
+                        ) {
+                            if ($addressUserRegister == '') {
+                                $addressUserRegister = NULL;
+                            } else {
+                                $addressUserRegister = htmlspecialchars($addressUserRegister);
+                            }
+
+                            if ($passwordRegister == $passwordRegisterBis) {
+
+                                if (strlen($passwordRegister) >= 6) {
+
+
+                                    if ($birthdateUserRegister !== '') {
+                                        list($year, $month, $day) = explode("-", $birthdateUserRegister);
+                                        if (checkdate($month, $day, $year)) {
+                                            $birthdateUserRegister = htmlspecialchars($birthdateUserRegister);
+                                        } else {
+                                            $response = array(
+                                                'status' => 'error',
+                                                'message' => 'Merci de renter une date valide.'
+                                            );
+                                            return json_encode($response);
+                                            die;
+                                        }
+                                    } else if ($birthdateUserRegister == '') {
+
+                                        $birthdateUserRegister = NULL;
+                                    } else {
+                                        $response = array(
+                                            'status' => 'error',
+                                            'message' => 'Merci de renter une date valide.'
+                                        );
+                                        return json_encode($response);
+                                        die;
+                                    }
+
+                                    $UserRepository = new UserRepository;
+                                    $reponse = $UserRepository->registration($idUser, $loginUser, $lastnameUserRegister, $firstnameUserRegister, $emailUserRegister, $phoneUserRegister, $birthdateUserRegister, $addressUserRegister, $passwordRegister);
+                                    return json_encode($reponse);
+                                } else {
+                                    $response = array(
+                                        'status' => 'error',
+                                        'message' => 'Le mot de passe doit faire au minimum 6 caractères.'
+                                    );
+                                    return json_encode($response);
+                                    die;
+                                }
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => 'Les mots de passe doivent être identiques.'
+                                );
+                                return json_encode($response);
+                                die;
+                            }
+                        } else {
+                            $response = array(
+                                'status' => 'error',
+                                'message' => 'L\'adresse doit faire au maximum 255 caractères.'
+                            );
+                            return json_encode($response);
+                            die;
+                        }
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => 'Merci de rentrer un numéro de téléphone valide.'
+                        );
+                        return json_encode($response);
+                        die;
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Merci de rentrer un email valide.'
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le nom et le prénom doivent faire au maximum 50 caractères.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs avec une *.'
+            );
+            return json_encode($response);
+            die;
+        }
     }
 
     function addUser($lastnameUserAdd, $firstnameUserAdd, $emailUserAdd, $phoneUserAdd, $birthdateUserAdd, $addressUserAdd, $roleUserAdd, $levelUserAdd)

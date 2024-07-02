@@ -50,12 +50,17 @@ function isValidURL(url) {
 }
 
 function checkEmail(email) {
-  let re =
+  let regex =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
+  return regex.test(email);
 }
 
 function isValidPhone(phone) {
   const regex = /^\d{10}$/;
   return regex.test(phone);
+}
+
+function isValidLogin(login) {
+  const regex = /[A-Za-z0-9-'']+\.[A-Za-z0-9-'']/i;
+  return regex.test(login);
 }

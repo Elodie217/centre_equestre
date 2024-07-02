@@ -51,17 +51,17 @@ function displayProfileUser(user, role) {
         </p>
         <p class='my-6'>
             <span class='mr-2 font-bold'>Téléphone : </span>` +
-    user.phone_user +
+    isNull(user.phone_user) +
     `
         </p>
         <p class='my-6'>
             <span class='mr-2 font-bold'>Adresse : </span>` +
-    user.address_user +
+    isNull(user.address_user) +
     `
         </p>
         <p class='my-6'>
             <span class='mr-2 font-bold'>Niveau : </span>` +
-    user.name_level +
+    isNull(user.name_level) +
     `
         </p>
     </div>

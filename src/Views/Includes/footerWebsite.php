@@ -9,6 +9,7 @@
 <script src="../../../public/assets/scripts/script.js"></script>
 <script src="../../../public/assets/scripts/scriptHorses.js"></script>
 <script src="../../../public/assets/scripts/scriptContactSend.js"></script>
+<script src="../../../public/assets/scripts/scriptRegister.js"></script>
 <script src="../../../public/assets/scripts/scriptLogin.js"></script>
 <script src="../../../public/assets/scripts/scriptLessonUser.js"></script>
 <script src="../../../public/assets/scripts/scriptProfileUser.js"></script>

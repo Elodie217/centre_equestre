@@ -20,7 +20,7 @@ class UserRepository
 
     public function loginUser($login, $passwordLogin)
     {
-        $sql = "SELECT * FROM " . PREFIXE . "user WHERE login_user = :login";
+        $sql = "SELECT * FROM ce_user WHERE login_user = :login";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':login', $login);
@@ -76,6 +76,29 @@ class UserRepository
         return $retour;
     }
 
+    public function userLoginVerification($idNewUser, $loginUser)
+    {
+        $sql = "SELECT EXISTS( SELECT * FROM " . PREFIXE . "user WHERE id_user = :idNewUser AND login_user = :loginUser) AS " . PREFIXE . "user;";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idNewUser', $idNewUser);
+        $statement->bindParam(':loginUser', $loginUser);
+        $statement->execute();
+        $res = $statement->fetch();
+        if ($res[PREFIXE . 'user'] == 1) {
+            $reponse = array(
+                'status' => 'success',
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Identifiant incorrect"
+            );
+            return $reponse;
+        }
+    }
+
     public function getUserById($idUser)
     {
 
@@ -96,6 +119,38 @@ class UserRepository
         return $retour;
     }
 
+    public function registration($idUser, $loginUser, $lastnameUserRegister, $firstnameUserRegister, $emailUserRegister, $phoneUserRegister, $birthdateUserRegister, $addressUserRegister, $passwordRegister)
+    {
+        $hashedPassword = password_hash($passwordRegister, PASSWORD_BCRYPT);
+
+
+        $sql = "UPDATE " . PREFIXE . "user SET lastname_user = :lastnameUserRegister, firstname_user = :firstnameUserRegister, email_user = :emailUserRegister, phone_user = :phoneUserRegister, address_user = :addressUserRegister, birthdate_user = :birthdateUserRegister, password_user = :passwordRegister WHERE id_user = :idUser AND login_user = :loginUser";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':lastnameUserRegister', $lastnameUserRegister);
+        $statement->bindParam(':firstnameUserRegister', $firstnameUserRegister);
+        $statement->bindParam(':emailUserRegister', $emailUserRegister);
+        $statement->bindParam(':phoneUserRegister', $phoneUserRegister);
+        $statement->bindParam(':addressUserRegister', $addressUserRegister);
+        $statement->bindParam(':birthdateUserRegister', $birthdateUserRegister);
+        $statement->bindParam(':passwordRegister', $hashedPassword);
+        $statement->bindParam(':idUser', $idUser);
+        $statement->bindParam(':loginUser', $loginUser);
+
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Votre compte à bien été enregistré !"
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
 
     public function addUser($lastnameUserAdd, $firstnameUserAdd, $emailUserAdd, $phoneUserAdd, $birthdateUserAdd, $addressUserAdd, $roleUserAdd, $levelUserAdd)
     {
