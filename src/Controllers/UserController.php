@@ -169,7 +169,6 @@ class UserController
                         }
 
 
-
                         if (
                             strlen($addressUserAdd) <= 255
                         ) {
@@ -184,7 +183,7 @@ class UserController
                             ) {
                                 $roleUserAdd = htmlspecialchars($roleUserAdd);
 
-                                if (is_int($levelUserAdd) || $levelUserAdd == '') {
+                                if (is_int((int)$levelUserAdd) || $levelUserAdd == '') {
                                     if ($levelUserAdd == '') {
                                         $levelUserAdd = NULL;
                                     } else {

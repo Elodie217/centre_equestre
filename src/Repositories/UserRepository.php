@@ -170,17 +170,57 @@ class UserRepository
         $statement->bindParam(':levelUserAdd', $levelUserAdd);
 
         if ($statement->execute()) {
-            $reponse = array(
-                'status' => 'success',
-                'message' => "Nouveau cavalier enregistré !"
-            );
-            return $reponse;
+            $lastInsertedId = $this->db->lastInsertId();
+
+            if ($this->emailRegister($emailUserAdd, $lastnameUserAdd, $firstnameUserAdd, $lastInsertedId, $loginUserAdd)) {
+                $reponse = array(
+                    'status' => 'success',
+                    'message' => "Nouveau cavalier enregistré !"
+                );
+                return $reponse;
+            } else {
+                $reponse = array(
+                    'status' => 'error',
+                    'message' => "Une erreur est survenue."
+                );
+                return $reponse;
+            }
         } else {
             $reponse = array(
                 'status' => 'error',
                 'message' => "Une erreur est survenue."
             );
             return $reponse;
+        }
+    }
+
+    public function emailRegister($email, $lastname, $firstname, $idUser, $loginUser)
+    {
+        $to      = $email;
+        $subject = 'Création de votre compte';
+        $message = '<html>
+        Bonjour ' . $lastname . ' ' . $firstname . ' ! <br>
+        <br>
+        Afin de créer votre espace personnel, vous pouvez dès à présent cliquer sur <a href="http://centreequestre2' . HOME_URL . 'register/' . $idUser . '">ce lien</a> pour créer votre mot de passe.
+        <br>
+        <br>
+        Voici votre identifiant à utiliser pour lors de votre connexion : ' . $loginUser . '
+        <br><br>
+        A bientôt au centre équestre !
+        </html>';
+
+        $headers = 'MIME-Version: 1.0' . "\r\n" .
+            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'From: centreequestre@gmail.com' . "\r\n" .
+            'Reply-To: centreequestre@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        $test = mail($to, $subject, $message, $headers);
+
+        if ($test) {
+            return true;
+        } else {
+            var_dump($test);
         }
     }
 

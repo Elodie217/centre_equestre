@@ -23,6 +23,7 @@ class HorseController
 
     public function allHorses()
     {
+
         $HorseRepository = new HorseRepository;
         $reponse = $HorseRepository->getAllHorses();
         return json_encode($reponse);
@@ -37,9 +38,9 @@ class HorseController
 
 
 
-    public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse)
     {
-        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
+        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse) && !empty($boardingHorse)) {
             if (strlen($nameHorse) <= 50) {
                 $nameHorse = htmlspecialchars($nameHorse);
 
@@ -51,14 +52,47 @@ class HorseController
                     if (checkdate($month, $day, $year)) {
                         $birthdateHorse = htmlspecialchars($birthdateHorse);
 
-                        if (is_int($horseUser) && is_int($horseBox)) {
+                        if (is_int($horseUser) && is_int($horseBox) && is_int($boardingHorse)) {
                             $horseUser = htmlspecialchars($horseUser);
                             $horseBox = htmlspecialchars($horseBox);
 
+                            if ($boardingHorse == 0) {
+                                $boardingHorse = NULL;
+                            } else {
+                                $boardingHorse = htmlspecialchars($boardingHorse);
+                            }
 
-                            $HorseRepository = new HorseRepository;
-                            $reponse = $HorseRepository->addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
-                            return json_encode($reponse);
+                            if (is_int((int)$heightHorse) && (int)$heightHorse > 0 && (int)$heightHorse < 200 || $heightHorse == '') {
+                                if ($heightHorse == '') {
+                                    $heightHorse = NULL;
+                                } else {
+                                    $heightHorse = htmlspecialchars($heightHorse);
+                                }
+                                if (strlen($coatHorse) <= 50) {
+                                    if ($coatHorse == '') {
+                                        $coatHorse = NULL;
+                                    } else {
+                                        $coatHorse = htmlspecialchars($coatHorse);
+                                    }
+                                    $HorseRepository = new HorseRepository;
+                                    $reponse = $HorseRepository->addHorse($nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse);
+                                    return json_encode($reponse);
+                                } else {
+                                    $response = array(
+                                        'status' => 'error',
+                                        'message' => 'La robe doit faire au maximum 50 caractères.'
+                                    );
+                                    return json_encode($response);
+                                    die;
+                                }
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => 'Merci de rentrer une taille valide.'
+                                );
+                                return json_encode($response);
+                                die;
+                            }
                         } else {
                             $response = array(
                                 'status' => 'error',
@@ -102,9 +136,9 @@ class HorseController
     }
 
 
-    public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
+    public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse)
     {
-        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
+        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse) && !empty($boardingHorse)) {
             if (strlen($nameHorse) <= 50) {
                 $nameHorse = htmlspecialchars($nameHorse);
 
@@ -116,14 +150,48 @@ class HorseController
                     if (checkdate($month, $day, $year)) {
                         $birthdateHorse = htmlspecialchars($birthdateHorse);
 
-                        if (is_int($horseUser) && is_int($horseBox)) {
+                        if (is_int($horseUser) && is_int($horseBox) && is_int($boardingHorse)) {
                             $horseUser = htmlspecialchars($horseUser);
                             $horseBox = htmlspecialchars($horseBox);
 
+                            if ($boardingHorse == 0) {
+                                $boardingHorse = NULL;
+                            } else {
+                                $boardingHorse = htmlspecialchars($boardingHorse);
+                            }
 
-                            $HorseRepository = new HorseRepository;
-                            $reponse = $HorseRepository->editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
-                            return json_encode($reponse);
+                            if (is_int((int)$heightHorse) && (int)$heightHorse > 0 && (int)$heightHorse < 200 || $heightHorse == '') {
+                                if ($heightHorse == '') {
+                                    $heightHorse = NULL;
+                                } else {
+                                    $heightHorse = htmlspecialchars($heightHorse);
+                                }
+                                if (strlen($coatHorse) <= 50) {
+                                    if ($coatHorse == '') {
+                                        $coatHorse = NULL;
+                                    } else {
+                                        $coatHorse = htmlspecialchars($coatHorse);
+                                    }
+                                    $HorseRepository = new HorseRepository;
+                                    $reponse = $HorseRepository->editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse);
+
+                                    return json_encode($reponse);
+                                } else {
+                                    $response = array(
+                                        'status' => 'error',
+                                        'message' => 'La robe doit faire au maximum 50 caractères.'
+                                    );
+                                    return json_encode($response);
+                                    die;
+                                }
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => 'Merci de rentrer une taille valide.'
+                                );
+                                return json_encode($response);
+                                die;
+                            }
                         } else {
                             $response = array(
                                 'status' => 'error',

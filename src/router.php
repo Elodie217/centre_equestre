@@ -2,6 +2,7 @@
 session_start();
 
 use src\Controllers\AdminController;
+use src\Controllers\BoardingController;
 use src\Controllers\BoxController;
 use src\Controllers\ContactController;
 use src\Controllers\HomeController;
@@ -26,6 +27,7 @@ $UserController = new UserController;
 $LessonController = new LessonController;
 $LevelController = new LevelController;
 $ContactController = new ContactController;
+$BoardingController = new BoardingController;
 
 
 
@@ -264,39 +266,6 @@ switch ($route) {
 
                             echo $LevelController->allLevels();
                             die;
-
-                            // case $routeComposee[2] == "id":
-                            //     $data = file_get_contents("php://input");
-
-                            //     $horseid = json_decode($data, true);
-
-                            //     echo $HorseController->horseById($horseid['idHorse']);
-                            //     die;
-
-                            // case $routeComposee[2] == "add":
-                            //     $data = file_get_contents("php://input");
-
-                            //     $addlesson = json_decode($data, true);
-
-                            //     echo $LevelController->addLesson($addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd']);
-                            //     die;
-
-                            // case $routeComposee[2] == "edit":
-                            //     $data = file_get_contents("php://input");
-
-                            //     $addhorse = json_decode($data, true);
-
-                            //     echo $HorseController->editHorse($addhorse['idHorse'], $addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
-                            //     die;
-
-                            // case $routeComposee[2] == "delete":
-                            //     $data = file_get_contents("php://input");
-
-                            //     $horse = json_decode($data, true);
-
-                            //     echo $HorseController->deleteHorse($horse['idHorse']);
-                            //     die;
-
                     }
                 case $routeComposee[1] == "horses":
                     switch ($route) {
@@ -318,15 +287,16 @@ switch ($route) {
 
                             $addhorse = json_decode($data, true);
 
-                            echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
+                            echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['heightHorse'], $addhorse['coatHorse'], $addhorse['horseUser'], $addhorse['horseBox'], $addhorse['boardingHorse']);
+
                             die;
 
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $addhorse = json_decode($data, true);
+                            $edithorse = json_decode($data, true);
 
-                            echo $HorseController->editHorse($addhorse['idHorse'], $addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['horseUser'], $addhorse['horseBox']);
+                            echo $HorseController->editHorse($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse'], $edithorse['horseUser'], $edithorse['horseBox'], $edithorse['boardingHorse']);
                             die;
 
                         case $routeComposee[2] == "delete":
@@ -382,6 +352,14 @@ switch ($route) {
                             $AdminController->box();
                             die;
                     }
+                case $routeComposee[1] == "boarding":
+                    switch ($route) {
+                        case $routeComposee[2] == "all":
+                            // var_dump('dans router');
+                            // die;
+                            echo $BoardingController->allBoarding();
+                            die;
+                    }
                 case $routeComposee[1] == "users":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -401,6 +379,7 @@ switch ($route) {
                             $data = file_get_contents("php://input");
 
                             $addUser = json_decode($data, true);
+
 
                             echo $UserController->addUser($addUser['lastnameUserAdd'], $addUser['firstnameUserAdd'], $addUser['emailUserAdd'], $addUser['phoneUserAdd'], $addUser['birthdateUserAdd'], $addUser['addressUserAdd'], $addUser['roleUserAdd'], $addUser['levelUserAdd']);
                             die;

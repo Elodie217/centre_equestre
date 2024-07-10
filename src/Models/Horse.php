@@ -8,10 +8,12 @@ class Horse
     private $name_horse;
     private $birthdate_horse;
     private $image_horse;
-    private $vaccin_horse;
+    private $height_horse;
+    private $coat_horse;
     private $id_box;
     private $id_user;
     private $id_boarding;
+    private $name_boarding;
     private $name_box;
     private $firstname_user;
     private $lastname_user;
@@ -104,19 +106,37 @@ class Horse
     }
 
     /**
-     * Get the value of vaccin_horse
+     * Get the value of height_horse
      */
-    public function getVaccinHorse()
+    public function getHeightHorse()
     {
-        return $this->vaccin_horse;
+        return $this->height_horse;
     }
 
     /**
-     * Set the value of vaccin_horse
+     * Set the value of height_horse
      */
-    public function setVaccinHorse($vaccin_horse): self
+    public function setHeightHorse($height_horse): self
     {
-        $this->vaccin_horse = $vaccin_horse;
+        $this->height_horse = $height_horse;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of coat_horse
+     */
+    public function getCoatHorse()
+    {
+        return $this->coat_horse;
+    }
+
+    /**
+     * Set the value of coat_horse
+     */
+    public function setCoatHorse($coat_horse): self
+    {
+        $this->coat_horse = $coat_horse;
 
         return $this;
     }
@@ -171,6 +191,24 @@ class Horse
     public function setIdBoarding($id_boarding): self
     {
         $this->id_boarding = $id_boarding;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of name_boarding
+     */
+    public function getNameBoarding()
+    {
+        return $this->name_boarding;
+    }
+
+    /**
+     * Set the value of name_boarding
+     */
+    public function setNameBoarding($name_boarding): self
+    {
+        $this->name_boarding = $name_boarding;
 
         return $this;
     }
@@ -233,6 +271,6 @@ class Horse
 
     public function getObjectToArray(): array
     {
-        return ['id_horse' => $this->getIdHorse(), 'name_horse' => $this->getNameHorse(), 'birthdate_horse' => $this->getBirthdateHorse(), 'image_horse' => $this->getImageHorse(), 'vaccin_horse' => $this->getVaccinHorse(), 'id_box' => $this->getIdBox(), 'id_user' => $this->getIdUser(), 'id_boarding' => $this->getIdBoarding(), 'name_box' => $this->getNameBox(), 'firstname_user' => $this->getFirstnameUser(), 'lastname_user' => $this->getLastnameUser()];
+        return ['id_horse' => $this->getIdHorse(), 'name_horse' => $this->getNameHorse(), 'birthdate_horse' => $this->getBirthdateHorse(), 'image_horse' => $this->getImageHorse(), 'height_horse' => $this->getHeightHorse(), 'coat_horse' => $this->getCoatHorse(), 'id_box' => $this->getIdBox(), 'id_user' => $this->getIdUser(), 'id_boarding' => $this->getIdBoarding(), 'name_boarding' => $this->getNameBoarding(), 'name_box' => $this->getNameBox(), 'firstname_user' => $this->getFirstnameUser(), 'lastname_user' => $this->getLastnameUser()];
     }
 }

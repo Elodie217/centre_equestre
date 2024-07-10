@@ -1,4 +1,4 @@
-getAllHorses();
+// getAllHorses();
 function getAllHorses(divDisplay = "horse", idHorse = 0) {
   fetch(HOME_URL + "admin/horses/all")
     .then((res) => res.text())
@@ -40,7 +40,7 @@ function displayHorses(Horses) {
 
     document.querySelector(".divCards").innerHTML +=
       `
-    <article class="bg-white h-fit  p-8 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border relative">
+  <article class="bg-white h-fit  p-8 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border relative">
     
     <div class="relative mb-4 rounded-2xl">
         <img class=" rounded-2xl min-h-44 max-h-72 mx-auto object-cover transition-transform duration-300 transform group-hover:scale-105" src="` +
@@ -57,19 +57,32 @@ function displayHorses(Horses) {
         
         </div>
         
-        <p class='mb-4 text-base'>Propiétaire : ` +
+        <p class='mb-2 text-base'>Propiétaire : ` +
       horse.firstname_user +
       ` ` +
       horse.lastname_user +
       `</p>
 
-      <p class='mb-4 text-base'>Date de naissance : ` +
+      <p class='mb-2 text-base'>Date de naissance : ` +
       birthdateHorse.toLocaleDateString("fr") +
+      `</p>
+
+      <p class='mb-2 text-base'>Taille (en cm) : ` +
+      isNull(horse.height_horse) +
+      `</p>
+
+      <p class='mb-3 text-base'>Robe : ` +
+      isNull(horse.coat_horse) +
+      `</p>
+
+      <p class='mb-2 text-base italic'>` +
+      isNull(horse.name_boarding) +
       `</p>
 
       <p class='mb-4 text-base text-right font-bold '>` +
       horse.name_box +
       `</p>
+
       <div class='flex absolute text-xl bottom-4 right-4'>
         <button onclick="getHorseById(` +
       horse.id_horse +
@@ -80,7 +93,7 @@ function displayHorses(Horses) {
       horse.name_horse +
       `')"><i class="fa-solid fa-trash mx-1 p-1 transition-all duration-200 transform hover:scale-125"></i> </button>
       </div> 
-      </article>
+    </article>
         
        `;
   });
@@ -92,6 +105,7 @@ function openAddHorseModal() {
   document.querySelector(".blurred").classList.remove("hidden");
   getAllBox();
   getAllUserSelect();
+  getAllBoardingSelect();
 }
 
 function closeAddHorseModal() {
@@ -104,7 +118,10 @@ function newHorseVerification() {
   let imageHorse = document.getElementById("imageHorse").value;
   let birthdateHorse = document.getElementById("birthdateHorse").value;
   let horseUser = parseInt(document.getElementById("horseUserAdd").value);
+  let heightHorse = document.getElementById("heightHorse").value;
+  let coatHorse = document.getElementById("coatHorse").value;
   let horseBox = parseInt(document.getElementById("horseBoxAdd").value);
+  let boardingHorse = parseInt(document.getElementById("boardingHorse").value);
   let errorMessageHorses = document.getElementById("errorMessageHorses");
   errorMessageHorses.innerHTML = "";
 
@@ -113,19 +130,33 @@ function newHorseVerification() {
     imageHorse !== "" &&
     birthdateHorse !== "" &&
     horseUser !== "" &&
-    horseBox !== ""
+    horseBox !== "" &&
+    boardingHorse !== ""
   ) {
     if (nameHorse.length <= 50) {
-      if (Number(horseUser) && Number(horseBox)) {
+      if (Number(horseUser) && Number(horseBox) && Number(boardingHorse)) {
         if (isValidDateFormat(birthdateHorse)) {
           if (isValidURL(imageHorse)) {
-            newHorse(
-              nameHorse,
-              imageHorse,
-              birthdateHorse,
-              horseUser,
-              horseBox
-            );
+            if (coatHorse.length <= 50 || coatHorse == "") {
+              if ((heightHorse > 0 && heightHorse < 200) || heightHorse == "") {
+                newHorse(
+                  nameHorse,
+                  imageHorse,
+                  birthdateHorse,
+                  heightHorse,
+                  coatHorse,
+                  horseUser,
+                  horseBox,
+                  boardingHorse
+                );
+              } else {
+                errorMessageHorses.innerHTML =
+                  "Merci de renter une taille valide.";
+              }
+            } else {
+              errorMessageHorses.innerHTML =
+                "La robe doit faire au maximum 50 caractères.";
+            }
           } else {
             errorMessageHorses.innerHTML = "Merci de renter un URL valide.";
           }
@@ -144,14 +175,27 @@ function newHorseVerification() {
   }
 }
 
-function newHorse(nameHorse, imageHorse, birthdateHorse, horseUser, horseBox) {
+function newHorse(
+  nameHorse,
+  imageHorse,
+  birthdateHorse,
+  heightHorse,
+  coatHorse,
+  horseUser,
+  horseBox,
+  boardingHorse
+) {
   let newHorse = {
     nameHorse: nameHorse,
     imageHorse: imageHorse,
     birthdateHorse: birthdateHorse,
+    heightHorse: heightHorse,
+    coatHorse: coatHorse,
     horseUser: horseUser,
     horseBox: horseBox,
+    boardingHorse: boardingHorse,
   };
+  console.log(newHorse);
 
   let params = {
     method: "POST",
@@ -205,6 +249,8 @@ function closeEditHorseModal() {
 function openEditHorseModal(horse) {
   getAllUserSelect(horse.id_user);
   getAllBox(horse.id_box);
+  getAllBoardingSelect(horse.id_boarding);
+
   document.querySelector(".modalEditHorse").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 
@@ -244,22 +290,49 @@ function openEditHorseModal(horse) {
     <div class="-mx-3 flex flex-wrap">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="birthdateHorse" class='mb-3 block text-base font-medium text-[#07074D]"'>Date de naissance</label>
-                <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance</label>
+                <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
     horse.birthdate_horse +
-    ` >
+    `>
             </div>
         </div>
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="horseBox" class='mb-3 block text-base font-medium text-[#07074D]"'>Box</label>
-
-              <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
-
-              </select>
+                <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
+                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+    isNull(horse.height_horse) +
+    `>
             </div>
         </div>
-    </div> 
+    </div>
+
+    <div class="-mx-3 flex flex-wrap">
+        <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-5">
+                <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
+                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+    isNull(horse.coat_horse) +
+    `>
+            </div>
+        </div>
+        <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-5">
+                <label for="horseBox" class='mb-3 block text-base"'>Box</label>
+
+                <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+
+                </select>
+            </div>
+        </div>
+    </div>
+                <div class="mb-5">
+                    <label for="boardingHorse" class='mb-3 block text-base'>Pension</label>
+                    <select name="boardingHorse" id="boardingHorseEdit" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+
+                    </select>
+                </div>
+
+
     <div id="errorMessageHorsesEdit"></div>
 
      <div class="w-fit m-auto mt-8">
@@ -275,7 +348,12 @@ function editHorseVerification(idHorse) {
   let imageHorseEdit = document.getElementById("imageHorseEdit").value;
   let birthdateHorseEdit = document.getElementById("birthdateHorseEdit").value;
   let horseUserEdit = parseInt(document.getElementById("horseUserEdit").value);
+  let heightHorseEdit = document.getElementById("heightHorseEdit").value;
+  let coatHorseEdit = document.getElementById("coatHorseEdit").value;
   let horseBoxEdit = parseInt(document.getElementById("horseBoxEdit").value);
+  let boardingHorseEdit = parseInt(
+    document.getElementById("boardingHorseEdit").value
+  );
   let errorMessageHorsesEdit = document.getElementById(
     "errorMessageHorsesEdit"
   );
@@ -285,20 +363,41 @@ function editHorseVerification(idHorse) {
     imageHorseEdit !== "" &&
     birthdateHorseEdit !== "" &&
     horseUserEdit !== "" &&
-    horseBoxEdit !== ""
+    horseBoxEdit !== "" &&
+    boardingHorseEdit !== ""
   ) {
     if (nameHorseEdit.length <= 50) {
-      if (Number(horseUserEdit) && Number(horseBoxEdit)) {
+      if (
+        Number(horseUserEdit) &&
+        Number(horseBoxEdit) &&
+        Number(boardingHorseEdit)
+      ) {
         if (isValidDateFormat(birthdateHorseEdit)) {
           if (isValidURL(imageHorseEdit)) {
-            editHorse(
-              idHorse,
-              nameHorseEdit,
-              imageHorseEdit,
-              birthdateHorseEdit,
-              horseUserEdit,
-              horseBoxEdit
-            );
+            if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
+              if (
+                (heightHorseEdit > 0 && heightHorseEdit < 200) ||
+                heightHorseEdit == ""
+              ) {
+                editHorse(
+                  idHorse,
+                  nameHorseEdit,
+                  imageHorseEdit,
+                  birthdateHorseEdit,
+                  heightHorseEdit,
+                  coatHorseEdit,
+                  horseUserEdit,
+                  horseBoxEdit,
+                  boardingHorseEdit
+                );
+              } else {
+                errorMessageHorsesEdit.innerHTML =
+                  "Merci de renter une taille valide.";
+              }
+            } else {
+              errorMessageHorsesEdit.innerHTML =
+                "La robe doit faire au maximum 50 caractères.";
+            }
           } else {
             errorMessageHorsesEdit.innerHTML = "Merci de renter un URL valide.";
           }
@@ -322,16 +421,22 @@ function editHorse(
   nameHorse,
   imageHorse,
   birthdateHorse,
+  heightHorse,
+  coatHorse,
   horseUser,
-  horseBox
+  horseBox,
+  boardingHorse
 ) {
   let editHorse = {
     idHorse: idHorse,
     nameHorse: nameHorse,
     imageHorse: imageHorse,
     birthdateHorse: birthdateHorse,
+    heightHorse: heightHorse,
+    coatHorse: coatHorse,
     horseUser: horseUser,
     horseBox: horseBox,
+    boardingHorse: boardingHorse,
   };
 
   let params = {

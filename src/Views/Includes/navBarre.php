@@ -84,11 +84,11 @@ $route = $_SERVER['REDIRECT_URL'];
                                                                                                                                                                                                         } ?>">Contact</button>
                     </li>
                     <li>
-                        <button onclick="redirect('login')" class="text-white hover:bg-gray-50 border-b border-gray-100   hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5 <?php if ($route == HOME_URL . 'login') {
-                                                                                                                                                                                                                echo "md:bg-[#a16c21cc]";
-                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                echo "bg-[#A16C21]";
-                                                                                                                                                                                                            } ?>">Connexion</button>
+                        <button onclick="redirect('login')" class="text-white border-b border-gray-100 hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5 <?php if ($route == HOME_URL . 'login') {
+                                                                                                                                                                                            echo "md:bg-[#a16c21cc]";
+                                                                                                                                                                                        } else {
+                                                                                                                                                                                            echo "bg-[#A16C21]";
+                                                                                                                                                                                        } ?>">Connexion</button>
                     </li>
                 </ul>
             </div>
