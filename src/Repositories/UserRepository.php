@@ -123,8 +123,9 @@ class UserRepository
     {
         $hashedPassword = password_hash($passwordRegister, PASSWORD_BCRYPT);
 
+        $dateGDPR = date("Y-m-d H:i:s");
 
-        $sql = "UPDATE " . PREFIXE . "user SET lastname_user = :lastnameUserRegister, firstname_user = :firstnameUserRegister, email_user = :emailUserRegister, phone_user = :phoneUserRegister, address_user = :addressUserRegister, birthdate_user = :birthdateUserRegister, password_user = :passwordRegister WHERE id_user = :idUser AND login_user = :loginUser";
+        $sql = "UPDATE " . PREFIXE . "user SET lastname_user = :lastnameUserRegister, firstname_user = :firstnameUserRegister, email_user = :emailUserRegister, phone_user = :phoneUserRegister, address_user = :addressUserRegister, birthdate_user = :birthdateUserRegister, password_user = :passwordRegister, gdpr_user = :gdprUser WHERE id_user = :idUser AND login_user = :loginUser";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':lastnameUserRegister', $lastnameUserRegister);
@@ -134,6 +135,7 @@ class UserRepository
         $statement->bindParam(':addressUserRegister', $addressUserRegister);
         $statement->bindParam(':birthdateUserRegister', $birthdateUserRegister);
         $statement->bindParam(':passwordRegister', $hashedPassword);
+        $statement->bindParam(':gdprUser', $dateGDPR);
         $statement->bindParam(':idUser', $idUser);
         $statement->bindParam(':loginUser', $loginUser);
 

@@ -26,11 +26,11 @@ function isSelected(idGiven, idBdd) {
   }
 }
 
-function isNull(value) {
+function isNull(value, textBefore = "", textAfter = "") {
   if (value == null) {
     return "";
   } else {
-    return value;
+    return textBefore + value + textAfter;
   }
 }
 

@@ -5,6 +5,7 @@ namespace src\Repositories;
 use PDO;
 use src\Models\Database;
 use src\Models\Boarding;
+use src\Models\Horse;
 
 class BoardingRepository
 {
@@ -20,7 +21,7 @@ class BoardingRepository
     public function getAllBoarding()
     {
 
-        $sql = "SELECT " . PREFIXE . "boarding.id_boarding, " . PREFIXE . "boarding.name_boarding FROM " . PREFIXE . "boarding";
+        $sql = "SELECT * FROM " . PREFIXE . "boarding";
 
         $statement = $this->db->prepare($sql);
 
@@ -35,26 +36,26 @@ class BoardingRepository
         return $retour;
     }
 
-    // public function getHorsesById($idHorse)
-    // {
+    public function getBoardingById($idBoarding)
+    {
 
-    //     $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.birthdate_horse," . PREFIXE . "horse.id_box," . PREFIXE . "horse.id_user," . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user, " . PREFIXE . "box
-    //     WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
-    //     AND " . PREFIXE . "horse.id_box =  " . PREFIXE . "box.id_box
-    //     AND " . PREFIXE . "horse.id_horse = :id_horse";
+        $sql = "SELECT " . PREFIXE . "horse.name_horse, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user
+        WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
+        AND " . PREFIXE . "horse.id_boarding = :id_boarding";
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':id_horse', $idHorse);
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':id_boarding', $idBoarding);
 
-    //     $statement->execute();
+        $statement->execute();
 
-    //     $statement->setFetchMode(PDO::FETCH_CLASS, Horse::class);
-    //     $objet = $statement->fetch();
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Horse::class);
+        $retour =  [];
 
-    //     $retour = $objet->getObjectToArray();
-
-    //     return $retour;
-    // }
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
+    }
 
     // public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
     // {

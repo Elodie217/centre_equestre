@@ -29,12 +29,12 @@ class BoardingController
         return json_encode($reponse);
     }
 
-    // function horseById($idHorse)
-    // {
-    //     $HorseRepository = new HorseRepository;
-    //     $reponse = $HorseRepository->getHorsesById($idHorse);
-    //     return json_encode($reponse);
-    // }
+    function boardingById($idBoarding)
+    {
+        $BoardingRepository = new BoardingRepository;
+        $reponse = $BoardingRepository->getBoardingById($idBoarding);
+        return json_encode($reponse);
+    }
 
 
 

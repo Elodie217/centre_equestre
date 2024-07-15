@@ -138,7 +138,8 @@ class HorseController
 
     public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse)
     {
-        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse) && !empty($boardingHorse)) {
+
+        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse)) {
             if (strlen($nameHorse) <= 50) {
                 $nameHorse = htmlspecialchars($nameHorse);
 

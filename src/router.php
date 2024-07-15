@@ -355,9 +355,19 @@ switch ($route) {
                 case $routeComposee[1] == "boarding":
                     switch ($route) {
                         case $routeComposee[2] == "all":
-                            // var_dump('dans router');
-                            // die;
                             echo $BoardingController->allBoarding();
+                            die;
+
+                        case $routeComposee[2] == "id":
+                            $data = file_get_contents("php://input");
+
+                            $boardingId = json_decode($data, true);
+
+                            echo $BoardingController->boardingById($boardingId['idBoarding']);
+                            die;
+
+                        default:
+                            $AdminController->boarding();
                             die;
                     }
                 case $routeComposee[1] == "users":

@@ -130,6 +130,11 @@ function displayUserRegister(User, loginUser) {
           </div>
       </div>
   </div>
+
+  <div>
+    <input type="checkbox" id="gdprRegister" name="gdprRegister" />
+    <label for="gdprRegister">En cochant cette case, vous acceptez notre <a href="#" class="text-blue-500 underline">politique de confidentialité</a> et consentez à la collecte et à l'utilisation de vos données personnelles conformément au RGPD.*</label>
+  </div>
   
   <div id="errorMessageUserRegister"></div>
   <div class="divbutton">
@@ -161,6 +166,7 @@ function registerUserVerification(idUser, loginUser) {
   let passwordRegisterBis = document.getElementById(
     "passwordRegisterBis"
   ).value;
+  let gdprRegister = document.getElementById("passwordRegisterBis");
 
   let errorMessageUserRegister = document.getElementById(
     "errorMessageUserRegister"
@@ -168,79 +174,84 @@ function registerUserVerification(idUser, loginUser) {
 
   errorMessageUserRegister.innerHTML = "";
 
-  if (
-    lastnameUserRegister !== "" &&
-    firstnameUserRegister !== "" &&
-    emailUserRegister !== "" &&
-    birthdateUserRegister !== "" &&
-    passwordRegister !== "" &&
-    passwordRegisterBis !== ""
-  ) {
+  if (gdprRegister.checked) {
     if (
-      lastnameUserRegister.length <= 50 &&
-      firstnameUserRegister.length <= 50
+      lastnameUserRegister !== "" &&
+      firstnameUserRegister !== "" &&
+      emailUserRegister !== "" &&
+      birthdateUserRegister !== "" &&
+      passwordRegister !== "" &&
+      passwordRegisterBis !== ""
     ) {
-      if (checkEmail(emailUserRegister)) {
-        if (isValidPhone(phoneUserRegister) || phoneUserRegister == "") {
-          if (phoneUserRegister == "") {
-            phoneUserRegister == null;
-          }
-          if (
-            isValidDateFormat(birthdateUserRegister) ||
-            birthdateUserRegister == ""
-          ) {
-            if (birthdateUserRegister == "") {
-              birthdateUserRegister == null;
+      if (
+        lastnameUserRegister.length <= 50 &&
+        firstnameUserRegister.length <= 50
+      ) {
+        if (checkEmail(emailUserRegister)) {
+          if (isValidPhone(phoneUserRegister) || phoneUserRegister == "") {
+            if (phoneUserRegister == "") {
+              phoneUserRegister == null;
             }
-            if (addressUserRegister.length <= 255) {
-              if (addressUserRegister == "") {
-                addressUserRegister == null;
+            if (
+              isValidDateFormat(birthdateUserRegister) ||
+              birthdateUserRegister == ""
+            ) {
+              if (birthdateUserRegister == "") {
+                birthdateUserRegister == null;
               }
-              if (passwordRegister == passwordRegisterBis) {
-                if (passwordRegister.length >= 6) {
-                  RegisterUser(
-                    idUser,
-                    loginUser,
-                    lastnameUserRegister,
-                    firstnameUserRegister,
-                    emailUserRegister,
-                    phoneUserRegister,
-                    birthdateUserRegister,
-                    addressUserRegister,
-                    passwordRegister,
-                    passwordRegisterBis
-                  );
+              if (addressUserRegister.length <= 255) {
+                if (addressUserRegister == "") {
+                  addressUserRegister == null;
+                }
+                if (passwordRegister == passwordRegisterBis) {
+                  if (passwordRegister.length >= 6) {
+                    RegisterUser(
+                      idUser,
+                      loginUser,
+                      lastnameUserRegister,
+                      firstnameUserRegister,
+                      emailUserRegister,
+                      phoneUserRegister,
+                      birthdateUserRegister,
+                      addressUserRegister,
+                      passwordRegister,
+                      passwordRegisterBis
+                    );
+                  } else {
+                    errorMessageUserRegister.innerHTML =
+                      "Le mot de passe doit faire au minimum 6 caractères.";
+                  }
                 } else {
                   errorMessageUserRegister.innerHTML =
-                    "Le mot de passe doit faire au minimum 6 caractères.";
+                    "Les mots de passe doivent être identiques.";
                 }
               } else {
                 errorMessageUserRegister.innerHTML =
-                  "Les mots de passe doivent être identiques.";
+                  "L'adresse doit faire au maximum 255 caractères.";
               }
             } else {
               errorMessageUserRegister.innerHTML =
-                "L'adresse doit faire au maximum 255 caractères.";
+                "Merci de rentrer une date valide.";
             }
           } else {
             errorMessageUserRegister.innerHTML =
-              "Merci de rentrer une date valide.";
+              "Merci de rentrer un numéro de téléphone valide (ex: 0123456789).";
           }
         } else {
           errorMessageUserRegister.innerHTML =
-            "Merci de rentrer un numéro de téléphone valide (ex: 0123456789).";
+            "Merci de rentrer un email valide.";
         }
       } else {
         errorMessageUserRegister.innerHTML =
-          "Merci de rentrer un email valide.";
+          "Le nom et le prénom doivent faire au maximum 50 caractères.";
       }
     } else {
       errorMessageUserRegister.innerHTML =
-        "Le nom et le prénom doivent faire au maximum 50 caractères.";
+        "Merci de remplir tous les champs avec une *.";
     }
   } else {
     errorMessageUserRegister.innerHTML =
-      "Merci de remplir tous les champs avec une *.";
+      "Merci d'accepter notre politique de confidentialité.";
   }
 }
 

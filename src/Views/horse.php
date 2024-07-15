@@ -12,38 +12,12 @@ include __DIR__ . '/Includes/navBarre.php';
 
 
 <div class="divCardsSite columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-7 p-6">
-    <div class=" break-inside-avoid mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031162.jpg" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031232.jpg" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031357.jpg" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031375.jpg" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031396.jpg" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
-    </div>
-    <div class=" break-inside-avoid  mb-8">
-        <img class="h-auto max-w-full rounded-lg" src="https://pagedone.io/asset/uploads/1688031414.png" alt="Gallery image" />
-    </div>
+
 </div>
 
 <?php
 include __DIR__ . '/Includes/footer.php'
 ?>
+<script>
+    getAllHorsesSite();
+</script>

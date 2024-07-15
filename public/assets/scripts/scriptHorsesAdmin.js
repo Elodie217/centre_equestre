@@ -40,7 +40,7 @@ function displayHorses(Horses) {
 
     document.querySelector(".divCards").innerHTML +=
       `
-  <article class="bg-white h-fit  p-8 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border relative">
+  <article class="bg-white h-fit  p-8 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl border relative">
     
     <div class="relative mb-4 rounded-2xl">
         <img class=" rounded-2xl min-h-44 max-h-72 mx-auto object-cover transition-transform duration-300 transform group-hover:scale-105" src="` +
@@ -105,7 +105,7 @@ function openAddHorseModal() {
   document.querySelector(".blurred").classList.remove("hidden");
   getAllBox();
   getAllUserSelect();
-  getAllBoardingSelect();
+  getAllBoardingSelect("horse");
 }
 
 function closeAddHorseModal() {
@@ -249,7 +249,7 @@ function closeEditHorseModal() {
 function openEditHorseModal(horse) {
   getAllUserSelect(horse.id_user);
   getAllBox(horse.id_box);
-  getAllBoardingSelect(horse.id_boarding);
+  getAllBoardingSelect("horse", horse.id_boarding);
 
   document.querySelector(".modalEditHorse").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
@@ -368,9 +368,10 @@ function editHorseVerification(idHorse) {
   ) {
     if (nameHorseEdit.length <= 50) {
       if (
-        Number(horseUserEdit) &&
-        Number(horseBoxEdit) &&
-        Number(boardingHorseEdit)
+        (Number(horseUserEdit) &&
+          Number(horseBoxEdit) &&
+          Number(boardingHorseEdit)) ||
+        boardingHorseEdit == 0
       ) {
         if (isValidDateFormat(birthdateHorseEdit)) {
           if (isValidURL(imageHorseEdit)) {

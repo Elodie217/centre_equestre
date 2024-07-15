@@ -39,7 +39,10 @@
                     <i class="fa-solid fa-horse mr-2"></i>Chevaux
                 </button>
                 <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/box')">
-                    <i class="fa-solid fa-house mr-2"></i>Box
+                    <i class="fa-solid fa-warehouse mr-2"></i>Box
+                </button>
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/boarding')">
+                    <i class="fa-solid fa-handshake-simple mr-2"></i>Pension
                 </button>
                 <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/contacts')">
                     <i class="fa-solid fa-comments mr-2"></i>Prise de contact
@@ -55,7 +58,7 @@
 
             <div class='md:fixed md:top-[85%] md:w-52 lg:w-56 '>
                 <!-- Déconnexion -->
-                <button onclick="logout()" class="block w-full text-white py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white mt-auto" href="">
+                <button onclick="logout()" class="block w-full text-white py-2.5 px-4 my-2 text-left rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white mt-auto" href="">
                     <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
                 </button>
 
