@@ -37,6 +37,8 @@ function displayBoardingSelect(allBording, idBoardingGiven) {
 function displayBoarding(data) {
   let divBoarding = document.querySelector(".divBoarding");
 
+  divBoarding.innerHTML = "";
+
   data.forEach((boarding) => {
     divBoarding.innerHTML +=
       `
@@ -66,7 +68,7 @@ function displayBoarding(data) {
       `</p>
 
       <div class='flex absolute text-xl bottom-4 right-4'>
-        <button onclick="getBoardingHorses(` +
+        <button onclick="getBoardingById(` +
       boarding.id_boarding +
       `)"><i class="fa-solid fa-pen-to-square mx-1 p-1 transition-all duration-200 transform hover:scale-125"></i> </button>
       </div>
@@ -99,7 +101,7 @@ function getBoardingHorses(idBoarding, nameBoarding) {
     body: JSON.stringify(boarding),
   };
 
-  fetch(HOME_URL + "admin/boarding/id", params)
+  fetch(HOME_URL + "admin/boarding/horse", params)
     .then((res) => res.text())
     .then((data) => {
       displayBoardingHorse(nameBoarding, JSON.parse(data));
@@ -137,4 +139,177 @@ function displayBoardingHorse(nameBoarding, horses) {
 function closeViewBoardingModal() {
   document.querySelector(".modalViewBoarding").classList.add("hidden");
   document.querySelector(".blurred").classList.add("hidden");
+}
+
+// Edit boarding
+
+function getBoardingById(idBoarding) {
+  let boarding = {
+    idBoarding: idBoarding,
+  };
+
+  let params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(boarding),
+  };
+
+  fetch(HOME_URL + "admin/boarding/id", params)
+    .then((res) => res.text())
+    .then((data) => {
+      openEditBoardingModal(JSON.parse(data));
+    });
+}
+
+function closeEditBoardingModal() {
+  document.querySelector(".modalEditBoarding").classList.add("hidden");
+  document.querySelector(".blurred").classList.add("hidden");
+}
+
+function openEditBoardingModal(boarding) {
+  document.querySelector(".modalEditBoarding").classList.remove("hidden");
+  document.querySelector(".blurred").classList.remove("hidden");
+
+  console.log("boarding", boarding.service2_boarding);
+
+  console.log("isNull", isNull(boarding.service2_boarding));
+
+  document.querySelector(".divEditBoarding").innerHTML =
+    `
+ <h3 class="text-2xl text-center mb-8">Modifier ` +
+    boarding.name_boarding +
+    `</h3>
+   
+    <div class="mb-5">
+        <label for="nameBoarding" class='mb-3 block text-base font-medium text-[#07074D]"'>Nom *</label>
+        <input type="text" name="nameBoarding" id="nameBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
+    boarding.name_boarding +
+    `" >
+    </div>
+
+    <div class="mb-5">
+        <label for="priceBoarding" class='mb-3 block text-base font-medium text-[#07074D]"'>Prix (en €) *</label>
+        <input type="number" min=0 max=2000 placeholder="420" name="priceBoarding" id="priceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+    boarding.price_boarding +
+    ` >
+    </div>
+    
+    <div class="mb-5">
+        <label for="serviceBoarding" class='mb-3 block text-base font-medium text-[#07074D]"'>Service *</label>
+        <input type="text" name="serviceBoarding" id="serviceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
+    boarding.service_boarding +
+    `" >
+    </div>
+    
+    <div class="mb-5">
+        <input type="text" name="serviceBisBoarding" id="serviceBisBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
+    isNull(boarding.service2_boarding) +
+    `" >
+    </div>
+
+    <div id="errorMessageBoardingsEdit"></div>
+
+     <div class="w-fit m-auto mt-8">
+         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editBoardingVerification(` +
+    boarding.id_boarding +
+    `)">Modifier</button>
+     </div>
+  `;
+}
+
+function editBoardingVerification(idBoarding) {
+  let nameBoardingEdit = document.getElementById("nameBoardingEdit").value;
+  let priceBoardingEdit = document.getElementById("priceBoardingEdit").value;
+  let serviceBoardingEdit = document.getElementById(
+    "serviceBoardingEdit"
+  ).value;
+  let serviceBisBoardingEdit = document.getElementById(
+    "serviceBisBoardingEdit"
+  ).value;
+
+  let errorMessageBoardingsEdit = document.getElementById(
+    "errorMessageBoardingsEdit"
+  );
+
+  console.log(serviceBisBoardingEdit);
+
+  if (
+    nameBoardingEdit !== "" &&
+    priceBoardingEdit !== "" &&
+    serviceBoardingEdit !== ""
+  ) {
+    if (nameBoardingEdit.length <= 255) {
+      if (serviceBoardingEdit.length <= 255) {
+        if (
+          serviceBisBoardingEdit.length <= 255 ||
+          serviceBisBoardingEdit == ""
+        ) {
+          if (priceBoardingEdit > 0 && priceBoardingEdit < 2000) {
+            editBoarding(
+              idBoarding,
+              nameBoardingEdit,
+              priceBoardingEdit,
+              serviceBoardingEdit,
+              serviceBisBoardingEdit
+            );
+          } else {
+            errorMessageBoardingsEdit.innerHTML =
+              "Merci de renter un prix valide.";
+          }
+        } else {
+          errorMessageBoardingsEdit.innerHTML =
+            "Le service doit faire au maximum 255 caractères.";
+        }
+      } else {
+        errorMessageBoardingsEdit.innerHTML =
+          "Le service doit faire au maximum 255 caractères.";
+      }
+    } else {
+      errorMessageBoardingsEdit.innerHTML =
+        "Le nom doit faire au maximum 255 caractères.";
+    }
+  } else {
+    errorMessageBoardingsEdit.innerHTML = "Merci de remplir tous les champs.";
+  }
+}
+
+function editBoarding(
+  idBoarding,
+  nameBoardingEdit,
+  priceBoardingEdit,
+  serviceBoardingEdit,
+  serviceBisBoardingEdit
+) {
+  let editBoarding = {
+    idBoarding: idBoarding,
+    nameBoardingEdit: nameBoardingEdit,
+    priceBoardingEdit: priceBoardingEdit,
+    serviceBoardingEdit: serviceBoardingEdit,
+    serviceBisBoardingEdit: serviceBisBoardingEdit,
+  };
+
+  let params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(editBoarding),
+  };
+
+  fetch(HOME_URL + "admin/boarding/edit", params)
+    .then((res) => res.text())
+    .then((data) => reponseEditBoarding(JSON.parse(data)));
+}
+
+function reponseEditBoarding(data) {
+  if (data.status == "success") {
+    openSuccessMessage(data.message);
+    getAllBoardingSelect();
+    closeEditBoardingModal();
+  } else {
+    document.getElementById("errorMessageBoardingEdit").innerHTML =
+      data.message;
+  }
 }

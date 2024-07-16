@@ -18,6 +18,7 @@ class User
     private $login_user;
     private $id_level;
     private $name_level;
+    private $number_horse;
 
 
 
@@ -289,8 +290,26 @@ class User
         return $this;
     }
 
+    /**
+     * Get the value of number_horse
+     */
+    public function getNumberHorse()
+    {
+        return $this->number_horse;
+    }
+
+    /**
+     * Set the value of number_horse
+     */
+    public function setNumberHorse($number_horse): self
+    {
+        $this->number_horse = $number_horse;
+
+        return $this;
+    }
+
     public function getObjectToArray(): array
     {
-        return ['id_user' => $this->getIdUser(), 'password_user' => $this->getPasswordUser(), 'lastname_user' => $this->getLastnameUser(), 'firstname_user' => $this->getFirstnameUser(), 'email_user' => $this->getEmailUser(), 'phone_user' => $this->getPhoneUser(), 'address_user' => $this->getAddressUser(), 'birthdate_user' => $this->getBirthdateUser(), 'role_user' => $this->getRoleUser(), 'actif_user' => $this->getActifUser(), 'gdpr_user' => $this->getGdprUser(), 'login_user' => $this->getLoginUser(), 'id_level' => $this->getIdLevel(), 'name_level' => $this->getNameLevel()];
+        return ['id_user' => $this->getIdUser(), 'password_user' => $this->getPasswordUser(), 'lastname_user' => $this->getLastnameUser(), 'firstname_user' => $this->getFirstnameUser(), 'email_user' => $this->getEmailUser(), 'phone_user' => $this->getPhoneUser(), 'address_user' => $this->getAddressUser(), 'birthdate_user' => $this->getBirthdateUser(), 'role_user' => $this->getRoleUser(), 'actif_user' => $this->getActifUser(), 'gdpr_user' => $this->getGdprUser(), 'login_user' => $this->getLoginUser(), 'id_level' => $this->getIdLevel(), 'name_level' => $this->getNameLevel(), 'number_horse' => $this->getNumberHorse()];
     }
 }

@@ -20,7 +20,10 @@ class UserRepository
 
     public function loginUser($login, $passwordLogin)
     {
-        $sql = "SELECT * FROM ce_user WHERE login_user = :login";
+        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.password_user, " . PREFIXE . "user.role_user, " . PREFIXE . "user.id_level, COUNT(" . PREFIXE . "horse.id_horse) AS number_horse 
+            FROM " . PREFIXE . "user
+            LEFT JOIN " . PREFIXE . "horse ON " . PREFIXE . "horse.id_user = " . PREFIXE . "user. id_user
+            WHERE login_user =  :login";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':login', $login);
@@ -30,9 +33,7 @@ class UserRepository
 
         if ($user) {
             if (password_verify($passwordLogin, $user->getPasswordUser())) {
-                $_SESSION['role'] = $user->getRoleUser();
-                $_SESSION['idUser'] = $user->getIdUser();
-                $_SESSION['idLevelUser'] = $user->getIdLevel();
+                $_SESSION['user'] = $user;
 
 
                 $reponse = array(

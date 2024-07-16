@@ -36,138 +36,79 @@ class BoardingController
         return json_encode($reponse);
     }
 
+    function boardingHorse($idBoarding)
+    {
+        $BoardingRepository = new BoardingRepository;
+        $reponse = $BoardingRepository->getBoardingHorse($idBoarding);
+        return json_encode($reponse);
+    }
 
 
-    // public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
-    // {
-    //     if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
-    //         if (strlen($nameHorse) <= 50) {
-    //             $nameHorse = htmlspecialchars($nameHorse);
+    public function editBoarding($idBoarding, $nameBoardingEdit, $priceBoardingEdit, $serviceBoardingEdit, $serviceBisBoardingEdit)
+    {
+        if (isset($nameBoardingEdit) && !empty($nameBoardingEdit) && isset($priceBoardingEdit) && !empty($priceBoardingEdit) && isset($serviceBoardingEdit) && !empty($serviceBoardingEdit)) {
+            if (strlen($nameBoardingEdit) <= 255) {
+                $nameBoardingEdit = htmlspecialchars($nameBoardingEdit);
 
-    //             if (filter_var($imageHorse, FILTER_VALIDATE_URL)) {
-    //                 $imageHorse = htmlspecialchars($imageHorse);
+                if (strlen($serviceBoardingEdit) <= 255) {
+                    $serviceBoardingEdit = htmlspecialchars($serviceBoardingEdit);
 
-    //                 list($year, $month, $day) = explode("-", $birthdateHorse);
+                    if (strlen($serviceBisBoardingEdit) <= 255 || $serviceBisBoardingEdit = '') {
+                        if ($serviceBisBoardingEdit == '') {
+                            $serviceBisBoardingEdit = NULL;
+                        } else {
+                            $serviceBisBoardingEdit = htmlspecialchars($serviceBisBoardingEdit);
+                        }
 
-    //                 if (checkdate($month, $day, $year)) {
-    //                     $birthdateHorse = htmlspecialchars($birthdateHorse);
+                        if (is_int((int)$priceBoardingEdit) && (int)$priceBoardingEdit > 0 && (int)$priceBoardingEdit < 2000) {
+                            $priceBoardingEdit = htmlspecialchars($priceBoardingEdit);
 
-    //                     if (is_int($horseUser) && is_int($horseBox)) {
-    //                         $horseUser = htmlspecialchars($horseUser);
-    //                         $horseBox = htmlspecialchars($horseBox);
+                            $BoardingRepository = new BoardingRepository;
+                            $reponse = $BoardingRepository->editBoarding($idBoarding, $nameBoardingEdit, $priceBoardingEdit, $serviceBoardingEdit, $serviceBisBoardingEdit);
+                            return json_encode($reponse);
+                        } else {
+                            $response = array(
+                                'status' => 'error',
+                                'message' => 'Merci de rentrer un prix valide.'
+                            );
+                            return json_encode($response);
+                            die;
+                        }
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => 'Le nom doit faire au maximum 255 caractères.'
+                        );
+                        return json_encode($response);
+                        die;
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Le nom doit faire au maximum 255 caractères.'
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le nom doit faire au maximum 255 caractères.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs.'
+            );
+            return json_encode($response);
+            die;
+        }
+    }
 
-
-    //                         $HorseRepository = new HorseRepository;
-    //                         $reponse = $HorseRepository->addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
-    //                         return json_encode($reponse);
-    //                     } else {
-    //                         $response = array(
-    //                             'status' => 'error',
-    //                             'message' => 'Merci de selectionner un champ.'
-    //                         );
-    //                         return json_encode($response);
-    //                         die;
-    //                     }
-    //                 } else {
-    //                     $response = array(
-    //                         'status' => 'error',
-    //                         'message' => 'Merci de renter une date valide.'
-    //                     );
-    //                     return json_encode($response);
-    //                     die;
-    //                 }
-    //             } else {
-    //                 $response = array(
-    //                     'status' => 'error',
-    //                     'message' => 'Merci de renter un URL valide.'
-    //                 );
-    //                 return json_encode($response);
-    //                 die;
-    //             }
-    //         } else {
-    //             $response = array(
-    //                 'status' => 'error',
-    //                 'message' => 'Le nom doit faire au maximum 50 caractères.'
-    //             );
-    //             return json_encode($response);
-    //             die;
-    //         }
-    //     } else {
-    //         $response = array(
-    //             'status' => 'error',
-    //             'message' => 'Merci de remplir tous les champs.'
-    //         );
-    //         return json_encode($response);
-    //         die;
-    //     }
-    // }
-
-
-    // public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
-    // {
-    //     if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox)) {
-    //         if (strlen($nameHorse) <= 50) {
-    //             $nameHorse = htmlspecialchars($nameHorse);
-
-    //             if (filter_var($imageHorse, FILTER_VALIDATE_URL)) {
-    //                 $imageHorse = htmlspecialchars($imageHorse);
-
-    //                 list($year, $month, $day) = explode("-", $birthdateHorse);
-
-    //                 if (checkdate($month, $day, $year)) {
-    //                     $birthdateHorse = htmlspecialchars($birthdateHorse);
-
-    //                     if (is_int($horseUser) && is_int($horseBox)) {
-    //                         $horseUser = htmlspecialchars($horseUser);
-    //                         $horseBox = htmlspecialchars($horseBox);
-
-
-    //                         $HorseRepository = new HorseRepository;
-    //                         $reponse = $HorseRepository->editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox);
-    //                         return json_encode($reponse);
-    //                     } else {
-    //                         $response = array(
-    //                             'status' => 'error',
-    //                             'message' => 'Merci de selectionner un champ.'
-    //                         );
-    //                         return json_encode($response);
-    //                         die;
-    //                     }
-    //                 } else {
-    //                     $response = array(
-    //                         'status' => 'error',
-    //                         'message' => 'Merci de renter une date valide.'
-    //                     );
-    //                     return json_encode($response);
-    //                     die;
-    //                 }
-    //             } else {
-    //                 $response = array(
-    //                     'status' => 'error',
-    //                     'message' => 'Merci de renter un URL valide.'
-    //                 );
-    //                 return json_encode($response);
-    //                 die;
-    //             }
-    //         } else {
-    //             $response = array(
-    //                 'status' => 'error',
-    //                 'message' => 'Le nom doit faire au maximum 50 caractères.'
-    //             );
-    //             return json_encode($response);
-    //             die;
-    //         }
-    //     } else {
-    //         $response = array(
-    //             'status' => 'error',
-    //             'message' => 'Merci de remplir tous les champs.'
-    //         );
-    //         return json_encode($response);
-    //         die;
-    //     }
-    // }
-
-    // function deleteHorse($idHorse)
+    // function deleteBoarding($idHorse)
     // {
     //     $HorseRepository = new HorseRepository;
     //     $reponse = $HorseRepository->deleteHorse($idHorse);

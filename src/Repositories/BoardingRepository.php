@@ -38,7 +38,25 @@ class BoardingRepository
 
     public function getBoardingById($idBoarding)
     {
+        $sql = "SELECT * FROM " . PREFIXE . "boarding
+        WHERE " . PREFIXE . "boarding.id_boarding = :id_boarding";
 
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':id_boarding', $idBoarding);
+
+        $statement->execute();
+
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, Boarding::class);
+        $objet = $statement->fetch();
+
+        $retour = $objet->getObjectToArray();
+
+        return $retour;
+    }
+
+    public function getBoardingHorse($idBoarding)
+    {
         $sql = "SELECT " . PREFIXE . "horse.name_horse, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user FROM " . PREFIXE . "horse, " . PREFIXE . "user
         WHERE " . PREFIXE . "horse.id_user =  " . PREFIXE . "user.id_user
         AND " . PREFIXE . "horse.id_boarding = :id_boarding";
@@ -57,58 +75,31 @@ class BoardingRepository
         return $retour;
     }
 
-    // public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
-    // {
-    //     $sql = "INSERT INTO " . PREFIXE . "horse (name_horse, birthdate_horse, image_horse, id_user, id_box) VALUES (:nameHorse, :birthdateHorse, :imageHorse, :horseUser, :horseBox)";
+    public function editBoarding($idBoarding, $nameBoardingEdit, $priceBoardingEdit, $serviceBoardingEdit, $serviceBisBoardingEdit)
+    {
+        $sql = "UPDATE " . PREFIXE . "boarding SET name_boarding = :nameBoardingEdit, price_boarding = :priceBoardingEdit, service_boarding = :serviceBoardingEdit, service2_boarding = :serviceBisBoardingEdit WHERE id_boarding = :idBoarding";
 
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':nameHorse', $nameHorse);
-    //     $statement->bindParam(':imageHorse', $imageHorse);
-    //     $statement->bindParam(':birthdateHorse', $birthdateHorse);
-    //     $statement->bindParam(':horseUser', $horseUser);
-    //     $statement->bindParam(':horseBox', $horseBox);
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idBoarding', $idBoarding);
+        $statement->bindParam(':nameBoardingEdit', $nameBoardingEdit);
+        $statement->bindParam(':priceBoardingEdit', $priceBoardingEdit);
+        $statement->bindParam(':serviceBoardingEdit', $serviceBoardingEdit);
+        $statement->bindParam(':serviceBisBoardingEdit', $serviceBisBoardingEdit);
 
-    //     if ($statement->execute()) {
-    //         $reponse = array(
-    //             'status' => 'success',
-    //             'message' => "Nouveau cheval enregistré !"
-    //         );
-    //         return $reponse;
-    //     } else {
-    //         $reponse = array(
-    //             'status' => 'error',
-    //             'message' => "Une erreur est survenue."
-    //         );
-    //         return $reponse;
-    //     }
-    // }
-
-    // public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $horseUser, $horseBox)
-    // {
-    //     $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse, birthdate_horse = :birthdateHorse, image_horse = :imageHorse, id_user = :horseUser, id_box = :horseBox WHERE id_horse = :idHorse";
-
-    //     $statement = $this->db->prepare($sql);
-    //     $statement->bindParam(':idHorse', $idHorse);
-    //     $statement->bindParam(':nameHorse', $nameHorse);
-    //     $statement->bindParam(':imageHorse', $imageHorse);
-    //     $statement->bindParam(':birthdateHorse', $birthdateHorse);
-    //     $statement->bindParam(':horseUser', $horseUser);
-    //     $statement->bindParam(':horseBox', $horseBox);
-
-    //     if ($statement->execute()) {
-    //         $reponse = array(
-    //             'status' => 'success',
-    //             'message' => $nameHorse . ' a bien été modifié !'
-    //         );
-    //         return $reponse;
-    //     } else {
-    //         $reponse = array(
-    //             'status' => 'error',
-    //             'message' => "Une erreur est survenue."
-    //         );
-    //         return $reponse;
-    //     }
-    // }
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => 'La pension a bien été modifiée !'
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
 
     // public function deleteHorse($idHorse)
     // {

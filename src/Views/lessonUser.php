@@ -2,9 +2,12 @@
 
 include __DIR__ . '/Includes/headerWebsite.php';
 include __DIR__ . '/Includes/navBarreUser.php';
+
+
 ?>
 
-<div id='calendarUser' class="m-10"></div>
+
+<div id='calendarUser' class="my-10 mx-auto w-10/12"></div>
 
 <div class="modalChangeCalendarLessonUser hidden">
     <div class="fixed inset-0 z-10 overflow-y-auto w-11/12 md:w-10/12 mx-auto my-8">

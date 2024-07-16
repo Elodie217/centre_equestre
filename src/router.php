@@ -30,6 +30,9 @@ $ContactController = new ContactController;
 $BoardingController = new BoardingController;
 
 
+if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    $ConnectedUser = $_SESSION['user'];
+}
 
 
 switch ($route) {
@@ -105,10 +108,10 @@ switch ($route) {
 
 
     case $routeComposee[0] == "login":
-        if (isset($_SESSION["role"]) && $_SESSION['role'] == "Admin") {
+        if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "Admin") {
             header('location: ' . HOME_URL . 'admin/lessons');
             die;
-        } else if (isset($_SESSION["role"]) && $_SESSION['role'] == "User") {
+        } else if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "User") {
             header('location: ' . HOME_URL . 'user/lessons');
             die;
         } else {
@@ -129,7 +132,7 @@ switch ($route) {
 
 
     case $routeComposee[0] == "user":
-        if (isset($_SESSION["role"]) && $_SESSION['role'] == "User") {
+        if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "User") {
 
 
             switch ($route) {
@@ -138,7 +141,7 @@ switch ($route) {
                     switch ($route) {
                         case $routeComposee[2] == "all":
 
-                            echo $LessonController->allLessonsByIdUser($_SESSION['idUser']);
+                            echo $LessonController->allLessonsByIdUser($_SESSION['user']->getIdUser());
                             die;
 
                         case $routeComposee[2] == "idlevel":
@@ -167,11 +170,39 @@ switch ($route) {
                             $HomeController->lessonUser();
                             die;
                     }
+
+                case $routeComposee[1] == "horses":
+                    switch ($route) {
+                        case $routeComposee[2] == "byiduser":
+
+                            echo $HorseController->byIdUser();
+                            die;
+
+                        case $routeComposee[2] == "id":
+                            $data = file_get_contents("php://input");
+
+                            $horseid = json_decode($data, true);
+
+                            echo $HorseController->horseById($horseid['idHorse']);
+                            die;
+                        case $routeComposee[2] == "edit":
+                            $data = file_get_contents("php://input");
+
+                            $edithorse = json_decode($data, true);
+
+                            echo $HorseController->editHorseUser($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse']);
+                            die;
+
+                        default:
+                            $HomeController->horsesUser();
+                            die;
+                    }
+
                 case $routeComposee[1] == "profile":
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":
 
-                            echo $UserController->userById($_SESSION['idUser']);
+                            echo $UserController->userById($_SESSION['user']->getIdUser());
                             die;
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
@@ -189,7 +220,7 @@ switch ($route) {
                     header('location: ' . HOME_URL . 'user/lessons');
                     die;
             }
-        } else if (isset($_SESSION["role"]) && $_SESSION['role'] == "Admin") {
+        } else if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "Admin") {
             header('location: ' . HOME_URL . 'admin/lessons');
 
             die;
@@ -199,7 +230,7 @@ switch ($route) {
             die;
         }
     case $routeComposee[0] == "admin":
-        if (isset($_SESSION["role"]) && $_SESSION['role'] == "Admin") {
+        if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "Admin") {
 
             switch ($route) {
                     // case $routeComposee[1] == "accueil":
@@ -208,7 +239,7 @@ switch ($route) {
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":
 
-                            echo $UserController->userById($_SESSION['idUser']);
+                            echo $UserController->userById($_SESSION['user']->getIdUser());
                             die;
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
@@ -366,6 +397,22 @@ switch ($route) {
                             echo $BoardingController->boardingById($boardingId['idBoarding']);
                             die;
 
+                        case $routeComposee[2] == "horse":
+                            $data = file_get_contents("php://input");
+
+                            $boardingId = json_decode($data, true);
+
+                            echo $BoardingController->boardingHorse($boardingId['idBoarding']);
+                            die;
+
+                        case $routeComposee[2] == "edit":
+                            $data = file_get_contents("php://input");
+
+                            $editBoarding = json_decode($data, true);
+
+                            echo $BoardingController->editBoarding($editBoarding['idBoarding'], $editBoarding['nameBoardingEdit'], $editBoarding['priceBoardingEdit'], $editBoarding['serviceBoardingEdit'], $editBoarding['serviceBisBoardingEdit']);
+                            die;
+
                         default:
                             $AdminController->boarding();
                             die;
@@ -464,7 +511,7 @@ switch ($route) {
 
                     die;
             }
-        } else if (isset($_SESSION["role"]) && $_SESSION['role'] == "User") {
+        } else if (isset($_SESSION['user']) && $_SESSION['user']->getRoleUser() == "User") {
             header('location: ' . HOME_URL . 'user/lessons');
 
             die;

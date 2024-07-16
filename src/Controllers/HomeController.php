@@ -106,6 +106,17 @@ class HomeController
         $this->render("lessonUser", ["erreur" => $erreur]);
     }
 
+    public function horsesUser(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("horsesUser", ["erreur" => $erreur]);
+    }
+
     public function profileUser(): void
     {
         if (isset($_GET['erreur'])) {

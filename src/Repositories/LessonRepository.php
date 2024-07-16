@@ -68,8 +68,8 @@ class LessonRepository
             ";
 
         $statement = $this->db->prepare($sql);
-        $statement->bindParam(':idUser', $_SESSION['idUser']);
-        $statement->bindParam(':idLevelUser', $_SESSION['idLevelUser']);
+        $statement->bindParam(':idUser', $_SESSION['user']->getIdUser());
+        $statement->bindParam(':idLevelUser', $_SESSION['user']->getIdLevel());
 
         $statement->execute();
 
@@ -91,7 +91,7 @@ class LessonRepository
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':idNewLesson', $idNewLesson);
         $statement->bindParam(':idOldLesson', $idOldLesson);
-        $statement->bindParam(':idUser', $_SESSION['idUser']);
+        $statement->bindParam(':idUser', $_SESSION['user']->getIdUser());
 
         if ($statement->execute()) {
             $reponse = array(
@@ -115,7 +115,7 @@ class LessonRepository
         $statement = $this->db->prepare($sql);
 
         $statement->bindParam(':id_lesson', $idLesson);
-        $statement->bindParam(':id_user', $_SESSION['idUser']);
+        $statement->bindParam(':id_user', $_SESSION['user']->getIdUser());
 
 
         if ($statement->execute()) {

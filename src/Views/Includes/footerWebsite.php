@@ -12,6 +12,7 @@
 <script src="../../../public/assets/scripts/scriptRegister.js"></script>
 <script src="../../../public/assets/scripts/scriptLogin.js"></script>
 <script src="../../../public/assets/scripts/scriptLessonUser.js"></script>
+<script src="../../../public/assets/scripts/scriptHorsesUser.js"></script>
 <script src="../../../public/assets/scripts/scriptProfileUser.js"></script>
 <script src="../../../public/assets/scripts/scriptBoxAdmin.js"></script>
 <script src="../../../public/assets/scripts/scriptUserAdmin.js"></script>
