@@ -7,7 +7,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
 <section class="sectionRegister">
 
     <div class="divRegister">
-        <h3>Inscription</h3>
+        <h3 class="font-bold" style='font-family: "Amatic SC", sans-serif;'>Inscription</h3>
         <div class='divform'>
             <label for="loginRegister" class='labelRegister'>Votre identifiant* :</label>
             <div class="passwordSpan mb-2">Votre identifiant est indiqué dans le mail que vous avez reçu.</div>
@@ -22,9 +22,6 @@ include __DIR__ . '/Includes/headerWebsite.php';
     </div>
 
     <input type="hidden" id="<?= $idNewUser ?>" class="idNewUser">
-
-    <!--  <div class="divRegister hidden"></div>-->
-
 
 </section>
 

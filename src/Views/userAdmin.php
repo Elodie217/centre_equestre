@@ -10,7 +10,7 @@ include __DIR__ . '/Includes/dashboard.php';
 ?>
 
 <div class="flex justify-between items-center my-6 mx-6">
-    <h1 class="text-4xl ">Les utilisateurs</h1>
+    <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>Les utilisateurs</h1>
 
     <div class="mr-10">
 
@@ -212,3 +212,7 @@ include __DIR__ . '/Includes/dashboard.php';
 <?php
 include 'Includes/footerWebsite.php'
 ?>
+
+<script>
+    getAllUsers();
+</script>

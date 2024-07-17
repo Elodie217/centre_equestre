@@ -9,7 +9,8 @@ include __DIR__ . '/Includes/navBarre.php';
 ?>
 <section class="bg-[url('https://images.unsplash.com/photo-1589824493580-eacaf31c2a82?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] h-full bg-cover bg-center -mt-10">
 
-    <h1 class=" text-5xl text-center py-56 w-2/3 m-auto">Contact</h1>
+    <h1 class="text-8xl text-center py-48 w-2/3 m-auto font-bold" style='font-family: "Amatic SC", sans-serif;'>Contact</h1>
+
 </section>
 <section class="md:flex justify-around my-10 flex-wrap sm:flex-nowrap ">
     <div class="w-fit mx-auto p-8 md:mx-4">

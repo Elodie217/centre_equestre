@@ -55,3 +55,7 @@ function logout() {
       }
     });
 }
+
+function pageEmailingForgetPassword() {
+  redirect("emailingForgetPassword");
+}

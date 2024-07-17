@@ -155,6 +155,94 @@ class UserRepository
         }
     }
 
+    public function sendEmailForgetPassword($emailForgetPassword)
+    {
+        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.email_user
+            FROM " . PREFIXE . "user
+	        WHERE " . PREFIXE . "user.email_user = :emailUser";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':emailUser', $emailForgetPassword);
+
+        $statement->execute();
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $user = $statement->fetch();
+
+        if ($user) {
+            return $this->emailForgetPassword($user->getEmailUser(), $user->getIdUser());
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Email incorrect"
+            );
+            return $reponse;
+        }
+    }
+
+    public function emailForgetPassword($email, $idUser)
+    {
+        $to      = $email;
+        $subject = 'Réinitialisation de votre mot de passe';
+        $message = '<html>
+        Bonjour ! <br>
+        <br>  
+        Vous avez demandé à réinitialiser votre mot de passe. Pour compléter cette procédure, veuillez cliquer sur le lien ci-dessous : <a href="http://centreequestre2' . HOME_URL . 'forgotPassword/' . $idUser . '">Réinitialiser mon mot de passe</a>.
+        <br>
+        <br>
+        Si vous n\'êtes pas à l\'origine de cette demande, merci d\'ignorer ce mail.
+        <br><br>
+        A bientôt au centre équestre !
+        </html>';
+
+        $headers = 'MIME-Version: 1.0' . "\r\n" .
+            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'From: centreequestre@gmail.com' . "\r\n" .
+            'Reply-To: centreequestre@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        $test = mail($to, $subject, $message, $headers);
+
+        if ($test) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "L'email a été envoyé ! Veuillez vérifier votre boîte de réception."
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue dans l'envoi de votre mail."
+            );
+        }
+    }
+
+    public function change($idUser, $loginUser, $passwordForgotPasswordUser)
+    {
+        $hashedPassword = password_hash($passwordForgotPasswordUser, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE " . PREFIXE . "user SET password_user = :passwordRegister WHERE id_user = :idUser AND login_user = :loginUser";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':passwordRegister', $hashedPassword);
+        $statement->bindParam(':idUser', $idUser);
+        $statement->bindParam(':loginUser', $loginUser);
+
+        if ($statement->execute()) {
+            $reponse = array(
+                'status' => 'success',
+                'message' => "Votre compte à bien été enregistré !"
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'error',
+                'message' => "Une erreur est survenue."
+            );
+            return $reponse;
+        }
+    }
+
     public function addUser($lastnameUserAdd, $firstnameUserAdd, $emailUserAdd, $phoneUserAdd, $birthdateUserAdd, $addressUserAdd, $roleUserAdd, $levelUserAdd)
     {
         $loginUserAdd = strtolower($lastnameUserAdd . '.' . $firstnameUserAdd);

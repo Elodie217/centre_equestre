@@ -38,8 +38,10 @@
 
 .divImg h1 {
   margin-bottom: 8px;
-  font-size: 24px;
+  font-size: 36px;
   line-height: 36px;
+  font-weight: 700;
+  font-family: "Amatic SC", sans-serif;
 }
 /* mb-2 text-2xl */
 
@@ -130,9 +132,11 @@
 
 .divRegister h3 {
   text-align: center;
-  margin-bottom: 32px;
-  font-size: 30px;
+  margin-bottom: 48px;
+  font-size: 48px;
   line-height: 36px;
+  font-weight: 700;
+  font-family: "Amatic SC", sans-serif;
 }
 
 .divFormRegister {

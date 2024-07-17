@@ -7,7 +7,7 @@ include __DIR__ . '/Includes/dashboard.php';
 ?>
 
 <div class="flex justify-between items-center my-6 mx-6">
-    <h1 class="text-4xl ">Contacts</h1>
+    <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>Contacts</h1>
 
 
 </div>
@@ -83,3 +83,7 @@ include __DIR__ . '/Includes/dashboard.php';
 <?php
 include 'Includes/footerWebsite.php'
 ?>
+
+<script>
+    getAllContact();
+</script>

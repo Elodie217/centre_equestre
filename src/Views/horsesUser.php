@@ -4,12 +4,12 @@ include __DIR__ . '/Includes/headerWebsite.php';
 include __DIR__ . '/Includes/navBarreUser.php';
 ?>
 
-<h1 class="text-4xl ml-16"><?php
-                            if (isset($_SESSION['user']) && !empty($_SESSION['user']) && $_SESSION['user']->getNumberHorse() == 1) {
-                                echo "Mon cheval";
-                            } elseif (isset($_SESSION['user']) && !empty($_SESSION['user']) && $_SESSION['user']->getNumberHorse() > 1) {
-                                echo "Mes chevaux";
-                            } ?></h1>
+<h1 class="ml-16 text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'><?php
+                                                                                    if (isset($_SESSION['user']) && !empty($_SESSION['user']) && $_SESSION['user']->getNumberHorse() == 1) {
+                                                                                        echo "Mon cheval";
+                                                                                    } elseif (isset($_SESSION['user']) && !empty($_SESSION['user']) && $_SESSION['user']->getNumberHorse() > 1) {
+                                                                                        echo "Mes chevaux";
+                                                                                    } ?></h1>
 
 <div class="divUserHorse flex flex-wrap"></div>
 

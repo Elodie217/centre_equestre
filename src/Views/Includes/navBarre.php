@@ -7,7 +7,7 @@ $route = $_SERVER['REDIRECT_URL'];
 <nav class="border-gray-200 mb-10 py-3 px-6 bg-[#64832F]">
     <div class="w-full mx-auto">
         <div class="mx-2 flex flex-wrap items-center justify-between">
-            <a href="#" class="flex">
+            <a href="#" class="flex items-center">
                 <svg class="h-10 mr-3" width="51" height="70" viewBox="0 0 51 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
                         <path d="M1 53H27.9022C40.6587 53 51 42.7025 51 30H24.0978C11.3412 30 1 40.2975 1 53Z" fill="#76A9FA"></path>
@@ -20,6 +20,7 @@ $route = $_SERVER['REDIRECT_URL'];
                         </clipPath>
                     </defs>
                 </svg>
+                <h2 class="text-4xl" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
             </a>
             <div class="flex md:hidden md:order-2">
                 <button data-collapse-toggle="mobile-menu-3" type="button" class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-3" aria-expanded="false">

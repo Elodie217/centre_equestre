@@ -1,4 +1,3 @@
-// getAllHorses();
 function getAllHorses(divDisplay = "horse", idHorse = 0) {
   fetch(HOME_URL + "admin/horses/all")
     .then((res) => res.text())
@@ -247,6 +246,7 @@ function closeEditHorseModal() {
 }
 
 function openEditHorseModal(horse) {
+  console.log("horse edit", horse.id_user, horse.id_box, horse.id_boarding);
   getAllUserSelect(horse.id_user);
   getAllBox(horse.id_box);
   getAllBoardingSelect("horse", horse.id_boarding);
@@ -259,20 +259,20 @@ function openEditHorseModal(horse) {
  <h3 class="text-2xl text-center mb-8">Modifier ` +
     horse.name_horse +
     `</h3>
-    <div class="-mx-3 flex flex-wrap">
+    <div class="-mx-3 flex flex-wrap font-medium ">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base font-medium text-[#07074D]"'>Nom</label>
-              <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <label for="nameHorse" class='mb-3 block text-base text-[#07074D]"'>Nom</label>
+              <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
             </div>
         </div>
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="horseUser" class='mb-3 block text-base font-medium text-[#07074D]"'>Propriétaire</label>
+                <label for="horseUser" class='mb-3 block text-base text-[#07074D]"'>Propriétaire</label>
 
-                <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
 
                 </select>
             </div>
@@ -281,8 +281,8 @@ function openEditHorseModal(horse) {
 
 
     <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base font-medium text-[#07074D]"'>Image</label>
-        <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+        <label for="imageHorse" class='mb-3 block text-base text-[#07074D]"'>Image</label>
+        <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
     horse.image_horse +
     ` >
     </div>

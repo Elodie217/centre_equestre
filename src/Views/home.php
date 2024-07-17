@@ -12,8 +12,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
     include __DIR__ . '/Includes/navBarre.php';
 
     ?>
-
-    <h1 class="text-4xl text-center my-24 w-2/3 m-auto">Centre équestre du ipsum dolor</h1>
+    <h1 class="text-8xl text-center my-20 w-2/3 m-auto font-bold" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h1>
     <p class="text-2xl text-center my-24 w-2/3 m-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque natus minima doloremque quam similique voluptatibus voluptatum recusandae at vero, non ipsam laudantium ut perspiciatis dolore, quo dolorem nesciunt error rem?</p>
 
     <div class="w-fit text-2xl m-auto absolute bottom-2 left-[45%]">

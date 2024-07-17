@@ -43,7 +43,7 @@ class HorseRepository
     public function getHorsesById($idHorse)
     {
 
-        $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse, " . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.height_horse, " . PREFIXE . "horse.coat_horse, " . PREFIXE . "box.name_box, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "boarding.id_boarding, " . PREFIXE . "boarding.name_boarding
+        $sql = "SELECT " . PREFIXE . "horse.id_horse, " . PREFIXE . "horse.name_horse, " . PREFIXE . "horse.birthdate_horse, " . PREFIXE . "horse.image_horse, " . PREFIXE . "horse.height_horse, " . PREFIXE . "horse.coat_horse, " . PREFIXE . "box.id_box, " . PREFIXE . "box.name_box, " . PREFIXE . "user.id_user, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "boarding.id_boarding, " . PREFIXE . "boarding.name_boarding
             FROM " . PREFIXE . "horse
             JOIN " . PREFIXE . "user ON " . PREFIXE . "horse.id_user = " . PREFIXE . "user.id_user
             JOIN " . PREFIXE . "box ON " . PREFIXE . "horse.id_box = " . PREFIXE . "box.id_box

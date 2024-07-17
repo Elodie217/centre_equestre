@@ -8,9 +8,9 @@ include __DIR__ . '/Includes/dashboard.php';
 ?>
 
 <div class="flex justify-between items-center my-6 mx-6">
-    <h1 class="text-4xl ">Les pensions</h1>
-
+    <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>Les pensions</h1>
 </div>
+
 <div class='divBoarding grid grid-cols-3 grid-rows-1 gap-10 mx-6 my-16 py-4'>
 </div>
 

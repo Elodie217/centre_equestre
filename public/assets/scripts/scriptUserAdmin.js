@@ -93,7 +93,6 @@ function isCheckedUser(idUsersGiven, idUserBdd) {
 }
 
 // Display Users
-getAllUsers();
 function getAllUsers() {
   fetch(HOME_URL + "admin/users/all")
     .then((res) => res.text())
@@ -258,7 +257,6 @@ function AddUserVerification() {
   let errorMessageUserAdd = document.getElementById("errorMessageUserAdd");
 
   errorMessageUserAdd.innerHTML = "";
-  console.log(levelUserAdd);
 
   if (
     lastnameUserAdd !== "" &&

@@ -10,7 +10,7 @@ class HomeController
 
     use Reponse;
 
-    public function index(): void
+    public function home(): void
     {
         if (isset($_GET['erreur'])) {
             $erreur = htmlspecialchars($_GET['erreur']);
@@ -18,7 +18,7 @@ class HomeController
             $erreur = '';
         }
 
-        $this->render("accueil", ["erreur" => $erreur]);
+        $this->render("home", ["erreur" => $erreur]);
     }
 
     public function register($idNewUser): void
@@ -30,6 +30,28 @@ class HomeController
         }
 
         $this->render("register", ["erreur" => $erreur, "idNewUser" => $idNewUser]);
+    }
+
+    public function emailingForgetPassword(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("emailingForgetPassword", ["erreur" => $erreur]);
+    }
+
+    public function forgotPassword($idUser): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("forgotPassword", ["erreur" => $erreur, "idUser" => $idUser]);
     }
 
     public function horses(): void

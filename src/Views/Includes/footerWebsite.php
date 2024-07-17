@@ -10,6 +10,7 @@
 <script src="../../../public/assets/scripts/scriptHorses.js"></script>
 <script src="../../../public/assets/scripts/scriptContactSend.js"></script>
 <script src="../../../public/assets/scripts/scriptRegister.js"></script>
+<script src="../../../public/assets/scripts/scriptForgotPassword.js"></script>
 <script src="../../../public/assets/scripts/scriptLogin.js"></script>
 <script src="../../../public/assets/scripts/scriptLessonUser.js"></script>
 <script src="../../../public/assets/scripts/scriptHorsesUser.js"></script>

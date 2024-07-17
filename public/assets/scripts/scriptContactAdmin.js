@@ -6,7 +6,6 @@ function getAllContact() {
       displayContact(JSON.parse(data));
     });
 }
-getAllContact();
 
 function displayContact(contacts) {
   if (contacts == "") {

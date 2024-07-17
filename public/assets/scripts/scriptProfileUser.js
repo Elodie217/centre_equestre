@@ -19,16 +19,16 @@ function displayProfileUser(user, role) {
   document.querySelector(".divProfileUser").innerHTML =
     `
     <div class="flex justify-between items-center my-6 mx-32">
-        <h1 class="text-4xl ">Mon compte</h1>
+        <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>Mon compte</h1>
 
-        <p class="mr-40 text-2xl">
+        <p class="mr-40 text-xl">
             <span class='mr-2 font-bold'>Identifiant : </span>` +
     user.login_user +
     `
         </p>
     </div>
 
-    <div class='text-2xl my-10 mx-44'>
+    <div class='text-xl my-10 mx-44'>
         <p class='my-6'>
             <span class='mr-2 font-bold'>Nom : </span>` +
     user.lastname_user +

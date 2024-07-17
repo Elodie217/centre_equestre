@@ -29,7 +29,7 @@ class UserController
     }
 
 
-    function registration($idUser, $loginUser, $lastnameUserRegister, $firstnameUserRegister, $emailUserRegister, $phoneUserRegister, $birthdateUserRegister, $addressUserRegister, $passwordRegister, $passwordRegisterBis)
+    public function registration($idUser, $loginUser, $lastnameUserRegister, $firstnameUserRegister, $emailUserRegister, $phoneUserRegister, $birthdateUserRegister, $addressUserRegister, $passwordRegister, $passwordRegisterBis)
     {
 
         if (isset($lastnameUserRegister) && !empty($lastnameUserRegister) && isset($firstnameUserRegister) && !empty($firstnameUserRegister) && isset($emailUserRegister) && !empty($emailUserRegister) && isset($passwordRegister) && !empty($passwordRegister)) {
@@ -134,6 +134,72 @@ class UserController
                 $response = array(
                     'status' => 'error',
                     'message' => 'Le nom et le prénom doivent faire au maximum 50 caractères.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs avec une *.'
+            );
+            return json_encode($response);
+            die;
+        }
+    }
+
+    public function emailForgetPassword($emailForgetPassword)
+    {
+        if (isset($emailForgetPassword) && !empty($emailForgetPassword)) {
+
+            if (filter_var($emailForgetPassword, FILTER_VALIDATE_EMAIL)) {
+                $emailForgetPassword = htmlspecialchars($emailForgetPassword);
+
+                $UserRepository = new UserRepository;
+                $reponse = $UserRepository->sendEmailForgetPassword($emailForgetPassword);
+                return json_encode($reponse);
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Merci de rentrer un email valide.'
+                );
+                return json_encode($response);
+                die;
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de rentrer votre email.'
+            );
+            return json_encode($response);
+            die;
+        }
+    }
+
+    public function change($idUser, $loginUser, $passwordForgotPasswordUser, $passwordbisForgotPasswordUser)
+    {
+
+        if (isset($passwordForgotPasswordUser) && !empty($passwordForgotPasswordUser) && isset($passwordbisForgotPasswordUser) && !empty($passwordbisForgotPasswordUser)) {
+
+            if ($passwordForgotPasswordUser == $passwordbisForgotPasswordUser) {
+
+                if (strlen($passwordForgotPasswordUser) >= 6) {
+
+                    $UserRepository = new UserRepository;
+                    $reponse = $UserRepository->change($idUser, $loginUser, $passwordForgotPasswordUser);
+                    return json_encode($reponse);
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Le mot de passe doit faire au minimum 6 caractères.'
+                    );
+                    return json_encode($response);
+                    die;
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Les mots de passe doivent être identiques.'
                 );
                 return json_encode($response);
                 die;

@@ -37,7 +37,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
 switch ($route) {
     case HOME_URL:
-        $HomeController->index();
+        $HomeController->home();
         die;
 
     case $routeComposee[0] == "register":
@@ -66,6 +66,52 @@ switch ($route) {
             default:
                 if (isset($routeComposee[1]) && !empty($routeComposee[1])) {
                     $HomeController->register($routeComposee[1]);
+                } else {
+                    var_dump($routeComposee);
+                }
+                die;
+        }
+
+    case $routeComposee[0] == "emailingForgetPassword":
+        switch ($route) {
+            case $routeComposee[1] == "email":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->emailForgetPassword($user['emailForgetPassword']);
+                die;
+
+            default:
+                $HomeController->emailingForgetPassword();
+                die;
+        }
+    case $routeComposee[0] == "forgotPassword":
+        switch ($route) {
+            case $routeComposee[1] == "userLogin":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->userLoginVerification($user['idForgotPassword'], $user['loginUser']);
+                die;
+            case $routeComposee[1] == "user":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->userById($user['idForgotPasswordUser']);
+                die;
+            case $routeComposee[1] == "change":
+                $data = file_get_contents("php://input");
+
+                $user = json_decode($data, true);
+
+                echo $UserController->change($user['idUser'], $user['loginUser'], $user['passwordForgotPasswordUser'], $user['passwordbisForgotPasswordUser']);
+                die;
+            default:
+                if (isset($routeComposee[1]) && !empty($routeComposee[1])) {
+                    $HomeController->forgotPassword($routeComposee[1]);
                 } else {
                     var_dump($routeComposee);
                 }
@@ -233,8 +279,7 @@ switch ($route) {
         if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "Admin") {
 
             switch ($route) {
-                    // case $routeComposee[1] == "accueil":
-                    //     die;
+
                 case $routeComposee[1] == "profile":
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":

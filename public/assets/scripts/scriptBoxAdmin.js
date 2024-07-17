@@ -28,8 +28,6 @@ function displayBox(box, idBoxHorse) {
   });
 }
 
-getBoxHorse();
-
 function getBoxHorse() {
   fetch(HOME_URL + "admin/box/horse")
     .then((res) => res.text())

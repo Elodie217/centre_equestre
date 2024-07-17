@@ -1,4 +1,3 @@
-// getAllHorsesSite();
 function getAllHorsesSite() {
   fetch(HOME_URL + "horses/all")
     .then((res) => res.text())

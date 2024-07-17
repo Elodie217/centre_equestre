@@ -9,7 +9,7 @@ include __DIR__ . '/Includes/dashboard.php';
 ?>
 
 <div class="flex justify-between items-center my-6 mx-6">
-    <h1 class="text-4xl ">La cavalerie</h1>
+    <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>La cavalerie</h1>
 
     <div class="mr-10">
 

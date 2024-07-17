@@ -5,7 +5,8 @@
         <div class="flex items-center">
             <div class="flex items-center">
                 <img src="" alt="Logo" class=" h-12 mx-4 ">
-                <h2 class="font-bold text-white text-xl">Centre équestre</h2>
+                <h2 class="font-bold text-white text-4xl" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
+
             </div>
 
         </div>

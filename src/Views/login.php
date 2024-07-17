@@ -21,7 +21,7 @@ include __DIR__ . '/Includes/navBarre.php';
                 <label for="passwordLogin" class="">Mot de passe</label>
                 <input class="" id="passwordLogin" type="Password" name="passwordLogin" placeholder="*********" />
             </div>
-            <a href="#" class="linkPassword">Mot de passe oublié ?</a>
+            <button onclick="pageEmailingForgetPassword()" class="linkPassword">Mot de passe oublié ?</button>
 
             <div id="errorMessageLogin"></div>
 
