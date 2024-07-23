@@ -5,9 +5,9 @@ namespace src\Models;
 class Lesson
 {
     private $id_lesson;
+    private $title_lesson;
     private $date_lesson;
     private $places_lesson;
-    private $price_lesson;
     private $name_level;
     private $all_name_levels;
     private $all_names_user;
@@ -58,6 +58,24 @@ class Lesson
     }
 
     /**
+     * Get the value of title_lesson
+     */
+    public function getTitleLesson()
+    {
+        return $this->title_lesson;
+    }
+
+    /**
+     * Set the value of title_lesson
+     */
+    public function setTitleLesson($title_lesson): self
+    {
+        $this->title_lesson = $title_lesson;
+
+        return $this;
+    }
+
+    /**
      * Set the value of date_lesson
      */
     public function setDateLesson($date_lesson): self
@@ -81,24 +99,6 @@ class Lesson
     public function setPlacesLesson($places_lesson): self
     {
         $this->places_lesson = $places_lesson;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of price_lesson
-     */
-    public function getPriceLesson()
-    {
-        return $this->price_lesson;
-    }
-
-    /**
-     * Set the value of price_lesson
-     */
-    public function setPriceLesson($price_lesson): self
-    {
-        $this->price_lesson = $price_lesson;
 
         return $this;
     }
@@ -177,6 +177,6 @@ class Lesson
 
     public function getObjectToArray(): array
     {
-        return ['id_lesson' => $this->getIdLesson(), 'date_lesson' => $this->getDateLesson(), 'places_lesson' => $this->getPlacesLesson(), 'price_lesson' => $this->getPriceLesson(), 'name_level' => $this->getNameLevel(), 'all_name_levels' => $this->getAllNameLevels(), 'all_names_user' => $this->getAllNamesUser(), 'id_user' => $this->getIdUser()];
+        return ['id_lesson' => $this->getIdLesson(), 'title_lesson' => $this->getTitleLesson(), 'date_lesson' => $this->getDateLesson(), 'places_lesson' => $this->getPlacesLesson(), 'name_level' => $this->getNameLevel(), 'all_name_levels' => $this->getAllNameLevels(), 'all_names_user' => $this->getAllNamesUser(), 'id_user' => $this->getIdUser()];
     }
 }

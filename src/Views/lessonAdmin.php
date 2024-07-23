@@ -23,18 +23,24 @@ include __DIR__ . '/Includes/dashboard.php';
 
                 <div class="divAddLesson">
                     <h3 class="text-2xl text-center mb-8">Ajouter un nouveau cours</h3>
-                    <div class="-mx-3 flex flex-wrap">
+                    <div class="-mx-3 flex flex-wrap font-medium text-base">
+
+                        <div class="mb-5">
+                            <label for="titleLessonAdd" class='mb-3 block'>Titre</label>
+                            <input type="text" name="titleLessonAdd" id="titleLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                        </div>
+
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="dateLessonAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Date</label>
-                                <input type="date" name="dateLessonAdd" id="dateLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                                <label for="dateLessonAdd" class='mb-3 block text-[#07074D]"'>Date</label>
+                                <input type="date" name="dateLessonAdd" id="dateLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
                             </div>
                         </div>
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="hourLessonAdd" class='mb-3 block text-base font-medium text-[#07074D]"'>Heure</label>
+                                <label for="hourLessonAdd" class='mb-3 block text-[#07074D]"'>Heure</label>
 
-                                <input type="time" name="hourLessonAdd" id="hourLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                                <input type="time" name="hourLessonAdd" id="hourLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
 
                                 </select>
                             </div>
@@ -45,7 +51,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     <div class="-mx-3 flex flex-wrap">
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <div class='mb-3 block text-base font-medium text-[#07074D]"'>Niveau(x)</div>
+                                <div class='mb-3 block text-[#07074D]"'>Niveau(x)</div>
 
                                 <div class="divLessonLevel flex flex-wrap">
 
@@ -55,13 +61,13 @@ include __DIR__ . '/Includes/dashboard.php';
                         </div>
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="placeLessonAdd" class='mb-3 block text-base font-medium '>Places</label>
-                                <input type="number" min=1 name="placeLessonAdd" id="placeLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                                <label for="placeLessonAdd" class='mb-3 block '>Places</label>
+                                <input type="number" min=1 name="placeLessonAdd" id="placeLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
                             </div>
                         </div>
                     </div>
                     <div class="mb-5">
-                        <p class='mb-3 block text-base font-medium '> Participants</p>
+                        <p class='mb-3 block '> Participants</p>
                         <div class="lessonUser flex flex-col h-24 overflow-auto"></div>
                     </div>
 

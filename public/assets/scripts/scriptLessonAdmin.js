@@ -36,34 +36,20 @@ function getAllEvents() {
       let lessons = JSON.parse(data);
 
       let events = [];
+      console.log(lessons);
 
       lessons.forEach((lesson) => {
         events.push({
           date: lesson.date_lesson,
-          title: titleLesson(lesson.all_name_levels),
+          title: lesson.title_lesson,
+          level: isNull(lesson.all_name_levels),
           id: lesson.id_lesson,
           place: lesson.places_lesson,
-          users: usersLesson(lesson.all_names_user),
+          users: isNull(lesson.all_names_user),
         });
       });
       return events;
     });
-}
-
-function titleLesson(title) {
-  if (title == null) {
-    return "";
-  } else {
-    return title;
-  }
-}
-
-function usersLesson(users) {
-  if (users == null) {
-    return "";
-  } else {
-    return users;
-  }
 }
 
 // Add Lesson
@@ -74,9 +60,6 @@ function openAddLessonModal(info) {
   document.querySelector(".modalAddLesson").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 
-  // console.log(info, new Date(info.date));
-
-  // let date = new Date(info.date).toISOString().split("T")[0];
   let hour = new Date(info.date).toTimeString().split(" ")[0];
 
   document.querySelector("#dateLessonAdd").value = info.dateStr;
@@ -91,6 +74,8 @@ function closeAddLessonModal() {
 function newLessonVerification() {
   let dateLessonAdd = document.getElementById("dateLessonAdd").value;
   let hourLessonAdd = document.getElementById("hourLessonAdd").value;
+  let titleLessonAdd = document.getElementById("titleLessonAdd").value;
+
   let placeLessonAdd = parseInt(
     document.getElementById("placeLessonAdd").value
   );
@@ -113,37 +98,49 @@ function newLessonVerification() {
 
   let errorMessageLessonAdd = document.getElementById("errorMessageLessonAdd");
 
-  if (dateLessonAdd !== "" && hourLessonAdd !== "" && placeLessonAdd !== "") {
-    if (isValidDateFormat(dateLessonAdd)) {
-      if (isValidHourFormat(hourLessonAdd)) {
-        if (Number(placeLessonAdd) && placeLessonAdd > 0) {
-          newLesson(
-            dateLessonAdd,
-            hourLessonAdd,
-            placeLessonAdd,
-            levelsLessonAdd,
-            usersLessonAdd
-          );
+  if (
+    dateLessonAdd !== "" &&
+    hourLessonAdd !== "" &&
+    placeLessonAdd !== "" &&
+    titleLessonAdd !== ""
+  ) {
+    if (titleLessonAdd.length < 255) {
+      if (isValidDateFormat(dateLessonAdd)) {
+        if (isValidHourFormat(hourLessonAdd)) {
+          if (Number(placeLessonAdd) && placeLessonAdd > 0) {
+            newLesson(
+              titleLessonAdd,
+              dateLessonAdd,
+              hourLessonAdd,
+              placeLessonAdd,
+              levelsLessonAdd,
+              usersLessonAdd
+            );
 
-          // let dateHourLesson = dateLessonAdd + " T" + hourLessonAdd;
+            // let dateHourLesson = dateLessonAdd + " T" + hourLessonAdd;
 
-          // let newLessonCalendar = {
-          //   date: dateHourLesson,
-          //   title: titleLesson(levelsLessonAdd),
-          //   // id: lesson.id_lesson,
-          //   place: placeLessonAdd,
-          //   users: usersLesson(usersLessonAdd),
-          // };
-          // calendar.addEvent(newLessonCalendar);
+            // let newLessonCalendar = {
+            //   date: dateHourLesson,
+            //   title: titleLesson(levelsLessonAdd),
+            //   // id: lesson.id_lesson,
+            //   place: placeLessonAdd,
+            //   users: usersLesson(usersLessonAdd),
+            // };
+            // calendar.addEvent(newLessonCalendar);
+          } else {
+            errorMessageLessonAdd.innerHTML =
+              "Merci de rentrer un nombre de place plus grand que 0.";
+          }
         } else {
           errorMessageLessonAdd.innerHTML =
-            "Merci de rentrer un nombre de place plus grand que 0.";
+            "Merci de rentrer une heure valide.";
         }
       } else {
-        errorMessageLessonAdd.innerHTML = "Merci de rentrer une heure valide.";
+        errorMessageLessonAdd.innerHTML = "Merci de rentrer une date valide.";
       }
     } else {
-      errorMessageLessonAdd.innerHTML = "Merci de rentrer une date valide.";
+      errorMessageLessonAdd.innerHTML =
+        "Le titre doit faire au maximum 50 caractères.";
     }
   } else {
     errorMessageLessonAdd.innerHTML = "Merci de remplir tous les champs.";
@@ -151,6 +148,7 @@ function newLessonVerification() {
 }
 
 function newLesson(
+  titleLessonAdd,
   dateLessonAdd,
   hourLessonAdd,
   placeLessonAdd,
@@ -158,6 +156,7 @@ function newLesson(
   usersLessonAdd
 ) {
   let newLesson = {
+    titleLessonAdd: titleLessonAdd,
     dateLessonAdd: dateLessonAdd,
     hourLessonAdd: hourLessonAdd,
     placeLessonAdd: placeLessonAdd,
@@ -246,6 +245,9 @@ function openViewLessonModal(infos) {
     `h` +
     minutes +
     `</p>
+    <p class="mt-4 mb-6">` +
+    eventInfo.level +
+    `</p>
     <p class="my-2"><span class="font-bold">Participants : </span> ` +
     usersLessonsLength(usersArray) +
     `/` +
@@ -281,7 +283,7 @@ function openViewLessonModal(infos) {
 
   //Edit modale
 
-  getAllLevel(infos.event.title, "checkbox", "edit");
+  getAllLevel(eventInfo.level, "checkbox", "edit");
   getAllUserSelect(eventInfo.users, "checkbox", "edit");
 
   document.querySelector(".divEditLesson").innerHTML =
@@ -296,6 +298,14 @@ function openViewLessonModal(infos) {
     minutes +
     `</h3>
    <div class="-mx-3 flex flex-wrap">
+
+      <div class="mb-5">
+        <label for="titleLessonEdit" class='mb-3 block'>Titre</label>
+        <input type="text" name="titleLessonEdit" id="titleLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+    infos.event.title +
+    `'>
+      </div>
+
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
                <label for="dateLessonEdit" class='mb-3 block text-base font-medium text-[#07074D]"'>Date</label>
@@ -385,6 +395,8 @@ function closeEditLessonModal() {
 function editLessonVerification(idLesson) {
   let dateLessonEdit = document.getElementById("dateLessonEdit").value;
   let hourLessonEdit = document.getElementById("hourLessonEdit").value;
+  let titleLessonEdit = document.getElementById("titleLessonEdit").value;
+
   let placeLessonEdit = parseInt(
     document.getElementById("placeLessonEdit").value
   );
@@ -412,28 +424,36 @@ function editLessonVerification(idLesson) {
   if (
     dateLessonEdit !== "" &&
     hourLessonEdit !== "" &&
-    placeLessonEdit !== ""
+    placeLessonEdit !== "" &&
+    titleLessonEdit !== ""
   ) {
-    if (isValidDateFormat(dateLessonEdit)) {
-      if (isValidHourFormat(hourLessonEdit)) {
-        if (Number(placeLessonEdit) && placeLessonEdit > 0) {
-          editLesson(
-            idLesson,
-            dateLessonEdit,
-            hourLessonEdit,
-            placeLessonEdit,
-            levelsLessonEdit,
-            usersLessonEdit
-          );
+    if (titleLessonEdit.length < 255) {
+      if (isValidDateFormat(dateLessonEdit)) {
+        if (isValidHourFormat(hourLessonEdit)) {
+          if (Number(placeLessonEdit) && placeLessonEdit > 0) {
+            editLesson(
+              idLesson,
+              titleLessonEdit,
+              dateLessonEdit,
+              hourLessonEdit,
+              placeLessonEdit,
+              levelsLessonEdit,
+              usersLessonEdit
+            );
+          } else {
+            errorMessageLessonEdit.innerHTML =
+              "Merci de rentrer un nombre de place plus grand que 0.";
+          }
         } else {
           errorMessageLessonEdit.innerHTML =
-            "Merci de rentrer un nombre de place plus grand que 0.";
+            "Merci de rentrer une heure valide.";
         }
       } else {
-        errorMessageLessonEdit.innerHTML = "Merci de rentrer une heure valide.";
+        errorMessageLessonEdit.innerHTML = "Merci de rentrer une date valide.";
       }
     } else {
-      errorMessageLessonEdit.innerHTML = "Merci de rentrer une date valide.";
+      errorMessageLessonEdit.innerHTML =
+        "Le titre doit faire au maximum 50 caractères.";
     }
   } else {
     errorMessageLessonEdit.innerHTML = "Merci de remplir tous les champs.";
@@ -442,6 +462,7 @@ function editLessonVerification(idLesson) {
 
 function editLesson(
   idLesson,
+  titleLessonEdit,
   dateLessonEdit,
   hourLessonEdit,
   placeLessonEdit,
@@ -450,6 +471,7 @@ function editLesson(
 ) {
   let editLesson = {
     idLesson: idLesson,
+    titleLessonEdit: titleLessonEdit,
     dateLessonEdit: dateLessonEdit,
     hourLessonEdit: hourLessonEdit,
     placeLessonEdit: placeLessonEdit,

@@ -54,30 +54,15 @@ function getAllEventsByIdUser() {
       lessons.forEach((lesson) => {
         events.push({
           date: lesson.date_lesson,
-          title: titleLesson(lesson.all_name_levels),
+          title: isNull(lesson.title_lesson),
+          level: isNull(lesson.all_name_levels),
           id: lesson.id_lesson,
           place: lesson.places_lesson,
-          users: usersLesson(lesson.all_names_user),
+          users: isNull(lesson.all_names_user),
         });
       });
       return events;
     });
-}
-
-function titleLesson(title) {
-  if (title == null) {
-    return "";
-  } else {
-    return title;
-  }
-}
-
-function usersLesson(users) {
-  if (users == null) {
-    return "";
-  } else {
-    return users;
-  }
 }
 
 function openViewLessonUserModal(info) {

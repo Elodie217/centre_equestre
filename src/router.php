@@ -311,7 +311,7 @@ switch ($route) {
 
                             $addlesson = json_decode($data, true);
 
-                            echo $LessonController->addLesson($addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd'], $addlesson['usersLessonAdd']);
+                            echo $LessonController->addLesson($addlesson['titleLessonAdd'], $addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd'], $addlesson['usersLessonAdd']);
 
                             die;
 
@@ -320,7 +320,7 @@ switch ($route) {
 
                             $addlesson = json_decode($data, true);
 
-                            echo $LessonController->editLesson($addlesson['idLesson'], $addlesson['dateLessonEdit'], $addlesson['hourLessonEdit'], $addlesson['placeLessonEdit'], $addlesson['levelsLessonEdit'], $addlesson['usersLessonEdit']);
+                            echo $LessonController->editLesson($addlesson['idLesson'], $addlesson['titleLessonEdit'], $addlesson['dateLessonEdit'], $addlesson['hourLessonEdit'], $addlesson['placeLessonEdit'], $addlesson['levelsLessonEdit'], $addlesson['usersLessonEdit']);
 
                             die;
 
