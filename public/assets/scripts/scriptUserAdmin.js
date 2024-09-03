@@ -1,5 +1,18 @@
 function getAllUserSelect(idUserGiven = 0, div = "select", action = "add") {
-  fetch(HOME_URL + "admin/users/all")
+  let choice = {
+    name: "firstname_user",
+    order: "ASC",
+  };
+
+  let params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(choice),
+  };
+
+  fetch(HOME_URL + "admin/users/all", params)
     .then((res) => res.text())
     .then((data) => {
       if (div == "select") {
@@ -53,7 +66,7 @@ function displayUserSelectCheckbox(users, idUserLesson, action) {
       div.innerHTML +=
         `
       <div>
-        <input type="checkbox" id="" class="userLessonAdd" value=` +
+        <input type="checkbox" class="userLessonAdd" value=` +
         user.id_user +
         ` name="` +
         user.firstname_user +
@@ -93,8 +106,21 @@ function isCheckedUser(idUsersGiven, idUserBdd) {
 }
 
 // Display Users
-function getAllUsers() {
-  fetch(HOME_URL + "admin/users/all")
+function getAllUsers(name, order) {
+  let choice = {
+    name: name,
+    order: order,
+  };
+
+  let params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(choice),
+  };
+
+  fetch(HOME_URL + "admin/users/all", params)
     .then((res) => res.text())
     .then((data) => {
       displayUser(JSON.parse(data));
@@ -107,7 +133,8 @@ function displayUser(usersData) {
   usersData.forEach((userData) => {
     document.querySelector(".tbodyUser").innerHTML +=
       `
-      <tr class="border-b hover:bg-neutral-100">
+      <tr class='border-b hover:bg-neutral-100
+        ${userData.actif_user == 0 ? "text-gray-500" : ""}'>
         <td class="px-6 py-4">` +
       userData.lastname_user +
       `</td>
@@ -137,6 +164,17 @@ function displayUser(usersData) {
       </tr>
       `;
   });
+}
+
+let order = "ASC";
+function chooseOrder($name) {
+  if (order == "DESC") {
+    getAllUsers($name, "DESC");
+    order = "ASC";
+  } else {
+    getAllUsers($name, "ASC");
+    order = "DESC";
+  }
 }
 
 function openViewUserModal(idUser) {
@@ -210,11 +248,11 @@ function displayUserById(User) {
     `</p>
 
     <div class="flex justify-around mt-8">
-      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='openEditUserModal(` +
+      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='openEditUserModal(` +
     JSON.stringify(User) +
     `)'>Modifier</button>
 
-      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteDisableUserModal(` +
+      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteDisableUserModal(` +
     User.id_user +
     `, '` +
     User.firstname_user +
@@ -474,7 +512,7 @@ function openEditUserModal(User) {
 
   <div class="w-fit m-auto mt-8">
 
-      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='EditUserVerification(` +
+      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='EditUserVerification(` +
     User.id_user +
     `)'>Modifier</button>
   </div>
@@ -631,14 +669,14 @@ function openDeleteDisableUserModal(idUser, firstnameUser, lastnameUser) {
     lastnameUser +
     ` ? </p>
     <div class='flex justify-around mt-8'>
-      <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick="openDisableUserModal(` +
+      <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick="openDisableUserModal(` +
     idUser +
     `, '` +
     firstnameUser +
     `', '` +
     lastnameUser +
     `')" >Désactiver</button>
-      <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick="openDeleteUserModal(` +
+      <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick="openDeleteUserModal(` +
     idUser +
     `, '` +
     firstnameUser +
@@ -665,10 +703,10 @@ function openDisableUserModal(idUser, firstnameUser, lastnameUser) {
     lastnameUser +
     ` ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick=disableUser(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick=disableUser(` +
     idUser +
     `) >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeDisableUserModal() >Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDisableUserModal() >Non</button>
   </div>
   `;
 }
@@ -717,10 +755,10 @@ function openDeleteUserModal(idUser, firstnameUser, lastnameUser) {
     lastnameUser +
     ` ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick=deleteUser(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick=deleteUser(` +
     idUser +
     `) >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeDeleteUserModal() >Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDeleteUserModal() >Non</button>
   </div>
   `;
 }

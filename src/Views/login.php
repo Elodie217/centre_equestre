@@ -8,7 +8,7 @@ include __DIR__ . '/Includes/navBarre.php';
 <section class="sectionLogin">
     <div class="divLogin">
         <div class="divImg">
-            <img src="https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg" alt="logo" />
+            <img src="/public/assets/images/logoText-removebg.png" alt="Logo des cavaliers des vallées" />
             <h1 class="">Connexion</h1>
         </div>
         <div>

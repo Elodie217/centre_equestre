@@ -67,7 +67,6 @@ function displayLevelCheckbox(levels, idLevelGiven, action) {
 }
 
 function isCheckedLevel(idLevelGiven, idLevelBdd) {
-  console.log(idLevelGiven, idLevelBdd);
   if (idLevelGiven !== 0) {
     let idLevels = idLevelGiven.split(", ");
     let isChecked = "";

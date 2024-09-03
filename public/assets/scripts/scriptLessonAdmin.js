@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
       day: "Jour",
     },
     allDayText: "Toute la journée",
+    slotMinTime: "06:00:00",
+    slotMaxTime: "22:00:00",
     events: [],
     dateClick: openAddLessonModal,
     eventClick: openViewLessonModal,
@@ -259,9 +261,9 @@ function openViewLessonModal(infos) {
   </div>
 
   <div class="flex justify-around mt-8">
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openEditLessonModal()">Modifier</button>
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openEditLessonModal()">Modifier</button>
 
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteLessonModal(` +
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteLessonModal(` +
     infos.event.id +
     `, '` +
     infos.event.title +
@@ -359,7 +361,7 @@ function openViewLessonModal(infos) {
 
    <div class="w-fit m-auto mt-8">
 
-       <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editLessonVerification(` +
+       <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editLessonVerification(` +
     infos.event.id +
     `)">Modifier</button>
    </div>`;
@@ -380,9 +382,6 @@ function closeViewLessonModal() {
 
 // Edit Lesson
 function openEditLessonModal() {
-  // getAllLevel();
-  // getAllUserSelect(0, "checkbox");
-
   document.querySelector(".modalEditLesson").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 }
@@ -514,10 +513,10 @@ function openDeleteLessonModal(idLesson) {
   document.querySelector(".deleteLessonMessage").innerHTML =
     `<p>Voulez-vous vraiment suppimer ce cours ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick='deleteLesson(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick='deleteLesson(` +
     idLesson +
     `)' >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeDeleteLessonModal() >Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDeleteLessonModal() >Non</button>
   </div>
   `;
 }

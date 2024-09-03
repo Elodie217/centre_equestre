@@ -48,7 +48,7 @@ function displayContact(contacts) {
         </td>
 
         <td class="px-6 py-4">
-          <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="viewContact(` +
+          <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="viewContact(` +
         contact.id_contact +
         `)"><i class="fa-solid fa-eye"></i></button>
         </td>
@@ -150,12 +150,12 @@ function openViewContactModal(data) {
     data.message_contact +
     ` Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat quas quaerat voluptatem unde quasi, sequi, aut eveniet earum eos totam doloribus eaque ut animi dolore, odio doloremque pariatur ducimus dolores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat quas quaerat voluptatem unde quasi, sequi, aut eveniet earum eos totam doloribus eaque ut animi dolore, odio doloremque pariatur ducimus dolores doloremque.
     </p>
-    <select name="statusContact" id="statusContact" class="absolute bottom-4 right-0 rounded-md border border-[#e0e0e0] bg-white w-24 py-1 indent-2 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md mr-0">
-      <option value='1' class='mb-3 block text-base font-medium text-[#07074D]'><i class='fa-solid fa-envelope-circle-check mr-1'></i> Non lue</option>
-      <option value='2' class='mb-3 block text-base font-medium text-[#07074D]'  ` +
+    <select name="statusContact" id="statusContact" class="absolute bottom-4 right-0 rounded-md border border-[#e0e0e0] bg-white w-28 py-1 indent-2 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md mr-0">
+      <option value='1' class='mb-3 block'><i class='fa-solid fa-envelope-circle-check mr-1'></i> Non lue</option>
+      <option value='2' class='mb-3 block'  ` +
     isSelectedStatus12(data.id_status) +
     `><span class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-gray-500 bg-gray-100/60"><i class="fa-solid fa-spinner mr-1"></i>En cours</span></option>
-      <option value='3' class='mb-3 block text-base font-medium text-[#07074D]' ` +
+      <option value='3' class='mb-3 block' ` +
     isSelected(data.id_status, 3) +
     `><span class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60"><i class="fa-regular fa-circle-check mr-1"></i>Traitée</span></option>
     </select>
@@ -163,11 +163,11 @@ function openViewContactModal(data) {
   <div class='flex justify-around'>
     <a href="mailto:` +
     data.email_contact +
-    `" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="viewContact(` +
+    `" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="viewContact(` +
     data.id_contact +
     `)">Contacter <i class="fa-solid fa-paper-plane"></i></a>
     
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteContactModal(` +
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteContactModal(` +
     data.id_contact +
     `)">Supprimer</button>
   </div>
@@ -176,7 +176,6 @@ function openViewContactModal(data) {
   const divStatusContact = document.querySelector("#statusContact");
 
   divStatusContact.addEventListener("change", (event) => {
-    console.log(event.target.value);
     changeStatus(event.target.value, data.id_contact);
   });
 }
@@ -225,10 +224,10 @@ function openDeleteContactModal(idContact) {
   document.querySelector(".deleteContactMessage").innerHTML =
     `<p>Voulez-vous vraiment suppimer ce message ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick=deleteContact(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick=deleteContact(` +
     idContact +
     `) >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeDeleteContactModal()>Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDeleteContactModal()>Non</button>
   </div>
   `;
 }

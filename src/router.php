@@ -118,6 +118,10 @@ switch ($route) {
                 die;
         }
 
+        // case HOME_URL . 'board':
+        //     $HomeController->board();
+        //     die;
+
     case $routeComposee[0] == "horses":
         switch ($route) {
             case $routeComposee[1] == "all":
@@ -465,8 +469,11 @@ switch ($route) {
                 case $routeComposee[1] == "users":
                     switch ($route) {
                         case $routeComposee[2] == "all":
+                            $data = file_get_contents("php://input");
 
-                            echo $UserController->allUser();
+                            $choiceOrder = json_decode($data, true);
+
+                            echo $UserController->allUser($choiceOrder['name'], $choiceOrder['order']);
                             die;
 
                         case $routeComposee[2] == "id":

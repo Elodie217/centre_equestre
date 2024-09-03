@@ -10,9 +10,9 @@ include __DIR__ . '/Includes/navBarreUser.php';
 <div id='calendarUser' class="my-10 mx-auto w-10/12"></div>
 
 <div class="modalChangeCalendarLessonUser hidden">
-    <div class="fixed inset-0 z-10 overflow-y-auto w-11/12 md:w-10/12 mx-auto my-8">
+    <div class="fixed inset-0 z-10 overflow-y-auto w-11/12 md:w-9/12 mx-auto my-8">
         <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl p-6 ">
-            <button class="absolute right-8 top-4 text-2xl" onclick="closeChangeCalendarLessonUserModal()">
+            <button class=" absolute right-8 top-4 text-2xl" onclick="closeChangeCalendarLessonUserModal()">
                 <i class="fa-regular fa-circle-xmark "></i>
 
             </button>

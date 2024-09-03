@@ -25,7 +25,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     <h3 class="text-2xl text-center mb-8">Ajouter un nouveau cours</h3>
                     <div class="-mx-3 flex flex-wrap font-medium text-base">
 
-                        <div class="mb-5">
+                        <div class="w-full px-3 mb-5">
                             <label for="titleLessonAdd" class='mb-3 block'>Titre</label>
                             <input type="text" name="titleLessonAdd" id="titleLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
                         </div>
@@ -68,7 +68,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     </div>
                     <div class="mb-5">
                         <p class='mb-3 block '> Participants</p>
-                        <div class="lessonUser flex flex-col h-24 overflow-auto"></div>
+                        <div class="lessonUser grid grid-cols-1 sm:grid-cols-2 h-24 overflow-auto"></div>
                     </div>
 
                 </div>

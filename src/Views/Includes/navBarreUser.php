@@ -1,21 +1,9 @@
 <nav class="border-gray-200 mb-10 py-3 px-6 bg-[#64832F]">
     <div class="w-full mx-auto">
         <div class="mx-2 flex flex-wrap items-center justify-between">
-            <a href="#" class="flex">
-                <svg class="h-10 mr-3" width="51" height="70" viewBox="0 0 51 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0)">
-                        <path d="M1 53H27.9022C40.6587 53 51 42.7025 51 30H24.0978C11.3412 30 1 40.2975 1 53Z" fill="#76A9FA"></path>
-                        <path d="M-0.876544 32.1644L-0.876544 66.411C11.9849 66.411 22.4111 55.9847 22.4111 43.1233L22.4111 8.87674C10.1196 8.98051 0.518714 19.5571 -0.876544 32.1644Z" fill="#A4CAFE"></path>
-                        <path d="M50 5H23.0978C10.3413 5 0 15.2975 0 28H26.9022C39.6588 28 50 17.7025 50 5Z" fill="#1C64F2"></path>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0">
-                            <rect width="51" height="70" fill="white"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
+            <a href="#" class="flex items-center">
+                <img src="/public/assets/images/logo.png" alt="Logo des cavaliers des vallées" class='max-w-24 ml-4 mr-6'>
                 <h2 class="text-4xl" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
-
             </a>
             <div class="flex md:hidden md:order-2">
                 <button data-collapse-toggle="mobile-menu-3" type="button" class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-3" aria-expanded="false">
@@ -46,7 +34,7 @@
                         <button onclick="redirect('user/profile')" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-[#C0DF85] md:p-0">Mon compte</button>
                     </li>
                     <li>
-                        <button onclick="logout()" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5">Déconnexion</button>
+                        <button onclick="logout()" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-3 md:px-5">Déconnexion</button>
                     </li>
                 </ul>
             </div>

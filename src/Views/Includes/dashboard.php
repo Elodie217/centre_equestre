@@ -3,17 +3,27 @@
     <!-- Barre de navigation en haut -->
     <div class="bg-[#64832F] shadow w-full p-2 flex items-center justify-between">
         <div class="flex items-center">
-            <div class="flex items-center">
-                <img src="" alt="Logo" class=" h-12 mx-4 ">
-                <h2 class="font-bold text-white text-4xl" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
 
-            </div>
+            <a href="#" class="flex items-center">
+                <img src="/public/assets/images/logo.png" alt="Logo des cavaliers des vallées" class='max-w-24 ml-4 mr-6'>
+                <h2 class="font-bold text-4xl text-white" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
+            </a>
 
         </div>
 
         <div class="space-x-6 mr-4 flex">
             <button class="space-x-6 mr-4 flex items-center" onClick="redirect('admin/profile')">
-                <p class='text-white text-xl'>Prénom Nom</p>
+                <p class='text-white text-xl'>
+
+                    <?php
+                    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                        echo $_SESSION['user']->getFirstnameUser() . ' ';
+                    }
+                    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                        echo $_SESSION['user']->getLastnameUser();
+                    } ?>
+
+                </p>
                 <i class="fas fa-user text-white text-xl"></i>
             </button>
         </div>
@@ -32,23 +42,23 @@
                 <button onCLick='fermerMenu()' class='md:hidden'>
                     <i class="fa-solid fa-xmark text-xl text-white"></i>
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/lessons')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/lessons')">
                     <i class="fa-solid fa-calendar-week mr-2"></i>Cours
                 </button>
 
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/horses')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/horses')">
                     <i class="fa-solid fa-horse mr-2"></i>Chevaux
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/box')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/box')">
                     <i class="fa-solid fa-warehouse mr-2"></i>Box
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/boarding')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/boarding')">
                     <i class="fa-solid fa-handshake-simple mr-2"></i>Pension
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/contacts')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/contacts')">
                     <i class="fa-solid fa-comments mr-2"></i>Prise de contact
                 </button>
-                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white w-full text-left" onclick="redirect('admin/users')">
+                <button class="block text-white py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/users')">
                     <i class="fas fa-users mr-2"></i>Utilisateurs
                 </button>
 
@@ -59,7 +69,7 @@
 
             <div class='md:fixed md:top-[85%] md:w-52 lg:w-56 '>
                 <!-- Déconnexion -->
-                <button onclick="logout()" class="block w-full text-white py-2.5 px-4 my-2 text-left rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#a16c21cc] hover:text-white mt-auto" href="">
+                <button onclick="logout()" class="block w-full text-white py-2.5 px-4 my-2 text-left rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white mt-auto" href="">
                     <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
                 </button>
 

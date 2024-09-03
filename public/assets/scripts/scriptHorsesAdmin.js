@@ -336,7 +336,7 @@ function openEditHorseModal(horse) {
     <div id="errorMessageHorsesEdit"></div>
 
      <div class="w-fit m-auto mt-8">
-         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerification(` +
+         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerification(` +
     horse.id_horse +
     `)">Modifier</button>
      </div>
@@ -472,10 +472,10 @@ function openDeleteHorseModal(idHorse, nameHorse) {
     nameHorse +
     ` ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick=deleteHorse(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick=deleteHorse(` +
     idHorse +
     `) >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeDeleteHorseModal() >Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDeleteHorseModal() >Non</button>
   </div>
   `;
 }

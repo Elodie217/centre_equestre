@@ -7,10 +7,10 @@ use src\Services\Reponse;
 
 class UserController
 {
-    public function allUser()
+    public function allUser($name, $order)
     {
         $UserRepository = new UserRepository;
-        $reponse = $UserRepository->getAllUser();
+        $reponse = $UserRepository->getAllUser($name, $order);
         return json_encode($reponse);
     }
 

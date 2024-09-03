@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
       day: "Jour",
     },
     allDayText: "Toute la journée",
+    slotMinTime: "06:00:00",
+    slotMaxTime: "22:00:00",
     events: [],
     eventClick: openViewLessonUserModal,
   });
@@ -91,11 +93,11 @@ function openViewLessonUserModal(info) {
     `</p>
 
     <div class='flex'>
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit mr-2" onclick="openChangeCalendarLessonUserModal(` +
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit mr-2" onclick="openChangeCalendarLessonUserModal(` +
     info.event.id +
     `)">Déplacer</button>
 
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit ml-2" onclick="openDeleteLessonUserModal(` +
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit ml-2" onclick="openDeleteLessonUserModal(` +
     info.event.id +
     `, '` +
     info.event.start +
@@ -119,35 +121,34 @@ document.addEventListener("click", function (event) {
 
 // Change Lesson
 
-document.addEventListener("DOMContentLoaded", function () {
-  var calendarEl = document.getElementById("calendarUserChangeLesson");
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: "timeGridWeek",
-    locale: "fr",
-    headerToolbar: {
-      left: "timeGridWeek,dayGridMonth",
-      center: "title",
-      right: "today prev,next",
-    },
-    editable: false,
-    selectable: true,
-    firstDay: 1,
-    buttonText: {
-      today: "Aujourd'hui",
-      month: "Mois",
-      week: "Semaine",
-    },
-    allDaySlot: false,
-    events: [],
-    eventClick: openChangeLessonUserModal,
-  });
-  calendar.render();
+// document.addEventListener("DOMContentLoaded", function () {
+//   var calendarEl = document.getElementById("calendarUserChangeLesson");
+//   var calendar = new FullCalendar.Calendar(calendarEl, {
+//     initialView: "timeGridWeek",
+//     locale: "fr",
+//     headerToolbar: {
+//       left: "timeGridWeek,dayGridMonth",
+//       center: "title",
+//       right: "today prev,next",
+//     },
+//     editable: false,
+//     selectable: true,
+//     firstDay: 1,
+//     buttonText: {
+//       today: "Aujourd'hui",
+//       month: "Mois",
+//       week: "Semaine",
+//     },
+//     allDaySlot: false,
+//     events: [],
+//     eventClick: openChangeLessonUserModal,
+//   });
+//   calendar.render();
 
-  getAllEventsByLevelUser().then((events) => {
-    console.log(events);
-    calendar.addEventSource(events);
-  });
-});
+//   getAllEventsByLevelUser().then((events) => {
+//     calendar.addEventSource(events);
+//   });
+// });
 
 function getAllEventsByLevelUser() {
   return fetch(HOME_URL + "user/lessons/idlevel")
@@ -160,10 +161,11 @@ function getAllEventsByLevelUser() {
       lessons.forEach((lesson) => {
         events.push({
           date: lesson.date_lesson,
-          title: titleLesson(lesson.all_name_levels),
+          title: lesson.title_lesson,
+          level: isNull(lesson.all_name_levels),
           id: lesson.id_lesson,
           place: lesson.places_lesson,
-          users: usersLesson(lesson.all_names_user),
+          users: isNull(lesson.all_names_user),
         });
       });
       return events;
@@ -178,6 +180,38 @@ function openChangeCalendarLessonUserModal(idLesson) {
     .classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
   idOldLesson = idLesson;
+
+  setTimeout(function () {
+    var calendarEl = document.getElementById("calendarUserChangeLesson");
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: "timeGridWeek",
+      locale: "fr",
+      headerToolbar: {
+        left: "timeGridWeek,dayGridMonth",
+        center: "title",
+        right: "today prev,next",
+      },
+      editable: false,
+      selectable: true,
+      firstDay: 1,
+      buttonText: {
+        today: "Aujourd'hui",
+        month: "Mois",
+        week: "Semaine",
+      },
+      allDaySlot: false,
+      slotMinTime: "06:00:00",
+      slotMaxTime: "22:00:00",
+      events: [],
+      eventClick: openChangeLessonUserModal,
+    });
+
+    calendar.render();
+
+    getAllEventsByLevelUser().then((events) => {
+      calendar.addEventSource(events);
+    });
+  }, 0);
 }
 
 function closeChangeCalendarLessonUserModal() {
@@ -210,10 +244,10 @@ function openChangeLessonUserModal(eventInfo) {
     minutes +
     ` ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick='changeLessonUser(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick='changeLessonUser(` +
     eventInfo.event.id +
     `)' >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeChangeLessonUserModal() >Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeChangeLessonUserModal() >Non</button>
   </div>
   `;
 }
@@ -277,10 +311,10 @@ function openDeleteLessonUserModal(idLesson, date) {
     minutes +
     ` ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#A16C21] text-white border-2 border-[#A16C21] hover:bg-white hover:text-[#A16C21] rounded-xl font-bold" onclick='deleteLessonUser(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick='deleteLessonUser(` +
     idLesson +
     `)' >Oui</button>
-    <button class="p-2 bg-white text-[#A16C21] border-2 border-[#A16C21] hover:bg-[#A16C21] hover:text-white rounded-xl font-bold" onclick=closeDeleteLessonUserModal() >Non</button>
+    <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDeleteLessonUserModal() >Non</button>
   </div>
   `;
 }

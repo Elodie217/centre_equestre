@@ -47,6 +47,8 @@ class LessonRepository
 
     public function getAllLessonsByIdLevelUser()
     {
+        $idUser = $_SESSION['user']->getIdUser();
+        $idLevelUser = $_SESSION['user']->getIdLevel();
 
         $sql = "SELECT " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.title_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, 
         GROUP_CONCAT(DISTINCT " . PREFIXE . "level.name_level ORDER BY " . PREFIXE . "level.name_level SEPARATOR ', ') as all_name_levels, 
@@ -68,8 +70,8 @@ class LessonRepository
             ";
 
         $statement = $this->db->prepare($sql);
-        $statement->bindParam(':idUser', $_SESSION['user']->getIdUser());
-        $statement->bindParam(':idLevelUser', $_SESSION['user']->getIdLevel());
+        $statement->bindParam(':idUser', $idUser);
+        $statement->bindParam(':idLevelUser', $idLevelUser);
 
         $statement->execute();
 
@@ -84,6 +86,8 @@ class LessonRepository
 
     public function changeLessonUser($idNewLesson, $idOldLesson)
     {
+        $idUser = $_SESSION['user']->getIdUser();
+
         $sql = "UPDATE " . PREFIXE . "user_lesson SET id_lesson = :idNewLesson 
                 WHERE id_user = :idUser
                 AND id_lesson = :idOldLesson";
@@ -91,7 +95,7 @@ class LessonRepository
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':idNewLesson', $idNewLesson);
         $statement->bindParam(':idOldLesson', $idOldLesson);
-        $statement->bindParam(':idUser', $_SESSION['user']->getIdUser());
+        $statement->bindParam(':idUser', $idUser);
 
         if ($statement->execute()) {
             $reponse = array(
@@ -110,13 +114,15 @@ class LessonRepository
 
     public function deleteLessonUser($idLesson)
     {
+
+        $idUser = $_SESSION['user']->getIdUser();
+
         $sql = "DELETE FROM " . PREFIXE . "user_lesson WHERE id_lesson = :id_lesson AND id_user = :id_user;";
 
         $statement = $this->db->prepare($sql);
 
         $statement->bindParam(':id_lesson', $idLesson);
-        $statement->bindParam(':id_user', $_SESSION['user']->getIdUser());
-
+        $statement->bindParam(':id_user', $idUser);
 
         if ($statement->execute()) {
             $reponse = array(

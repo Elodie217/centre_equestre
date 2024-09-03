@@ -29,9 +29,15 @@ include __DIR__ . '/Includes/dashboard.php';
                 <tr>
                     <th scope="col" class="px-6 py-4">
                         Nom
+                        <button onclick="chooseOrder('lastname_user')">
+                            <i class="ml-2 fa-solid fa-sort"></i>
+                        </button>
                     </th>
                     <th scope="col" class="px-6 py-4">
                         Prénom
+                        <button onclick="chooseOrder('firstname_user')">
+                            <i class="ml-2 fa-solid fa-sort"></i>
+                        </button>
                     </th>
                     <th scope="col" class="px-6 py-4">
                         email
@@ -214,5 +220,5 @@ include 'Includes/footerWebsite.php'
 ?>
 
 <script>
-    getAllUsers();
+    chooseOrder('lastname_user')
 </script>

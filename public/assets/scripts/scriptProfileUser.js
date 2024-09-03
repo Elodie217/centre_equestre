@@ -65,7 +65,7 @@ function displayProfileUser(user, role) {
     `
         </p>
     </div>
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit mx-32 mt-12 mb-20 text-xl" onclick='openEditProfileUser(` +
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit mx-32 mt-12 mb-20 text-xl" onclick='openEditProfileUser(` +
     JSON.stringify(user) +
     `, "` +
     role +
@@ -144,7 +144,7 @@ function openEditProfileUser(User, role) {
 
   <div class="w-fit m-auto mt-8">
 
-      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='EditProfileUserVerification(` +
+      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='EditProfileUserVerification(` +
     User.id_user +
     `, "` +
     role +

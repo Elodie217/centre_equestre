@@ -91,7 +91,7 @@ function verificationLoginForgotPassword(idForgotPassword, loginUser) {
       if (JSON.parse(data).status == "success") {
         getForgotPasswordUserById(idForgotPassword, loginUser);
       } else {
-        document.querySelector("#errorMessageRegister").innerHTML =
+        document.querySelector("#errorMessageforgotPassword").innerHTML =
           "Identifiant incorrect";
       }
     });
@@ -114,31 +114,31 @@ function getForgotPasswordUserById(idForgotPasswordUser, loginUser) {
     .then((res) => res.text())
     .then((data) => {
       console.log(JSON.parse(data));
-      displayUserRegister(JSON.parse(data), loginUser);
+      displayUserforgotPassword(JSON.parse(data), loginUser);
     });
 }
 
-function displayUserRegister(User, loginUser) {
-  let divRegister = document.querySelector(".divRegister");
+function displayUserforgotPassword(User, loginUser) {
+  let divforgotPassword = document.querySelector(".divRegister");
 
-  divRegister.innerHTML =
+  divforgotPassword.innerHTML =
     `
-  <h3 class="font-bold" style='font-family: "Amatic SC", sans-serif;'>Réinitialiser votre mot de passe</h3>
+  <h1 class="font-bold" style='font-family: "Amatic SC", sans-serif;'>Réinitialiser votre mot de passe</h1>
   
   <div class='divform'>
-      <label for="passwordForgotPasswordUser" class='labelRegister'>Mot de passe *</label>
-      <input type="password" name="passwordForgotPasswordUser" id="passwordForgotPasswordUser" class="inputRegister" placeholder='******'>
+      <label for="passwordForgotPasswordUser" class='labelforgotPassword labelRegister'>Mot de passe *</label>
+      <input type="password" name="passwordForgotPasswordUser" id="passwordForgotPasswordUser" class="inputforgotPassword inputRegister" placeholder='******'>
   </div>
 
   <div class='divform'>
-      <label for="passwordbisForgotPasswordUser" class='labelRegister'>Confirmation du mot de passe *</label>
-      <input type="password" name="passwordbisForgotPasswordUser" id="passwordbisForgotPasswordUser" class="inputRegister" placeholder='******'>
+      <label for="passwordbisForgotPasswordUser" class='labelforgotPassword labelRegister'>Confirmation du mot de passe *</label>
+      <input type="password" name="passwordbisForgotPasswordUser" id="passwordbisForgotPasswordUser" class="inputforgotPassword inputRegister" placeholder='******'>
   </div>
 
   
-  <div id="errorMessageUserRegister"></div>
+  <div id="errorMessageUserforgotPassword"></div>
   <div class="divbutton">
-      <button type="button" class="btnRegister" onclick='changePasswordUserVerification(` +
+      <button type="button" class="btnRegister btnforgotPassword" onclick='changePasswordUserVerification(` +
     User.id_user +
     `, "` +
     loginUser +
@@ -155,11 +155,11 @@ function changePasswordUserVerification(idUser, loginUser) {
     "passwordbisForgotPasswordUser"
   ).value;
 
-  let errorMessageUserRegister = document.getElementById(
-    "errorMessageUserRegister"
+  let errorMessageUserforgotPassword = document.getElementById(
+    "errorMessageUserforgotPassword"
   );
 
-  errorMessageUserRegister.innerHTML = "";
+  errorMessageUserforgotPassword.innerHTML = "";
 
   if (
     passwordForgotPasswordUser !== "" &&
@@ -174,15 +174,15 @@ function changePasswordUserVerification(idUser, loginUser) {
           passwordbisForgotPasswordUser
         );
       } else {
-        errorMessageUserRegister.innerHTML =
+        errorMessageUserforgotPassword.innerHTML =
           "Le mot de passe doit faire au minimum 6 caractères.";
       }
     } else {
-      errorMessageUserRegister.innerHTML =
+      errorMessageUserforgotPassword.innerHTML =
         "Les mots de passe doivent être identiques.";
     }
   } else {
-    errorMessageUserRegister.innerHTML =
+    errorMessageUserforgotPassword.innerHTML =
       "Merci de remplir tous les champs avec une *.";
   }
 }
@@ -210,17 +210,17 @@ function changePasswordUser(
 
   fetch(HOME_URL + "forgotPassword/change", params)
     .then((res) => res.text())
-    .then((data) => reponseRegisterUser(JSON.parse(data)));
+    .then((data) => reponseforgotPasswordUser(JSON.parse(data)));
 }
 
-function reponseRegisterUser(data) {
+function reponseforgotPasswordUser(data) {
   if (data.status == "success") {
     openSuccessMessage(data.message);
     setTimeout(() => {
       redirect("login");
     }, 2000);
   } else {
-    document.getElementById("errorMessageUserRegister").innerHTML =
+    document.getElementById("errorMessageUserforgotPassword").innerHTML =
       data.message;
   }
 }

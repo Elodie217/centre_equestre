@@ -10,12 +10,15 @@ include __DIR__ . '/Includes/navBarre.php';
 
 <section class="bg-[url('https://images.unsplash.com/photo-1689897319489-90486828911f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] h-full bg-cover bg-center -mt-10">
 
-    <h1 class="text-8xl text-center py-48 w-2/3 m-auto font-bold" style='font-family: "Amatic SC", sans-serif;'>Pensions</h1>
+    <h1 class="text-8xl text-center py-48 w-2/3 m-auto font-bold textShadow" style='font-family: "Amatic SC", sans-serif;'>Pensions</h1>
 </section>
 
 <section class="m-10">
     <h2 class="text-3xl">Présentation</h2>
-    <div class="p-6 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, consequuntur doloremque! Nostrum rerum facere labore, velit quis voluptates exercitationem commodi assumenda doloremque dolore architecto quam minima dolores ipsa quidem aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, nisi id quo nulla aperiam eum harum iure ipsa deleniti, at necessitatibus, repudiandae eaque error quidem dolores illo sit velit quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, explicabo quam veniam, eaque, sit ipsum voluptate deserunt molestias dignissimos quos non a nemo. Exercitationem distinctio beatae nobis dolore laboriosam perspiciatis! <br> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi non magnam necessitatibus odit laudantium quam reiciendis exercitationem quaerat fuga facilis. Aliquid dolore iste minus? Mollitia libero rem reprehenderit voluptatum ducimus.
+    <div class="p-6 text-justify">
+        Bienvenue dans notre espace dédié aux pensions équestres, où nous vous invitons à découvrir les différentes options que nous offrons pour le bien-être de votre cheval. Au centre équestre Les Cavaliers des Vallées, nous comprenons que chaque cheval est unique et mérite des soins adaptés à ses besoins spécifiques. C'est pourquoi nous proposons une variété de formules de pension, allant de la pension complète avec box et paddock, à la pension au pré, en passant par des services personnalisés pour répondre aux attentes de chaque propriétaire.
+        <br><br>
+        Nos installations modernes, situées en plein cœur de la Haute-Savoie, garantissent un environnement sécurisé et confortable pour votre compagnon. Notre équipe expérimentée veille quotidiennement à la santé, au confort et à l'épanouissement des chevaux, en leur offrant des soins attentifs et un cadre de vie optimal. Explorez nos options de pension pour trouver celle qui correspond le mieux à vos attentes et à celles de votre cheval.
     </div>
 </section>
 

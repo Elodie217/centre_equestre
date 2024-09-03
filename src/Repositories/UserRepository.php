@@ -20,7 +20,7 @@ class UserRepository
 
     public function loginUser($login, $passwordLogin)
     {
-        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.password_user, " . PREFIXE . "user.role_user, " . PREFIXE . "user.id_level, COUNT(" . PREFIXE . "horse.id_horse) AS number_horse 
+        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.password_user, " . PREFIXE . "user.role_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.id_level, COUNT(" . PREFIXE . "horse.id_horse) AS number_horse 
             FROM " . PREFIXE . "user
             LEFT JOIN " . PREFIXE . "horse ON " . PREFIXE . "horse.id_user = " . PREFIXE . "user. id_user
             WHERE login_user =  :login";
@@ -59,10 +59,12 @@ class UserRepository
     }
 
 
-    public function getAllUser()
+    public function getAllUser($name = "lastname_user", $order = "firstname_user")
     {
-        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.email_user, " . PREFIXE . "user.phone_user, " . PREFIXE . "user.role_user, " . PREFIXE . "level.name_level FROM " . PREFIXE . "user
-        LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "user.id_level = " . PREFIXE . "level.id_level";
+        $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.lastname_user, " . PREFIXE . "user.firstname_user, " . PREFIXE . "user.email_user, " . PREFIXE . "user.phone_user, " . PREFIXE . "user.role_user, " . PREFIXE . "user.actif_user, " . PREFIXE . "level.name_level 
+        FROM " . PREFIXE . "user
+        LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "user.id_level = " . PREFIXE . "level.id_level
+        ORDER BY $name $order";
 
         $statement = $this->db->prepare($sql);
 
@@ -126,7 +128,7 @@ class UserRepository
 
         $dateGDPR = date("Y-m-d H:i:s");
 
-        $sql = "UPDATE " . PREFIXE . "user SET lastname_user = :lastnameUserRegister, firstname_user = :firstnameUserRegister, email_user = :emailUserRegister, phone_user = :phoneUserRegister, address_user = :addressUserRegister, birthdate_user = :birthdateUserRegister, password_user = :passwordRegister, gdpr_user = :gdprUser WHERE id_user = :idUser AND login_user = :loginUser";
+        $sql = "UPDATE " . PREFIXE . "user SET lastname_user = :lastnameUserRegister, firstname_user = :firstnameUserRegister, email_user = :emailUserRegister, phone_user = :phoneUserRegister, address_user = :addressUserRegister, birthdate_user = :birthdateUserRegister, password_user = :passwordRegister, actif_user = 1, gdpr_user = :gdprUser WHERE id_user = :idUser AND login_user = :loginUser";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':lastnameUserRegister', $lastnameUserRegister);
@@ -247,7 +249,7 @@ class UserRepository
     {
         $loginUserAdd = strtolower($lastnameUserAdd . '.' . $firstnameUserAdd);
 
-        $sql = "INSERT INTO " . PREFIXE . "user (lastname_user, firstname_user, email_user, phone_user, address_user, birthdate_user, role_user, actif_user, login_user, id_level) VALUES (:lastnameUserAdd, :firstnameUserAdd, :emailUserAdd, :phoneUserAdd, :addressUserAdd, :birthdateUserAdd, :roleUserAdd, 1, :loginUserAdd, :levelUserAdd)";
+        $sql = "INSERT INTO " . PREFIXE . "user (lastname_user, firstname_user, email_user, phone_user, address_user, birthdate_user, role_user, actif_user, login_user, id_level) VALUES (:lastnameUserAdd, :firstnameUserAdd, :emailUserAdd, :phoneUserAdd, :addressUserAdd, :birthdateUserAdd, :roleUserAdd, 0, :loginUserAdd, :levelUserAdd)";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':lastnameUserAdd', $lastnameUserAdd);

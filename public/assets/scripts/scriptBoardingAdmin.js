@@ -212,7 +212,7 @@ function openEditBoardingModal(boarding) {
     <div id="errorMessageBoardingsEdit"></div>
 
      <div class="w-fit m-auto mt-8">
-         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#a16c21cc] bg-[#A16C21] hover:bg-[#a16c21cc] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editBoardingVerification(` +
+         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editBoardingVerification(` +
     boarding.id_boarding +
     `)">Modifier</button>
      </div>

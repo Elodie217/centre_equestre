@@ -66,7 +66,7 @@ function displayUserRegister(User, loginUser) {
 
   divRegister.innerHTML =
     `
-  <h3>Inscription</h3>
+  <h1>Inscription</h1>
   <div class="divFormRegister">
       <div class="divformhalf">
           <div>
@@ -119,7 +119,7 @@ function displayUserRegister(User, loginUser) {
   <div class="divFormRegister items-end">
       <div class="divformhalf">
           <div>
-              <label for="passwordRegister" class='labelRegister'>Mot de passe* <br/> <span class='passwordSpan'> Le mot de passe doit contenir au minimum 6 caractères.</span></label>
+              <label for="passwordRegister" class='labelRegister'>Mot de passe*</label>
               <input type="password" name="passwordRegister" id="passwordRegister" class="inputRegister">
           </div>
       </div>
@@ -129,6 +129,7 @@ function displayUserRegister(User, loginUser) {
               <input type="password" name="passwordRegisterBis" id="passwordRegisterBis" class="inputRegister">
           </div>
       </div>
+      <p class='passwordSpan'> Le mot de passe doit contenir au minimum 6 caractères.</p>
   </div>
 
   <div>
@@ -166,7 +167,7 @@ function registerUserVerification(idUser, loginUser) {
   let passwordRegisterBis = document.getElementById(
     "passwordRegisterBis"
   ).value;
-  let gdprRegister = document.getElementById("passwordRegisterBis");
+  let gdprRegister = document.getElementById("gdprRegister");
 
   let errorMessageUserRegister = document.getElementById(
     "errorMessageUserRegister"
