@@ -3,6 +3,7 @@ function sendContactVerification() {
   let firstnameContact = document.getElementById("firstnameContact").value;
   let emailContact = document.getElementById("emailContact").value;
   let messageContact = document.getElementById("messageContact").value;
+  let gdprContact = document.getElementById("gdprContact");
   let errorMessageContact = document.getElementById("errorMessageContact");
   errorMessageContact.innerHTML = "";
 
@@ -12,30 +13,36 @@ function sendContactVerification() {
     emailContact !== "" &&
     messageContact !== ""
   ) {
-    if (lastnameContact.length <= 50) {
-      if (firstnameContact.length <= 50) {
-        if (messageContact.length <= 500) {
-          if (checkEmail(emailContact)) {
-            sendContact(
-              lastnameContact,
-              firstnameContact,
-              emailContact,
-              messageContact
-            );
+    if (gdprContact.checked) {
+      if (lastnameContact.length <= 50) {
+        if (firstnameContact.length <= 50) {
+          if (messageContact.length <= 500) {
+            if (checkEmail(emailContact)) {
+              sendContact(
+                lastnameContact,
+                firstnameContact,
+                emailContact,
+                messageContact
+              );
+            } else {
+              errorMessageContact.innerHTML =
+                "Merci de rentrer un email valide.";
+            }
           } else {
-            errorMessageContact.innerHTML = "Merci de rentrer un email valide.";
+            errorMessageContact.innerHTML =
+              "Le message doit faire au maximum 500 caractères.";
           }
         } else {
           errorMessageContact.innerHTML =
-            "Le message doit faire au maximum 500 caractères.";
+            "Votre prénom doit faire au maximum 50 caractères.";
         }
       } else {
         errorMessageContact.innerHTML =
-          "Votre prénom doit faire au maximum 50 caractères.";
+          "Votre nom doit faire au maximum 50 caractères.";
       }
     } else {
       errorMessageContact.innerHTML =
-        "Votre nom doit faire au maximum 50 caractères.";
+        "Merci d'accepter notre politique de confidentialité.";
     }
   } else {
     errorMessageContact.innerHTML = "Merci de remplir tous les champs.";

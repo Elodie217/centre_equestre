@@ -7,7 +7,6 @@ function getAllHorsesSite() {
 }
 
 function displayHorsesSite(Horses) {
-  console.log(Horses);
   document.querySelector(".divCardsSite").innerHTML = "";
   Horses.forEach((horse) => {
     document.querySelector(".divCardsSite").innerHTML +=

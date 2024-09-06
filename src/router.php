@@ -9,6 +9,7 @@ use src\Controllers\HomeController;
 use src\Controllers\HorseController;
 use src\Controllers\LessonController;
 use src\Controllers\LevelController;
+use src\Controllers\SiteController;
 use src\Controllers\UserController;
 use src\Services\Routing;
 
@@ -28,6 +29,7 @@ $LessonController = new LessonController;
 $LevelController = new LevelController;
 $ContactController = new ContactController;
 $BoardingController = new BoardingController;
+$SiteController = new SiteController;
 
 
 if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
@@ -40,6 +42,11 @@ switch ($route) {
         $HomeController->home();
         die;
 
+    case HOME_URL . 'siteSoon/all':
+        echo $SiteController->siteSoon();
+        die;
+
+        // Register
     case $routeComposee[0] == "register":
         switch ($route) {
             case $routeComposee[1] == "userLogin":
@@ -121,6 +128,13 @@ switch ($route) {
         // case HOME_URL . 'board':
         //     $HomeController->board();
         //     die;
+    case HOME_URL . 'lesson':
+        $HomeController->lesson();
+        die;
+
+    case HOME_URL . 'facility':
+        $HomeController->facility();
+        die;
 
     case $routeComposee[0] == "horses":
         switch ($route) {
@@ -187,6 +201,7 @@ switch ($route) {
 
             switch ($route) {
 
+                    // User Lesson
                 case $routeComposee[1] == "lessons":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -221,6 +236,7 @@ switch ($route) {
                             die;
                     }
 
+                    // User horse
                 case $routeComposee[1] == "horses":
                     switch ($route) {
                         case $routeComposee[2] == "byiduser":
@@ -248,6 +264,7 @@ switch ($route) {
                             die;
                     }
 
+                    // User profile
                 case $routeComposee[1] == "profile":
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":
@@ -284,6 +301,7 @@ switch ($route) {
 
             switch ($route) {
 
+                    // Admin profile 
                 case $routeComposee[1] == "profile":
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":
@@ -303,6 +321,7 @@ switch ($route) {
                             die;
                     }
 
+                    // Admin lesson
                 case $routeComposee[1] == "lessons":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -340,6 +359,8 @@ switch ($route) {
                             $AdminController->lesson();
                             die;
                     }
+
+                    // Admin Level 
                 case $routeComposee[1] == "levels":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -347,6 +368,8 @@ switch ($route) {
                             echo $LevelController->allLevels();
                             die;
                     }
+
+                    // Admin horse
                 case $routeComposee[1] == "horses":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -391,6 +414,8 @@ switch ($route) {
                             $AdminController->horses();
                             die;
                     }
+
+                    // Admin box
                 case $routeComposee[1] == "box":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -432,6 +457,8 @@ switch ($route) {
                             $AdminController->box();
                             die;
                     }
+
+                    // Admin bording 
                 case $routeComposee[1] == "boarding":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -466,6 +493,8 @@ switch ($route) {
                             $AdminController->boarding();
                             die;
                     }
+
+                    // Admin user 
                 case $routeComposee[1] == "users":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -521,6 +550,8 @@ switch ($route) {
                             $AdminController->user();
                             die;
                     }
+
+                    // Admin contact
                 case $routeComposee[1] == "contacts":
                     switch ($route) {
                         case $routeComposee[2] == "all":
@@ -555,6 +586,27 @@ switch ($route) {
 
                         default:
                             $AdminController->contact();
+                            die;
+                    }
+
+                    // Admin site
+                case $routeComposee[1] == "site":
+                    switch ($route) {
+                        case $routeComposee[2] == "all":
+
+                            echo $SiteController->allSite();
+                            die;
+                        case $routeComposee[2] == "edit":
+
+                            $data = file_get_contents("php://input");
+
+                            $editUser = json_decode($data, true);
+
+                            echo $SiteController->editSoonSite($editUser['titleEditSoon'], $editUser['dateEditSoon'], $editUser['descriptionEditSoon'], $editUser['imageEditSoon']);
+
+                            die;
+                        default:
+                            $SiteController->site();
                             die;
                     }
                 default:

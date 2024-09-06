@@ -32,16 +32,16 @@ $route = $_SERVER['REDIRECT_URL'];
                                                                                                                                                                                                                                         } ?>">Accueil</button>
                     </li>
                     <li>
-                        <button class="hover:bg-gray-50 text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:underline underline-offset-8 decoration-2 md:p-0 <?php
-                                                                                                                                                                                                                if ($route == HOME_URL . '') {
-                                                                                                                                                                                                                    echo "md:underline";
-                                                                                                                                                                                                                }  ?>">Cours</button>
+                        <button onclick="redirect('lesson')" class="hover:bg-gray-50 text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:underline underline-offset-8 decoration-2 md:p-0 <?php
+                                                                                                                                                                                                                                            if ($route == HOME_URL . 'lesson') {
+                                                                                                                                                                                                                                                echo "md:underline";
+                                                                                                                                                                                                                                            }  ?>">Cours</button>
                     </li>
                     <li>
-                        <button class="hover:bg-gray-50 text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:underline underline-offset-8 decoration-2 md:p-0 <?php
-                                                                                                                                                                                                                if ($route == HOME_URL . '') {
-                                                                                                                                                                                                                    echo "md:underline";
-                                                                                                                                                                                                                } ?>">Installations</button>
+                        <button onclick="redirect('facility')" class="hover:bg-gray-50 text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:underline underline-offset-8 decoration-2 md:p-0 <?php
+                                                                                                                                                                                                                                                if ($route == HOME_URL . 'facility') {
+                                                                                                                                                                                                                                                    echo "md:underline";
+                                                                                                                                                                                                                                                } ?>">Installations</button>
                     </li>
                     <li>
                         <button onclick="redirect('horses')" class="hover:bg-gray-50 text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:underline underline-offset-8 decoration-2 md:p-0 <?php
