@@ -12,8 +12,8 @@ include __DIR__ . '/Includes/headerWebsite.php';
     include __DIR__ . '/Includes/navBarre.php';
 
     ?>
-    <h1 class="textShadow text-8xl text-center my-20 w-2/3 m-auto font-bold w-fit px-8" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h1>
-    <p class="textShadow text-2xl text-center my-24 rounded-xl p-2 w-2/3 m-auto">Vivez des aventures équestres inoubliables dans un cadre naturel exceptionnel, où passion et convivialité sont au rendez-vous.</p>
+    <h1 class="textShadow text-6xl sm:text-8xl text-center mt-20 mb-10 sm:my-20 w-2/3 m-auto font-bold w-fit px-8" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h1>
+    <p class="textShadow text-2xl text-center sm:my-24 rounded-xl p-0 sm:p-2 w-3/4 sm:w-2/3 m-auto">Vivez des aventures équestres inoubliables dans un cadre naturel exceptionnel, où passion et convivialité sont au rendez-vous.</p>
 
     <div class="w-fit text-2xl m-auto absolute bottom-3 left-1/2 transform -translate-x-1/2">
         <?= $bouton->create_a() ?>
@@ -99,9 +99,9 @@ include __DIR__ . '/Includes/headerWebsite.php';
     <h2 class="text-3xl">Prochainement</h2>
     <div class="md:flex justify-around items-center">
         <div class="md:w-1/2 p-6">
-            <div class=" flex justify-between">
-                <h3 id="SoonSiteTitle" class="text-xl font-semibold mr-2"></h3>
-                <p id="SoonSiteDate" class="text-xl font-semibold ml-2"></p>
+            <div class=" flex max-[500px]:flex-wrap justify-between mb-10">
+                <h3 id="SoonSiteTitle" class="text-xl font-semibold max-[500px]:m-0 max-[500px]:mb-5 mr-2"></h3>
+                <p id="SoonSiteDate" class="text-xl font-semibold max-[500px]:m-0 ml-2"></p>
             </div>
             <div id="SoonSiteDescription" class="text-justify mt-5"></div>
         </div>
@@ -109,8 +109,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
     </div>
 </section>
 
-<section class="m-10 md:flex justify-around items-center">
-    <img src="https://images.unsplash.com/photo-1624125278860-381b6acd3b44?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="md:w-2/5 p-6">
+<section class="m-10 md:flex md:flex-row-reverse justify-around items-center">
     <div class="md:w-3/5 p-6 text-justify">
         Niché au cœur de la Haute-Savoie, Les Cavaliers des Vallées vous invitent à découvrir un lieu où la passion pour les chevaux se marie harmonieusement avec la beauté des paysages alpins. Que vous soyez cavalier débutant ou confirmé, notre centre équestre propose une gamme complète d'activités adaptées à tous les niveaux. De l'initiation à l'équitation aux randonnées équestres à travers les montagnes, en passant par les cours spécialisés et les stages intensifs, chacun trouvera de quoi nourrir sa passion.
         <br><br>
@@ -118,6 +117,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
         <br><br>
         Venez vivre une expérience unique en Haute-Savoie, où chaque cavalier, petit ou grand, pourra s'épanouir et créer des souvenirs inoubliables au sein d'une communauté chaleureuse et accueillante.
     </div>
+    <img src="https://images.unsplash.com/photo-1624125278860-381b6acd3b44?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="md:w-2/5 p-6">
 </section>
 
 <div class="w-fit text-2xl m-auto mb-10">
