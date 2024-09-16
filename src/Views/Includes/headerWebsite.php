@@ -5,8 +5,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Centre équestre</title>
+    <title>Les cavaliers des Vallées</title>
+    <link rel="shortcut icon" type="image/jpg" href="../../../public/assets/images/favIcone.png"/>
+
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+
     <script src='fullcalendar/dist/index.global.js'></script>
     <link rel="stylesheet" href="../../../public/assets/css/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/style2.css">
