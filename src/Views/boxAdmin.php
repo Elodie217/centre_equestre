@@ -72,7 +72,7 @@ include __DIR__ . '/Includes/dashboard.php';
 </section>
 
 <div class="modalAddBox hidden">
-    <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="fixed inset-0 z-20 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
                 <button class="absolute right-8 top-4 text-2xl" onclick="closeAddBoxModal()">
@@ -104,7 +104,7 @@ include __DIR__ . '/Includes/dashboard.php';
 </div>
 
 <div class="modalEditBox hidden">
-    <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="fixed inset-0 z-20 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
                 <button class="absolute right-8 top-4 text-2xl" onclick="closeEditBoxModal()">
@@ -121,7 +121,7 @@ include __DIR__ . '/Includes/dashboard.php';
 
 
 <div class="modalDeleteBox hidden">
-    <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="fixed inset-0 z-20 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
                 <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteBoxModal()">

@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
       week: "Semaine",
       day: "Jour",
     },
-    allDayText: "Toute la journée",
+    // allDayText: "Toute la journée",
+    allDaySlot: false,
     slotMinTime: "06:00:00",
     slotMaxTime: "22:00:00",
     events: [],
@@ -38,7 +39,6 @@ function getAllEvents() {
       let lessons = JSON.parse(data);
 
       let events = [];
-      console.log(lessons);
 
       lessons.forEach((lesson) => {
         events.push({

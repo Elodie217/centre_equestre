@@ -50,7 +50,7 @@ function displayBoarding(data) {
       boarding.name_boarding +
       `')" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></button>
 
-      <h4 class='text-3xl text-[#64832F]'>` +
+      <h4 class='text-3xl text-[#64832F] break-words'>` +
       boarding.name_boarding +
       `</h4>
     <div class="grid grid-cols-3 grid-rows-2 w-fit mx-auto mt-10">

@@ -10,7 +10,7 @@ $route = $_SERVER['REDIRECT_URL'];
         <h2 class="text-4xl hidden sm:block" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
     </a>
 
-    <div class="xl:hidden text-4xl mr-4 px-6">
+    <div class="xl:hidden text-4xl mr-4 pr-6 sm:px-6">
         <button onclick="openMenu()" class="btnOpenMenu">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -23,46 +23,46 @@ $route = $_SERVER['REDIRECT_URL'];
         <ul class="flex-col xl:flex-row flex xl:space-x-12 mt-4 xl:mt-0 xl:text-base xl:font-medium items-center">
             <li>
                 <button onclick="redirect('')" class="text-white hover:border-y border-[#C0DF85] my-0.5 xl:m-0 xl:border-0 block pl-3 pr-4 py-2 xl:hover:border-0 xl:hover:underline underline-offset-8 decoration-2 xl:p-0 <?php
-                if ($route == HOME_URL . '') {
-                    echo "xl:underline border-y";
-                } ?>">Accueil</button>
+                                                                                                                                                                                                                            if ($route == HOME_URL . '') {
+                                                                                                                                                                                                                                echo "xl:underline border-y";
+                                                                                                                                                                                                                            } ?>">Accueil</button>
             </li>
             <li>
                 <button onclick="redirect('lesson')" class="text-white hover:border-y border-[#C0DF85] my-0.5 xl:m-0 xl:border-0 block pl-3 pr-4 py-2 xl:hover:border-0 xl:hover:underline underline-offset-8 decoration-2 xl:p-0 <?php
-                    if ($route == HOME_URL . 'lesson') {
-        echo "xl:underline border-y";
-                    }  ?>">Cours</button>
+                                                                                                                                                                                                                                    if ($route == HOME_URL . 'lesson') {
+                                                                                                                                                                                                                                        echo "xl:underline border-y";
+                                                                                                                                                                                                                                    }  ?>">Cours</button>
             </li>
             <li>
                 <button onclick="redirect('facility')" class="text-white hover:border-y border-[#C0DF85] my-0.5 xl:m-0 xl:border-0 block pl-3 pr-4 py-2 xl:hover:border-0 xl:hover:underline underline-offset-8 decoration-2 xl:p-0 <?php
-        if ($route == HOME_URL . 'facility') {
-            echo "xl:underline border-y";
-        } ?>">Installations</button>
+                                                                                                                                                                                                                                    if ($route == HOME_URL . 'facility') {
+                                                                                                                                                                                                                                        echo "xl:underline border-y";
+                                                                                                                                                                                                                                    } ?>">Installations</button>
             </li>
             <li>
                 <button onclick="redirect('horses')" class="text-white hover:border-y border-[#C0DF85] my-0.5 xl:m-0 xl:border-0 block pl-3 pr-4 py-2 xl:hover:border-0 xl:hover:underline underline-offset-8 decoration-2 xl:p-0 <?php
-                    if ($route == HOME_URL . 'horses') {
-        echo "xl:underline border-y";
-                    } ?>">Chevaux</button>
+                                                                                                                                                                                                                                    if ($route == HOME_URL . 'horses') {
+                                                                                                                                                                                                                                        echo "xl:underline border-y";
+                                                                                                                                                                                                                                    } ?>">Chevaux</button>
             </li>
             <li>
                 <button onclick="redirect('board')" class="text-white hover:border-y border-[#C0DF85] my-0.5 xl:m-0 xl:border-0 block pl-3 pr-4 py-2 xl:hover:border-0 xl:hover:underline underline-offset-8 decoration-2 xl:p-0 <?php
-                    if ($route == HOME_URL . 'board') {
-        echo "xl:underline border-y";
-                    } ?>">Pensions</button>
+                                                                                                                                                                                                                                    if ($route == HOME_URL . 'board') {
+                                                                                                                                                                                                                                        echo "xl:underline border-y";
+                                                                                                                                                                                                                                    } ?>">Pensions</button>
             </li>
             <li>
                 <button onclick="redirect('contact')" class="text-white hover:border-y border-[#C0DF85] my-0.5 xl:m-0 xl:border-0 block pl-3 pr-4 py-2 xl:hover:border-0 xl:hover:underline underline-offset-8 decoration-2 xl:p-0 <?php
-        if ($route == HOME_URL . 'contact') {
-            echo "xl:underline border-y";
-        } ?>">Contact</button>
+                                                                                                                                                                                                                                    if ($route == HOME_URL . 'contact') {
+                                                                                                                                                                                                                                        echo "xl:underline border-y";
+                                                                                                                                                                                                                                    } ?>">Contact</button>
             </li>
             <li>
                 <button onclick="redirect('login')" class="text-white my-0.5 xl:m-0 hover:bg-[#A16C21] rounded-xl block pl-3 pr-4 py-2 xl:py-3 xl:px-5 mb-4 <?php if ($route == HOME_URL . 'login') {
-                    echo "bg-[#A16C21]";
-                } else {
-                    echo "bg-[#895B1E]";
-                } ?>">Connexion</button>
+                                                                                                                                                                echo "bg-[#A16C21]";
+                                                                                                                                                            } else {
+                                                                                                                                                                echo "bg-[#895B1E]";
+                                                                                                                                                            } ?>">Connexion</button>
             </li>
         </ul>
     </div>

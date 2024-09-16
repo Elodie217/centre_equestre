@@ -3,17 +3,16 @@
     <!-- Barre de navigation en haut -->
     <div class="bg-[#64832F] shadow w-full p-2 flex items-center justify-between">
         <div class="flex items-center">
-
-            <a href="#" class="flex items-center">
-                <img src="/public/assets/images/logo.png" alt="Logo des cavaliers des vallées" class='max-w-24 ml-4 mr-6'>
-                <h2 class="font-bold text-4xl text-white" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
+            <a href="#" class="flex items-center mx-2 px-6">
+                <img src="/public/assets/images/logo.png" alt="Logo des cavaliers des vallées" class='max-w-24 ml-4 sm:mr-6'>
+                <h2 class="text-4xl hidden sm:block" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
             </a>
 
         </div>
 
         <div class="space-x-6 mr-4 flex">
             <button class="space-x-6 mr-4 flex items-center" onClick="redirect('admin/profile')">
-                <p class='text-white text-xl'>
+                <p class='max-[350px]:hidden text-white text-xl'>
 
                     <?php
                     if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
@@ -32,16 +31,17 @@
 
     <!-- Barre de navigation à gauche -->
     <div class="flex-1 relative flex flex-wrap">
-        <div class="md:hidden absolute flex items-center">
-            <button id="menuBtn" onClick='menu()'>
+        <div class="md:hidden z-[15] absolute flex items-center">
+            <button id="dashboardBtn" onClick='openDashboard()'>
                 <i class="fas fa-bars bg-[#64832F] text-white p-2 rounded-full text-xl m-2"></i>
             </button>
+            <button onCLick='closeDashboard()' id='btnCloseDashboard' class='hidden'>
+                <i class="fa-solid fa-xmark bg-[#64832F] text-white p-2 rounded-full text-xl m-2"></i>
+            </button>
         </div>
-        <div class="p-2 pt-0 bg-[#64832F] w-full md:w-56 lg:w-60 flex flex-col md:flex hidden" id="sideNav">
+
+        <div class="absolute z-10 md:z-0 md:static px-10 md:p-2 pt-10 md:pt-0 bg-[#64832F] w-full md:w-56 lg:w-60 flex flex-col md:flex hidden" id="sideNav">
             <nav>
-                <button onCLick='fermerMenu()' class='md:hidden'>
-                    <i class="fa-solid fa-xmark text-xl text-white"></i>
-                </button>
                 <button class="block text-white py-2.5 px-4 my-2.5 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/lessons')">
                     <i class="fa-solid fa-calendar-week mr-2"></i>Cours
                 </button>
@@ -79,7 +79,7 @@
 
         </div>
 
-        <div class="flex-1 p-4 w-full md:w-1/2">
+        <div class="flex-1 p-2 sm:p-4 w-full mt-8 md:mt-0 md:w-1/2">
 
 
 
@@ -103,69 +103,32 @@
             </div>-->
 
             <script>
-                function afficherUser() {
-                    document.querySelector(".divUser").classList.remove('hidden')
-                    document.querySelector(".flou").classList.remove('hidden')
-                }
+                // function afficherUser() {
+                //     document.querySelector(".divUser").classList.remove('hidden')
+                //     document.querySelector(".flou").classList.remove('hidden')
+                // }
 
-                function fermerUser() {
-                    document.querySelector(".divUser").classList.add('hidden')
-                    document.querySelector(".flou").classList.add('hidden')
-                }
+                // function fermerUser() {
+                //     document.querySelector(".divUser").classList.add('hidden')
+                //     document.querySelector(".flou").classList.add('hidden')
+                // }
             </script>
 
             <script>
-                // let usersChart = new Chart(document.getElementById('usersChart'), {
-                //     type: 'doughnut',
-                //     data: {
-                //         labels: ['Nuevos', 'Registrados'],
-                //         datasets: [{
-                //             data: [30, 65],
-                //             backgroundColor: ['#00F0FF', '#8B8B8D'],
-                //         }]
-                //     },
-                //     options: {
-                //         responsive: true,
-                //         maintainAspectRatio: false,
-                //         legend: {
-                //             position: 'bottom'
-                //         }
-                //     }
-                // });
+                // function menu() {
+                //     const sideNav = document.getElementById('sideNav');
 
-                // let commercesChart = new Chart(document.getElementById('commercesChart'), {
-                //     type: 'doughnut',
-                //     data: {
-                //         labels: ['Nuevos', 'Registrados'],
-                //         datasets: [{
-                //             data: [60, 40],
-                //             backgroundColor: ['#FEC500', '#8B8B8D'],
-                //         }]
-                //     },
-                //     options: {
-                //         responsive: true,
-                //         maintainAspectRatio: false,
-                //         legend: {
-                //             position: 'bottom'
-                //         }
-                //     }
-                // });
+                //     sideNav.classList.remove('hidden');
+                //     document.getElementById('menuBtn').classList.add('hidden')
 
+                // }
 
-                function menu() {
-                    const sideNav = document.getElementById('sideNav');
+                // function fermerMenu() {
+                //     const sideNav = document.getElementById('sideNav');
 
-                    sideNav.classList.remove('hidden');
-                    document.getElementById('menuBtn').classList.add('hidden')
+                //     sideNav.classList.add('hidden');
 
-                }
+                //     document.getElementById('menuBtn').classList.remove('hidden')
 
-                function fermerMenu() {
-                    const sideNav = document.getElementById('sideNav');
-
-                    sideNav.classList.add('hidden');
-
-                    document.getElementById('menuBtn').classList.remove('hidden')
-
-                }
+                // }
             </script>

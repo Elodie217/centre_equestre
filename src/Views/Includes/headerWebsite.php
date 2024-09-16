@@ -6,13 +6,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Les cavaliers des Vallées</title>
-    <link rel="shortcut icon" type="image/jpg" href="../../../public/assets/images/favIcone.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="../../../public/assets/images/favIcone.png" />
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
 
     <script src='fullcalendar/dist/index.global.js'></script>
     <link rel="stylesheet" href="../../../public/assets/css/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/style2.css">
+    <link rel="stylesheet" href="../../../public/assets/css/styleCalendar.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,7 @@
 </head>
 
 <body class="text-lg scroll-smooth bg-[#FFFDF0]" style='font-family: "Poppins", sans-serif;'>
-    <div class="blurred fixed w-full h-full top-0 backdrop-blur-sm hidden z-10"></div>
+    <div class="blurred fixed w-full h-full top-0 backdrop-blur-sm hidden z-20"></div>
     <button type="button" onclick="closeSuccessMessage()" class="hidden toastSuccessMessage fixed right-4 top-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition-all transition duration-300 hover:bg-green-600">
         <div class="flex items-center space-x-2">
             <span class="text-3xl"><i class="fa-solid fa-check mr-2"></i></span>

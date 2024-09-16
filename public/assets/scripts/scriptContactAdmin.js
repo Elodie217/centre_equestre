@@ -2,7 +2,6 @@ function getAllContact() {
   fetch(HOME_URL + "admin/contacts/all")
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
       displayContact(JSON.parse(data));
     });
 }

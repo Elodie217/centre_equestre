@@ -1,0 +1,55 @@
+.fc-scrollgrid-liquid {
+  height: 100% !important;
+  min-height: 400px !important;
+}
+
+.fc-toolbar-title {
+  text-transform: capitalize;
+}
+
+.fc-timeGridDay-button,
+.fc-timeGridWeek-button,
+.fc-dayGridMonth-button,
+.fc-today-button,
+.fc-prev-button,
+.fc-next-button {
+  background: white !important;
+  border-color: #c0df85 !important;
+  color: black !important;
+  margin: 8px 0 !important;
+}
+
+.fc-button-active {
+  background: #c0df85 !important;
+}
+
+.fc-header-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fc-timegrid-axis-cushion {
+  font-size: 12px !important;
+  line-height: 20px !important;
+}
+
+.fc-col-header-cell-cushion {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.fc-timegrid-slot-label-cushion {
+  font-size: 12px !important;
+}
+
+@media (min-width: 640px) {
+}
+
+@media (min-width: 768px) {
+  .fc-timegrid-axis-cushion {
+    font-size: 15px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+}
