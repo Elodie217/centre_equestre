@@ -23,6 +23,12 @@
   color: white;
 }
 /* rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8 text-white */
+@media (max-width: 500px) {
+  .divLogin {
+    padding: 40px 20px;
+    max-width: 90%;
+  }
+}
 
 .divImg {
   margin-bottom: 20px;

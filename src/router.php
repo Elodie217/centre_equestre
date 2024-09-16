@@ -615,7 +615,7 @@ switch ($route) {
 
                     die;
             }
-        } else if (isset($_SESSION['user']) && $_SESSION['user']->getRoleUser() == "User") {
+        } else if (isset($ConnectedUser) && $ConnectedUser->getRoleUser() == "User") {
             header('location: ' . HOME_URL . 'user/lessons');
 
             die;
