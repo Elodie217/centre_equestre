@@ -310,7 +310,7 @@ function openViewLessonModal(infos) {
 
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
-               <label for="dateLessonEdit" class='mb-3 block text-base font-medium text-[#07074D]"'>Date</label>
+               <label for="dateLessonEdit" class='mb-3 block text-base font-medium'>Date</label>
                <input type="date" name="dateLessonEdit" id="dateLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
     infos.event.startStr.split("T")[0] +
     `'>
@@ -318,7 +318,7 @@ function openViewLessonModal(infos) {
        </div>
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
-               <label for="hourLessonEdit" class='mb-3 block text-base font-medium text-[#07074D]"'>Heure</label>
+               <label for="hourLessonEdit" class='mb-3 block text-base font-medium'>Heure</label>
 
                <input type="time" name="hourLessonEdit" id="hourLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md"  value='` +
     hours +
@@ -334,8 +334,21 @@ function openViewLessonModal(infos) {
 
    <div class="-mx-3 flex flex-wrap">
        <div class="w-full px-3 sm:w-1/2">
-           <div class="mb-5">
-               <div class='mb-3 block text-base font-medium text-[#07074D]"'>Niveau(x)</div>
+           <div class="mb-5 relative">
+               <div class='mb-3 block text-base font-medium'>Niveaux <button onclick="openAddLevel('edit')"><i class="ml-1 fa-solid fa-circle-plus"></i></button></div>
+                <div class="absolute divAddLevelEdit hidden top-8 w-52 p-2 bg-white rounded-xl bg-white border-[#C0DF85] border-2">
+                <div class="divAddLevelEditDisplay overflow-y-auto max-h-32">
+                
+                </div>
+                <div class="flex justify-between my-2">
+                  <input type="text" id="inputNewLevelEdit" placeholder="Galop 1" class="w-36 rounded-md border border-[#e0e0e0] bg-white py-1 px-2 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                  <button onclick="addLevel('` +
+    eventInfo.level +
+    `', 'edit')" class="text-3xl mr-1 text-[#895B1E] hover:text-[#A16C21]"><i class="ml-1 fa-solid fa-circle-plus"></i></i></button>
+                </div>
+                <p class="text-[#ff2727] text-sm errorMessageLevelAddEdit"></p>
+
+            </div>
 
                <div class="divLessonLevelEdit flex flex-wrap">
 
@@ -353,7 +366,7 @@ function openViewLessonModal(infos) {
        </div>
    </div>
    <div class="mb-5">
-       <p class='mb-3 block text-base font-medium '> Participants</p>
+       <p class='mb-3 block text-base font-medium '>Participants</p>
        <div class="divLessonUserEdit flex flex-col h-24 overflow-auto"></div>
    </div>
 

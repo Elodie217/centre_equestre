@@ -367,6 +367,20 @@ switch ($route) {
 
                             echo $LevelController->allLevels();
                             die;
+                        case $routeComposee[2] == "add":
+                            $data = file_get_contents("php://input");
+
+                            $addLevel = json_decode($data, true);
+
+                            echo $LevelController->addLevel($addLevel['nameLevel']);
+                            die;
+                        case $routeComposee[2] == "delete":
+                            $data = file_get_contents("php://input");
+
+                            $Level = json_decode($data, true);
+
+                            echo $LevelController->deleteLevel($Level['idLevelDelete']);
+                            die;
                     }
 
                     // Admin horse

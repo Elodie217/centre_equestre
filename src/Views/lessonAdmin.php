@@ -32,13 +32,13 @@ include __DIR__ . '/Includes/dashboard.php';
 
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="dateLessonAdd" class='mb-3 block text-[#07074D]"'>Date</label>
+                                <label for="dateLessonAdd" class='mb-3 block'>Date</label>
                                 <input type="date" name="dateLessonAdd" id="dateLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
                             </div>
                         </div>
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="hourLessonAdd" class='mb-3 block text-[#07074D]"'>Heure</label>
+                                <label for="hourLessonAdd" class='mb-3 block'>Heure</label>
 
                                 <input type="time" name="hourLessonAdd" id="hourLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
 
@@ -50,8 +50,20 @@ include __DIR__ . '/Includes/dashboard.php';
 
                     <div class="-mx-3 flex flex-wrap">
                         <div class="w-full px-3 sm:w-1/2">
-                            <div class="mb-5">
-                                <div class='mb-3 block text-[#07074D]"'>Niveau(x)</div>
+                            <div class="mb-5 relative">
+                                <div class='mb-3 block'>Niveaux
+                                    <button onclick="openAddLevel()"><i class="ml-1 fa-solid fa-circle-plus"></i></button>
+                                </div>
+                                <div class="absolute divAddLevel hidden top-8 w-52 p-2 bg-white rounded-xl bg-white border-[#C0DF85] border-2">
+                                    <div class="divAddLevelDisplay overflow-y-auto max-h-32">
+                                    </div>
+
+                                    <div class="flex justify-between my-2">
+                                        <input type="text" id="inputNewLevel" placeholder="Galop 1" class="w-36 rounded-md border border-[#e0e0e0] bg-white py-1 px-2 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                                        <button onclick="addLevel()" class="text-3xl mr-1 text-[#895B1E] hover:text-[#A16C21]"><i class="ml-1 fa-solid fa-circle-plus"></i></i></button>
+                                    </div>
+                                    <p class="text-[#ff2727] text-sm errorMessageLevelAdd"></p>
+                                </div>
 
                                 <div class="divLessonLevel flex flex-wrap">
 
@@ -67,7 +79,7 @@ include __DIR__ . '/Includes/dashboard.php';
                         </div>
                     </div>
                     <div class="mb-5">
-                        <p class='mb-3 block '> Participants</p>
+                        <p class='mb-3 block'>Participants</p>
                         <div class="lessonUser grid grid-cols-1 sm:grid-cols-2 h-24 overflow-auto"></div>
                     </div>
 

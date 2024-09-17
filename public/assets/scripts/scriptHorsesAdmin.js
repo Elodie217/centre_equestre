@@ -14,7 +14,7 @@ function displayBoxHorses(horses, idHorse) {
   divBoxHorse = document.querySelector("#boxHorseEdit");
   divBoxHorse.innerHTML +=
     `
-      <option value=0 class='mb-3 block text-base font-medium text-[#07074D]' 
+      <option value=0 class='mb-3 block text-base font-medium  ' 
       ` +
     isSelected(idHorse, 0) +
     ` ></option>`;
@@ -23,7 +23,7 @@ function displayBoxHorses(horses, idHorse) {
       `
       <option value=` +
       element.id_horse +
-      ` class='mb-3 block text-base font-medium text-[#07074D]' 
+      ` class='mb-3 block text-base font-medium  ' 
       ` +
       isSelected(idHorse, element.id_horse) +
       ` >` +
@@ -262,7 +262,7 @@ function openEditHorseModal(horse) {
     <div class="-mx-3 flex flex-wrap font-medium ">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base text-[#07074D]"'>Nom</label>
+              <label for="nameHorse" class='mb-3 block text-base  "'>Nom</label>
               <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
@@ -270,7 +270,7 @@ function openEditHorseModal(horse) {
         </div>
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="horseUser" class='mb-3 block text-base text-[#07074D]"'>Propriétaire</label>
+                <label for="horseUser" class='mb-3 block text-base  "'>Propriétaire</label>
 
                 <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
 
@@ -281,7 +281,7 @@ function openEditHorseModal(horse) {
 
 
     <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base text-[#07074D]"'>Image</label>
+        <label for="imageHorse" class='mb-3 block text-base  "'>Image</label>
         <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
     horse.image_horse +
     ` >

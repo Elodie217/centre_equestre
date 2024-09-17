@@ -14,7 +14,7 @@ function displayBoardingSelect(allBording, idBoardingGiven) {
   let divHorseBoarding = document.querySelectorAll(".boardingHorse");
   divHorseBoarding.forEach((div) => {
     div.innerHTML =
-      "<option value=0 class='mb-3 block text-base font-medium text-[#07074D]'>Aucune</option>";
+      "<option value=0 class='mb-3 block text-base font-medium  '>Aucune</option>";
   });
 
   allBording.forEach((boarding) => {
@@ -23,7 +23,7 @@ function displayBoardingSelect(allBording, idBoardingGiven) {
         `
       <option value=` +
         boarding.id_boarding +
-        ` class='mb-3 block text-base font-medium text-[#07074D]' 
+        ` class='mb-3 block text-base font-medium  ' 
       ` +
         isSelected(idBoardingGiven, boarding.id_boarding) +
         `
@@ -183,21 +183,21 @@ function openEditBoardingModal(boarding) {
     `</h3>
    
     <div class="mb-5">
-        <label for="nameBoarding" class='mb-3 block text-base font-medium text-[#07074D]"'>Nom *</label>
+        <label for="nameBoarding" class='mb-3 block text-base font-medium  "'>Nom *</label>
         <input type="text" name="nameBoarding" id="nameBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
     boarding.name_boarding +
     `" >
     </div>
 
     <div class="mb-5">
-        <label for="priceBoarding" class='mb-3 block text-base font-medium text-[#07074D]"'>Prix (en €) *</label>
+        <label for="priceBoarding" class='mb-3 block text-base font-medium  "'>Prix (en €) *</label>
         <input type="number" min=0 max=2000 placeholder="420" name="priceBoarding" id="priceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
     boarding.price_boarding +
     ` >
     </div>
     
     <div class="mb-5">
-        <label for="serviceBoarding" class='mb-3 block text-base font-medium text-[#07074D]"'>Service *</label>
+        <label for="serviceBoarding" class='mb-3 block text-base font-medium  "'>Service *</label>
         <input type="text" name="serviceBoarding" id="serviceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
     boarding.service_boarding +
     `" >

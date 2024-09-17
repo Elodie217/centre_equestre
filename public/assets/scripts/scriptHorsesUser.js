@@ -104,7 +104,7 @@ function openEditHorseModalUser(horse) {
     <div class="-mx-3 flex flex-wrap font-medium">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base text-[#07074D]"'>Nom</label>
+              <label for="nameHorse" class='mb-3 block text-base  "'>Nom</label>
               <input type="text" name="nameHorse" id="nameHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
@@ -122,7 +122,7 @@ function openEditHorseModalUser(horse) {
 
 
     <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base text-[#07074D]"'>Image</label>
+        <label for="imageHorse" class='mb-3 block text-base  "'>Image</label>
         <input type="text" name="imageHorse" id="imageHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
     horse.image_horse +
     ` >

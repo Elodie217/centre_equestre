@@ -18,7 +18,7 @@ function displayBox(box, idBoxHorse) {
         `
       <option value=` +
         element.id_box +
-        ` class='mb-3 block text-base font-medium text-[#07074D]' 
+        ` class='mb-3 block text-base font-medium  ' 
       ` +
         isSelected(idBoxHorse, element.id_box) +
         ` >` +
@@ -166,7 +166,7 @@ function openEditBoxModal(idBox, nameBox, idHorse) {
     nameBox +
     `</h3>
   <div class="mb-5">
-      <label for="birthdateHorse" class='mb-3 block text-base font-medium text-[#07074D]"'>Box</label>
+      <label for="birthdateHorse" class='mb-3 block text-base font-medium  "'>Box</label>
       <input type="text" name="boxEdit" id="boxEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
     nameBox +
     `' >
@@ -186,7 +186,7 @@ function openEditBoxModal(idBox, nameBox, idHorse) {
   /* <div class="mb-5">
   <label
     for="horseUser"
-    class='mb-3 block text-base font-medium text-[#07074D]"'
+    class='mb-3 block text-base font-medium  "'
   >
     Cheval
   </label>
