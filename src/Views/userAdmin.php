@@ -92,7 +92,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <label for="lastnameUserAdd" class='mb-3 block text-base font-medium  "'>Nom*</label>
-                            <input type="text" name="lastnameUserAdd" id="lastnameUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                            <input type="text" name="lastnameUserAdd" id="lastnameUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                             </select>
                         </div>
@@ -100,41 +100,41 @@ include __DIR__ . '/Includes/dashboard.php';
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <label for="firstnameUserAdd" class='mb-3 block text-base font-medium  "'>Prénom*</label>
-                            <input type="text" name="firstnameUserAdd" id="firstnameUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                            <input type="text" name="firstnameUserAdd" id="firstnameUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-5">
                     <label for="emailUserAdd" class='mb-3 block text-base font-medium  "'>Email*</label>
-                    <input type="text" name="emailUserAdd" id="emailUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <input type="text" name="emailUserAdd" id="emailUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
 
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <label for="phoneUserAdd" class='mb-3 block text-base font-medium  "'>Téléphone</label>
-                            <input type="tel" name="phoneUserAdd" id="phoneUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                            <input type="tel" name="phoneUserAdd" id="phoneUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                         </div>
                     </div>
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <label for="birthdateUserAdd" class='mb-3 block text-base font-medium  "'>Date de naissance</label>
-                            <input type="date" name="birthdateUserAdd" id="birthdateUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                            <input type="date" name="birthdateUserAdd" id="birthdateUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-5">
                     <label for="addressUserAdd" class='mb-3 block text-base font-medium  "'>Adresse</label>
-                    <input type="text" name="addressUserAdd" id="addressUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <input type="text" name="addressUserAdd" id="addressUserAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
 
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <label for="roleUserAdd" class='mb-3 block text-base font-medium  "'>Role*</label>
-                            <select name="roleUserAdd" id="roleUserAdd" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                            <select name="roleUserAdd" id="roleUserAdd" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                                 <option value="User">User</option>
                                 <option value="Admin">Admin</option>
                             </select>
@@ -145,7 +145,7 @@ include __DIR__ . '/Includes/dashboard.php';
                         <div class="mb-5">
                             <label for="levelUserAdd" class='mb-3 block text-base font-medium  "'>Niveau</label>
 
-                            <select name="levelUserAdd" id="levelUserAdd" class="levelUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                            <select name="levelUserAdd" id="levelUserAdd" class="levelUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                             </select>
                         </div>

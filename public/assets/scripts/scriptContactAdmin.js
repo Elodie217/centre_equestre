@@ -168,7 +168,7 @@ function openViewContactModal(data) {
     data.message_contact +
     ` Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat quas quaerat voluptatem unde quasi, sequi, aut eveniet earum eos totam doloribus eaque ut animi dolore, odio doloremque pariatur ducimus dolores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat quas quaerat voluptatem unde quasi, sequi, aut eveniet earum eos totam doloribus eaque ut animi dolore, odio doloremque pariatur ducimus dolores doloremque.
     </p>
-    <select name="statusContact" id="statusContact" class="absolute bottom-4 right-0 rounded-md border border-[#e0e0e0] bg-white w-28 py-1 indent-2 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md mr-0">
+    <select name="statusContact" id="statusContact" class="absolute bottom-4 right-0 rounded-md border border-[#e0e0e0] bg-white w-28 py-1 indent-2 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md mr-0">
       <option value='1' class='mb-3 block'><i class='fa-solid fa-envelope-circle-check mr-1'></i> Non lue</option>
       <option value='2' class='mb-3 block'  ` +
     isSelectedStatus12(data.id_status) +

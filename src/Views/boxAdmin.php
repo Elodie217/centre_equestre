@@ -81,13 +81,13 @@ include __DIR__ . '/Includes/dashboard.php';
                 <h3 class="text-2xl text-center mb-8">Ajouter un nouveau Box</h3>
                 <div class="mb-5">
                     <label for="boxAdd" class='mb-3 block text-base font-medium  "'>Box</label>
-                    <input type="text" name="boxAdd" id="boxAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <input type="text" name="boxAdd" id="boxAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
 
                 <!--   <div class="mb-5">
                     <label for="horseUser" class='mb-3 block text-base font-medium  "'>Cheval</label>
 
-                    <select name="horseUser" id="boxHorseAdd" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <select name="horseUser" id="boxHorseAdd" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>-->
 
                 <div id="errorMessageBox"></div>

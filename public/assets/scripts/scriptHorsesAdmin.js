@@ -80,12 +80,12 @@ function displayHorses(Horses) {
       birthdateHorse.toLocaleDateString("fr") +
       `</p>
 
-      <p class='mb-2 text-base'>Taille (en cm) : ` +
-      isNull(horse.height_horse) +
+      <p class='mb-2 text-base'>` +
+      isNull(horse.height_horse, "Taille (en cm) :") +
       `</p>
 
-      <p class='mb-3 text-base'>Robe : ` +
-      isNull(horse.coat_horse) +
+      <p class='mb-3 text-base'>` +
+      isNull(horse.coat_horse, "Robe : ") +
       `</p>
 
       <p class='mb-2 text-base italic'>` +
@@ -292,7 +292,7 @@ function openEditHorseModal(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
               <label for="nameHorse" class='mb-3 block text-base  "'>Nom</label>
-              <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
             </div>
@@ -301,7 +301,7 @@ function openEditHorseModal(horse) {
             <div class="mb-5">
                 <label for="horseUser" class='mb-3 block text-base  "'>Propriétaire</label>
 
-                <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                 </select>
             </div>
@@ -311,7 +311,7 @@ function openEditHorseModal(horse) {
 
     <div class="mb-5">
         <label for="imageHorse" class='mb-3 block text-base  "'>Image</label>
-        <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+        <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.image_horse +
     ` >
     </div>
@@ -320,7 +320,7 @@ function openEditHorseModal(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
                 <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance</label>
-                <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.birthdate_horse +
     `>
             </div>
@@ -328,7 +328,7 @@ function openEditHorseModal(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
                 <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
-                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     isNull(horse.height_horse) +
     `>
             </div>
@@ -339,7 +339,7 @@ function openEditHorseModal(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
                 <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
-                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     isNull(horse.coat_horse) +
     `>
             </div>
@@ -348,7 +348,7 @@ function openEditHorseModal(horse) {
             <div class="mb-5">
                 <label for="horseBox" class='mb-3 block text-base"'>Box</label>
 
-                <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                 </select>
             </div>
@@ -356,7 +356,7 @@ function openEditHorseModal(horse) {
     </div>
                 <div class="mb-5">
                     <label for="boardingHorse" class='mb-3 block text-base'>Pension</label>
-                    <select name="boardingHorse" id="boardingHorseEdit" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <select name="boardingHorse" id="boardingHorseEdit" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                     </select>
                 </div>

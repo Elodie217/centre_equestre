@@ -106,7 +106,7 @@ function openEditProfileUser(User, role) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="lastnameUserProfileEdit" class='mb-3 block text-base font-medium  "'>Nom*</label>
-              <input type="text" name="lastnameUserProfileEdit" id="lastnameUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <input type="text" name="lastnameUserProfileEdit" id="lastnameUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     User.lastname_user +
     `'>
 
@@ -116,7 +116,7 @@ function openEditProfileUser(User, role) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="firstnameUserProfileEdit" class='mb-3 block text-base font-medium  "'>Prénom*</label>
-              <input type="text" name="firstnameUserProfileEdit" id="firstnameUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <input type="text" name="firstnameUserProfileEdit" id="firstnameUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     User.firstname_user +
     `'>
           </div>
@@ -125,7 +125,7 @@ function openEditProfileUser(User, role) {
 
   <div class="mb-5">
       <label for="emailUserProfileEdit" class='mb-3 block text-base font-medium  "'>Email*</label>
-      <input type="text" name="emailUserProfileEdit" id="emailUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+      <input type="text" name="emailUserProfileEdit" id="emailUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     User.email_user +
     `'>
   </div>
@@ -134,7 +134,7 @@ function openEditProfileUser(User, role) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="phoneUserProfileEdit" class='mb-3 block text-base font-medium  "'>Téléphone</label>
-              <input type="tel" name="phoneUserProfileEdit" id="phoneUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+              <input type="tel" name="phoneUserProfileEdit" id="phoneUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     isNull(User.phone_user) +
     `>
           </div>
@@ -142,7 +142,7 @@ function openEditProfileUser(User, role) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="birthdateUserProfileEdit" class='mb-3 block text-base font-medium  "'>Date de naissance</label>
-              <input type="date" name="birthdateUserProfileEdit" id="birthdateUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+              <input type="date" name="birthdateUserProfileEdit" id="birthdateUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     User.birthdate_user +
     `>
           </div>
@@ -151,7 +151,7 @@ function openEditProfileUser(User, role) {
 
   <div class="mb-5">
       <label for="addressUserProfileEdit" class='mb-3 block text-base font-medium  "'>Adresse</label>
-      <input type="text" name="addressUserProfileEdit" id="addressUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+      <input type="text" name="addressUserProfileEdit" id="addressUserProfileEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     isNull(User.address_user) +
     `'>
   </div>

@@ -461,7 +461,7 @@ function openEditUserModal(User) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="lastnameUserEdit" class='mb-3 block text-base font-medium  "'>Nom*</label>
-              <input type="text" name="lastnameUserEdit" id="lastnameUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <input type="text" name="lastnameUserEdit" id="lastnameUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     User.lastname_user +
     `'>
 
@@ -471,7 +471,7 @@ function openEditUserModal(User) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="firstnameUserEdit" class='mb-3 block text-base font-medium  "'>Prénom*</label>
-              <input type="text" name="firstnameUserEdit" id="firstnameUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <input type="text" name="firstnameUserEdit" id="firstnameUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     User.firstname_user +
     `'>
           </div>
@@ -480,7 +480,7 @@ function openEditUserModal(User) {
 
   <div class="mb-5">
       <label for="emailUserEdit" class='mb-3 block text-base font-medium  "'>Email*</label>
-      <input type="text" name="emailUserEdit" id="emailUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+      <input type="text" name="emailUserEdit" id="emailUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     User.email_user +
     `'>
   </div>
@@ -489,7 +489,7 @@ function openEditUserModal(User) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="phoneUserEdit" class='mb-3 block text-base font-medium  "'>Téléphone</label>
-              <input type="tel" name="phoneUserEdit" id="phoneUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+              <input type="tel" name="phoneUserEdit" id="phoneUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     isNull(User.phone_user) +
     `>
           </div>
@@ -497,7 +497,7 @@ function openEditUserModal(User) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="birthdateUserEdit" class='mb-3 block text-base font-medium  "'>Date de naissance</label>
-              <input type="date" name="birthdateUserEdit" id="birthdateUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+              <input type="date" name="birthdateUserEdit" id="birthdateUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     User.birthdate_user +
     `>
           </div>
@@ -506,7 +506,7 @@ function openEditUserModal(User) {
 
   <div class="mb-5">
       <label for="addressUserEdit" class='mb-3 block text-base font-medium  "'>Adresse</label>
-      <input type="text" name="addressUserEdit" id="addressUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+      <input type="text" name="addressUserEdit" id="addressUserEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     isNull(User.address_user) +
     `'>
   </div>
@@ -515,7 +515,7 @@ function openEditUserModal(User) {
       <div class="w-full px-3 sm:w-1/2">
           <div class="mb-5">
               <label for="roleUserEdit" class='mb-3 block text-base font-medium  "'>Role*</label>
-              <select name="roleUserEdit" id="roleUserEdit" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+              <select name="roleUserEdit" id="roleUserEdit" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 <option value="User" ` +
     isSelected(User.role_user, "User") +
     `>User</option>
@@ -530,7 +530,7 @@ function openEditUserModal(User) {
           <div class="mb-5">
               <label for="levelUserEdit" class='mb-3 block text-base font-medium  "'>Niveau</label>
 
-              <select name="levelUserEdit" id="levelUserEdit" class="levelUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+              <select name="levelUserEdit" id="levelUserEdit" class="levelUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
               </select>
           </div>

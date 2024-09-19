@@ -29,7 +29,7 @@ function displayHorsesSite(Horses) {
       horse.name_horse +
       `</span><br>` +
       ageHorse(horse.birthdate_horse) +
-      ` ans` +
+      `` +
       existe(isNull(horse.coat_horse, "Robe : ")) +
       `` +
       existe(isNull(horse.height_horse, "Taille : ", " cm")) +
@@ -43,8 +43,16 @@ function displayHorsesSite(Horses) {
 function ageHorse(birthdate) {
   let date = new Date(birthdate);
   let diff = Date.now() - date.getTime();
-  let age = new Date(diff);
-  return Math.abs(age.getUTCFullYear() - 1970);
+  let ageDate = new Date(diff);
+
+  let age = ageDate.getUTCFullYear() - 1970;
+
+  if (age !== 0) {
+    return age + " ans";
+  } else {
+    let months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.4375));
+    return months + " mois";
+  }
 }
 
 function existe(data) {

@@ -2,30 +2,36 @@
   text-shadow: 0px 0px 10px white;
 }
 
-
 /* Carte Google map */
-.map{
-  width: 300px; 
+.map {
+  width: 280px;
   height: 200px;
 }
 
+@media (min-width: 340px) {
+  .map {
+    width: 300px;
+    height: 200px;
+  }
+}
+
 @media (min-width: 640px) {
-  .map{
-    width: 450px; 
+  .map {
+    width: 450px;
     height: 300px;
   }
 }
 
 @media (min-width: 768px) {
-  .map{
-    width: 300px; 
+  .map {
+    width: 300px;
     height: 200px;
   }
 }
 
 @media (min-width: 1024px) {
-  .map{
-    width: 450px; 
+  .map {
+    width: 450px;
     height: 300px;
   }
 }

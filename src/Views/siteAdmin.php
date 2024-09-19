@@ -41,19 +41,19 @@ include __DIR__ . '/Includes/dashboard.php';
 
                 <div class="mb-5">
                     <label for="titleEditSoon" class='mb-3 block text-base font-medium  "'>Titre*</label>
-                    <input type="text" name="titleEditSoon" id="titleEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <input type="text" name="titleEditSoon" id="titleEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
                 <div class="mb-5">
                     <label for="dateEditSoon" class='mb-3 block text-base font-medium  "'>Date/Période*</label>
-                    <input type="text" name="dateEditSoon" id="dateEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <input type="text" name="dateEditSoon" id="dateEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
                 <div class="mb-5">
                     <label for="descriptionEditSoon" class='mb-3 block text-base font-medium  "'>Description*</label>
-                    <textarea name="descriptionEditSoon" id="descriptionEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md h-40"></textarea>
+                    <textarea name="descriptionEditSoon" id="descriptionEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md h-40"></textarea>
                 </div>
                 <div class="mb-5">
                     <label for="imageEditSoon" class='mb-3 block text-base font-medium  "'>Image*</label>
-                    <input type="text" name="imageEditSoon" id="imageEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                    <input type="text" name="imageEditSoon" id="imageEditSoon" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
 
                 <div id="errorMessageEditSoon" class="mt-6 mx-4 text-[#ff2727]"></div>

@@ -126,7 +126,7 @@ function openEditHorseModalUser(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
               <label for="nameHorse" class='mb-3 block text-base  "'>Nom</label>
-              <input type="text" name="nameHorse" id="nameHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+              <input type="text" name="nameHorse" id="nameHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
             </div>
@@ -134,7 +134,7 @@ function openEditHorseModalUser(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
                 <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance</label>
-                <input type="date" name="birthdateHorse" id="birthdateHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <input type="date" name="birthdateHorse" id="birthdateHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.birthdate_horse +
     `>
             </div>
@@ -144,7 +144,7 @@ function openEditHorseModalUser(horse) {
 
     <div class="mb-5">
         <label for="imageHorse" class='mb-3 block text-base  "'>Image</label>
-        <input type="text" name="imageHorse" id="imageHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+        <input type="text" name="imageHorse" id="imageHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.image_horse +
     ` >
     </div>
@@ -154,7 +154,7 @@ function openEditHorseModalUser(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
                 <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
-                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     isNull(horse.height_horse) +
     `>
             </div>
@@ -163,7 +163,7 @@ function openEditHorseModalUser(horse) {
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
                 <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
-                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     isNull(horse.coat_horse) +
     `>
             </div>

@@ -203,7 +203,7 @@ function openEditBoxModal(idBox, nameBox, idHorse) {
     `</h3>
   <div class="mb-5">
       <label for="birthdateHorse" class='mb-3 block text-base font-medium  "'>Box</label>
-      <input type="text" name="boxEdit" id="boxEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+      <input type="text" name="boxEdit" id="boxEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     nameBox +
     `' >
   </div>
@@ -230,7 +230,7 @@ function openEditBoxModal(idBox, nameBox, idHorse) {
   <select
     name="horseUser"
     id="boxHorseEdit"
-    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md"
+    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md"
   ></select>
 </div>; */
 }

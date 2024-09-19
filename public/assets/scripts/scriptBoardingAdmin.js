@@ -212,27 +212,27 @@ function openEditBoardingModal(boarding) {
    
     <div class="mb-5">
         <label for="nameBoarding" class='mb-3 block text-base font-medium  "'>Nom *</label>
-        <input type="text" name="nameBoarding" id="nameBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
+        <input type="text" name="nameBoarding" id="nameBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value="` +
     boarding.name_boarding +
     `" >
     </div>
 
     <div class="mb-5">
         <label for="priceBoarding" class='mb-3 block text-base font-medium  "'>Prix (en €) *</label>
-        <input type="number" min=0 max=2000 placeholder="420" name="priceBoarding" id="priceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+        <input type="number" min=0 max=2000 placeholder="420" name="priceBoarding" id="priceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     boarding.price_boarding +
     ` >
     </div>
     
     <div class="mb-5">
         <label for="serviceBoarding" class='mb-3 block text-base font-medium  "'>Service *</label>
-        <input type="text" name="serviceBoarding" id="serviceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
+        <input type="text" name="serviceBoarding" id="serviceBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value="` +
     boarding.service_boarding +
     `" >
     </div>
     
     <div class="mb-5">
-        <input type="text" name="serviceBisBoarding" id="serviceBisBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value="` +
+        <input type="text" name="serviceBisBoarding" id="serviceBisBoardingEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value="` +
     isNull(boarding.service2_boarding) +
     `" >
     </div>

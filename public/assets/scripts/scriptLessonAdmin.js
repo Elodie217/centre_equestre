@@ -326,7 +326,7 @@ function openViewLessonModal(infos) {
 
       <div class="mb-5">
         <label for="titleLessonEdit" class='mb-3 block'>Titre</label>
-        <input type="text" name="titleLessonEdit" id="titleLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+        <input type="text" name="titleLessonEdit" id="titleLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     infos.event.title +
     `'>
       </div>
@@ -334,7 +334,7 @@ function openViewLessonModal(infos) {
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
                <label for="dateLessonEdit" class='mb-3 block text-base font-medium'>Date</label>
-               <input type="date" name="dateLessonEdit" id="dateLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value='` +
+               <input type="date" name="dateLessonEdit" id="dateLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     infos.event.startStr.split("T")[0] +
     `'>
            </div>
@@ -343,7 +343,7 @@ function openViewLessonModal(infos) {
            <div class="mb-5">
                <label for="hourLessonEdit" class='mb-3 block text-base font-medium'>Heure</label>
 
-               <input type="time" name="hourLessonEdit" id="hourLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md"  value='` +
+               <input type="time" name="hourLessonEdit" id="hourLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md"  value='` +
     hours +
     `:` +
     minutes +
@@ -364,7 +364,7 @@ function openViewLessonModal(infos) {
                 
                 </div>
                 <div class="flex justify-between my-2">
-                  <input type="text" id="inputNewLevelEdit" placeholder="Galop 1" class="w-36 rounded-md border border-[#e0e0e0] bg-white py-1 px-2 text-black outline-none focus:border-[#FF9029] focus:shadow-md">
+                  <input type="text" id="inputNewLevelEdit" placeholder="Galop 1" class="w-36 rounded-md border border-[#e0e0e0] bg-white py-1 px-2 text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                   <button onclick="addLevel('` +
     eventInfo.level +
     `', 'edit')" class="text-3xl mr-1 text-[#895B1E] hover:text-[#A16C21]"><i class="ml-1 fa-solid fa-circle-plus"></i></i></button>
@@ -382,7 +382,7 @@ function openViewLessonModal(infos) {
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
                <label for="placeLessonEdit" class='mb-3 block text-base font-medium '>Places</label>
-               <input type="number" min=1 name="placeLessonEdit" id="placeLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#FF9029] focus:shadow-md" value=` +
+               <input type="number" min=1 name="placeLessonEdit" id="placeLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     eventInfo.place +
     `>
            </div>
