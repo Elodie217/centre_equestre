@@ -4,9 +4,12 @@ function getAllUserSelect(idUserGiven = 0, div = "select", action = "add") {
     order: "ASC",
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(choice),
@@ -15,10 +18,14 @@ function getAllUserSelect(idUserGiven = 0, div = "select", action = "add") {
   fetch(HOME_URL + "admin/users/all", params)
     .then((res) => res.text())
     .then((data) => {
-      if (div == "select") {
-        displayUserSelect(JSON.parse(data), idUserGiven);
-      } else if (div == "checkbox") {
-        displayUserSelectCheckbox(JSON.parse(data), idUserGiven, action);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        if (div == "select") {
+          displayUserSelect(JSON.parse(data), idUserGiven);
+        } else if (div == "checkbox") {
+          displayUserSelectCheckbox(JSON.parse(data), idUserGiven, action);
+        }
       }
     });
 }
@@ -112,9 +119,12 @@ function getAllUsers(name, order) {
     order: order,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(choice),
@@ -123,7 +133,11 @@ function getAllUsers(name, order) {
   fetch(HOME_URL + "admin/users/all", params)
     .then((res) => res.text())
     .then((data) => {
-      displayUser(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayUser(JSON.parse(data));
+      }
     });
 }
 
@@ -193,9 +207,12 @@ function getUserById(idUser) {
     idUser: idUser,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(user),
@@ -204,8 +221,11 @@ function getUserById(idUser) {
   fetch(HOME_URL + "admin/users/id", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
-      displayUserById(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayUserById(JSON.parse(data));
+      }
     });
 }
 
@@ -387,9 +407,12 @@ function AddUser(
     levelUserAdd: levelUserAdd,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(newUser),
@@ -397,7 +420,13 @@ function AddUser(
 
   fetch(HOME_URL + "admin/users/add", params)
     .then((res) => res.text())
-    .then((data) => reponseAddUser(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseAddUser(JSON.parse(data));
+      }
+    });
 }
 
 function reponseAddUser(data) {
@@ -632,9 +661,12 @@ function EditUser(
     levelUserEdit: levelUserEdit,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editUser),
@@ -642,7 +674,13 @@ function EditUser(
 
   fetch(HOME_URL + "admin/users/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditUser(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditUser(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditUser(data) {
@@ -721,9 +759,12 @@ function disableUser(idUser) {
     idUser: idUser,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(user),
@@ -732,8 +773,11 @@ function disableUser(idUser) {
   fetch(HOME_URL + "admin/users/disable", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(data);
-      reponseDeleteUser(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteUser(JSON.parse(data));
+      }
     });
 }
 
@@ -773,9 +817,12 @@ function deleteUser(idUser) {
     idUser: idUser,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(user),
@@ -784,8 +831,11 @@ function deleteUser(idUser) {
   fetch(HOME_URL + "admin/users/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(data);
-      reponseDeleteUser(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteUser(JSON.parse(data));
+      }
     });
 }
 

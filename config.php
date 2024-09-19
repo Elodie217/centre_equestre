@@ -8,3 +8,5 @@ define('PREFIXE', 'ce_');
 
 
 define('HOME_URL', '/public/');
+
+define('KEY_PAYLOAD', "aXton2hhcR7DkUV52LoQtyeDxhDxmWsVPR2giO7nFJy/Pqnyauw0yRfP8O43Qx79kkXkwqdf3E95NqcS1sXGSw");

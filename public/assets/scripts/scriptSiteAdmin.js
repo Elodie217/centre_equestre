@@ -1,11 +1,25 @@
 function getSite(divDisplay = "View") {
-  fetch(HOME_URL + "admin/site/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/site/all", params)
     .then((res) => res.text())
     .then((data) => {
-      if (divDisplay == "View") {
-        displaySiteAdmin(JSON.parse(data));
-      } else if (divDisplay == "edit") {
-        displaySoonSiteEdit(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        if (divDisplay == "View") {
+          displaySiteAdmin(JSON.parse(data));
+        } else if (divDisplay == "edit") {
+          displaySoonSiteEdit(JSON.parse(data));
+        }
       }
     });
 }
@@ -108,9 +122,12 @@ function editSoon(
     imageEditSoon: imageEditSoon,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editSite),
@@ -118,7 +135,13 @@ function editSoon(
 
   fetch(HOME_URL + "admin/site/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditSoon(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditSoon(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditSoon(data) {

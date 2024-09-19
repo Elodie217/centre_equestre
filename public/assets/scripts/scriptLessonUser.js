@@ -46,24 +46,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function getAllEventsByIdUser() {
-  return fetch(HOME_URL + "user/lessons/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  return fetch(HOME_URL + "user/lessons/all", params)
     .then((res) => res.text())
     .then((data) => {
-      let lessons = JSON.parse(data);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        let lessons = JSON.parse(data);
 
-      let events = [];
+        let events = [];
 
-      lessons.forEach((lesson) => {
-        events.push({
-          date: lesson.date_lesson,
-          title: isNull(lesson.title_lesson),
-          level: isNull(lesson.all_name_levels),
-          id: lesson.id_lesson,
-          place: lesson.places_lesson,
-          users: isNull(lesson.all_names_user),
+        lessons.forEach((lesson) => {
+          events.push({
+            date: lesson.date_lesson,
+            title: isNull(lesson.title_lesson),
+            level: isNull(lesson.all_name_levels),
+            id: lesson.id_lesson,
+            place: lesson.places_lesson,
+            users: isNull(lesson.all_names_user),
+          });
         });
-      });
-      return events;
+        return events;
+      }
     });
 }
 
@@ -151,24 +165,38 @@ document.addEventListener("click", function (event) {
 // });
 
 function getAllEventsByLevelUser() {
-  return fetch(HOME_URL + "user/lessons/idlevel")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  return fetch(HOME_URL + "user/lessons/idlevel", params)
     .then((res) => res.text())
     .then((data) => {
-      let lessons = JSON.parse(data);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        let lessons = JSON.parse(data);
 
-      let events = [];
+        let events = [];
 
-      lessons.forEach((lesson) => {
-        events.push({
-          date: lesson.date_lesson,
-          title: lesson.title_lesson,
-          level: isNull(lesson.all_name_levels),
-          id: lesson.id_lesson,
-          place: lesson.places_lesson,
-          users: isNull(lesson.all_names_user),
+        lessons.forEach((lesson) => {
+          events.push({
+            date: lesson.date_lesson,
+            title: lesson.title_lesson,
+            level: isNull(lesson.all_name_levels),
+            id: lesson.id_lesson,
+            place: lesson.places_lesson,
+            users: isNull(lesson.all_names_user),
+          });
         });
-      });
-      return events;
+        return events;
+      }
     });
 }
 
@@ -263,9 +291,12 @@ function changeLessonUser(idNewLesson) {
     idOldLesson: idOldLesson,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(lessons),
@@ -274,7 +305,11 @@ function changeLessonUser(idNewLesson) {
   fetch(HOME_URL + "user/lessons/change", params)
     .then((res) => res.text())
     .then((data) => {
-      reponseChangeLessonUser(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseChangeLessonUser(JSON.parse(data));
+      }
     });
 }
 
@@ -329,9 +364,12 @@ function deleteLessonUser(idLesson) {
     idLesson: idLesson,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(lesson),
@@ -340,7 +378,11 @@ function deleteLessonUser(idLesson) {
   fetch(HOME_URL + "user/lessons/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      reponseDeleteLessonUser(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteLessonUser(JSON.parse(data));
+      }
     });
 }
 

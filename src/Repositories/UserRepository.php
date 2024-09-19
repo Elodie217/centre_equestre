@@ -4,6 +4,7 @@ namespace src\Repositories;
 
 // session_start();
 
+use src\Services\JWTService;
 use PDO;
 use src\Models\User;
 use src\Models\Database;
@@ -33,14 +34,19 @@ class UserRepository
 
         if ($user) {
             if (password_verify($passwordLogin, $user->getPasswordUser())) {
+
                 $_SESSION['user'] = $user;
 
+                $JWT = new JWTService;
+                $creatJWT = $JWT->encodeToken();
 
                 $reponse = array(
                     'status' => 'success',
                     'message' => "Connected",
-                    'role' => $user->getRoleUser()
+                    'role' => $user->getRoleUser(),
+                    'JWT' => $creatJWT
                 );
+
                 return $reponse;
             } else {
                 $reponse = array(

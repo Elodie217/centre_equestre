@@ -1,11 +1,25 @@
 function getAllHorses(divDisplay = "horse", idHorse = 0) {
-  fetch(HOME_URL + "admin/horses/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/horses/all", params)
     .then((res) => res.text())
     .then((data) => {
-      if (divDisplay == "horse") {
-        displayHorses(JSON.parse(data));
-      } else if (divDisplay == "box") {
-        displayBoxHorses(JSON.parse(data), idHorse);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        if (divDisplay == "horse") {
+          displayHorses(JSON.parse(data));
+        } else if (divDisplay == "box") {
+          displayBoxHorses(JSON.parse(data), idHorse);
+        }
       }
     });
 }
@@ -194,11 +208,13 @@ function newHorse(
     horseBox: horseBox,
     boardingHorse: boardingHorse,
   };
-  console.log(newHorse);
+
+  let JWTUser = localStorage.getItem("JWTUser");
 
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(newHorse),
@@ -206,7 +222,13 @@ function newHorse(
 
   fetch(HOME_URL + "admin/horses/add", params)
     .then((res) => res.text())
-    .then((data) => reponseAddHorse(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseAddHorse(JSON.parse(data));
+      }
+    });
 }
 
 function reponseAddHorse(data) {
@@ -225,9 +247,12 @@ function getHorseById(idHorse) {
     idHorse: idHorse,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(horse),
@@ -236,7 +261,11 @@ function getHorseById(idHorse) {
   fetch(HOME_URL + "admin/horses/id", params)
     .then((res) => res.text())
     .then((data) => {
-      openEditHorseModal(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        openEditHorseModal(JSON.parse(data));
+      }
     });
 }
 
@@ -440,9 +469,12 @@ function editHorse(
     boardingHorse: boardingHorse,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editHorse),
@@ -450,7 +482,13 @@ function editHorse(
 
   fetch(HOME_URL + "admin/horses/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditHorse(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditHorse(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditHorse(data) {
@@ -489,9 +527,12 @@ function deleteHorse(idHorse) {
     idHorse: idHorse,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(horse),
@@ -500,8 +541,11 @@ function deleteHorse(idHorse) {
   fetch(HOME_URL + "admin/horses/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(data);
-      reponseDeleteHorse(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteHorse(JSON.parse(data));
+      }
     });
 }
 

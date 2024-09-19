@@ -5,6 +5,7 @@ namespace src\Repositories;
 use PDO;
 use src\Models\Database;
 use src\Models\Lesson;
+use src\Services\JWTService;
 
 class LessonRepository
 {

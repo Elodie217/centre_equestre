@@ -1,11 +1,25 @@
 function getAllBoardingSelect(divDisplay = "boarding", idBoardingGiven = 0) {
-  fetch(HOME_URL + "admin/boarding/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/boarding/all", params)
     .then((res) => res.text())
     .then((data) => {
-      if (divDisplay == "boarding") {
-        displayBoarding(JSON.parse(data));
-      } else if (divDisplay == "horse") {
-        displayBoardingSelect(JSON.parse(data), idBoardingGiven);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        if (divDisplay == "boarding") {
+          displayBoarding(JSON.parse(data));
+        } else if (divDisplay == "horse") {
+          displayBoardingSelect(JSON.parse(data), idBoardingGiven);
+        }
       }
     });
 }
@@ -93,9 +107,12 @@ function getBoardingHorses(idBoarding, nameBoarding) {
     idBoarding: idBoarding,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(boarding),
@@ -104,8 +121,12 @@ function getBoardingHorses(idBoarding, nameBoarding) {
   fetch(HOME_URL + "admin/boarding/horse", params)
     .then((res) => res.text())
     .then((data) => {
-      displayBoardingHorse(nameBoarding, JSON.parse(data));
-      console.log(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayBoardingHorse(nameBoarding, JSON.parse(data));
+        console.log(JSON.parse(data));
+      }
     });
 }
 
@@ -148,9 +169,12 @@ function getBoardingById(idBoarding) {
     idBoarding: idBoarding,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(boarding),
@@ -159,7 +183,11 @@ function getBoardingById(idBoarding) {
   fetch(HOME_URL + "admin/boarding/id", params)
     .then((res) => res.text())
     .then((data) => {
-      openEditBoardingModal(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        openEditBoardingModal(JSON.parse(data));
+      }
     });
 }
 
@@ -290,9 +318,12 @@ function editBoarding(
     serviceBisBoardingEdit: serviceBisBoardingEdit,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editBoarding),
@@ -300,7 +331,13 @@ function editBoarding(
 
   fetch(HOME_URL + "admin/boarding/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditBoarding(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditBoarding(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditBoarding(data) {

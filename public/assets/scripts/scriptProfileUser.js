@@ -1,16 +1,33 @@
 function getUser(role) {
-  console.log(role);
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
   if (role == "user") {
-    fetch(HOME_URL + "user/profile/userbyid")
+    fetch(HOME_URL + "user/profile/userbyid", params)
       .then((res) => res.text())
       .then((data) => {
-        displayProfileUser(JSON.parse(data), role);
+        if (JSON.parse(data).message == "JWT incorrect") {
+          logout();
+        } else {
+          displayProfileUser(JSON.parse(data), role);
+        }
       });
   } else if (role == "admin") {
-    fetch(HOME_URL + "admin/profile/userbyid")
+    fetch(HOME_URL + "admin/profile/userbyid", params)
       .then((res) => res.text())
       .then((data) => {
-        displayProfileUser(JSON.parse(data), role);
+        if (JSON.parse(data).message == "JWT incorrect") {
+          logout();
+        } else {
+          displayProfileUser(JSON.parse(data), role);
+        }
       });
   }
 }
@@ -265,9 +282,12 @@ function EditProfileUser(
     addressUserProfileEdit: addressUserProfileEdit,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editUser),
@@ -276,11 +296,23 @@ function EditProfileUser(
   if (role == "user") {
     fetch(HOME_URL + "user/profile/edit", params)
       .then((res) => res.text())
-      .then((data) => reponseEditProfileUser(JSON.parse(data), role));
+      .then((data) => {
+        if (JSON.parse(data).message == "JWT incorrect") {
+          logout();
+        } else {
+          reponseEditProfileUser(JSON.parse(data), role);
+        }
+      });
   } else if (role == "admin") {
     fetch(HOME_URL + "admin/profile/edit", params)
       .then((res) => res.text())
-      .then((data) => reponseEditProfileUser(JSON.parse(data), role));
+      .then((data) => {
+        if (JSON.parse(data).message == "JWT incorrect") {
+          logout();
+        } else {
+          reponseEditProfileUser(JSON.parse(data), role);
+        }
+      });
   }
 }
 

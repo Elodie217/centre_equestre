@@ -33,24 +33,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function getAllEvents() {
-  return fetch(HOME_URL + "admin/lessons/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  return fetch(HOME_URL + "admin/lessons/all", params)
     .then((res) => res.text())
     .then((data) => {
-      let lessons = JSON.parse(data);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        let lessons = JSON.parse(data);
 
-      let events = [];
+        let events = [];
 
-      lessons.forEach((lesson) => {
-        events.push({
-          date: lesson.date_lesson,
-          title: lesson.title_lesson,
-          level: isNull(lesson.all_name_levels),
-          id: lesson.id_lesson,
-          place: lesson.places_lesson,
-          users: isNull(lesson.all_names_user),
+        lessons.forEach((lesson) => {
+          events.push({
+            date: lesson.date_lesson,
+            title: lesson.title_lesson,
+            level: isNull(lesson.all_name_levels),
+            id: lesson.id_lesson,
+            place: lesson.places_lesson,
+            users: isNull(lesson.all_names_user),
+          });
         });
-      });
-      return events;
+        return events;
+      }
     });
 }
 
@@ -166,9 +180,12 @@ function newLesson(
     usersLessonAdd: usersLessonAdd,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(newLesson),
@@ -176,7 +193,13 @@ function newLesson(
 
   fetch(HOME_URL + "admin/lessons/add", params)
     .then((res) => res.text())
-    .then((data) => reponseAddLesson(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseAddLesson(JSON.parse(data));
+      }
+    });
 }
 
 function reponseAddLesson(data) {
@@ -491,9 +514,12 @@ function editLesson(
     usersLessonEdit: usersLessonEdit,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editLesson),
@@ -501,14 +527,18 @@ function editLesson(
 
   fetch(HOME_URL + "admin/lessons/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditLesson(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditLesson(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditLesson(data) {
   if (data.status == "success") {
     openSuccessMessage(data.message);
-    // getAllEvents();
-    // closeEditLessonModal();
     setTimeout(() => {
       location.reload();
     }, 2000);
@@ -544,9 +574,12 @@ function deleteLesson(idLesson) {
     idLesson: idLesson,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(lesson),
@@ -555,13 +588,16 @@ function deleteLesson(idLesson) {
   fetch(HOME_URL + "admin/lessons/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      reponseDeleteLesson(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteLesson(JSON.parse(data));
+      }
     });
 }
 
 function reponseDeleteLesson(data) {
   openSuccessMessage(data.message);
-  // closeDeleteLessonModal();
   setTimeout(() => {
     location.reload();
   }, 2000);

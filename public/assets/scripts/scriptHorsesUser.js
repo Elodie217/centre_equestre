@@ -1,8 +1,22 @@
 function getUserHorses() {
-  fetch(HOME_URL + "user/horses/byiduser")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "user/horses/byiduser", params)
     .then((res) => res.text())
     .then((data) => {
-      displayUserHorses(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayUserHorses(JSON.parse(data));
+      }
     });
 }
 
@@ -68,9 +82,12 @@ function getHorseByIdUser(idHorse) {
     idHorse: idHorse,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(horse),
@@ -79,7 +96,11 @@ function getHorseByIdUser(idHorse) {
   fetch(HOME_URL + "user/horses/id", params)
     .then((res) => res.text())
     .then((data) => {
-      openEditHorseModalUser(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        openEditHorseModalUser(JSON.parse(data));
+      }
     });
 }
 
@@ -235,9 +256,12 @@ function editHorseUser(
     coatHorse: coatHorse,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editHorse),
@@ -245,7 +269,13 @@ function editHorseUser(
 
   fetch(HOME_URL + "user/horses/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditHorseUSer(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditHorseUSer(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditHorseUSer(data) {

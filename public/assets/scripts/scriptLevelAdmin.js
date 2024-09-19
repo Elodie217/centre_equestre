@@ -1,11 +1,25 @@
 function getAllLevel(idLevelGiven = 0, div = "select", action = "add") {
-  fetch(HOME_URL + "admin/levels/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/levels/all", params)
     .then((res) => res.text())
     .then((data) => {
-      if (div == "select") {
-        displayLevel(JSON.parse(data), idLevelGiven);
-      } else if (div == "checkbox") {
-        displayLevelCheckbox(JSON.parse(data), idLevelGiven, action);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        if (div == "select") {
+          displayLevel(JSON.parse(data), idLevelGiven);
+        } else if (div == "checkbox") {
+          displayLevelCheckbox(JSON.parse(data), idLevelGiven, action);
+        }
       }
     });
 }
@@ -135,9 +149,12 @@ function addLevel(idLevel = 0, div = "add") {
         nameLevel: newLevel,
       };
 
+      let JWTUser = localStorage.getItem("JWTUser");
+
       let params = {
         method: "POST",
         headers: {
+          Authorization: "Bearer " + JWTUser,
           "Content-Type": "application/json; charset=utf-8",
         },
         body: JSON.stringify(addLevel),
@@ -145,7 +162,13 @@ function addLevel(idLevel = 0, div = "add") {
 
       fetch(HOME_URL + "admin/levels/add", params)
         .then((res) => res.text())
-        .then((data) => reponseAddLevel(JSON.parse(data), idLevel, div));
+        .then((data) => {
+          if (JSON.parse(data).message == "JWT incorrect") {
+            logout();
+          } else {
+            reponseAddLevel(JSON.parse(data), idLevel, div);
+          }
+        });
     } else {
       errorMessageLevelAdd.innerHTML =
         "Le niveau ne doit pas faire plus de 50 caractère.";
@@ -181,9 +204,12 @@ function deleteLevel(idLevelDelete, idLevel, div) {
     idLevelDelete: idLevelDelete,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(level),
@@ -192,6 +218,10 @@ function deleteLevel(idLevelDelete, idLevel, div) {
   fetch(HOME_URL + "admin/levels/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      reponseAddLevel(JSON.parse(data), idLevel, div);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseAddLevel(JSON.parse(data), idLevel, div);
+      }
     });
 }

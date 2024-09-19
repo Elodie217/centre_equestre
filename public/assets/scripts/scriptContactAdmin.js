@@ -1,8 +1,22 @@
 function getAllContact() {
-  fetch(HOME_URL + "admin/contacts/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/contacts/all", params)
     .then((res) => res.text())
     .then((data) => {
-      displayContact(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayContact(JSON.parse(data));
+      }
     });
 }
 
@@ -76,9 +90,12 @@ function getContactById(idContact) {
     idContact: idContact,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(contact),
@@ -87,9 +104,11 @@ function getContactById(idContact) {
   fetch(HOME_URL + "admin/contacts/id", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
-
-      openViewContactModal(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        openViewContactModal(JSON.parse(data));
+      }
     });
 }
 
@@ -198,9 +217,12 @@ function changeStatus(idStatus, idContact) {
     idContact: idContact,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(status),
@@ -209,8 +231,11 @@ function changeStatus(idStatus, idContact) {
   fetch(HOME_URL + "admin/contacts/status", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
-      getAllContact();
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        getAllContact();
+      }
     });
 }
 
@@ -241,9 +266,12 @@ function deleteContact(idContact) {
     idContact: idContact,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(contact),
@@ -252,8 +280,11 @@ function deleteContact(idContact) {
   fetch(HOME_URL + "admin/contacts/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(data);
-      reponseDeleteContact(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteContact(JSON.parse(data));
+      }
     });
 }
 

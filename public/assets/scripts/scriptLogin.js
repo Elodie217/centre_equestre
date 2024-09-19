@@ -35,6 +35,8 @@ function loginConnection(login, passwordLogin) {
 
 function reponseLogin(data) {
   if (data.status == "success") {
+    localStorage.setItem("JWTUser", data.JWT);
+
     if (data.role == "User") {
       redirect("user/lessons");
     } else if (data.role == "Admin") {
@@ -49,8 +51,9 @@ function logout() {
   fetch(HOME_URL + "logout")
     .then((res) => res.text())
     .then((data) => {
-      console.log(data);
       if (data) {
+        localStorage.removeItem("JWTUser");
+
         redirect("");
       }
     });

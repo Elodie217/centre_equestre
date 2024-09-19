@@ -11,6 +11,7 @@ use src\Controllers\LessonController;
 use src\Controllers\LevelController;
 use src\Controllers\SiteController;
 use src\Controllers\UserController;
+use src\Services\JWTService;
 use src\Services\Routing;
 
 
@@ -205,31 +206,104 @@ switch ($route) {
                 case $routeComposee[1] == "lessons":
                     switch ($route) {
                         case $routeComposee[2] == "all":
+                            $headers = getallheaders();
 
-                            echo $LessonController->allLessonsByIdUser($_SESSION['user']->getIdUser());
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+                                echo $LessonController->allLessonsByIdUser($_SESSION['user']->getIdUser());
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "idlevel":
+                            $headers = getallheaders();
 
-                            echo $LessonController->allLessonsByIdLevelUser();
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+                                echo $LessonController->allLessonsByIdLevelUser();
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "change":
                             $data = file_get_contents("php://input");
 
-                            $lessons = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LessonController->changeLessonUser($lessons['idNewLesson'], $lessons['idOldLesson']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $lessons = json_decode($data, true);
+
+                                echo $LessonController->changeLessonUser($lessons['idNewLesson'], $lessons['idOldLesson']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $lesson = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LessonController->deleteLessonUser($lesson['idLesson']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $lesson = json_decode($data, true);
+
+                                echo $LessonController->deleteLessonUser($lesson['idLesson']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $HomeController->lessonUser();
@@ -240,24 +314,80 @@ switch ($route) {
                 case $routeComposee[1] == "horses":
                     switch ($route) {
                         case $routeComposee[2] == "byiduser":
+                            $headers = getallheaders();
 
-                            echo $HorseController->byIdUser();
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $HorseController->byIdUser();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "id":
                             $data = file_get_contents("php://input");
 
-                            $horseid = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $HorseController->horseById($horseid['idHorse']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $horseid = json_decode($data, true);
+
+                                echo $HorseController->horseById($horseid['idHorse']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $edithorse = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $HorseController->editHorseUser($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $edithorse = json_decode($data, true);
+
+                                echo $HorseController->editHorseUser($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $HomeController->horsesUser();
@@ -268,16 +398,54 @@ switch ($route) {
                 case $routeComposee[1] == "profile":
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":
+                            $headers = getallheaders();
 
-                            echo $UserController->userById($_SESSION['user']->getIdUser());
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $UserController->userById($_SESSION['user']->getIdUser());
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
+
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $editProfileUser = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->editProfileUser($editProfileUser['idUserProfileEdit'], $editProfileUser['lastnameUserProfileEdit'], $editProfileUser['firstnameUserProfileEdit'], $editProfileUser['emailUserProfileEdit'], $editProfileUser['phoneUserProfileEdit'], $editProfileUser['birthdateUserProfileEdit'], $editProfileUser['addressUserProfileEdit']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenUser($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $editProfileUser = json_decode($data, true);
+
+                                echo $UserController->editProfileUser($editProfileUser['idUserProfileEdit'], $editProfileUser['lastnameUserProfileEdit'], $editProfileUser['firstnameUserProfileEdit'], $editProfileUser['emailUserProfileEdit'], $editProfileUser['phoneUserProfileEdit'], $editProfileUser['birthdateUserProfileEdit'], $editProfileUser['addressUserProfileEdit']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $HomeController->profileUser();
@@ -305,17 +473,54 @@ switch ($route) {
                 case $routeComposee[1] == "profile":
                     switch ($route) {
                         case $routeComposee[2] == "userbyid":
+                            $headers = getallheaders();
 
-                            echo $UserController->userById($_SESSION['user']->getIdUser());
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                echo $UserController->userById($_SESSION['user']->getIdUser());
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $editProfileUser = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->editProfileUser($editProfileUser['idUserProfileEdit'], $editProfileUser['lastnameUserProfileEdit'], $editProfileUser['firstnameUserProfileEdit'], $editProfileUser['emailUserProfileEdit'], $editProfileUser['phoneUserProfileEdit'], $editProfileUser['birthdateUserProfileEdit'], $editProfileUser['addressUserProfileEdit']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $editProfileUser = json_decode($data, true);
+
+                                echo $UserController->editProfileUser($editProfileUser['idUserProfileEdit'], $editProfileUser['lastnameUserProfileEdit'], $editProfileUser['firstnameUserProfileEdit'], $editProfileUser['emailUserProfileEdit'], $editProfileUser['phoneUserProfileEdit'], $editProfileUser['birthdateUserProfileEdit'], $editProfileUser['addressUserProfileEdit']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         default:
                             $AdminController->profileAdmin();
                             die;
@@ -325,35 +530,110 @@ switch ($route) {
                 case $routeComposee[1] == "lessons":
                     switch ($route) {
                         case $routeComposee[2] == "all":
+                            $headers = getallheaders();
 
-                            echo $LessonController->allLessons();
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                echo $LessonController->allLessons();
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "add":
                             $data = file_get_contents("php://input");
 
-                            $addlesson = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LessonController->addLesson($addlesson['titleLessonAdd'], $addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd'], $addlesson['usersLessonAdd']);
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
-                            die;
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $addlesson = json_decode($data, true);
+
+                                echo $LessonController->addLesson($addlesson['titleLessonAdd'], $addlesson['dateLessonAdd'], $addlesson['hourLessonAdd'], $addlesson['placeLessonAdd'], $addlesson['levelsLessonAdd'], $addlesson['usersLessonAdd']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $addlesson = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LessonController->editLesson($addlesson['idLesson'], $addlesson['titleLessonEdit'], $addlesson['dateLessonEdit'], $addlesson['hourLessonEdit'], $addlesson['placeLessonEdit'], $addlesson['levelsLessonEdit'], $addlesson['usersLessonEdit']);
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
-                            die;
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $addlesson = json_decode($data, true);
+
+                                echo $LessonController->editLesson($addlesson['idLesson'], $addlesson['titleLessonEdit'], $addlesson['dateLessonEdit'], $addlesson['hourLessonEdit'], $addlesson['placeLessonEdit'], $addlesson['levelsLessonEdit'], $addlesson['usersLessonEdit']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $lesson = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LessonController->deleteLesson($lesson['idLesson']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                $lesson = json_decode($data, true);
+
+                                echo $LessonController->deleteLesson($lesson['idLesson']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $AdminController->lesson();
@@ -364,65 +644,213 @@ switch ($route) {
                 case $routeComposee[1] == "levels":
                     switch ($route) {
                         case $routeComposee[2] == "all":
+                            $headers = getallheaders();
 
-                            echo $LevelController->allLevels();
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                echo $LevelController->allLevels();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         case $routeComposee[2] == "add":
                             $data = file_get_contents("php://input");
 
-                            $addLevel = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LevelController->addLevel($addLevel['nameLevel']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                $addLevel = json_decode($data, true);
+
+                                echo $LevelController->addLevel($addLevel['nameLevel']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $Level = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $LevelController->deleteLevel($Level['idLevelDelete']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $Level = json_decode($data, true);
+
+                                echo $LevelController->deleteLevel($Level['idLevelDelete']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                     }
 
                     // Admin horse
                 case $routeComposee[1] == "horses":
                     switch ($route) {
                         case $routeComposee[2] == "all":
+                            $headers = getallheaders();
 
-                            echo $HorseController->allHorses();
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                echo $HorseController->allHorses();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "id":
                             $data = file_get_contents("php://input");
 
-                            $horseid = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $HorseController->horseById($horseid['idHorse']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $horseid = json_decode($data, true);
+
+                                echo $HorseController->horseById($horseid['idHorse']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "add":
                             $data = file_get_contents("php://input");
 
-                            $addhorse = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['heightHorse'], $addhorse['coatHorse'], $addhorse['horseUser'], $addhorse['horseBox'], $addhorse['boardingHorse']);
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
-                            die;
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $addhorse = json_decode($data, true);
+
+                                echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['heightHorse'], $addhorse['coatHorse'], $addhorse['horseUser'], $addhorse['horseBox'], $addhorse['boardingHorse']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $edithorse = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $HorseController->editHorse($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse'], $edithorse['horseUser'], $edithorse['horseBox'], $edithorse['boardingHorse']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $edithorse = json_decode($data, true);
+
+                                echo $HorseController->editHorse($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse'], $edithorse['horseUser'], $edithorse['horseBox'], $edithorse['boardingHorse']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $horse = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $HorseController->deleteHorse($horse['idHorse']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+                                $horse = json_decode($data, true);
+
+                                echo $HorseController->deleteHorse($horse['idHorse']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $AdminController->horses();
@@ -434,38 +862,133 @@ switch ($route) {
                     switch ($route) {
                         case $routeComposee[2] == "all":
 
-                            echo $BoxController->allBox();
-                            die;
+                            $headers = getallheaders();
+
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $BoxController->allBox();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "horse":
 
-                            echo $BoxController->allBoxHorse();
-                            die;
+                            $headers = getallheaders();
+
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $BoxController->allBoxHorse();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "add":
                             $data = file_get_contents("php://input");
 
-                            $addbox = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $BoxController->addBox($addbox['nameBox']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $addbox = json_decode($data, true);
+
+                                echo $BoxController->addBox($addbox['nameBox']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $editbox = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $BoxController->editBox($editbox['idBox'], $editbox['boxEdit']);
-                            // echo $BoxController->editBox($editbox['idBox'], $editbox['boxEdit'], $editbox['boxHorseEdit']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $editbox = json_decode($data, true);
+
+                                echo $BoxController->editBox($editbox['idBox'], $editbox['boxEdit']);
+                                // echo $BoxController->editBox($editbox['idBox'], $editbox['boxEdit'], $editbox['boxHorseEdit']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $box = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $BoxController->deleteBox($box['idBox']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $box = json_decode($data, true);
+
+                                echo $BoxController->deleteBox($box['idBox']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $AdminController->box();
@@ -476,32 +999,108 @@ switch ($route) {
                 case $routeComposee[1] == "boarding":
                     switch ($route) {
                         case $routeComposee[2] == "all":
-                            echo $BoardingController->allBoarding();
-                            die;
+                            $headers = getallheaders();
+
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $BoardingController->allBoarding();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "id":
                             $data = file_get_contents("php://input");
 
-                            $boardingId = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $BoardingController->boardingById($boardingId['idBoarding']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $boardingId = json_decode($data, true);
+
+                                echo $BoardingController->boardingById($boardingId['idBoarding']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "horse":
                             $data = file_get_contents("php://input");
 
-                            $boardingId = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $BoardingController->boardingHorse($boardingId['idBoarding']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $boardingId = json_decode($data, true);
+
+                                echo $BoardingController->boardingHorse($boardingId['idBoarding']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $editBoarding = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $BoardingController->editBoarding($editBoarding['idBoarding'], $editBoarding['nameBoardingEdit'], $editBoarding['priceBoardingEdit'], $editBoarding['serviceBoardingEdit'], $editBoarding['serviceBisBoardingEdit']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $editBoarding = json_decode($data, true);
+
+                                echo $BoardingController->editBoarding($editBoarding['idBoarding'], $editBoarding['nameBoardingEdit'], $editBoarding['priceBoardingEdit'], $editBoarding['serviceBoardingEdit'], $editBoarding['serviceBisBoardingEdit']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $AdminController->boarding();
@@ -514,51 +1113,165 @@ switch ($route) {
                         case $routeComposee[2] == "all":
                             $data = file_get_contents("php://input");
 
-                            $choiceOrder = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->allUser($choiceOrder['name'], $choiceOrder['order']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $choiceOrder = json_decode($data, true);
+
+                                echo $UserController->allUser($choiceOrder['name'], $choiceOrder['order']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "id":
                             $data = file_get_contents("php://input");
 
-                            $userId = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->userById($userId['idUser']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $userId = json_decode($data, true);
+
+                                echo $UserController->userById($userId['idUser']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "add":
                             $data = file_get_contents("php://input");
 
-                            $addUser = json_decode($data, true);
+                            $headers = getallheaders();
+
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $addUser = json_decode($data, true);
 
 
-                            echo $UserController->addUser($addUser['lastnameUserAdd'], $addUser['firstnameUserAdd'], $addUser['emailUserAdd'], $addUser['phoneUserAdd'], $addUser['birthdateUserAdd'], $addUser['addressUserAdd'], $addUser['roleUserAdd'], $addUser['levelUserAdd']);
-                            die;
+                                echo $UserController->addUser($addUser['lastnameUserAdd'], $addUser['firstnameUserAdd'], $addUser['emailUserAdd'], $addUser['phoneUserAdd'], $addUser['birthdateUserAdd'], $addUser['addressUserAdd'], $addUser['roleUserAdd'], $addUser['levelUserAdd']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "edit":
                             $data = file_get_contents("php://input");
 
-                            $editUser = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->editUser($editUser['idUserEdit'], $editUser['lastnameUserEdit'], $editUser['firstnameUserEdit'], $editUser['emailUserEdit'], $editUser['phoneUserEdit'], $editUser['birthdateUserEdit'], $editUser['addressUserEdit'], $editUser['roleUserEdit'], $editUser['levelUserEdit']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $editUser = json_decode($data, true);
+
+                                echo $UserController->editUser($editUser['idUserEdit'], $editUser['lastnameUserEdit'], $editUser['firstnameUserEdit'], $editUser['emailUserEdit'], $editUser['phoneUserEdit'], $editUser['birthdateUserEdit'], $editUser['addressUserEdit'], $editUser['roleUserEdit'], $editUser['levelUserEdit']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "disable":
                             $data = file_get_contents("php://input");
 
-                            $user = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->disableUser($user['idUser']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $user = json_decode($data, true);
+
+                                echo $UserController->disableUser($user['idUser']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $user = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $UserController->deleteUser($user['idUser']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $user = json_decode($data, true);
+
+                                echo $UserController->deleteUser($user['idUser']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $AdminController->user();
@@ -570,33 +1283,109 @@ switch ($route) {
                     switch ($route) {
                         case $routeComposee[2] == "all":
 
-                            echo $ContactController->allContact();
-                            die;
+                            $headers = getallheaders();
+
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $ContactController->allContact();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "id":
                             $data = file_get_contents("php://input");
 
-                            $contactId = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $ContactController->contactById($contactId['idContact']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $contactId = json_decode($data, true);
+
+                                echo $ContactController->contactById($contactId['idContact']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "status":
                             $data = file_get_contents("php://input");
 
-                            $statusId = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $ContactController->changeStatus($statusId['idStatus'], $statusId['idContact']);
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
-                            die;
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $statusId = json_decode($data, true);
+
+                                echo $ContactController->changeStatus($statusId['idStatus'], $statusId['idContact']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         case $routeComposee[2] == "delete":
                             $data = file_get_contents("php://input");
 
-                            $contact = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $ContactController->deleteContact($contact['idContact']);
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $contact = json_decode($data, true);
+
+                                echo $ContactController->deleteContact($contact['idContact']);
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
 
                         default:
                             $AdminController->contact();
@@ -607,18 +1396,55 @@ switch ($route) {
                 case $routeComposee[1] == "site":
                     switch ($route) {
                         case $routeComposee[2] == "all":
+                            $headers = getallheaders();
 
-                            echo $SiteController->allSite();
-                            die;
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
+
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                echo $SiteController->allSite();
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         case $routeComposee[2] == "edit":
 
                             $data = file_get_contents("php://input");
 
-                            $editUser = json_decode($data, true);
+                            $headers = getallheaders();
 
-                            echo $SiteController->editSoonSite($editUser['titleEditSoon'], $editUser['dateEditSoon'], $editUser['descriptionEditSoon'], $editUser['imageEditSoon']);
+                            $Authorization = $headers['Authorization'];
+                            $JWTUser = ltrim($Authorization, 'Bearer');
+                            $JWTUser = ltrim($JWTUser, ' ');
 
-                            die;
+                            $JWT = new JWTService;
+                            $valideJWT = $JWT->checkTokenAdmin($JWTUser);
+
+                            if ($valideJWT == True) {
+
+                                $editUser = json_decode($data, true);
+
+                                echo $SiteController->editSoonSite($editUser['titleEditSoon'], $editUser['dateEditSoon'], $editUser['descriptionEditSoon'], $editUser['imageEditSoon']);
+
+                                die;
+                            } else {
+                                $response = array(
+                                    'status' => 'error',
+                                    'message' => "JWT incorrect"
+                                );
+                                echo json_encode($response);
+                                die;
+                            }
                         default:
                             $SiteController->site();
                             die;

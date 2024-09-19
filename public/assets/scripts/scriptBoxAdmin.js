@@ -1,8 +1,22 @@
 function getAllBox(idBoxHorse = 0) {
-  fetch(HOME_URL + "admin/box/all")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/box/all", params)
     .then((res) => res.text())
     .then((data) => {
-      displayBox(JSON.parse(data), idBoxHorse);
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayBox(JSON.parse(data), idBoxHorse);
+      }
     });
 }
 
@@ -29,11 +43,24 @@ function displayBox(box, idBoxHorse) {
 }
 
 function getBoxHorse() {
-  fetch(HOME_URL + "admin/box/horse")
+  let JWTUser = localStorage.getItem("JWTUser");
+
+  let params = {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + JWTUser,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  fetch(HOME_URL + "admin/box/horse", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
-      displayBoxHorse(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        displayBoxHorse(JSON.parse(data));
+      }
     });
 }
 
@@ -129,9 +156,12 @@ function newbox(nameBox) {
     nameBox: nameBox,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(newBox),
@@ -139,7 +169,13 @@ function newbox(nameBox) {
 
   fetch(HOME_URL + "admin/box/add", params)
     .then((res) => res.text())
-    .then((data) => reponseAddBox(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseAddBox(JSON.parse(data));
+      }
+    });
 }
 
 function reponseAddBox(data) {
@@ -229,9 +265,12 @@ function editBox(idBox, boxEdit, boxHorseEdit) {
     boxHorseEdit: boxHorseEdit,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(editBox),
@@ -239,7 +278,13 @@ function editBox(idBox, boxEdit, boxHorseEdit) {
 
   fetch(HOME_URL + "admin/box/edit", params)
     .then((res) => res.text())
-    .then((data) => reponseEditBox(JSON.parse(data)));
+    .then((data) => {
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseEditBox(JSON.parse(data));
+      }
+    });
 }
 
 function reponseEditBox(data) {
@@ -274,9 +319,12 @@ function deleteBox(idBox) {
     idBox: idBox,
   };
 
+  let JWTUser = localStorage.getItem("JWTUser");
+
   let params = {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + JWTUser,
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(box),
@@ -285,7 +333,11 @@ function deleteBox(idBox) {
   fetch(HOME_URL + "admin/box/delete", params)
     .then((res) => res.text())
     .then((data) => {
-      reponseDeleteBox(JSON.parse(data));
+      if (JSON.parse(data).message == "JWT incorrect") {
+        logout();
+      } else {
+        reponseDeleteBox(JSON.parse(data));
+      }
     });
 }
 
