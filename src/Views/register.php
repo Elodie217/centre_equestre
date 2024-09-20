@@ -13,7 +13,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
             <div class="passwordSpan mb-2">Votre identifiant est indiqué dans le mail que vous avez reçu.</div>
             <input type="text" name="loginRegister" id="loginRegister" class="inputRegister">
 
-            <div id="errorMessageRegister"></div>
+            <div id="errorMessageRegister" class="text-[#ff2727]"></div>
 
             <div class="divbutton">
                 <button type="button" class="btnRegister" onclick='registerVerification(<?= $idNewUser ?>)'>Valider</button>

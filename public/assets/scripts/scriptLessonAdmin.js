@@ -393,7 +393,7 @@ function openViewLessonModal(infos) {
        <div class="divLessonUserEdit flex flex-col h-24 overflow-auto"></div>
    </div>
 
-   <div id="errorMessageLessonEdit"></div>
+   <div id="errorMessageLessonEdit" class="text-[#ff2727]"></div>
 
    <div class="w-fit m-auto mt-8">
 

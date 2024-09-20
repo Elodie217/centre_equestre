@@ -90,7 +90,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     <select name="horseUser" id="boxHorseAdd" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>-->
 
-                <div id="errorMessageBox"></div>
+                <div id="errorMessageBox" class="text-[#ff2727]"></div>
 
                 <div class="w-fit m-auto mt-8">
 

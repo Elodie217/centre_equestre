@@ -12,7 +12,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
             <label for="loginForgotPassword" class='labelRegister'>Votre identifiant* :</label>
             <input type="text" name="loginForgotPassword" id="loginForgotPassword" class="inputRegister">
 
-            <div id="errorMessageforgotPassword"></div>
+            <div id="errorMessageforgotPassword" class="text-[#ff2727]"></div>
 
             <div class="divbutton">
                 <button type="button" class="btnRegister" onclick='forgotPasswordVerification(<?= $idUser ?>)'>Valider</button>

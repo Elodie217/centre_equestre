@@ -208,7 +208,7 @@ function openEditBoxModal(idBox, nameBox, idHorse) {
     `' >
   </div>
 
-  <div id="errorMessageBoxEdit"></div>
+  <div id="errorMessageBoxEdit" class="text-[#ff2727]"></div>
 
   <div class="w-fit m-auto mt-8">
 

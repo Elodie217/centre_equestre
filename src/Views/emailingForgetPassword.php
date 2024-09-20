@@ -20,7 +20,7 @@ include __DIR__ . '/Includes/navBarre.php';
             </div>
 
 
-            <div id="errorMessageEmailingForgetPassword"></div>
+            <div id="errorMessageEmailingForgetPassword" class="text-[#ff2727]"></div>
 
             <div class="mt-8 flex justify-center text-lg text-black">
                 <button type="submit" class="btnLoginForm" onclick="emailingForgetPassword()">Envoyer</button>

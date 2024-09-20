@@ -152,7 +152,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     </div>
                 </div>
 
-                <div id="errorMessageUserAdd"></div>
+                <div id="errorMessageUserAdd" class="text-[#ff2727]"></div>
 
                 <div class="w-fit m-auto mt-8">
 

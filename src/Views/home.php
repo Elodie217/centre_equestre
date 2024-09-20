@@ -21,77 +21,52 @@ include __DIR__ . '/Includes/headerWebsite.php';
 </section>
 
 <section class="bg-[#C0DF85]">
-    <div class="bg-cover w-full flex justify-center items-center">
-        <div class="w-full backdrop-filter backdrop-blur-lg">
-            <div class="w-11/12 mx-auto rounded-2xl  p-5 backdrop-filter backdrop-blur-lg">
-
-                <div class="divCartes grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2 mx-auto">
-                    <article class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                        <a href="{{ path('app_adv_voyage_edit', {'id': adv_voyage.id}) }}" target="_self" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
-                        <div class="relative mb-4 rounded-2xl">
-                            <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-
-
-                            <a class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="{{ path('app_adv_voyage_edit', {'id': adv_voyage.id}) }}" target="_self" rel="noopener noreferrer">
-                                Découvrir
-                                <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="flex w-full pb-4 mb-auto">
-                            <p class=" font-bold text-xl group-hover:text-[#A16C21] transition-colors duration-200 ">Les cours</p>
-
-                        </div>
-
-                        <p class=' text-justify mb-4 text-base'>Découvrez nos cours au Centre Équestre Les Cavaliers des Vallées, adaptés à tous les niveaux. Que vous soyez débutant ou cavalier confirmé, nous vous accompagnons avec passion à travers des leçons variées et enrichissantes.</p>
-
-                    </article>
-                    <article class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                        <a href="{{ path('app_adv_voyage_edit', {'id': adv_voyage.id}) }}" target="_self" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
-                        <div class="relative mb-4 rounded-2xl">
-                            <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://cdn.pixabay.com/photo/2021/11/03/18/25/construction-6766555_1280.jpg" alt="">
-
-
-                            <a class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="{{ path('app_adv_voyage_edit', {'id': adv_voyage.id}) }}" target="_self" rel="noopener noreferrer">
-                                Découvrir
-                                <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="flex w-full pb-4 mb-auto">
-                            <p class=" font-bold text-xl group-hover:text-[#A16C21] transition-colors duration-200 ">Les installations</p>
-
-                        </div>
-
-                        <p class=' text-justify mb-4 text-base'>Explorez nos installations modernes et accueillantes au Centre Équestre Les Cavaliers des Vallées. Profitez d’un cadre idéal pour votre passion, avec des infrastructures pensées pour le confort des cavaliers et des chevaux.</p>
-
-                    </article>
-                    <article class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                        <a href="{{ path('app_adv_voyage_edit', {'id': adv_voyage.id}) }}" target="_self" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
-                        <div class="relative mb-4 rounded-2xl">
-                            <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.unsplash.com/photo-1689897319489-90486828911f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-
-
-                            <a class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="{{ path('app_adv_voyage_edit', {'id': adv_voyage.id}) }}" target="_self" rel="noopener noreferrer">
-                                Découvrir
-                                <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="flex w-full pb-4 mb-auto">
-                            <p class=" font-bold text-xl group-hover:text-[#A16C21] transition-colors duration-200 ">Les pensions</p>
-
-                        </div>
-
-                        <p class=' text-justify mb-4 text-base'>Offrez à votre cheval un cadre de vie idéal avec nos formules de pension sur mesure au Centre Équestre Les Cavaliers des Vallées. Des soins adaptés et un environnement sécurisé pour son bien-être quotidien.</p>
-
-                    </article>
-                </div>
+    <div class="w-11/12 mx-auto p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8">
+        <button onclick="redirect('lesson')" class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+            <div class="relative mb-4 rounded-2xl">
+                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <p class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100">
+                    Découvrir
+                    <i class="fa-solid fa-angles-right ml-2"></i>
+                </p>
             </div>
-        </div>
+            <div class="flex w-full pb-4 mb-auto">
+                <p class=" font-bold text-xl group-hover:text-[#A16C21] transition-colors duration-200 ">Les cours</p>
+
+            </div>
+
+            <p class=' text-justify mb-4 text-base'>Découvrez nos cours au Centre Équestre Les Cavaliers des Vallées, adaptés à tous les niveaux. Que vous soyez débutant ou cavalier confirmé, nous vous accompagnons avec passion à travers des leçons variées et enrichissantes.</p>
+        </button>
+        <button onclick="redirect('facility')" class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+            <div class="relative mb-4 rounded-2xl">
+                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://cdn.pixabay.com/photo/2021/11/03/18/25/construction-6766555_1280.jpg" alt="">
+                <p class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100">
+                    Découvrir
+                    <i class="fa-solid fa-angles-right ml-2"></i>
+                </p>
+            </div>
+            <div class="flex w-full pb-4 mb-auto">
+                <p class=" font-bold text-xl group-hover:text-[#A16C21] transition-colors duration-200">Les installations</p>
+
+            </div>
+
+            <p class=' text-justify mb-4 text-base'>Explorez nos installations modernes et accueillantes au Centre Équestre Les Cavaliers des Vallées. Profitez d’un cadre idéal pour votre passion, avec des infrastructures pensées pour le confort des cavaliers et des chevaux.</p>
+        </button>
+        <button onclick="redirect('board')" class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+            <div class="relative mb-4 rounded-2xl">
+                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.unsplash.com/photo-1689897319489-90486828911f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <p class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100">
+                    Découvrir
+                    <i class="fa-solid fa-angles-right ml-2"></i>
+                </p>
+            </div>
+            <div class="flex w-full pb-4 mb-auto">
+                <p class=" font-bold text-xl group-hover:text-[#A16C21] transition-colors duration-200 ">Les pensions</p>
+
+            </div>
+
+            <p class=' text-justify mb-4 text-base'>Offrez à votre cheval un cadre de vie idéal avec nos formules de pension sur mesure au Centre Équestre Les Cavaliers des Vallées. Des soins adaptés et un environnement sécurisé pour son bien-être quotidien.</p>
+        </button>
     </div>
 </section>
 

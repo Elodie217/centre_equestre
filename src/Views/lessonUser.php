@@ -7,7 +7,7 @@ include __DIR__ . '/Includes/navBarreUser.php';
 ?>
 
 
-<div id='calendarUser' class="my-10 mx-auto w-10/12"></div>
+<div id='calendarUser' class="mt-10 mb-40 sm:my-10 mx-auto w-10/12"></div>
 
 <div class="modalChangeCalendarLessonUser hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto w-11/12 md:w-9/12 mx-auto my-8">
@@ -54,7 +54,7 @@ include __DIR__ . '/Includes/navBarreUser.php';
     </div>
 </div>
 
-<div id="eventPopup" class="popup hidden absolute z-20 bg-white border-2 p-4 rounded"></div>
+<div id="eventPopup" class="popup hidden fixed z-20 bg-white border-2 p-4 rounded left-1/2 transform -translate-x-1/2 top-1/2 transform -translate-y-1/2 "></div>
 
 
 <?php

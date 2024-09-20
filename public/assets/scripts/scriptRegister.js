@@ -137,7 +137,7 @@ function displayUserRegister(User, loginUser) {
     <label for="gdprRegister">En cochant cette case, vous acceptez notre <a href="#" class="text-blue-500 underline">politique de confidentialité</a> et consentez à la collecte et à l'utilisation de vos données personnelles conformément au RGPD.*</label>
   </div>
   
-  <div id="errorMessageUserRegister"></div>
+  <div id="errorMessageUserRegister" class="text-[#ff2727]"></div>
   <div class="divbutton">
       <button type="button" class="btnRegister" onclick='registerUserVerification(` +
     User.id_user +

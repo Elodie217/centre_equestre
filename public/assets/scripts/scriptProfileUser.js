@@ -157,7 +157,7 @@ function openEditProfileUser(User, role) {
   </div>
 
 
-  <div id="errorMessageUserProfileEdit"></div>
+  <div id="errorMessageUserProfileEdit" class="text-[#ff2727]"></div>
 
   <div class="w-fit m-auto mt-8">
 

@@ -118,51 +118,22 @@ function openViewLessonUserModal(info) {
     `')">Annuler</button>
     </div>
                 `;
-  popup.style.display = "block";
-  popup.style.left = `${info.jsEvent.pageX + 10}px`;
-  popup.style.top = `${info.jsEvent.pageY + 10}px`;
+  popup.classList.remove("hidden");
 }
 
 document.addEventListener("click", function (event) {
   let popup = document.getElementById("eventPopup");
-  if (
-    !popup.contains(event.target) &&
-    event.target.className !== "fc-event-title"
-  ) {
-    popup.style.display = "none";
+
+  if (!popup.contains(event.target)) {
+    if (
+      !event.target.classList.contains("fc-event") &&
+      !event.target.classList.contains("fc-event-title") &&
+      !event.target.classList.contains("fc-event-time")
+    ) {
+      popup.classList.add("hidden");
+    }
   }
 });
-
-// Change Lesson
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   var calendarEl = document.getElementById("calendarUserChangeLesson");
-//   var calendar = new FullCalendar.Calendar(calendarEl, {
-//     initialView: "timeGridWeek",
-//     locale: "fr",
-//     headerToolbar: {
-//       left: "timeGridWeek,dayGridMonth",
-//       center: "title",
-//       right: "today prev,next",
-//     },
-//     editable: false,
-//     selectable: true,
-//     firstDay: 1,
-//     buttonText: {
-//       today: "Aujourd'hui",
-//       month: "Mois",
-//       week: "Semaine",
-//     },
-//     allDaySlot: false,
-//     events: [],
-//     eventClick: openChangeLessonUserModal,
-//   });
-//   calendar.render();
-
-//   getAllEventsByLevelUser().then((events) => {
-//     calendar.addEventSource(events);
-//   });
-// });
 
 function getAllEventsByLevelUser() {
   let JWTUser = localStorage.getItem("JWTUser");

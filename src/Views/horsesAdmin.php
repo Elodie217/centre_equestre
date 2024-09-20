@@ -101,7 +101,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     </select>
                 </div>
 
-                <div id="errorMessageHorses"></div>
+                <div id="errorMessageHorses" class="text-[#ff2727]"></div>
 
                 <div class="w-fit m-auto mt-8">
 

@@ -537,7 +537,7 @@ function openEditUserModal(User) {
       </div>
   </div>
 
-  <div id="errorMessageUserEdit"></div>
+  <div id="errorMessageUserEdit" class="text-[#ff2727]"></div>
 
   <div class="w-fit m-auto mt-8">
 

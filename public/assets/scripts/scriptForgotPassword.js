@@ -136,7 +136,7 @@ function displayUserforgotPassword(User, loginUser) {
   </div>
 
   
-  <div id="errorMessageUserforgotPassword"></div>
+  <div id="errorMessageUserforgotPassword" class="text-[#ff2727]"></div>
   <div class="divbutton">
       <button type="button" class="btnRegister btnforgotPassword" onclick='changePasswordUserVerification(` +
     User.id_user +
