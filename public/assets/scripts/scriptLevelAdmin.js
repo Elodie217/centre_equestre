@@ -28,7 +28,7 @@ function displayLevel(levels, idLevelUser) {
   divUserLevel = document.querySelectorAll(".levelUser");
   divUserLevel.forEach((div) => {
     div.innerHTML =
-      "<option value='' class='mb-3 block text-base font-medium  '></option>";
+      "<option value=0 class='mb-3 block text-base font-medium  '></option>";
   });
 
   levels.forEach((level) => {

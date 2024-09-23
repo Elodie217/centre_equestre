@@ -64,3 +64,9 @@ function isValidLogin(login) {
   const regex = /[A-Za-z0-9-'']+\.[A-Za-z0-9-'']/i;
   return regex.test(login);
 }
+
+function decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}

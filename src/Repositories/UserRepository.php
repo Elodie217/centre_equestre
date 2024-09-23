@@ -255,6 +255,24 @@ class UserRepository
     {
         $loginUserAdd = strtolower($lastnameUserAdd . '.' . $firstnameUserAdd);
 
+        // vérification si le login existe déja
+        $i = 0;
+        do {
+            $i += 1;
+
+            if ($i !== 1) {
+                $loginUserAdd = strtolower($lastnameUserAdd . '.' . $firstnameUserAdd . $i);
+            }
+
+            $sql = "SELECT EXISTS( SELECT * FROM " . PREFIXE . "user WHERE login_user=:loginUserAdd ) AS login_exists;";
+            $statement = $this->db->prepare($sql);
+            $statement->bindParam(':loginUserAdd', $loginUserAdd);
+            $statement->execute();
+            $res = $statement->fetch();
+        } while ($res['login_exists'] !== 0);
+
+
+        // enregistrement du user
         $sql = "INSERT INTO " . PREFIXE . "user (lastname_user, firstname_user, email_user, phone_user, address_user, birthdate_user, role_user, actif_user, login_user, id_level) VALUES (:lastnameUserAdd, :firstnameUserAdd, :emailUserAdd, :phoneUserAdd, :addressUserAdd, :birthdateUserAdd, :roleUserAdd, 0, :loginUserAdd, :levelUserAdd)";
 
         $statement = $this->db->prepare($sql);
@@ -280,7 +298,7 @@ class UserRepository
             } else {
                 $reponse = array(
                     'status' => 'error',
-                    'message' => "Une erreur est survenue."
+                    'message' => "Une erreur est survenue lors de l'envoie de l'e-mail."
                 );
                 return $reponse;
             }
@@ -295,6 +313,7 @@ class UserRepository
 
     public function emailRegister($email, $lastname, $firstname, $idUser, $loginUser)
     {
+
         $to      = $email;
         $subject = 'Création de votre compte';
         $message = '<html>
@@ -314,12 +333,18 @@ class UserRepository
             'Reply-To: centreequestre@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        $test = mail($to, $subject, $message, $headers);
+        try {
+            // le @ permet de ne pas afficher l'erreur PHP
+            $mail = @mail($to, $subject, $message, $headers);
 
-        if ($test) {
+            if ($mail) {
+                return true;
+            } else {
+                return false;
+            }
             return true;
-        } else {
-            var_dump($test);
+        } catch (\Throwable $th) {
+            return false;
         }
     }
 

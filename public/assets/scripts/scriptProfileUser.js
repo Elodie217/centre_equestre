@@ -200,6 +200,10 @@ function EditProfileUserVerification(idUser, role) {
 
   errorMessageUserProfileEdit.innerHTML = "";
 
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateUserProfileEdit);
+
   if (
     lastnameUserProfileEdit !== "" &&
     firstnameUserProfileEdit !== "" &&
@@ -215,7 +219,8 @@ function EditProfileUserVerification(idUser, role) {
             phoneUserProfileEdit == null;
           }
           if (
-            isValidDateFormat(birthdateUserProfileEdit) ||
+            (isValidDateFormat(birthdateUserProfileEdit) &&
+              DateNow > bDate.getTime()) ||
             birthdateUserProfileEdit == ""
           ) {
             if (birthdateUserProfileEdit == "") {

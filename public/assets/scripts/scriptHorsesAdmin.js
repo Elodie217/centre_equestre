@@ -130,13 +130,17 @@ function newHorseVerification() {
   let nameHorse = document.getElementById("nameHorse").value;
   let imageHorse = document.getElementById("imageHorse").value;
   let birthdateHorse = document.getElementById("birthdateHorse").value;
-  let horseUser = parseInt(document.getElementById("horseUserAdd").value);
+  let horseUser = document.getElementById("horseUserAdd").value;
   let heightHorse = document.getElementById("heightHorse").value;
   let coatHorse = document.getElementById("coatHorse").value;
-  let horseBox = parseInt(document.getElementById("horseBoxAdd").value);
-  let boardingHorse = parseInt(document.getElementById("boardingHorse").value);
+  let horseBox = document.getElementById("horseBoxAdd").value;
+  let boardingHorse = document.getElementById("boardingHorse").value;
   let errorMessageHorses = document.getElementById("errorMessageHorses");
   errorMessageHorses.innerHTML = "";
+
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateHorse);
 
   if (
     nameHorse !== "" &&
@@ -147,8 +151,8 @@ function newHorseVerification() {
     boardingHorse !== ""
   ) {
     if (nameHorse.length <= 50) {
-      if (Number(horseUser) && Number(horseBox) && Number(boardingHorse)) {
-        if (isValidDateFormat(birthdateHorse)) {
+      if (horseUser > 0 && horseBox > 0 && boardingHorse >= 0) {
+        if (isValidDateFormat(birthdateHorse) && DateNow > bDate.getTime()) {
           if (isValidURL(imageHorse)) {
             if (coatHorse.length <= 50 || coatHorse == "") {
               if ((heightHorse > 0 && heightHorse < 200) || heightHorse == "") {
@@ -174,7 +178,8 @@ function newHorseVerification() {
             errorMessageHorses.innerHTML = "Merci de renter un URL valide.";
           }
         } else {
-          errorMessageHorses.innerHTML = "Merci de rentrer une date valide.";
+          errorMessageHorses.innerHTML =
+            "Merci de rentrer une date antérieure à aujourd'hui.";
         }
       } else {
         errorMessageHorses.innerHTML = "Merci de selectionner un champ.";
@@ -184,7 +189,7 @@ function newHorseVerification() {
         "Le nom doit faire au maximum 50 caractères.";
     }
   } else {
-    errorMessageHorses.innerHTML = "Merci de remplir tous les champs.";
+    errorMessageHorses.innerHTML = "Merci de remplir tous les champs.*";
   }
 }
 
@@ -291,7 +296,7 @@ function openEditHorseModal(horse) {
     <div class="-mx-3 flex flex-wrap font-medium ">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base  "'>Nom</label>
+              <label for="nameHorse" class='mb-3 block text-base  "'>Nom*</label>
               <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
@@ -299,7 +304,7 @@ function openEditHorseModal(horse) {
         </div>
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="horseUser" class='mb-3 block text-base  "'>Propriétaire</label>
+                <label for="horseUser" class='mb-3 block text-base  "'>Propriétaire*</label>
 
                 <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
@@ -310,7 +315,7 @@ function openEditHorseModal(horse) {
 
 
     <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base  "'>Image</label>
+        <label for="imageHorse" class='mb-3 block text-base  "'>Image*</label>
         <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.image_horse +
     ` >
@@ -319,7 +324,7 @@ function openEditHorseModal(horse) {
     <div class="-mx-3 flex flex-wrap">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance</label>
+                <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance*</label>
                 <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.birthdate_horse +
     `>
@@ -346,7 +351,7 @@ function openEditHorseModal(horse) {
         </div>
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="horseBox" class='mb-3 block text-base"'>Box</label>
+                <label for="horseBox" class='mb-3 block text-base"'>Box*</label>
 
                 <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
@@ -355,7 +360,7 @@ function openEditHorseModal(horse) {
         </div>
     </div>
                 <div class="mb-5">
-                    <label for="boardingHorse" class='mb-3 block text-base'>Pension</label>
+                    <label for="boardingHorse" class='mb-3 block text-base'>Pension*</label>
                     <select name="boardingHorse" id="boardingHorseEdit" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                     </select>
@@ -387,6 +392,10 @@ function editHorseVerification(idHorse) {
     "errorMessageHorsesEdit"
   );
 
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateHorseEdit);
+
   if (
     nameHorseEdit !== "" &&
     imageHorseEdit !== "" &&
@@ -396,13 +405,11 @@ function editHorseVerification(idHorse) {
     boardingHorseEdit !== ""
   ) {
     if (nameHorseEdit.length <= 50) {
-      if (
-        (Number(horseUserEdit) &&
-          Number(horseBoxEdit) &&
-          Number(boardingHorseEdit)) ||
-        boardingHorseEdit == 0
-      ) {
-        if (isValidDateFormat(birthdateHorseEdit)) {
+      if (horseUserEdit > 0 && horseBoxEdit > 0 && boardingHorseEdit >= 0) {
+        if (
+          isValidDateFormat(birthdateHorseEdit) &&
+          DateNow > bDate.getTime()
+        ) {
           if (isValidURL(imageHorseEdit)) {
             if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
               if (
@@ -432,7 +439,8 @@ function editHorseVerification(idHorse) {
             errorMessageHorsesEdit.innerHTML = "Merci de renter un URL valide.";
           }
         } else {
-          errorMessageHorsesEdit.innerHTML = "Merci de renter une date valide.";
+          errorMessageHorsesEdit.innerHTML =
+            "Merci de rentrer une date antérieure à aujourd'hui.";
         }
       } else {
         errorMessageHorsesEdit.innerHTML = "Merci de selectionner un champ.";
@@ -442,7 +450,7 @@ function editHorseVerification(idHorse) {
         "Le nom doit faire au maximum 50 caractères.";
     }
   } else {
-    errorMessageHorsesEdit.innerHTML = "Merci de remplir tous les champs.";
+    errorMessageHorsesEdit.innerHTML = "Merci de remplir tous les champs.*";
   }
 }
 

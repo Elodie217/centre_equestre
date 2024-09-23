@@ -125,7 +125,7 @@ function openEditHorseModalUser(horse) {
     <div class="-mx-3 flex flex-wrap font-medium">
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base  "'>Nom</label>
+              <label for="nameHorse" class='mb-3 block text-base'>Nom*</label>
               <input type="text" name="nameHorse" id="nameHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     horse.name_horse +
     `' >
@@ -133,7 +133,7 @@ function openEditHorseModalUser(horse) {
         </div>
         <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-                <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance</label>
+                <label for="birthdateHorse" class='mb-3 block text-base'>Date de naissance*</label>
                 <input type="date" name="birthdateHorse" id="birthdateHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.birthdate_horse +
     `>
@@ -143,7 +143,7 @@ function openEditHorseModalUser(horse) {
 
 
     <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base  "'>Image</label>
+        <label for="imageHorse" class='mb-3 block text-base'>Image*</label>
         <input type="text" name="imageHorse" id="imageHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     horse.image_horse +
     ` >
@@ -195,13 +195,17 @@ function editHorseVerificationUser(idHorse) {
     "errorMessageHorsesEditUser"
   );
 
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateHorseEdit);
+
   if (
     nameHorseEdit !== "" &&
     imageHorseEdit !== "" &&
     birthdateHorseEdit !== ""
   ) {
     if (nameHorseEdit.length <= 50) {
-      if (isValidDateFormat(birthdateHorseEdit)) {
+      if (isValidDateFormat(birthdateHorseEdit) && DateNow > bDate.getTime()) {
         if (isValidURL(imageHorseEdit)) {
           if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
             if (

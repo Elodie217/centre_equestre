@@ -249,8 +249,8 @@ class UserController
                             ) {
                                 $roleUserAdd = htmlspecialchars($roleUserAdd);
 
-                                if (is_int((int)$levelUserAdd) || $levelUserAdd == '') {
-                                    if ($levelUserAdd == '') {
+                                if ($levelUserAdd >= 0) {
+                                    if ($levelUserAdd == 0) {
                                         $levelUserAdd = NULL;
                                     } else {
                                         $levelUserAdd = htmlspecialchars($levelUserAdd);
@@ -259,7 +259,7 @@ class UserController
 
                                     if ($birthdateUserAdd !== '') {
                                         list($year, $month, $day) = explode("-", $birthdateUserAdd);
-                                        if (checkdate($month, $day, $year)) {
+                                        if (checkdate($month, $day, $year) && strtotime($birthdateUserAdd) < time()) {
                                             $birthdateUserAdd = htmlspecialchars($birthdateUserAdd);
                                         } else {
                                             $response = array(
@@ -377,8 +377,8 @@ class UserController
                             ) {
                                 $roleUserEdit = htmlspecialchars($roleUserEdit);
 
-                                if (is_int($levelUserEdit) || $levelUserEdit == '') {
-                                    if ($levelUserEdit == '') {
+                                if ($levelUserEdit >= 0) {
+                                    if ($levelUserEdit == 0) {
                                         $levelUserEdit = NULL;
                                     } else {
                                         $levelUserEdit = htmlspecialchars($levelUserEdit);
@@ -387,7 +387,7 @@ class UserController
 
                                     if ($birthdateUserEdit !== '') {
                                         list($year, $month, $day) = explode("-", $birthdateUserEdit);
-                                        if (checkdate($month, $day, $year)) {
+                                        if (checkdate($month, $day, $year) && strtotime($birthdateUserEdit) < time()) {
                                             $birthdateUserEdit = htmlspecialchars($birthdateUserEdit);
                                         } else {
                                             $response = array(
@@ -514,7 +514,7 @@ class UserController
 
                             if ($birthdateUserEdit !== '') {
                                 list($year, $month, $day) = explode("-", $birthdateUserEdit);
-                                if (checkdate($month, $day, $year)) {
+                                if (checkdate($month, $day, $year) && strtotime($birthdateUserEdit) < time()) {
                                     $birthdateUserEdit = htmlspecialchars($birthdateUserEdit);
                                 } else {
                                     $response = array(

@@ -40,13 +40,13 @@ include __DIR__ . '/Includes/dashboard.php';
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
-                            <label for="nameHorse" class='mb-3 block text-base'>Nom</label>
+                            <label for="nameHorse" class='mb-3 block text-base'>Nom*</label>
                             <input type="text" name="nameHorse" id="nameHorse" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=''>
                         </div>
                     </div>
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
-                            <label for="horseUser" class='mb-3 block text-base'>Propriétaire</label>
+                            <label for="horseUser" class='mb-3 block text-base'>Propriétaire*</label>
 
                             <select name="horseUser" id="horseUserAdd" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
@@ -57,15 +57,15 @@ include __DIR__ . '/Includes/dashboard.php';
 
 
                 <div class="mb-5">
-                    <label for="imageHorse" class='mb-3 block text-base'>Image</label>
+                    <label for="imageHorse" class='mb-3 block text-base'>Image*</label>
                     <input type="text" name="imageHorse" id="imageHorse" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=''>
                 </div>
 
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
-                            <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance</label>
-                            <input type="date" name="birthdateHorse" id="birthdateHorse" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
+                            <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance*</label>
+                            <input type="date" name="birthdateHorse" id="birthdateHorse" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" max="<?= date("m-d-y") ?>">
                         </div>
                     </div>
                     <div class="w-full px-3 sm:w-1/2">
@@ -85,7 +85,7 @@ include __DIR__ . '/Includes/dashboard.php';
                     </div>
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
-                            <label for="horseBox" class='mb-3 block text-base"'>Box</label>
+                            <label for="horseBox" class='mb-3 block text-base"'>Box*</label>
 
                             <select name="horseBox" id="horseBoxAdd" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
@@ -95,7 +95,7 @@ include __DIR__ . '/Includes/dashboard.php';
                 </div>
 
                 <div class="mb-5">
-                    <label for="boardingHorse" class='mb-3 block text-base'>Pension</label>
+                    <label for="boardingHorse" class='mb-3 block text-base'>Pension*</label>
                     <select name="boardingHorse" id="boardingHorse" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
                     </select>

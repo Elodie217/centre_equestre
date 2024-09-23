@@ -55,15 +55,16 @@ function closeEditSoonModal() {
 
 function displaySoonSiteEdit(data) {
   data.forEach((element) => {
+    let description = decodeHtml(element.description_site);
+
     if (element.element_site == "title_soon") {
-      document.getElementById("titleEditSoon").value = element.description_site;
+      document.getElementById("titleEditSoon").value = description;
     } else if (element.element_site == "date_soon") {
-      document.getElementById("dateEditSoon").value = element.description_site;
+      document.getElementById("dateEditSoon").value = description;
     } else if (element.element_site == "description_soon") {
-      document.getElementById("descriptionEditSoon").value =
-        element.description_site;
+      document.getElementById("descriptionEditSoon").value = description;
     } else if (element.element_site == "image_soon") {
-      document.getElementById("imageEditSoon").value = element.description_site;
+      document.getElementById("imageEditSoon").value = description;
     }
   });
 }

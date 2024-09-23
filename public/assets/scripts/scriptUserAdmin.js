@@ -316,6 +316,10 @@ function AddUserVerification() {
 
   errorMessageUserAdd.innerHTML = "";
 
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateUserAdd);
+
   if (
     lastnameUserAdd !== "" &&
     firstnameUserAdd !== "" &&
@@ -328,7 +332,11 @@ function AddUserVerification() {
           if (phoneUserAdd == "") {
             phoneUserAdd == null;
           }
-          if (isValidDateFormat(birthdateUserAdd) || birthdateUserAdd == "") {
+          if (
+            (isValidDateFormat(birthdateUserAdd) &&
+              DateNow > bDate.getTime()) ||
+            birthdateUserAdd == ""
+          ) {
             if (birthdateUserAdd == "") {
               birthdateUserAdd == null;
             }
@@ -337,13 +345,7 @@ function AddUserVerification() {
                 addressUserAdd == null;
               }
               if (roleUserAdd == "User" || roleUserAdd == "Admin") {
-                if (Number(levelUserAdd) || levelUserAdd == "") {
-                  if (levelUserAdd == "") {
-                    levelUserAdd == null;
-                  } else {
-                    parseInt(levelUserAdd);
-                  }
-
+                if (levelUserAdd >= 0) {
                   AddUser(
                     lastnameUserAdd,
                     firstnameUserAdd,
@@ -566,6 +568,10 @@ function EditUserVerification(idUser) {
 
   errorMessageUserEdit.innerHTML = "";
 
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateUserEdit);
+
   if (
     lastnameUserEdit !== "" &&
     firstnameUserEdit !== "" &&
@@ -578,7 +584,11 @@ function EditUserVerification(idUser) {
           if (phoneUserEdit == "") {
             phoneUserEdit == null;
           }
-          if (isValidDateFormat(birthdateUserEdit) || birthdateUserEdit == "") {
+          if (
+            (isValidDateFormat(birthdateUserEdit) &&
+              DateNow > bDate.getTime()) ||
+            birthdateUserEdit == ""
+          ) {
             if (birthdateUserEdit == "") {
               birthdateUserEdit == null;
             }
@@ -587,13 +597,7 @@ function EditUserVerification(idUser) {
                 addressUserEdit == null;
               }
               if (roleUserEdit == "User" || roleUserEdit == "Admin") {
-                if (Number(levelUserEdit) || levelUserEdit == "") {
-                  if (levelUserEdit == "") {
-                    levelUserEdit == null;
-                  } else {
-                    parseInt(levelUserEdit);
-                  }
-
+                if (levelUserEdit >= 0) {
                   EditUser(
                     idUser,
                     lastnameUserEdit,
@@ -607,7 +611,7 @@ function EditUserVerification(idUser) {
                   );
                 } else {
                   errorMessageUserEdit.innerHTML =
-                    "Merci de selectionner un niveau dans la liste.";
+                    "Merci de selectionner un niveau.";
                 }
               } else {
                 errorMessageUserEdit.innerHTML =
@@ -686,7 +690,7 @@ function EditUser(
 function reponseEditUser(data) {
   if (data.status == "success") {
     openSuccessMessage(data.message);
-    getAllUsers();
+    getAllUsers("lastname_user", "ASC");
     closeEditUserModal();
   } else {
     document.getElementById("errorMessageUserEdit").innerHTML = data.message;
@@ -783,7 +787,7 @@ function disableUser(idUser) {
 
 function reponseDeleteUser(data) {
   openSuccessMessage(data.message);
-  getAllUsers();
+  getAllUsers("lastname_user", "ASC");
   closeDisableUserModal();
 }
 
@@ -841,6 +845,6 @@ function deleteUser(idUser) {
 
 function reponseDeleteUser(data) {
   openSuccessMessage(data.message);
-  getAllUsers();
+  getAllUsers("lastname_user", "ASC");
   closeDeleteUserModal();
 }

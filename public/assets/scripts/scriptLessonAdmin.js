@@ -159,7 +159,7 @@ function newLessonVerification() {
         "Le titre doit faire au maximum 50 caractères.";
     }
   } else {
-    errorMessageLessonAdd.innerHTML = "Merci de remplir tous les champs.";
+    errorMessageLessonAdd.innerHTML = "Merci de remplir tous les champs. *";
   }
 }
 
@@ -325,7 +325,7 @@ function openViewLessonModal(infos) {
    <div class="-mx-3 flex flex-wrap">
 
       <div class="mb-5">
-        <label for="titleLessonEdit" class='mb-3 block'>Titre</label>
+        <label for="titleLessonEdit" class='mb-3 block'>Titre*</label>
         <input type="text" name="titleLessonEdit" id="titleLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     infos.event.title +
     `'>
@@ -333,7 +333,7 @@ function openViewLessonModal(infos) {
 
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
-               <label for="dateLessonEdit" class='mb-3 block text-base font-medium'>Date</label>
+               <label for="dateLessonEdit" class='mb-3 block text-base font-medium'>Date*</label>
                <input type="date" name="dateLessonEdit" id="dateLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     infos.event.startStr.split("T")[0] +
     `'>
@@ -341,7 +341,7 @@ function openViewLessonModal(infos) {
        </div>
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
-               <label for="hourLessonEdit" class='mb-3 block text-base font-medium'>Heure</label>
+               <label for="hourLessonEdit" class='mb-3 block text-base font-medium'>Heure*</label>
 
                <input type="time" name="hourLessonEdit" id="hourLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md"  value='` +
     hours +
@@ -381,7 +381,7 @@ function openViewLessonModal(infos) {
        </div>
        <div class="w-full px-3 sm:w-1/2">
            <div class="mb-5">
-               <label for="placeLessonEdit" class='mb-3 block text-base font-medium '>Places</label>
+               <label for="placeLessonEdit" class='mb-3 block text-base font-medium '>Places*</label>
                <input type="number" min=1 name="placeLessonEdit" id="placeLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
     eventInfo.place +
     `>
@@ -491,7 +491,7 @@ function editLessonVerification(idLesson) {
         "Le titre doit faire au maximum 50 caractères.";
     }
   } else {
-    errorMessageLessonEdit.innerHTML = "Merci de remplir tous les champs.";
+    errorMessageLessonEdit.innerHTML = "Merci de remplir tous les champs.*";
   }
 }
 

@@ -26,19 +26,19 @@ include __DIR__ . '/Includes/dashboard.php';
                     <div class="-mx-3 flex flex-wrap font-medium text-base">
 
                         <div class="w-full px-3 mb-5">
-                            <label for="titleLessonAdd" class='mb-3 block'>Titre</label>
+                            <label for="titleLessonAdd" class='mb-3 block'>Titre*</label>
                             <input type="text" name="titleLessonAdd" id="titleLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                         </div>
 
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="dateLessonAdd" class='mb-3 block'>Date</label>
+                                <label for="dateLessonAdd" class='mb-3 block'>Date*</label>
                                 <input type="date" name="dateLessonAdd" id="dateLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                             </div>
                         </div>
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="hourLessonAdd" class='mb-3 block'>Heure</label>
+                                <label for="hourLessonAdd" class='mb-3 block'>Heure*</label>
 
                                 <input type="time" name="hourLessonAdd" id="hourLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
 
@@ -73,7 +73,7 @@ include __DIR__ . '/Includes/dashboard.php';
                         </div>
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
-                                <label for="placeLessonAdd" class='mb-3 block '>Places</label>
+                                <label for="placeLessonAdd" class='mb-3 block '>Places*</label>
                                 <input type="number" min=1 name="placeLessonAdd" id="placeLessonAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                             </div>
                         </div>

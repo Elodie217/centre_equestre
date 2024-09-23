@@ -44,7 +44,8 @@ class HorseController
 
     public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse)
     {
-        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse) && !empty($boardingHorse)) {
+
+        if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse)) {
             if (strlen($nameHorse) <= 50) {
                 $nameHorse = htmlspecialchars($nameHorse);
 
@@ -53,10 +54,10 @@ class HorseController
 
                     list($year, $month, $day) = explode("-", $birthdateHorse);
 
-                    if (checkdate($month, $day, $year)) {
+                    if (checkdate($month, $day, $year) && strtotime($birthdateHorse) < time()) {
                         $birthdateHorse = htmlspecialchars($birthdateHorse);
 
-                        if (is_int($horseUser) && is_int($horseBox) && is_int($boardingHorse)) {
+                        if ($horseUser > 0 && $horseBox > 0 && $boardingHorse >= 0) {
                             $horseUser = htmlspecialchars($horseUser);
                             $horseBox = htmlspecialchars($horseBox);
 
@@ -152,7 +153,7 @@ class HorseController
 
                     list($year, $month, $day) = explode("-", $birthdateHorse);
 
-                    if (checkdate($month, $day, $year)) {
+                    if (checkdate($month, $day, $year) && strtotime($birthdateHorse) < time()) {
                         $birthdateHorse = htmlspecialchars($birthdateHorse);
 
                         if (is_int($horseUser) && is_int($horseBox) && is_int($boardingHorse)) {
@@ -251,7 +252,7 @@ class HorseController
 
                     list($year, $month, $day) = explode("-", $birthdateHorse);
 
-                    if (checkdate($month, $day, $year)) {
+                    if (checkdate($month, $day, $year) && strtotime($birthdateHorse) < time()) {
                         $birthdateHorse = htmlspecialchars($birthdateHorse);
 
                         if (is_int((int)$heightHorse) && (int)$heightHorse > 0 && (int)$heightHorse < 200 || $heightHorse == '') {
