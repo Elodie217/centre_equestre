@@ -13,7 +13,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
 
     ?>
     <h1 class="textShadow text-6xl sm:text-8xl text-center mt-20 mb-10 sm:my-20 w-2/3 m-auto font-bold w-fit px-8" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h1>
-    <p class="textShadow text-2xl text-center sm:my-24 rounded-xl p-0 sm:p-2 w-3/4 sm:w-2/3 m-auto">Vivez des aventures équestres inoubliables dans un cadre naturel exceptionnel, où passion et convivialité sont au rendez-vous.</p>
+    <p class="textShadow text-xl sm:text-2xl text-center sm:my-24 rounded-xl p-0 sm:p-2 w-3/4 sm:w-2/3 m-auto">Vivez des aventures équestres inoubliables dans un cadre naturel exceptionnel, où passion et convivialité sont au rendez-vous.</p>
 
     <div class="w-fit text-2xl m-auto absolute bottom-3 left-1/2 transform -translate-x-1/2">
         <?= $bouton->create_a() ?>

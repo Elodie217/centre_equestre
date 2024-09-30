@@ -31,12 +31,12 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalAddHorse hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 font-medium">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeAddHorseModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeAddHorseModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
-                <h3 class="text-2xl text-center mb-8">Ajouter un nouveau cheval</h3>
+                <h3 class="text-2xl text-center mb-8 mx-10">Ajouter un nouveau cheval</h3>
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
@@ -117,9 +117,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalEditHorse hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeEditHorseModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeEditHorseModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
                 <div class="divEditHorse">
@@ -135,9 +135,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalDeleteHorse hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteHorseModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeDeleteHorseModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 

@@ -206,7 +206,7 @@ function openEditBoardingModal(boarding) {
 
   document.querySelector(".divEditBoarding").innerHTML =
     `
- <h3 class="text-2xl text-center mb-8">Modifier ` +
+ <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
     boarding.name_boarding +
     `</h3>
    

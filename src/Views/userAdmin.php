@@ -64,9 +64,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalViewUser hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeViewUserModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeViewUserModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
                 <div class="divViewUser">
@@ -81,12 +81,12 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalAddUser hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeAddUserModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeAddUserModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
-                <h3 class="text-2xl text-center mb-8">Ajouter un nouveau cavalier</h3>
+                <h3 class="text-2xl text-center mb-8 mx-10">Ajouter un nouveau cavalier</h3>
 
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-full px-3 sm:w-1/2">
@@ -167,9 +167,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalEditUser hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeEditUserModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeEditUserModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
                 <div class="divEditUser">
@@ -183,9 +183,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalDeleteDisableUser hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteDisableUserModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeDeleteDisableUserModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 
@@ -198,9 +198,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalDeleteUser hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteUserModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeDeleteUserModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 

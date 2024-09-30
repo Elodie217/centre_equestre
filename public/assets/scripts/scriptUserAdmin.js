@@ -453,7 +453,7 @@ function openEditUserModal(User) {
 
   divEditUser.innerHTML =
     `
-  <h3 class="text-2xl text-center mb-8">Modifier ` +
+  <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
     User.firstname_user +
     ` ` +
     User.lastname_user +

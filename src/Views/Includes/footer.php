@@ -3,7 +3,7 @@
 <footer class="bg-[#64832F] p-8 pb-2 text-base text-white">
     <section class="md:flex items-center">
         <section class=':w-1/3 p-4'>
-            <img src="/public/assets/images/logoText.png" alt="" class='w-fit max-h-56 m-auto'>
+            <img src="/public/assets/images/logoText.png" alt="Logo du centre équestre Les cavaliers des vallées" class='w-fit max-h-56 m-auto'>
         </section>
         <section class="w-fit m-auto md:w-2/3">
             <div class="md:flex justify-around">

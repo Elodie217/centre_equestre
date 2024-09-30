@@ -40,7 +40,7 @@
             </button>
         </div>
 
-        <div class="absolute z-10 md:z-0 md:static px-10 md:p-2 pt-10 md:pt-0 bg-[#64832F] w-full md:w-56 lg:w-60 flex flex-col md:flex hidden" id="sideNav">
+        <div class="absolute z-10 bg-[#64832F] md:z-0 md:static px-10 md:p-2 pt-10 md:pt-0 w-full md:w-56 lg:w-60 flex flex-col md:flex hidden" id="sideNav">
             <nav>
                 <button class="block text-white py-2.5 px-4 my-2.5 rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white w-full text-left" onclick="redirect('admin/lessons')">
                     <i class="fa-solid fa-calendar-week mr-2"></i>Cours
@@ -66,7 +66,7 @@
                 </button>
             </nav>
 
-            <div class='md:fixed md:top-[85%] md:w-52 lg:w-56 '>
+            <div class='md:fixed md:top-[85%] md:left-0 md:w-56 lg:w-60 px-4 bg-[#64832F] '>
                 <!-- Déconnexion -->
                 <button onclick="logout()" class="block w-full text-white py-2.5 px-4 my-2.5 text-left rounded transition duration-200 hover:bg-gradient-to-r from-[#895B1E] to-[#A16C21] hover:text-white mt-auto" href="">
                     <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
@@ -81,54 +81,4 @@
 
         <div class="flex-1 p-2 sm:p-4 w-full mt-8 md:mt-0 md:w-1/2">
 
-
-
-            <!-- <div class='divUser hidden fixed bg-white z-10 top-[25%] md:left-[40%] sm:left-[30%] left-[20%] py-8 px-12 text-lg rounded-xl shadow-2xl'>
-                <div class='relative flex my-2.5 mb-6 text-2xl items-center'>
-                    <i class="fas fa-user text-2xl mr-4"></i>
-                    <p class='font-bold'>{{user.prenomUtilisateur}} {{user.nomUtilisateur}}</p>
-                </div>
-                <button onClick=fermerUser() class=' text-2xl absolute top-[10px] right-[15px]'>
-                    <i class="fa-regular fa-circle-xmark"></i>
-                </button>
-                <p class='my-2.5'><span class='font-bold'>Email :</span> {{user.email}}</p>
-                <p class='my-2.5'><span class='font-bold'>Téléphone :</span> {{user.telephoneUtilisateur}}</p>
-                <p class='my-2.5'><span class='font-bold'>Rôles :</span> {% for role in user.roles %}
-                    {{role}}
-                    {% endfor %}
-                </p>
-
-                <a href="{{ path('app_user_edit', {'id': user.id}) }}" class='block text-white py-1.5 px-4 mr-2 h-fit w-fit rounded transition duration-200 bg-[#895B1E] hover:bg-[#FF7B00] text-lg my-2.5'>Modifier mon profil</a>
-
-            </div>-->
-
-            <script>
-                // function afficherUser() {
-                //     document.querySelector(".divUser").classList.remove('hidden')
-                //     document.querySelector(".flou").classList.remove('hidden')
-                // }
-
-                // function fermerUser() {
-                //     document.querySelector(".divUser").classList.add('hidden')
-                //     document.querySelector(".flou").classList.add('hidden')
-                // }
-            </script>
-
-            <script>
-                // function menu() {
-                //     const sideNav = document.getElementById('sideNav');
-
-                //     sideNav.classList.remove('hidden');
-                //     document.getElementById('menuBtn').classList.add('hidden')
-
-                // }
-
-                // function fermerMenu() {
-                //     const sideNav = document.getElementById('sideNav');
-
-                //     sideNav.classList.add('hidden');
-
-                //     document.getElementById('menuBtn').classList.remove('hidden')
-
-                // }
-            </script>
+            <!--Contenu page-->

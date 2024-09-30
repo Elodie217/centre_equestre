@@ -290,7 +290,7 @@ function openEditHorseModal(horse) {
 
   document.querySelector(".divEditHorse").innerHTML =
     `
- <h3 class="text-2xl text-center mb-8">Modifier ` +
+ <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
     horse.name_horse +
     `</h3>
     <div class="-mx-3 flex flex-wrap font-medium ">

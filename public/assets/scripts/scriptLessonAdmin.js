@@ -112,6 +112,13 @@ function newLessonVerification() {
     }
   });
 
+  let numberUsersLesson = usersLessonAdd.length;
+  console.log(
+    numberUsersLesson,
+    placeLessonAdd,
+    numberUsersLesson <= placeLessonAdd
+  );
+
   let errorMessageLessonAdd = document.getElementById("errorMessageLessonAdd");
 
   if (
@@ -124,25 +131,30 @@ function newLessonVerification() {
       if (isValidDateFormat(dateLessonAdd)) {
         if (isValidHourFormat(hourLessonAdd)) {
           if (Number(placeLessonAdd) && placeLessonAdd > 0) {
-            newLesson(
-              titleLessonAdd,
-              dateLessonAdd,
-              hourLessonAdd,
-              placeLessonAdd,
-              levelsLessonAdd,
-              usersLessonAdd
-            );
+            if (numberUsersLesson <= placeLessonAdd) {
+              newLesson(
+                titleLessonAdd,
+                dateLessonAdd,
+                hourLessonAdd,
+                placeLessonAdd,
+                levelsLessonAdd,
+                usersLessonAdd
+              );
 
-            // let dateHourLesson = dateLessonAdd + " T" + hourLessonAdd;
+              // let dateHourLesson = dateLessonAdd + " T" + hourLessonAdd;
 
-            // let newLessonCalendar = {
-            //   date: dateHourLesson,
-            //   title: titleLesson(levelsLessonAdd),
-            //   // id: lesson.id_lesson,
-            //   place: placeLessonAdd,
-            //   users: usersLesson(usersLessonAdd),
-            // };
-            // calendar.addEvent(newLessonCalendar);
+              // let newLessonCalendar = {
+              //   date: dateHourLesson,
+              //   title: titleLesson(levelsLessonAdd),
+              //   // id: lesson.id_lesson,
+              //   place: placeLessonAdd,
+              //   users: usersLesson(usersLessonAdd),
+              // };
+              // calendar.addEvent(newLessonCalendar);
+            } else {
+              errorMessageLessonAdd.innerHTML =
+                "Vous avez sélectionné plus de participants que de places disponibles.";
+            }
           } else {
             errorMessageLessonAdd.innerHTML =
               "Merci de rentrer un nombre de place plus grand que 0.";
@@ -258,7 +270,7 @@ function openViewLessonModal(infos) {
   document.querySelector(".divViewLesson").innerHTML =
     `
   <div>
-    <h3 class="text-2xl text-center mb-8 font-bold">` +
+    <h3 class="text-2xl text-center mb-8 mx-10 font-bold">` +
     infos.event.title +
     `</h3>
     <p class="italic text-right">Le ` +
@@ -283,8 +295,8 @@ function openViewLessonModal(infos) {
     </div>
   </div>
 
-  <div class="flex justify-around mt-8">
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openEditLessonModal()">Modifier</button>
+  <div class="flex flex-wrap justify-around mt-8">
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block mr-2 pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openEditLessonModal()">Modifier</button>
 
     <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="openDeleteLessonModal(` +
     infos.event.id +
@@ -324,7 +336,7 @@ function openViewLessonModal(infos) {
     `</h3>
    <div class="-mx-3 flex flex-wrap">
 
-      <div class="mb-5">
+      <div class="w-full px-3 mb-5">
         <label for="titleLessonEdit" class='mb-3 block'>Titre*</label>
         <input type="text" name="titleLessonEdit" id="titleLessonEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     infos.event.title +
@@ -452,6 +464,8 @@ function editLessonVerification(idLesson) {
     }
   });
 
+  let numberUsersLessonEdit = usersLessonEdit.length;
+
   let errorMessageLessonEdit = document.getElementById(
     "errorMessageLessonEdit"
   );
@@ -466,15 +480,20 @@ function editLessonVerification(idLesson) {
       if (isValidDateFormat(dateLessonEdit)) {
         if (isValidHourFormat(hourLessonEdit)) {
           if (Number(placeLessonEdit) && placeLessonEdit > 0) {
-            editLesson(
-              idLesson,
-              titleLessonEdit,
-              dateLessonEdit,
-              hourLessonEdit,
-              placeLessonEdit,
-              levelsLessonEdit,
-              usersLessonEdit
-            );
+            if (numberUsersLessonEdit <= placeLessonEdit) {
+              editLesson(
+                idLesson,
+                titleLessonEdit,
+                dateLessonEdit,
+                hourLessonEdit,
+                placeLessonEdit,
+                levelsLessonEdit,
+                usersLessonEdit
+              );
+            } else {
+              errorMessageLessonEdit.innerHTML =
+                "Vous avez sélectionné plus de participants que de places disponibles.";
+            }
           } else {
             errorMessageLessonEdit.innerHTML =
               "Merci de rentrer un nombre de place plus grand que 0.";

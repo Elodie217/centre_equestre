@@ -35,17 +35,17 @@ function getUser(role) {
 function displayProfileUser(user, role) {
   document.querySelector(".divProfileUser").innerHTML =
     `
-    <div class="flex justify-between items-center my-6 mx-32">
+    <div class="flex flex-wrap justify-between items-center my-6 mx-5 sm:mx-20 lg:mx-32">
         <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>Mon compte</h1>
 
-        <p class="mr-40 text-xl">
+        <p class="mr-20 ml-2 mt-8 md:ml-0 md:mt-0 lg:mr-40 text-xl">
             <span class='mr-2 font-bold'>Identifiant : </span>` +
     user.login_user +
     `
         </p>
     </div>
 
-    <div class='text-xl my-10 mx-44'>
+    <div class='text-xl my-10 mx-6 sm:mx-32 lg:mx-44'>
         <p class='my-6'>
             <span class='mr-2 font-bold'>Nom : </span>` +
     user.lastname_user +
@@ -82,7 +82,7 @@ function displayProfileUser(user, role) {
     `
         </p>
     </div>
-    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit mx-32 mt-12 mb-20 text-xl" onclick='openEditProfileUser(` +
+    <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block py-2 px-4 w-fit m-auto mt-12 mb-20 text-xl" onclick='openEditProfileUser(` +
     JSON.stringify(user) +
     `, "` +
     role +
@@ -100,7 +100,7 @@ function openEditProfileUser(User, role) {
 
   divEditProfileUser.innerHTML =
     `
-  <h3 class="text-2xl text-center mb-8">Modifier mon compte</h3>
+  <h3 class="text-2xl text-center mb-8 mx-10">Modifier mon compte</h3>
 
   <div class="-mx-3 flex flex-wrap">
       <div class="w-full px-3 sm:w-1/2">

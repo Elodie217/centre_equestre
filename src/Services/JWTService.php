@@ -61,6 +61,8 @@ class JWTService
             return False;
         }
     }
+}
+
 
     // public function decodeToken(string $token): array
     // {
@@ -68,4 +70,3 @@ class JWTService
 
     //     return $decodedData;
     // }
-}

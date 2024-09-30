@@ -8,8 +8,9 @@ $buttonAdd = new Button('Ajouter', 'newLessonVerification()');
 include __DIR__ . '/Includes/dashboard.php';
 ?>
 
-
-<div id='calendar'></div>
+<div class="mt-10 min-[450px]:mb-20 mb-40 sm:my-10 mx-auto h-full">
+    <div id='calendar'></div>
+</div>
 
 
 
@@ -17,12 +18,12 @@ include __DIR__ . '/Includes/dashboard.php';
     <div class="fixed inset-0 z-20 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeAddLessonModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeAddLessonModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 
                 <div class="divAddLesson">
-                    <h3 class="text-2xl text-center mb-8">Ajouter un nouveau cours</h3>
+                    <h3 class="text-2xl text-center mb-8 mx-10">Ajouter un nouveau cours</h3>
                     <div class="-mx-3 flex flex-wrap font-medium text-base">
 
                         <div class="w-full px-3 mb-5">
@@ -98,9 +99,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalViewLesson hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeViewLessonModal()">
+        <div class="flex min-h-full items-end justify-center p-4 text-center items-center sm:p-0">
+            <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 max-w-md w-full sm:max-w-lg p-6 ">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeViewLessonModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
                 <div class="divViewLesson">
@@ -116,7 +117,7 @@ include __DIR__ . '/Includes/dashboard.php';
     <div class="fixed inset-0 z-20 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeEditLessonModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeEditLessonModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 
@@ -133,7 +134,7 @@ include __DIR__ . '/Includes/dashboard.php';
     <div class="fixed inset-0 z-20 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteLessonModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeDeleteLessonModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 

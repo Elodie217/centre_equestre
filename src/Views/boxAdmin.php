@@ -18,13 +18,11 @@ include __DIR__ . '/Includes/dashboard.php';
     </div>
 </div>
 
-<section class="flex flex-wrap justify-around"><!-- Table responsive wrapper -->
+<section class="flex flex-wrap justify-around">
     <div class="overflow-x-auto bg-white my-6 mx-2">
 
-        <!-- Table -->
         <table class="w-fit text-left text-md whitespace-nowrap">
 
-            <!-- Table head -->
             <thead class="uppercase tracking-wider border-b-2">
                 <tr>
                     <th scope="col" class="px-6 py-4">
@@ -36,7 +34,6 @@ include __DIR__ . '/Includes/dashboard.php';
                 </tr>
             </thead>
 
-            <!-- Table body -->
             <tbody class="tbodyBox">
 
             </tbody>
@@ -44,12 +41,11 @@ include __DIR__ . '/Includes/dashboard.php';
         </table>
 
     </div>
+
     <div class="overflow-x-auto bg-white my-6 mx-2">
 
-        <!-- Table -->
         <table class="w-fit text-left text-md whitespace-nowrap mr-20">
 
-            <!-- Table head -->
             <thead class="uppercase tracking-wider border-b-2">
                 <tr>
                     <th scope="col" class="px-6 py-4">
@@ -61,7 +57,6 @@ include __DIR__ . '/Includes/dashboard.php';
                 </tr>
             </thead>
 
-            <!-- Table body -->
             <tbody class="tbodyMeadow">
 
             </tbody>
@@ -73,22 +68,16 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalAddBox hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeAddBoxModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeAddBoxModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
-                <h3 class="text-2xl text-center mb-8">Ajouter un nouveau Box</h3>
+                <h3 class="text-2xl text-center mb-8 mx-10">Ajouter un nouveau Box</h3>
                 <div class="mb-5">
-                    <label for="boxAdd" class='mb-3 block text-base font-medium  "'>Box</label>
+                    <label for="boxAdd" class='mb-3 block text-base font-medium '>Box</label>
                     <input type="text" name="boxAdd" id="boxAdd" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
                 </div>
-
-                <!--   <div class="mb-5">
-                    <label for="horseUser" class='mb-3 block text-base font-medium  "'>Cheval</label>
-
-                    <select name="horseUser" id="boxHorseAdd" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
-                </div>-->
 
                 <div id="errorMessageBox" class="text-[#ff2727]"></div>
 
@@ -105,9 +94,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalEditBox hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeEditBoxModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeEditBoxModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
                 <div class="divEditBox">
@@ -122,9 +111,9 @@ include __DIR__ . '/Includes/dashboard.php';
 
 <div class="modalDeleteBox hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <div class=" relative overflow-hidden rounded-xl bg-white border-[#C0DF85] border-4 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg p-6 ">
-                <button class="absolute right-8 top-4 text-2xl" onclick="closeDeleteBoxModal()">
+                <button class="absolute right-8 top-4 max-[400px]:right-4 max-[400px]:top-2 text-2xl" onclick="closeDeleteBoxModal()">
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
 

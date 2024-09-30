@@ -52,8 +52,8 @@ class LessonRepository
         $idLevelUser = $_SESSION['user']->getIdLevel();
 
         $sql = "SELECT " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.title_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson, 
-        GROUP_CONCAT(DISTINCT " . PREFIXE . "level.name_level ORDER BY " . PREFIXE . "level.name_level SEPARATOR ', ') as all_name_levels, 
-        GROUP_CONCAT(DISTINCT CONCAT(" . PREFIXE . "user.id_user, ' ', " . PREFIXE . "user.lastname_user, ' ', " . PREFIXE . "user.firstname_user) SEPARATOR ', ') as all_names_user
+            GROUP_CONCAT(DISTINCT " . PREFIXE . "level.name_level ORDER BY " . PREFIXE . "level.name_level SEPARATOR ', ') as all_name_levels, 
+            GROUP_CONCAT(DISTINCT CONCAT(" . PREFIXE . "user.id_user, ' ', " . PREFIXE . "user.lastname_user, ' ', " . PREFIXE . "user.firstname_user) SEPARATOR ', ') as all_names_user
             FROM " . PREFIXE . "lesson
             LEFT JOIN " . PREFIXE . "lesson_level ON " . PREFIXE . "lesson.id_lesson = " . PREFIXE . "lesson_level.id_lesson
             LEFT JOIN " . PREFIXE . "level ON " . PREFIXE . "lesson_level.id_level = " . PREFIXE . "level.id_level
@@ -61,6 +61,11 @@ class LessonRepository
             LEFT JOIN " . PREFIXE . "user ON " . PREFIXE . "user_lesson.id_user = " . PREFIXE . "user.id_user
             WHERE " . PREFIXE . "lesson_level.id_level = :idLevelUser
             AND " . PREFIXE . "lesson.date_lesson > CURRENT_DATE
+            AND " . PREFIXE . "lesson.places_lesson > (
+                SELECT COUNT(*)
+                FROM " . PREFIXE . "user_lesson
+                WHERE " . PREFIXE . "user_lesson.id_lesson = " . PREFIXE . "lesson.id_lesson
+            )
             AND " . PREFIXE . "lesson.id_lesson NOT IN (
                 SELECT " . PREFIXE . "lesson.id_lesson
                 FROM " . PREFIXE . "lesson
@@ -68,7 +73,8 @@ class LessonRepository
                 WHERE " . PREFIXE . "user_lesson.id_user = :idUser
             )
             GROUP BY " . PREFIXE . "lesson.id_lesson, " . PREFIXE . "lesson.title_lesson, " . PREFIXE . "lesson.date_lesson, " . PREFIXE . "lesson.places_lesson;
-            ";
+        ";
+
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':idUser', $idUser);

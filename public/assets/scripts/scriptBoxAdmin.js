@@ -191,18 +191,16 @@ function closeEditBoxModal() {
 }
 
 function openEditBoxModal(idBox, nameBox, idHorse) {
-  // getAllHorses("box", idHorse);
-
   document.querySelector(".modalEditBox").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 
   document.querySelector(".divEditBox").innerHTML =
     `
-  <h3 class="text-2xl text-center mb-8">Modifier ` +
+  <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
     nameBox +
     `</h3>
   <div class="mb-5">
-      <label for="birthdateHorse" class='mb-3 block text-base font-medium  "'>Box</label>
+      <label for="birthdateHorse" class='mb-3 block text-base font-medium '>Box</label>
       <input type="text" name="boxEdit" id="boxEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
     nameBox +
     `' >
@@ -218,37 +216,14 @@ function openEditBoxModal(idBox, nameBox, idHorse) {
   </div>
   `;
 }
-{
-  /* <div class="mb-5">
-  <label
-    for="horseUser"
-    class='mb-3 block text-base font-medium  "'
-  >
-    Cheval
-  </label>
-
-  <select
-    name="horseUser"
-    id="boxHorseEdit"
-    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md"
-  ></select>
-</div>; */
-}
 
 function editBoxVerification(idBox) {
   let boxEdit = document.getElementById("boxEdit").value;
-  // let boxHorseEdit = parseInt(document.getElementById("boxHorseEdit").value);
   let errorMessageBoxEdit = document.getElementById("errorMessageBoxEdit");
 
   if (boxEdit !== "") {
     if (boxEdit.length <= 50) {
-      // if (Number(boxHorseEdit) || boxHorseEdit == 0) {
       editBox(idBox, boxEdit);
-      // editBox(idBox, boxEdit, boxHorseEdit);
-
-      // } else {
-      //   errorMessageBoxEdit.innerHTML = "Merci de selectionner un champ.";
-      // }
     } else {
       errorMessageBoxEdit.innerHTML =
         "Le nom du box ne doit pas faire plus de 50 caractères.";
