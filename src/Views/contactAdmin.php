@@ -12,37 +12,38 @@ include __DIR__ . '/Includes/dashboard.php';
 
 </div>
 
-<table class="min-w-full max-w-5xl text-left text-base whitespace-nowrap">
+<div class="overflow-x-auto my-6 mx-2">
+    <table class="w-fit text-left text-base whitespace-nowrap">
 
-    <thead class="uppercase tracking-wider border-b-2">
-        <tr>
-            <th scope="col" class="px-6 py-4">
-                Nom Prénom
-            </th>
-            <th scope="col" class="px-6 py-4">
-                Email
-            </th>
-            <th scope="col" class="px-6 py-4">
-                Message
-            </th>
-            <th scope="col" class="px-6 py-4">
-                Date
-            </th>
-            <th scope="col" class="px-6 py-4">
-                Statut
-            </th>
-            <th scope="col" class="px-6 py-4">
-            </th>
-        </tr>
-    </thead>
+        <thead class="uppercase tracking-wider border-b-2">
+            <tr>
+                <th scope="col" class="px-6 py-4">
+                    Nom Prénom
+                </th>
+                <th scope="col" class="px-6 py-4">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-4">
+                    Message
+                </th>
+                <th scope="col" class="px-6 py-4">
+                    Date
+                </th>
+                <th scope="col" class="px-6 py-4">
+                    Statut
+                </th>
+                <th scope="col" class="px-6 py-4">
+                </th>
+            </tr>
+        </thead>
 
 
-    <tbody class="tbodyContact">
+        <tbody class="tbodyContact">
 
-    </tbody>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 <div class="modalViewContact hidden">
     <div class="fixed inset-0 z-20 overflow-y-auto">

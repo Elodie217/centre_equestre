@@ -63,7 +63,6 @@ function displayUserSelectCheckbox(users, idUserLesson, action) {
     divLessonUser = document.querySelectorAll(".divLessonUserEdit");
   }
 
-  // divLessonUser = document.querySelectorAll(".lessonUser");
   divLessonUser.forEach((div) => {
     div.innerHTML = "";
   });
@@ -237,8 +236,8 @@ function displayUserById(User) {
     ` ` +
     User.lastname_user +
     `</h3>
-    <div class='flex justify-between my-2'>
-      <p class='italic'>` +
+    <div class='flex flex-wrap justify-between my-2'>
+      <p class='italic mr-2'>` +
     User.login_user +
     `</p>
       <p><i class="fa-solid fa-graduation-cap"></i> ` +
@@ -267,8 +266,8 @@ function displayUserById(User) {
     isNull(User.gdpr_user) +
     `</p>
 
-    <div class="flex justify-around mt-8">
-      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='openEditUserModal(` +
+    <div class="flex flex-wrap justify-around mt-8">
+      <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block mr-2 pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick='openEditUserModal(` +
     JSON.stringify(User) +
     `)'>Modifier</button>
 

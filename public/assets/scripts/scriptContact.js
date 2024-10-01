@@ -78,6 +78,11 @@ function sendContact(
 function reponseSendContact(data) {
   if (data.status == "success") {
     openSuccessMessage(data.message);
+    document.getElementById("lastnameContact").value = "";
+    document.getElementById("firstnameContact").value = "";
+    document.getElementById("emailContact").value = "";
+    document.getElementById("messageContact").value = "";
+    document.getElementById("gdprContact").checked = false;
   } else {
     document.getElementById("errorMessageContact").innerHTML = data.message;
   }

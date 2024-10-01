@@ -30,7 +30,14 @@ function displayContact(contacts) {
     document.querySelector(".tbodyContact").innerHTML = "";
 
     contacts.forEach((contact) => {
-      const dateContact = new Date(contact.date_contact);
+      let dateContact = new Date(contact.date_contact);
+
+      let message = contact.message_contact;
+      console.log(contact.message_contact.length);
+
+      if (contact.message_contact.length > 50) {
+        message = contact.message_contact.slice(0, 50) + "...";
+      }
 
       document.querySelector(".tbodyContact").innerHTML +=
         `
@@ -48,7 +55,7 @@ function displayContact(contacts) {
         </td>
 
         <td class="px-6 py-4 text-wrap">` +
-        contact.message_contact +
+        message +
         `</td>
 
         <td class="px-6 py-4 text-wrap">` +
@@ -166,8 +173,7 @@ function openViewContactModal(data) {
     <p class='text-justify mb-7'>
     ` +
     data.message_contact +
-    ` Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat quas quaerat voluptatem unde quasi, sequi, aut eveniet earum eos totam doloribus eaque ut animi dolore, odio doloremque pariatur ducimus dolores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat quas quaerat voluptatem unde quasi, sequi, aut eveniet earum eos totam doloribus eaque ut animi dolore, odio doloremque pariatur ducimus dolores doloremque.
-    </p>
+    `</p>
     <select name="statusContact" id="statusContact" class="absolute bottom-4 right-0 rounded-md border border-[#e0e0e0] bg-white w-28 py-1 indent-2 text-base font-medium text-black outline-none focus:border-[#C0DF85] focus:shadow-md mr-0">
       <option value='1' class='mb-3 block'><i class='fa-solid fa-envelope-circle-check mr-1'></i> Non lue</option>
       <option value='2' class='mb-3 block'  ` +
