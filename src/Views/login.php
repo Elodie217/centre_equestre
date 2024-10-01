@@ -19,13 +19,13 @@ include __DIR__ . '/Includes/navBarre.php';
 
             <div class="formDiv">
                 <label for="passwordLogin" class="">Mot de passe</label>
-                <input class="" id="passwordLogin" type="Password" name="passwordLogin" placeholder="*********" />
+                <input class="" id="passwordLogin" type="Password" name="passwordLogin" placeholder="******" />
             </div>
-            <button onclick="pageEmailingForgetPassword()" class="linkPassword">Mot de passe oublié ?</button>
+            <button onclick="pageEmailingForgetPassword()" class="linkPassword mb-4">Mot de passe oublié ?</button>
 
-            <div id="errorMessageLogin" class="text-[#ff2727]"></div>
+            <div id="errorMessageLogin" class="text-[#ff2727] text-md "></div>
 
-            <div class="mt-8 flex justify-center text-lg text-black">
+            <div class="mt-2 flex justify-center text-lg text-black">
                 <button type="submit" class="btnLoginForm" onclick="loginVerification()">Connexion</button>
             </div>
         </div>

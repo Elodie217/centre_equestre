@@ -32,7 +32,7 @@ class UserRepository
         $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
         $user = $statement->fetch();
 
-        if ($user) {
+        if ($user->getIdUser() !== null) {
             if (password_verify($passwordLogin, $user->getPasswordUser())) {
 
                 $_SESSION['user'] = $user;

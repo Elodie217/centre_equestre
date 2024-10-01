@@ -81,7 +81,7 @@ function displayHorses(Horses) {
       `</p>
 
       <p class='mb-2 text-base'>` +
-      isNull(horse.height_horse, "Taille (en cm) :") +
+      isNull(horse.height_horse, "Taille (en cm) : ") +
       `</p>
 
       <p class='mb-3 text-base'>` +

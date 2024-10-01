@@ -86,7 +86,8 @@
 /* rounded-3xl border-none bg-[#C0DF85] bg-opacity-70 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md */
 
 .linkPassword {
-  color: rgb(96 165 250);
+  color: rgb(59 130 246);
+  font-size: 14px;
 }
 /* mb-6 text-blue-400 hover:underline */
 .linkPassword:hover {
@@ -95,18 +96,18 @@
 
 .btnLoginForm {
   border-radius: 24px;
-  background-color: #c0df85b6;
+  background-color: #895b1e;
   /* opacity: 70%; */
   padding: 8px 40px;
   color: white;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
   backdrop-filter: blur(12px);
-  transition: color 3s;
+  transition: color 300ms;
   /* transition-duration: 3000ms; */
 }
 .btnLoginForm:hover {
-  background-color: #c0df85;
+  background-color: #a16c21;
 }
 /* rounded-3xl bg-[#C0DF85] bg-opacity-70 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600 */
 
@@ -223,7 +224,7 @@
 }
 
 .btnRegister {
-  background-color: #a16c21;
+  background-color: #895b1e;
   color: white;
   border: none;
   border-radius: 12px;
@@ -233,5 +234,5 @@
 }
 
 .btnRegister:hover {
-  background-color: #a16c21cc;
+  background-color: #a16c21;
 }
