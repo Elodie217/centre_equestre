@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Les cavaliers des Vallées</title>
     <link rel="shortcut icon" type="image/jpg" href="../../../public/assets/images/favIcone.png" />
+    <meta name="description" content="Découvrez le Centre Équestre Les Cavaliers des Vallées, proposant des cours d'équitation adaptés à tous les niveaux, des pensions pour chevaux et des installations de qualité. Gérez vos cours et explorez nos services en toute simplicité." />
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
 

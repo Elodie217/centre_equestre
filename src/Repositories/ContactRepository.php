@@ -32,7 +32,7 @@ class ContactRepository
         if ($statement->execute()) {
             $reponse = array(
                 'status' => 'success',
-                'message' => "Votre message à bien été envoyé !"
+                'message' => "Votre message a bien été envoyé !"
             );
             return $reponse;
         } else {

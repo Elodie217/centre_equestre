@@ -1,5 +1,17 @@
 {
-    "require": {
-        "firebase/php-jwt": "^6.10"
+  "require": {
+    "firebase/php-jwt": "^6.10"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.3"
+  },
+  "scripts": {
+    "tests_unitaires": "./vendor/bin/phpunit --colors=always --testdox ./src/Tests/Unitaires/",
+    "tests_fonctionnels": "./vendor/bin/phpunit --colors=always --testdox ./src/Tests/Fonctionnels/"
+  },
+  "autoload": {
+    "psr-4": {
+      "src\\": "src/"
     }
+  }
 }

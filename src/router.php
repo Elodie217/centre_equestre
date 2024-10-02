@@ -194,6 +194,10 @@ switch ($route) {
                     die;
             }
         }
+        
+    case HOME_URL . 'privacypolicy':
+        $HomeController->privacyPolicy();
+        die;
 
 
     case $routeComposee[0] == "user":

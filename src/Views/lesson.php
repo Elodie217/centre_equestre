@@ -17,7 +17,7 @@ include __DIR__ . '/Includes/navBarre.php';
         <h2 class="text-3xl">Présentation</h2>
         <div class="lg:flex justify-around items-center">
             <div class="lg:w-1/2 p-2 sm:p-6 text-justify">Au Centre Équestre Les Cavaliers des Vallées, nous offrons une gamme complète de cours pour tous les âges et niveaux. De l'initiation à l'équitation pour les débutants aux cours de perfectionnement pour les cavaliers confirmés, nous proposons également des leçons spécialisées comme le saut d'obstacles, le dressage et le cross. Nos stage de balades, de voltige, pony games, et éthologie éveillent la curiosité et renforcent la complicité avec votre cheval. Tous nos cours sont encadrés par des moniteurs qualifiés, qui sauront vous accompagner avec passion et professionnalisme. Rejoignez-nous et vivez pleinement votre passion au rythme des chevaux !</div>
-            <img src="https://images.pexels.com/photos/103543/pexels-photo-103543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="lg:w-1/2 p-2 sm:p-6">
+            <img src="https://images.pexels.com/photos/103543/pexels-photo-103543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="un cheval et son cavalier sur un concours de CSO" class="lg:w-1/2 p-2 sm:p-6">
         </div>
     </section>
     <section class="m-10">

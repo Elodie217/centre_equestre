@@ -24,7 +24,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
     <div class="w-full sm:w-11/12 mx-auto p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 sm:px-8">
         <button onclick="redirect('lesson')" class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
             <div class="relative mb-4 rounded-2xl">
-                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Un enfant sur un cheval">
                 <p class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100">
                     Découvrir
                     <i class="fa-solid fa-angles-right ml-2"></i>
@@ -39,7 +39,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
         </button>
         <button onclick="redirect('facility')" class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
             <div class="relative mb-4 rounded-2xl">
-                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://cdn.pixabay.com/photo/2021/11/03/18/25/construction-6766555_1280.jpg" alt="">
+                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://cdn.pixabay.com/photo/2021/11/03/18/25/construction-6766555_1280.jpg" alt="Des box">
                 <p class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100">
                     Découvrir
                     <i class="fa-solid fa-angles-right ml-2"></i>
@@ -54,7 +54,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
         </button>
         <button onclick="redirect('board')" class="bg-white  p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
             <div class="relative mb-4 rounded-2xl">
-                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.unsplash.com/photo-1689897319489-90486828911f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <img class="max-h-44 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.unsplash.com/photo-1689897319489-90486828911f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Des chevaux dans un pré">
                 <p class="flex justify-center items-center bg-[#A16C21] bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100">
                     Découvrir
                     <i class="fa-solid fa-angles-right ml-2"></i>
@@ -92,7 +92,7 @@ include __DIR__ . '/Includes/headerWebsite.php';
         <br><br>
         Venez vivre une expérience unique en Haute-Savoie, où chaque cavalier, petit ou grand, pourra s'épanouir et créer des souvenirs inoubliables au sein d'une communauté chaleureuse et accueillante.
     </div>
-    <img src="https://images.unsplash.com/photo-1624125278860-381b6acd3b44?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="md:w-2/5 p-6">
+    <img src="https://images.unsplash.com/photo-1624125278860-381b6acd3b44?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Un cavalier sur un cheval" class="md:w-2/5 p-6">
 </section>
 
 <div class="w-fit text-2xl m-auto mb-10">
