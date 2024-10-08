@@ -433,8 +433,14 @@ function AddUser(
 function reponseAddUser(data) {
   if (data.status == "success") {
     openSuccessMessage(data.message);
-    getAllUsers();
+    chooseOrder("lastname_user");
     closeAddUserModal();
+    document.getElementById("lastnameUserAdd").value = "";
+    document.getElementById("firstnameUserAdd").value = "";
+    document.getElementById("emailUserAdd").value = "";
+    document.getElementById("phoneUserAdd").value = "";
+    document.getElementById("birthdateUserAdd").value = "";
+    document.getElementById("addressUserAdd").value = "";
   } else {
     document.getElementById("errorMessageUserAdd").innerHTML = data.message;
   }

@@ -21,8 +21,6 @@ function getUserHorses() {
 }
 
 function displayUserHorses(horses) {
-  console.log(horses);
-
   let divUserHorse = document.querySelector(".divUserHorse");
   divUserHorse.innerHTML = ``;
 
@@ -117,74 +115,116 @@ function openEditHorseModalUser(horse) {
   document.querySelector(".modalEditHorseUser").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 
-  document.querySelector(".divEditHorseUser").innerHTML =
-    `
- <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
-    horse.name_horse +
-    `</h3>
-    <div class="-mx-3 flex flex-wrap font-medium">
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base'>Nom*</label>
-              <input type="text" name="nameHorse" id="nameHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
-    horse.name_horse +
-    `' >
-            </div>
-        </div>
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="birthdateHorse" class='mb-3 block text-base'>Date de naissance*</label>
-                <input type="date" name="birthdateHorse" id="birthdateHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    horse.birthdate_horse +
-    `>
-            </div>
-        </div>
-    </div>
+  let nameImageHorse = horse.image_horse.split("/").pop();
 
-
-    <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base'>Image*</label>
-        <input type="text" name="imageHorse" id="imageHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    horse.image_horse +
-    ` >
-    </div>
-
-    <div class="-mx-3 flex flex-wrap">
-    
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
-                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    isNull(horse.height_horse) +
-    `>
-            </div>
-        </div>
-    
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
-                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    isNull(horse.coat_horse) +
-    `>
-            </div>
-        </div>
-        
-    </div>
-                
-
-    <div id="errorMessageHorsesEditUser" class="text-[#ff2727]"></div>
-
-     <div class="w-fit m-auto mt-8">
-         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerificationUser(` +
+  document.getElementById("h3EditHorseUser").innerText =
+    "Modifier " + horse.name_horse;
+  document.getElementById("nameHorseEditUser").value = horse.name_horse;
+  document.getElementById("previewimageHorseEditUser").src = horse.image_horse;
+  document.getElementById("birthdateHorseEditUser").value =
+    horse.birthdate_horse;
+  document.getElementById("heightHorseEditUser").value = isNull(
+    horse.height_horse
+  );
+  document.getElementById("coatHorseEditUser").value = isNull(horse.coat_horse);
+  document.getElementById("btnEditHorseVerificationUser").innerHTML =
+    `<button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerificationUser(` +
     horse.id_horse +
-    `)">Modifier</button>
-     </div>
-  `;
+    `, '` +
+    nameImageHorse +
+    `')">Modifier</button>`;
+
+  // document.querySelector(".divEditHorseUser").innerHTML =
+  //   `
+  //  <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
+  //     horse.name_horse +
+  //     `</h3>
+  //     <div class="-mx-3 flex flex-wrap font-medium">
+  //         <div class="w-full px-3 sm:w-1/2">
+  //             <div class="mb-5">
+  //               <label for="nameHorse" class='mb-3 block text-base'>Nom*</label>
+  //               <input type="text" name="nameHorse" id="nameHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
+  //     horse.name_horse +
+  //     `' >
+  //             </div>
+  //         </div>
+  //         <div class="w-full px-3 sm:w-1/2">
+  //             <div class="mb-5">
+  //                 <label for="birthdateHorse" class='mb-3 block text-base'>Date de naissance*</label>
+  //                 <input type="date" name="birthdateHorse" id="birthdateHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
+  //     horse.birthdate_horse +
+  //     `>
+  //             </div>
+  //         </div>
+  //     </div>
+
+  //     <div class="mb-5">
+  //         <label for="imageHorse" class='mb-3 block text-base'>Image*</label>
+  //         <input type="text" name="imageHorse" id="imageHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
+  //     horse.image_horse +
+  //     ` >
+  //     </div>
+
+  //     <div class="-mx-3 flex flex-wrap">
+
+  //         <div class="w-full px-3 sm:w-1/2">
+  //             <div class="mb-5">
+  //                 <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
+  //                 <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
+  //     isNull(horse.height_horse) +
+  //     `>
+  //             </div>
+  //         </div>
+
+  //         <div class="w-full px-3 sm:w-1/2">
+  //             <div class="mb-5">
+  //                 <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
+  //                 <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEditUser" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
+  //     isNull(horse.coat_horse) +
+  //     `>
+  //             </div>
+  //         </div>
+
+  //     </div>
+
+  //     <div id="errorMessageHorsesEditUser" class="text-[#ff2727]"></div>
+
+  //      <div class="w-fit m-auto mt-8">
+  //          <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerificationUser(` +
+  //     horse.id_horse +
+  //     `)">Modifier</button>
+  //      </div>
+  //   `;
 }
 
-function editHorseVerificationUser(idHorse) {
+let imageHorseEditUser = document.getElementById("imageHorseEditUser");
+
+imageHorseEditUser.addEventListener("change", function (event) {
+  imageHorseEditUser = event.target.files;
+
+  console.log(imageHorseEditUser);
+
+  document.getElementById("errorMessageHorsesEditUser").innerHTML = "";
+
+  if (imageHorseEditUser.length > 0) {
+    let file = imageHorseEditUser[0];
+    if (
+      file.type == "image/png" ||
+      file.type == "image/jpeg" ||
+      file.type == "image/jpg" ||
+      file.type == "image/svg"
+    ) {
+      document.getElementById("previewimageHorseEditUser").src =
+        URL.createObjectURL(file);
+    } else {
+      document.getElementById("errorMessageHorsesEditUser").innerHTML =
+        "Les formats d'image accepté sont : png, jpeg, jpg et svg";
+    }
+  }
+});
+
+function editHorseVerificationUser(idHorse, nameImageHorse) {
   let nameHorseEdit = document.getElementById("nameHorseEditUser").value;
-  let imageHorseEdit = document.getElementById("imageHorseEditUser").value;
   let birthdateHorseEdit = document.getElementById(
     "birthdateHorseEditUser"
   ).value;
@@ -199,37 +239,61 @@ function editHorseVerificationUser(idHorse) {
 
   let bDate = new Date(birthdateHorseEdit);
 
-  if (
-    nameHorseEdit !== "" &&
-    imageHorseEdit !== "" &&
-    birthdateHorseEdit !== ""
-  ) {
+  const maxSizeImage = 2 * 1024 * 1024;
+
+  if (imageHorseEditUser.length == 1) {
+    if (
+      imageHorseEditUser[0].type == "image/png" ||
+      imageHorseEditUser[0].type == "image/jpeg" ||
+      imageHorseEditUser[0].type == "image/jpg" ||
+      imageHorseEditUser[0].type == "image/svg"
+    ) {
+      if (imageHorseEditUser[0].size <= maxSizeImage) {
+        imageHorseEditUser = imageHorseEditUser[0];
+      } else {
+        errorMessageHorsesEdit.innerHTML = "L'image de doit pas dépasser 2Mo.";
+        return;
+      }
+    } else {
+      errorMessageHorsesEdit.innerHTML =
+        "Les formats d'image accepté sont : png, jpeg, jpg et svg.";
+      return;
+    }
+  } else if (imageHorseEditUser > 1) {
+    errorMessageHorsesEdit.innerHTML = "Une seule image est acceptée.";
+    return;
+  } else {
+    imageHorseEditUser = document.getElementById(
+      "previewimageHorseEditUser"
+    ).src;
+  }
+
+  if (nameHorseEdit !== "" && birthdateHorseEdit !== "") {
     if (nameHorseEdit.length <= 50) {
       if (isValidDateFormat(birthdateHorseEdit) && DateNow > bDate.getTime()) {
-        if (isValidURL(imageHorseEdit)) {
-          if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
-            if (
-              (heightHorseEdit > 0 && heightHorseEdit < 200) ||
-              heightHorseEdit == ""
-            ) {
-              editHorseUser(
-                idHorse,
-                nameHorseEdit,
-                imageHorseEdit,
-                birthdateHorseEdit,
-                heightHorseEdit,
-                coatHorseEdit
-              );
-            } else {
-              errorMessageHorsesEdit.innerHTML =
-                "Merci de renter une taille valide.";
-            }
+        if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
+          if (
+            (heightHorseEdit > 0 && heightHorseEdit < 200) ||
+            heightHorseEdit == ""
+          ) {
+            let formDataEditUser = new FormData();
+
+            formDataEditUser.append("idHorse", idHorse);
+            formDataEditUser.append("nameImageHorse", nameImageHorse);
+            formDataEditUser.append("nameHorse", nameHorseEdit);
+            formDataEditUser.append("birthdateHorse", birthdateHorseEdit);
+            formDataEditUser.append("heightHorse", heightHorseEdit);
+            formDataEditUser.append("coatHorse", coatHorseEdit);
+            formDataEditUser.append("imageHorse", imageHorseEditUser);
+
+            editHorseUser(formDataEditUser);
           } else {
             errorMessageHorsesEdit.innerHTML =
-              "La robe doit faire au maximum 50 caractères.";
+              "Merci de renter une taille valide.";
           }
         } else {
-          errorMessageHorsesEdit.innerHTML = "Merci de renter un URL valide.";
+          errorMessageHorsesEdit.innerHTML =
+            "La robe doit faire au maximum 50 caractères.";
         }
       } else {
         errorMessageHorsesEdit.innerHTML = "Merci de renter une date valide.";
@@ -243,32 +307,15 @@ function editHorseVerificationUser(idHorse) {
   }
 }
 
-function editHorseUser(
-  idHorse,
-  nameHorse,
-  imageHorse,
-  birthdateHorse,
-  heightHorse,
-  coatHorse
-) {
-  let editHorse = {
-    idHorse: idHorse,
-    nameHorse: nameHorse,
-    imageHorse: imageHorse,
-    birthdateHorse: birthdateHorse,
-    heightHorse: heightHorse,
-    coatHorse: coatHorse,
-  };
-
+function editHorseUser(formDataEditUser) {
   let JWTUser = localStorage.getItem("JWTUser");
 
   let params = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + JWTUser,
-      "Content-Type": "application/json; charset=utf-8",
     },
-    body: JSON.stringify(editHorse),
+    body: formDataEditUser,
   };
 
   fetch(HOME_URL + "user/horses/edit", params)

@@ -55,10 +55,14 @@ include __DIR__ . '/Includes/dashboard.php';
                     </div>
                 </div>
 
-
                 <div class="mb-5">
                     <label for="imageHorse" class='mb-3 block text-base'>Image*</label>
-                    <input type="text" name="imageHorse" id="imageHorse" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=''>
+
+                    <div class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md flex flex-col items-center">
+
+                        <input id="imageHorse" type="file" name="imageHorse" class="w-full appearance-none">
+                        <img src="" alt="Aperçu" id="previewImageHorse" class="mt-4 max-h-80">
+                    </div>
                 </div>
 
                 <div class="-mx-3 flex flex-wrap">
@@ -123,7 +127,81 @@ include __DIR__ . '/Includes/dashboard.php';
                     <i class="fa-regular fa-circle-xmark "></i>
                 </button>
                 <div class="divEditHorse">
+                    <h3 class="text-2xl text-center mb-8 mx-10" id='h3EditHorse'></h3>
+                    <div class="-mx-3 flex flex-wrap font-medium ">
+                        <div class="w-full px-3 sm:w-1/2">
+                            <div class="mb-5">
+                                <label for="nameHorse" class='mb-3 block text-base  "'>Nom*</label>
+                                <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=''>
+                            </div>
+                        </div>
+                        <div class="w-full px-3 sm:w-1/2">
+                            <div class="mb-5">
+                                <label for="horseUser" class='mb-3 block text-base  "'>Propriétaire*</label>
 
+                                <select name="horseUser" id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-5">
+                        <label for="imageHorseEdit" class='mb-3 block text-base'>Image*</label>
+
+                        <div class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md flex flex-col items-center">
+
+                            <input id="imageHorseEdit" type="file" name="imageHorseEdit" class="w-full appearance-none">
+                            <img src="" alt="Aperçu" id="previewImageHorseEdit" class="mt-4 max-h-80">
+                        </div>
+                    </div>
+
+                    <div class="-mx-3 flex flex-wrap">
+                        <div class="w-full px-3 sm:w-1/2">
+                            <div class="mb-5">
+                                <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance*</label>
+                                <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=>
+                            </div>
+                        </div>
+                        <div class="w-full px-3 sm:w-1/2">
+                            <div class="mb-5">
+                                <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
+                                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="-mx-3 flex flex-wrap">
+                        <div class="w-full px-3 sm:w-1/2">
+                            <div class="mb-5">
+                                <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
+                                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=>
+                            </div>
+                        </div>
+                        <div class="w-full px-3 sm:w-1/2">
+                            <div class="mb-5">
+                                <label for="horseBox" class='mb-3 block text-base"'>Box*</label>
+
+                                <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="boardingHorse" class='mb-3 block text-base'>Pension*</label>
+                        <select name="boardingHorse" id="boardingHorseEdit" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
+
+                        </select>
+                    </div>
+
+
+                    <div id="errorMessageHorsesEdit" class="text-[#ff2727]"></div>
+
+                    <div class="w-fit m-auto mt-8" id="btnEditHorseVerification">
+
+                    </div>
                 </div>
 
             </div>

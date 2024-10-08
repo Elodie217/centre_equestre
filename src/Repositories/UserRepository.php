@@ -190,31 +190,111 @@ class UserRepository
 
     public function emailForgetPassword($email, $idUser)
     {
-        $to      = $email;
-        $subject = 'Réinitialisation de votre mot de passe';
-        $message = '<html>
-        Bonjour ! <br>
-        <br>  
-        Vous avez demandé à réinitialiser votre mot de passe. Pour compléter cette procédure, veuillez cliquer sur le lien ci-dessous : <a href="http://centreequestre2' . HOME_URL . 'forgotPassword/' . $idUser . '">Réinitialiser mon mot de passe</a>.
-        <br>
-        <br>
-        Si vous n\'êtes pas à l\'origine de cette demande, merci d\'ignorer ce mail.
-        <br><br>
-        A bientôt au centre équestre !
-        </html>';
+
+        $to = $email;
+
+        $subject = '=?UTF-8?B?' . base64_encode('Réinitialisation de votre mot de passe') . '?=';
+
+        $message = '
+    <html>
+    <head>
+        <title>Réinitialisation de votre mot de passe</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        
+        <style>
+            .email-container {
+                font-family: "Poppins", sans-serif;
+                background-color: #f4f4f4;
+                padding: 20px;
+                color: #333333;
+            }
+            .title {
+            font-family: "Amatic SC", sans-serif;
+            font-size: 45px;
+            margin: 0;
+
+            }
+            .header {
+                background-color: #64832F;
+                padding: 10px;
+                text-align: center;
+                color: white;
+            }
+            .content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+            }
+            .button {
+                background-color: #A16C21;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 20px 0;
+                border-radius: 5px;
+            }
+            .button:hover{
+                background-color: #895B1E;
+            }
+            .footer {
+                margin-top: 20px;
+                margin-bottom: 10px;
+                font-size: 12px;
+                text-align: center;
+                color: #999999;
+            }
+            .logo {
+                width: 100px;
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <div class="header">
+                <img src="http://centreequestre2/public/assets/images/logo.png" alt="Logo Les cavaliers des vallées" class="logo">
+                <h1 class="title">Les cavaliers des vallées</h1>
+            </div>
+
+            <div class="content">
+                <p>Bonjour,</p>
+                <p>Vous avez demandé à réinitialiser votre mot de passe. Pour compléter cette procédure, veuillez cliquer sur le bouton ci-dessous :</p>
+                <a href="http://centreequestre2' . htmlentities(HOME_URL) . 'forgotPassword/' . htmlentities($idUser) . '" class="button">Réinitialiser mon mot de passe</a>
+                <p>Si vous n\'êtes pas à l\'origine de cette demande, merci d\'ignorer ce mail.</p>
+                <p>A bientôt aux Cavaliers des vallées !</p>
+            </div>
+
+            <div class="footer">
+                <p>Vous recevez cet e-mail car vous êtes membre des cavaliers des vallées.</p>
+                <p>Les cavaliers des vallées - 123 Rue du Cheval, 75000 Paris</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    ';
 
         $headers = 'MIME-Version: 1.0' . "\r\n" .
-            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'Content-type: text/html; charset=UTF-8' . "\r\n" .
             'From: centreequestre@gmail.com' . "\r\n" .
             'Reply-To: centreequestre@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         $test = mail($to, $subject, $message, $headers);
 
+
         if ($test) {
             $reponse = array(
                 'status' => 'success',
-                'message' => "L'email a été envoyé ! Veuillez vérifier votre boîte de réception."
+                'message' => "L'e-mail a été envoyé ! Veuillez vérifier votre boîte de réception."
             );
             return $reponse;
         } else {
@@ -222,8 +302,10 @@ class UserRepository
                 'status' => 'error',
                 'message' => "Une erreur est survenue dans l'envoi de votre mail."
             );
+            return $reponse;
         }
     }
+
 
     public function change($idUser, $loginUser, $passwordForgotPasswordUser)
     {
@@ -314,21 +396,100 @@ class UserRepository
     public function emailRegister($email, $lastname, $firstname, $idUser, $loginUser)
     {
 
-        $to      = $email;
-        $subject = 'Création de votre compte';
-        $message = '<html>
-        Bonjour ' . $lastname . ' ' . $firstname . ' ! <br>
-        <br>
-        Afin de créer votre espace personnel, vous pouvez dès à présent cliquer sur <a href="http://centreequestre2' . HOME_URL . 'register/' . $idUser . '">ce lien</a> pour créer votre mot de passe.
-        <br>
-        <br>
-        Voici votre identifiant à utiliser pour lors de votre connexion : ' . $loginUser . '
-        <br><br>
-        A bientôt au centre équestre !
+        $to = $email;
+        $subject = '=?UTF-8?B?' . base64_encode('Création de compte') . '?=';
+
+        $message = '
+        <html>
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        
+                <title>Créer votre espace personnel</title>
+                <style>
+                    .email-container {
+                        font-family: "Poppins", sans-serif;
+                        background-color: #f4f4f4;
+                        padding: 20px;
+                        color: #333333;
+                    }
+                    .title {
+                    font-family: "Amatic SC", sans-serif;
+                    font-size: 45px;
+                    margin: 0;
+
+                    }
+                    .header {
+                        background-color: #64832F;
+                        padding: 10px;
+                        text-align: center;
+                        color: white;
+                    }
+                    .content {
+                        background-color: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                    }
+                    .button {
+                        background-color: #A16C21;
+                        color: white;
+                        padding: 10px 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 20px 0;
+                        border-radius: 5px;
+                    }
+                    .button:hover{
+                        background-color: #895B1E;
+                    }
+                    .footer {
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                        font-size: 12px;
+                        text-align: center;
+                        color: #999999;
+                    }
+                    .logo {
+                        width: 100px;
+                        margin: 10px 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="email-container">
+                
+                    <div class="header">
+                        <img src="http://centreequestre2/public/assets/images/logo.png" alt="Logo Les cavaliers des vallées" class="logo">
+                        <h1 class="title">Les cavaliers des vallées</h1>
+                    </div>
+
+                    <div class="content">
+                        <p>Bonjour ' . htmlspecialchars($lastname) . ' ' . htmlspecialchars($firstname) . ',</p>
+                        <p>Afin de créer votre espace personnel, vous pouvez dès à présent cliquer sur le bouton ci-dessous pour définir votre mot de passe :</p>
+                        <a href="http://centreequestre2' . htmlentities(HOME_URL) . 'register/' . htmlentities($idUser) . '" class="button">Créer mon mot de passe</a>
+                        <p>Voici votre identifiant pour vous connecter : <strong>' . htmlspecialchars($loginUser) . '</strong></p>
+                        <p>Si vous avez des questions, n\'hésitez pas à nous contacter.</p>
+                        <p>A bientôt aux cavaliers des vallées !</p>
+                    </div>
+
+                    <div class="footer">
+                        <p>Vous recevez cet e-mail car vous êtes membre des cavaliers des vallées.</p>
+                        <p>Les cavaliers des vallées - 123 Rue du Cheval, 75000 Paris</p>
+                    </div>
+                </div>
+            </body>
         </html>';
 
+
         $headers = 'MIME-Version: 1.0' . "\r\n" .
-            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'Content-type: text/html; charset=UTF-8' . "\r\n" .
             'From: centreequestre@gmail.com' . "\r\n" .
             'Reply-To: centreequestre@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();

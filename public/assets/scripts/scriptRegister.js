@@ -129,12 +129,14 @@ function displayUserRegister(User, loginUser) {
               <input type="password" name="passwordRegisterBis" id="passwordRegisterBis" class="inputRegister">
           </div>
       </div>
-      <p class='passwordSpan'> Le mot de passe doit contenir au minimum 6 caractères.</p>
+      <p class='passwordSpan text-[#ff2727]'></p>
   </div>
 
   <div>
     <input type="checkbox" id="gdprRegister" name="gdprRegister" />
-    <label for="gdprRegister">En cochant cette case, vous acceptez notre <a href="#" class="text-blue-500 underline">politique de confidentialité</a> et consentez à la collecte et à l'utilisation de vos données personnelles conformément au RGPD.*</label>
+    <label for="gdprRegister">En cochant cette case, vous acceptez notre <a href="` +
+    HOME_URL +
+    `privacypolicy" class="text-blue-500 underline">politique de confidentialité</a> et consentez à la collecte et à l'utilisation de vos données personnelles conformément au RGPD.*</label>
   </div>
   
   <div id="errorMessageUserRegister" class="text-[#ff2727]"></div>

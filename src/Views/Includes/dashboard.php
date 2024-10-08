@@ -3,10 +3,10 @@
     <!-- Barre de navigation en haut -->
     <div class="bg-[#64832F] shadow w-full p-2 flex items-center justify-between">
         <div class="flex items-center">
-            <a href="#" class="flex items-center mx-2 px-6">
+            <button onclick="redirect('')" class="flex items-center mx-2 px-6">
                 <img src="/public/assets/images/logo.png" alt="Logo des cavaliers des vallées" class='max-w-24 ml-4 sm:mr-6'>
                 <h2 class="text-4xl hidden sm:block" style='font-family: "Amatic SC", sans-serif;'>Les cavaliers des vallées</h2>
-            </a>
+            </button>
 
         </div>
 

@@ -123,7 +123,7 @@ class HorseRepository
 
     public function editHorse($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse)
     {
-        $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse, birthdate_horse = :birthdateHorse, image_horse = :imageHorse, height_horse = :heightHorse, coat_horse = :coatHorse, id_user = :horseUser, id_box = :horseBox, id_boarding = :boardingHorse WHERE id_horse = :idHorse";
+        $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse, image_horse = :imageHorse, birthdate_horse = :birthdateHorse, height_horse = :heightHorse, coat_horse = :coatHorse, id_user = :horseUser, id_box = :horseBox, id_boarding = :boardingHorse WHERE id_horse = :idHorse";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':idHorse', $idHorse);
@@ -153,7 +153,7 @@ class HorseRepository
 
     public function editHorseUser($idHorse, $nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse)
     {
-        $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse, birthdate_horse = :birthdateHorse, image_horse = :imageHorse, height_horse = :heightHorse, coat_horse = :coatHorse WHERE id_horse = :idHorse";
+        $sql = "UPDATE " . PREFIXE . "horse SET name_horse = :nameHorse,image_horse = :imageHorse, birthdate_horse = :birthdateHorse, height_horse = :heightHorse, coat_horse = :coatHorse WHERE id_horse = :idHorse";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':idHorse', $idHorse);

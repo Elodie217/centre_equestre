@@ -10,7 +10,6 @@ use Firebase\JWT\Key;
 
 class JWTService
 {
-    // Signing key used to encode and decode the JWT.
     private $role;
     private $key;
     private $payload;

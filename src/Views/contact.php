@@ -38,7 +38,7 @@ include __DIR__ . '/Includes/navBarre.php';
 
         <div class="mx-4 text-sm leading-normal text-justify">
             <input type="checkbox" name="gdprContact" id="gdprContact">
-            <label for="gdprContact">En cochant cette case, vous acceptez notre <a href="#" class="text-blue-500 underline">politique de confidentialité</a> et consentez à la collecte et à l'utilisation de vos données personnelles conformément au RGPD.*</label>
+            <label for="gdprContact">En cochant cette case, vous acceptez notre <a href='<?= HOME_URL . "privacypolicy" ?>' class="text-blue-500 underline">politique de confidentialité</a> et consentez à la collecte et à l'utilisation de vos données personnelles conformément au RGPD.*</label>
         </div>
 
         <div id="errorMessageContact" class="mt-6 mx-4 text-[#ff2727]"></div>

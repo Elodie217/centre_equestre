@@ -16,6 +16,8 @@ function getAllHorses(divDisplay = "horse", idHorse = 0) {
         logout();
       } else {
         if (divDisplay == "horse") {
+          console.log(data);
+
           displayHorses(JSON.parse(data));
         } else if (divDisplay == "box") {
           displayBoxHorses(JSON.parse(data), idHorse);
@@ -53,7 +55,7 @@ function displayHorses(Horses) {
 
     document.querySelector(".divCards").innerHTML +=
       `
-  <article class="bg-white h-fit  p-8 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl border relative">
+  <article class="bg-white h-fit p-8 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl border relative">
     
     <div class="relative mb-4 rounded-2xl">
         <img class=" rounded-2xl min-h-44 max-h-72 mx-auto object-cover transition-transform duration-300 transform group-hover:scale-105" src="` +
@@ -104,6 +106,8 @@ function displayHorses(Horses) {
       horse.id_horse +
       `, '` +
       horse.name_horse +
+      `', '` +
+      horse.image_horse +
       `')"><i class="fa-solid fa-trash mx-1 p-1 transition-all duration-200 transform hover:scale-125"></i> </button>
       </div> 
     </article>
@@ -126,9 +130,32 @@ function closeAddHorseModal() {
   document.querySelector(".blurred").classList.add("hidden");
 }
 
+let imageHorse = document.getElementById("imageHorse");
+
+imageHorse.addEventListener("change", function (event) {
+  imageHorse = event.target.files;
+
+  document.getElementById("errorMessageHorses").innerHTML = "";
+
+  if (imageHorse.length > 0) {
+    let file = imageHorse[0];
+    if (
+      file.type == "image/png" ||
+      file.type == "image/jpeg" ||
+      file.type == "image/jpg" ||
+      file.type == "image/svg"
+    ) {
+      document.getElementById("previewImageHorse").src =
+        URL.createObjectURL(file);
+    } else {
+      document.getElementById("errorMessageHorses").innerHTML =
+        "Les formats d'image accepté sont : png, jpeg, jpg et svg";
+    }
+  }
+});
+
 function newHorseVerification() {
   let nameHorse = document.getElementById("nameHorse").value;
-  let imageHorse = document.getElementById("imageHorse").value;
   let birthdateHorse = document.getElementById("birthdateHorse").value;
   let horseUser = document.getElementById("horseUserAdd").value;
   let heightHorse = document.getElementById("heightHorse").value;
@@ -142,9 +169,11 @@ function newHorseVerification() {
 
   let bDate = new Date(birthdateHorse);
 
+  const maxSizeImage = 2 * 1024 * 1024;
+
   if (
     nameHorse !== "" &&
-    imageHorse !== "" &&
+    imageHorse.length == 1 &&
     birthdateHorse !== "" &&
     horseUser !== "" &&
     horseBox !== "" &&
@@ -153,29 +182,45 @@ function newHorseVerification() {
     if (nameHorse.length <= 50) {
       if (horseUser > 0 && horseBox > 0 && boardingHorse >= 0) {
         if (isValidDateFormat(birthdateHorse) && DateNow > bDate.getTime()) {
-          if (isValidURL(imageHorse)) {
-            if (coatHorse.length <= 50 || coatHorse == "") {
-              if ((heightHorse > 0 && heightHorse < 200) || heightHorse == "") {
-                newHorse(
-                  nameHorse,
-                  imageHorse,
-                  birthdateHorse,
-                  heightHorse,
-                  coatHorse,
-                  horseUser,
-                  horseBox,
-                  boardingHorse
-                );
+          // if (isValidURL(imageHorse)) {
+          if (
+            imageHorse[0].type == "image/png" ||
+            imageHorse[0].type == "image/jpeg" ||
+            imageHorse[0].type == "image/jpg" ||
+            imageHorse[0].type == "image/svg"
+          ) {
+            if (imageHorse[0].size < maxSizeImage) {
+              if (coatHorse.length <= 50 || coatHorse == "") {
+                if (
+                  (heightHorse > 0 && heightHorse < 200) ||
+                  heightHorse == ""
+                ) {
+                  let formData = new FormData();
+                  formData.append("nameHorse", nameHorse);
+                  formData.append("birthdateHorse", birthdateHorse);
+                  formData.append("heightHorse", heightHorse);
+                  formData.append("coatHorse", coatHorse);
+                  formData.append("horseUser", horseUser);
+                  formData.append("horseBox", horseBox);
+                  formData.append("boardingHorse", boardingHorse);
+                  formData.append("imageHorse", imageHorse[0]);
+
+                  newHorse(formData);
+                } else {
+                  errorMessageHorses.innerHTML =
+                    "Merci de renter une taille valide.";
+                }
               } else {
                 errorMessageHorses.innerHTML =
-                  "Merci de renter une taille valide.";
+                  "La robe doit faire au maximum 50 caractères.";
               }
             } else {
               errorMessageHorses.innerHTML =
-                "La robe doit faire au maximum 50 caractères.";
+                "L'image de doit pas dépasser 2Mo.";
             }
           } else {
-            errorMessageHorses.innerHTML = "Merci de renter un URL valide.";
+            errorMessageHorses.innerHTML =
+              "Les formats d'image accepté sont : png, jpeg, jpg et svg";
           }
         } else {
           errorMessageHorses.innerHTML =
@@ -193,36 +238,15 @@ function newHorseVerification() {
   }
 }
 
-function newHorse(
-  nameHorse,
-  imageHorse,
-  birthdateHorse,
-  heightHorse,
-  coatHorse,
-  horseUser,
-  horseBox,
-  boardingHorse
-) {
-  let newHorse = {
-    nameHorse: nameHorse,
-    imageHorse: imageHorse,
-    birthdateHorse: birthdateHorse,
-    heightHorse: heightHorse,
-    coatHorse: coatHorse,
-    horseUser: horseUser,
-    horseBox: horseBox,
-    boardingHorse: boardingHorse,
-  };
-
+function newHorse(formData) {
   let JWTUser = localStorage.getItem("JWTUser");
 
   let params = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + JWTUser,
-      "Content-Type": "application/json; charset=utf-8",
     },
-    body: JSON.stringify(newHorse),
+    body: formData,
   };
 
   fetch(HOME_URL + "admin/horses/add", params)
@@ -280,7 +304,6 @@ function closeEditHorseModal() {
 }
 
 function openEditHorseModal(horse) {
-  console.log("horse edit", horse.id_user, horse.id_box, horse.id_boarding);
   getAllUserSelect(horse.id_user);
   getAllBox(horse.id_box);
   getAllBoardingSelect("horse", horse.id_boarding);
@@ -288,98 +311,49 @@ function openEditHorseModal(horse) {
   document.querySelector(".modalEditHorse").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 
-  document.querySelector(".divEditHorse").innerHTML =
-    `
- <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
-    horse.name_horse +
-    `</h3>
-    <div class="-mx-3 flex flex-wrap font-medium ">
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-              <label for="nameHorse" class='mb-3 block text-base  "'>Nom*</label>
-              <input type="text" name="nameHorse" id="nameHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value='` +
-    horse.name_horse +
-    `' >
-            </div>
-        </div>
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="horseUser" class='mb-3 block text-base  "'>Propriétaire*</label>
+  let nameImageHorse = horse.image_horse.split("/").pop();
 
-                <select name="horseUser"  id="horseUserEdit" class="horseUser w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
-
-                </select>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="mb-5">
-        <label for="imageHorse" class='mb-3 block text-base  "'>Image*</label>
-        <input type="text" name="imageHorse" id="imageHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    horse.image_horse +
-    ` >
-    </div>
-
-    <div class="-mx-3 flex flex-wrap">
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="birthdateHorse" class='mb-3 block text-base"'>Date de naissance*</label>
-                <input type="date" name="birthdateHorse" id="birthdateHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    horse.birthdate_horse +
-    `>
-            </div>
-        </div>
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="heightHorse" class='mb-3 block text-base'>Taille (en cm)</label>
-                <input type="number" min=0 max=200 placeholder="120" name="heightHorse" id="heightHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    isNull(horse.height_horse) +
-    `>
-            </div>
-        </div>
-    </div>
-
-    <div class="-mx-3 flex flex-wrap">
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="coatHorse" class='mb-3 block text-base'>Robe</label>
-                <input type="text" name="coatHorse" placeholder="Alezan" id="coatHorseEdit" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md" value=` +
-    isNull(horse.coat_horse) +
-    `>
-            </div>
-        </div>
-        <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-                <label for="horseBox" class='mb-3 block text-base"'>Box*</label>
-
-                <select name="horseBox" id="horseBoxEdit" class="horseBox w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
-
-                </select>
-            </div>
-        </div>
-    </div>
-                <div class="mb-5">
-                    <label for="boardingHorse" class='mb-3 block text-base'>Pension*</label>
-                    <select name="boardingHorse" id="boardingHorseEdit" class="boardingHorse w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-black outline-none focus:border-[#C0DF85] focus:shadow-md">
-
-                    </select>
-                </div>
-
-
-    <div id="errorMessageHorsesEdit" class="text-[#ff2727]"></div>
-
-     <div class="w-fit m-auto mt-8">
-         <button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerification(` +
+  document.getElementById("h3EditHorse").innerText =
+    "Modifier " + horse.name_horse;
+  document.getElementById("nameHorseEdit").value = horse.name_horse;
+  document.getElementById("previewImageHorseEdit").src = horse.image_horse;
+  document.getElementById("birthdateHorseEdit").value = horse.birthdate_horse;
+  document.getElementById("heightHorseEdit").value = isNull(horse.height_horse);
+  document.getElementById("coatHorseEdit").value = isNull(horse.coat_horse);
+  document.getElementById("btnEditHorseVerification").innerHTML =
+    `<button type="button" class="text-white hover:bg-gray-50 border-b border-gray-100 md:hover:bg-[#A16C21] bg-[#895B1E] hover:bg-[#A16C21] rounded-xl md:border-0 block pl-3 pr-4 py-2 md:py-2 md:px-4 w-fit" onclick="editHorseVerification(` +
     horse.id_horse +
-    `)">Modifier</button>
-     </div>
-  `;
+    `, '` +
+    nameImageHorse +
+    `')">Modifier</button>`;
 }
 
-function editHorseVerification(idHorse) {
+let imageHorseEdit = document.getElementById("imageHorseEdit");
+
+imageHorseEdit.addEventListener("change", function (event) {
+  imageHorseEdit = event.target.files;
+
+  document.getElementById("errorMessageHorses").innerHTML = "";
+
+  if (imageHorseEdit.length > 0) {
+    let file = imageHorseEdit[0];
+    if (
+      file.type == "image/png" ||
+      file.type == "image/jpeg" ||
+      file.type == "image/jpg" ||
+      file.type == "image/svg"
+    ) {
+      document.getElementById("previewImageHorseEdit").src =
+        URL.createObjectURL(file);
+    } else {
+      document.getElementById("errorMessageHorsesEdit").innerHTML =
+        "Les formats d'image accepté sont : png, jpeg, jpg et svg";
+    }
+  }
+});
+
+function editHorseVerification(idHorse, nameImageHorse) {
   let nameHorseEdit = document.getElementById("nameHorseEdit").value;
-  let imageHorseEdit = document.getElementById("imageHorseEdit").value;
   let birthdateHorseEdit = document.getElementById("birthdateHorseEdit").value;
   let horseUserEdit = parseInt(document.getElementById("horseUserEdit").value);
   let heightHorseEdit = document.getElementById("heightHorseEdit").value;
@@ -396,9 +370,37 @@ function editHorseVerification(idHorse) {
 
   let bDate = new Date(birthdateHorseEdit);
 
+  const maxSizeImage = 2 * 1024 * 1024;
+
+  if (imageHorseEdit.length == 1) {
+    if (
+      imageHorseEdit[0].type == "image/png" ||
+      imageHorseEdit[0].type == "image/jpeg" ||
+      imageHorseEdit[0].type == "image/jpg" ||
+      imageHorseEdit[0].type == "image/svg"
+    ) {
+      if (imageHorseEdit[0].size <= maxSizeImage) {
+        console.log(imageHorseEdit);
+
+        imageHorseEdit = imageHorseEdit[0];
+      } else {
+        errorMessageHorsesEdit.innerHTML = "L'image de doit pas dépasser 2Mo.";
+        return;
+      }
+    } else {
+      errorMessageHorsesEdit.innerHTML =
+        "Les formats d'image accepté sont : png, jpeg, jpg et svg.";
+      return;
+    }
+  } else if (imageHorseEdit > 1) {
+    errorMessageHorsesEdit.innerHTML = "Une seule image est acceptée.";
+    return;
+  } else {
+    imageHorseEdit = document.getElementById("previewImageHorseEdit").src;
+  }
+
   if (
     nameHorseEdit !== "" &&
-    imageHorseEdit !== "" &&
     birthdateHorseEdit !== "" &&
     horseUserEdit !== "" &&
     horseBoxEdit !== "" &&
@@ -410,33 +412,32 @@ function editHorseVerification(idHorse) {
           isValidDateFormat(birthdateHorseEdit) &&
           DateNow > bDate.getTime()
         ) {
-          if (isValidURL(imageHorseEdit)) {
-            if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
-              if (
-                (heightHorseEdit > 0 && heightHorseEdit < 200) ||
-                heightHorseEdit == ""
-              ) {
-                editHorse(
-                  idHorse,
-                  nameHorseEdit,
-                  imageHorseEdit,
-                  birthdateHorseEdit,
-                  heightHorseEdit,
-                  coatHorseEdit,
-                  horseUserEdit,
-                  horseBoxEdit,
-                  boardingHorseEdit
-                );
-              } else {
-                errorMessageHorsesEdit.innerHTML =
-                  "Merci de renter une taille valide.";
-              }
+          if (coatHorseEdit.length <= 50 || coatHorseEdit == "") {
+            if (
+              (heightHorseEdit > 0 && heightHorseEdit < 200) ||
+              heightHorseEdit == ""
+            ) {
+              let formDataEdit = new FormData();
+
+              formDataEdit.append("idHorse", idHorse);
+              formDataEdit.append("nameImageHorse", nameImageHorse);
+              formDataEdit.append("nameHorse", nameHorseEdit);
+              formDataEdit.append("birthdateHorse", birthdateHorseEdit);
+              formDataEdit.append("heightHorse", heightHorseEdit);
+              formDataEdit.append("coatHorse", coatHorseEdit);
+              formDataEdit.append("horseUser", horseUserEdit);
+              formDataEdit.append("horseBox", horseBoxEdit);
+              formDataEdit.append("boardingHorse", boardingHorseEdit);
+              formDataEdit.append("imageHorse", imageHorseEdit);
+
+              editHorse(formDataEdit);
             } else {
               errorMessageHorsesEdit.innerHTML =
-                "La robe doit faire au maximum 50 caractères.";
+                "Merci de renter une taille valide.";
             }
           } else {
-            errorMessageHorsesEdit.innerHTML = "Merci de renter un URL valide.";
+            errorMessageHorsesEdit.innerHTML =
+              "La robe doit faire au maximum 50 caractères.";
           }
         } else {
           errorMessageHorsesEdit.innerHTML =
@@ -454,38 +455,15 @@ function editHorseVerification(idHorse) {
   }
 }
 
-function editHorse(
-  idHorse,
-  nameHorse,
-  imageHorse,
-  birthdateHorse,
-  heightHorse,
-  coatHorse,
-  horseUser,
-  horseBox,
-  boardingHorse
-) {
-  let editHorse = {
-    idHorse: idHorse,
-    nameHorse: nameHorse,
-    imageHorse: imageHorse,
-    birthdateHorse: birthdateHorse,
-    heightHorse: heightHorse,
-    coatHorse: coatHorse,
-    horseUser: horseUser,
-    horseBox: horseBox,
-    boardingHorse: boardingHorse,
-  };
-
+function editHorse(formDataEdit) {
   let JWTUser = localStorage.getItem("JWTUser");
 
   let params = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + JWTUser,
-      "Content-Type": "application/json; charset=utf-8",
     },
-    body: JSON.stringify(editHorse),
+    body: formDataEdit,
   };
 
   fetch(HOME_URL + "admin/horses/edit", params)
@@ -511,16 +489,18 @@ function reponseEditHorse(data) {
 
 // Delete horse
 
-function openDeleteHorseModal(idHorse, nameHorse) {
+function openDeleteHorseModal(idHorse, nameHorse, linkImageHorse) {
   document.querySelector(".modalDeleteHorse").classList.remove("hidden");
   document.querySelector(".deleteHorseMessage").innerHTML =
     `<p>Voulez-vous vraiment suppimer ` +
     nameHorse +
     ` ?</p>
   <div class='flex justify-around mt-8'>
-    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick=deleteHorse(` +
+    <button class="p-2 bg-[#895B1E] text-white border-2 border-[#895B1E] hover:bg-white hover:text-[#895B1E] rounded-xl font-bold" onclick="deleteHorse(` +
     idHorse +
-    `) >Oui</button>
+    `, '` +
+    linkImageHorse +
+    `')" >Oui</button>
     <button class="p-2 bg-white text-[#895B1E] border-2 border-[#895B1E] hover:bg-[#895B1E] hover:text-white rounded-xl font-bold" onclick=closeDeleteHorseModal() >Non</button>
   </div>
   `;
@@ -530,9 +510,10 @@ function closeDeleteHorseModal() {
   document.querySelector(".modalDeleteHorse").classList.add("hidden");
 }
 
-function deleteHorse(idHorse) {
+function deleteHorse(idHorse, linkImageHorse) {
   let horse = {
     idHorse: idHorse,
+    linkImageHorse: linkImageHorse,
   };
 
   let JWTUser = localStorage.getItem("JWTUser");

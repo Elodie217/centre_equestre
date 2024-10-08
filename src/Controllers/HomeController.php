@@ -120,6 +120,17 @@ class HomeController
         $this->render("privacyPolicy", ["erreur" => $erreur]);
     }
 
+    public function legalNotices(): void
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("legalNotices", ["erreur" => $erreur]);
+    }
+
     public function login(): void
     {
         if (isset($_GET['erreur'])) {

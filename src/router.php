@@ -194,9 +194,13 @@ switch ($route) {
                     die;
             }
         }
-        
+
     case HOME_URL . 'privacypolicy':
         $HomeController->privacyPolicy();
+        die;
+
+    case HOME_URL . 'legalnotices':
+        $HomeController->legalNotices();
         die;
 
 
@@ -380,9 +384,13 @@ switch ($route) {
 
                             if ($valideJWT == True) {
 
-                                $edithorse = json_decode($data, true);
+                                if ($_FILES) {
+                                    $imageHorse = $_FILES['imageHorse'];
+                                } else if ($_POST['imageHorse']) {
+                                    $imageHorse = $_POST['imageHorse'];
+                                }
 
-                                echo $HorseController->editHorseUser($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse']);
+                                echo $HorseController->editHorseUser($_POST['idHorse'], $_POST['nameImageHorse'], $_POST['nameHorse'], $imageHorse, $_POST['birthdateHorse'], $_POST['heightHorse'], $_POST['coatHorse']);
                                 die;
                             } else {
                                 $response = array(
@@ -774,7 +782,7 @@ switch ($route) {
                             }
 
                         case $routeComposee[2] == "add":
-                            $data = file_get_contents("php://input");
+                            // $data = file_get_contents("php://input");
 
                             $headers = getallheaders();
 
@@ -787,9 +795,7 @@ switch ($route) {
 
                             if ($valideJWT == True) {
 
-                                $addhorse = json_decode($data, true);
-
-                                echo $HorseController->addHorse($addhorse['nameHorse'], $addhorse['imageHorse'], $addhorse['birthdateHorse'], $addhorse['heightHorse'], $addhorse['coatHorse'], $addhorse['horseUser'], $addhorse['horseBox'], $addhorse['boardingHorse']);
+                                echo $HorseController->addHorse($_POST['nameHorse'], $_FILES['imageHorse'], $_POST['birthdateHorse'], $_POST['heightHorse'], $_POST['coatHorse'], $_POST['horseUser'], $_POST['horseBox'], $_POST['boardingHorse']);
 
                                 die;
                             } else {
@@ -815,9 +821,13 @@ switch ($route) {
 
                             if ($valideJWT == True) {
 
-                                $edithorse = json_decode($data, true);
+                                if ($_FILES) {
+                                    $imageHorse = $_FILES['imageHorse'];
+                                } else if ($_POST['imageHorse']) {
+                                    $imageHorse = $_POST['imageHorse'];
+                                }
 
-                                echo $HorseController->editHorse($edithorse['idHorse'], $edithorse['nameHorse'], $edithorse['imageHorse'], $edithorse['birthdateHorse'], $edithorse['heightHorse'], $edithorse['coatHorse'], $edithorse['horseUser'], $edithorse['horseBox'], $edithorse['boardingHorse']);
+                                echo $HorseController->editHorse($_POST['idHorse'], $_POST['nameImageHorse'], $_POST['nameHorse'], $imageHorse, $_POST['birthdateHorse'], $_POST['heightHorse'], $_POST['coatHorse'], $_POST['horseUser'], $_POST['horseBox'], $_POST['boardingHorse']);
 
                                 die;
                             } else {
@@ -844,7 +854,7 @@ switch ($route) {
                             if ($valideJWT == True) {
                                 $horse = json_decode($data, true);
 
-                                echo $HorseController->deleteHorse($horse['idHorse']);
+                                echo $HorseController->deleteHorse($horse['idHorse'], $horse["linkImageHorse"]);
 
                                 die;
                             } else {
