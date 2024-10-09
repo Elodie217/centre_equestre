@@ -75,7 +75,7 @@ switch ($route) {
                 if (isset($routeComposee[1]) && !empty($routeComposee[1])) {
                     $HomeController->register($routeComposee[1]);
                 } else {
-                    var_dump($routeComposee);
+                    $HomeController->home();
                 }
                 die;
         }
@@ -87,7 +87,7 @@ switch ($route) {
 
                 $user = json_decode($data, true);
 
-                echo $UserController->emailForgetPassword($user['emailForgetPassword']);
+                echo $UserController->emailForgetPassword($user['loginForgetPassword'], $user['emailForgetPassword']);
                 die;
 
             default:
@@ -121,14 +121,11 @@ switch ($route) {
                 if (isset($routeComposee[1]) && !empty($routeComposee[1])) {
                     $HomeController->forgotPassword($routeComposee[1]);
                 } else {
-                    var_dump($routeComposee);
+                    $HomeController->home();
                 }
                 die;
         }
 
-        // case HOME_URL . 'board':
-        //     $HomeController->board();
-        //     die;
     case HOME_URL . 'lesson':
         $HomeController->lesson();
         die;
@@ -1464,7 +1461,6 @@ switch ($route) {
                             die;
                     }
                 default:
-                    var_dump("default de l'admin");
                     header('location: ' . HOME_URL . 'admin/lessons');
 
                     die;
@@ -1483,7 +1479,7 @@ switch ($route) {
         die;
 
     default:
-        echo 'Bah mdr';
-        var_dump($routeComposee[0]);
+        $HomeController->home();
+
         die;
 }

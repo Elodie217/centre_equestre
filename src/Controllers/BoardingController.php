@@ -10,18 +10,6 @@ class BoardingController
 
     use Reponse;
 
-
-    // public function horses(): void
-    // {
-    //     if (isset($_GET['erreur'])) {
-    //         $erreur = htmlspecialchars($_GET['erreur']);
-    //     } else {
-    //         $erreur = '';
-    //     }
-
-    //     $this->render("horses", ["erreur" => $erreur]);
-    // }
-
     public function allBoarding()
     {
         $BoardingRepository = new BoardingRepository;
@@ -107,11 +95,4 @@ class BoardingController
             die;
         }
     }
-
-    // function deleteBoarding($idHorse)
-    // {
-    //     $HorseRepository = new HorseRepository;
-    //     $reponse = $HorseRepository->deleteHorse($idHorse);
-    //     return json_encode($reponse);
-    // }
 }

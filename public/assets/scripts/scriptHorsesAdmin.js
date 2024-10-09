@@ -16,8 +16,6 @@ function getAllHorses(divDisplay = "horse", idHorse = 0) {
         logout();
       } else {
         if (divDisplay == "horse") {
-          console.log(data);
-
           displayHorses(JSON.parse(data));
         } else if (divDisplay == "box") {
           displayBoxHorses(JSON.parse(data), idHorse);
@@ -182,7 +180,6 @@ function newHorseVerification() {
     if (nameHorse.length <= 50) {
       if (horseUser > 0 && horseBox > 0 && boardingHorse >= 0) {
         if (isValidDateFormat(birthdateHorse) && DateNow > bDate.getTime()) {
-          // if (isValidURL(imageHorse)) {
           if (
             imageHorse[0].type == "image/png" ||
             imageHorse[0].type == "image/jpeg" ||
@@ -265,6 +262,11 @@ function reponseAddHorse(data) {
     openSuccessMessage(data.message);
     getAllHorses();
     closeAddHorseModal();
+    document.getElementById("nameHorse").value = "";
+    document.getElementById("birthdateHorse").value = "";
+    document.getElementById("horseUserAdd").value = "";
+    document.getElementById("heightHorse").value = "";
+    document.getElementById("coatHorse").value = "";
   } else {
     document.getElementById("errorMessageHorses").innerHTML = data.message;
   }
@@ -380,8 +382,6 @@ function editHorseVerification(idHorse, nameImageHorse) {
       imageHorseEdit[0].type == "image/svg"
     ) {
       if (imageHorseEdit[0].size <= maxSizeImage) {
-        console.log(imageHorseEdit);
-
         imageHorseEdit = imageHorseEdit[0];
       } else {
         errorMessageHorsesEdit.innerHTML = "L'image de doit pas dépasser 2Mo.";

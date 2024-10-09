@@ -285,7 +285,6 @@ function changeLessonUser(idNewLesson) {
 }
 
 function reponseChangeLessonUser(data) {
-  console.log(data.message);
   setTimeout(() => {
     location.reload();
   }, 2000);

@@ -52,24 +52,13 @@ class BoxController
 
     public function editBox($idBox, $boxEdit)
     {
-        // , $boxHorseEdit
-        // && isset($boxHorseEdit)
+
         if (isset($boxEdit) && !empty($boxEdit)) {
             if (strlen($boxEdit) <= 50) {
                 $boxEdit = htmlspecialchars($boxEdit);
-                // if (is_int($boxHorseEdit)) {
                 $BoxRepository = new BoxRepository;
-                // $reponse = $BoxRepository->editBox($idBox, $boxEdit, $boxHorseEdit);
                 $reponse = $BoxRepository->editBox($idBox, $boxEdit);
                 return json_encode($reponse);
-                // } else {
-                //     $response = array(
-                //         'status' => 'error',
-                //         'message' => 'Merci de selectionner un champ.'
-                //     );
-                //     return json_encode($response);
-                //     die;
-                // }
             } else {
                 $response = array(
                     'status' => 'error',

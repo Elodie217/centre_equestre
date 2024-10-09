@@ -2,8 +2,6 @@
 
 namespace src\Repositories;
 
-// session_start();
-
 use src\Services\JWTService;
 use PDO;
 use src\Models\User;
@@ -163,13 +161,15 @@ class UserRepository
         }
     }
 
-    public function sendEmailForgetPassword($emailForgetPassword)
+    public function sendEmailForgetPassword($loginForgetPassword, $emailForgetPassword)
     {
         $sql = "SELECT " . PREFIXE . "user.id_user, " . PREFIXE . "user.email_user
             FROM " . PREFIXE . "user
-	        WHERE " . PREFIXE . "user.email_user = :emailUser";
+	        WHERE " . PREFIXE . "user.login_user = :loginUser
+            AND " . PREFIXE . "user.email_user = :emailUser";
 
         $statement = $this->db->prepare($sql);
+        $statement->bindParam(':loginUser', $loginForgetPassword);
         $statement->bindParam(':emailUser', $emailForgetPassword);
 
         $statement->execute();
@@ -182,7 +182,7 @@ class UserRepository
         } else {
             $reponse = array(
                 'status' => 'error',
-                'message' => "Email incorrect"
+                'message' => "Email ou identifiant incorrect"
             );
             return $reponse;
         }
@@ -233,10 +233,10 @@ class UserRepository
             }
             .button {
                 background-color: #A16C21;
-                color: white;
+                color: white !important;
                 padding: 10px 20px;
                 text-align: center;
-                text-decoration: none;
+                text-decoration: none !important;
                 display: inline-block;
                 font-size: 16px;
                 margin: 20px 0;
@@ -244,6 +244,8 @@ class UserRepository
             }
             .button:hover{
                 background-color: #895B1E;
+                color: white !important;
+                text-decoration: none !important;
             }
             .footer {
                 margin-top: 20px;
@@ -437,10 +439,10 @@ class UserRepository
                     }
                     .button {
                         background-color: #A16C21;
-                        color: white;
+                        color: white !important;
                         padding: 10px 20px;
                         text-align: center;
-                        text-decoration: none;
+                        text-decoration: none !important;
                         display: inline-block;
                         font-size: 16px;
                         margin: 20px 0;
@@ -448,6 +450,8 @@ class UserRepository
                     }
                     .button:hover{
                         background-color: #895B1E;
+                        color: white !important;
+                        text-decoration: none !important;
                     }
                     .footer {
                         margin-top: 20px;

@@ -148,15 +148,15 @@ class UserController
         }
     }
 
-    public function emailForgetPassword($emailForgetPassword)
+    public function emailForgetPassword($loginForgetPassword, $emailForgetPassword)
     {
-        if (isset($emailForgetPassword) && !empty($emailForgetPassword)) {
+        if (isset($loginForgetPassword) && !empty($loginForgetPassword) && isset($emailForgetPassword) && !empty($emailForgetPassword)) {
 
             if (filter_var($emailForgetPassword, FILTER_VALIDATE_EMAIL)) {
                 $emailForgetPassword = htmlspecialchars($emailForgetPassword);
 
                 $UserRepository = new UserRepository;
-                $reponse = $UserRepository->sendEmailForgetPassword($emailForgetPassword);
+                $reponse = $UserRepository->sendEmailForgetPassword($loginForgetPassword, $emailForgetPassword);
                 return json_encode($reponse);
             } else {
                 $response = array(
@@ -499,19 +499,6 @@ class UserController
                                 $addressUserEdit = htmlspecialchars($addressUserEdit);
                             }
 
-                            // if (
-                            //     $roleUserEdit == 'Admin' || $roleUserEdit == 'User'
-                            // ) {
-                            //     $roleUserEdit = htmlspecialchars($roleUserEdit);
-
-                            //     if (is_int($levelUserEdit) || $levelUserEdit == '') {
-                            //         if ($levelUserEdit == '') {
-                            //             $levelUserEdit = NULL;
-                            //         } else {
-                            //             $levelUserEdit = htmlspecialchars($levelUserEdit);
-                            //         }
-
-
                             if ($birthdateUserEdit !== '') {
                                 list($year, $month, $day) = explode("-", $birthdateUserEdit);
                                 if (checkdate($month, $day, $year) && strtotime($birthdateUserEdit) < time()) {
@@ -539,22 +526,6 @@ class UserController
                             $UserRepository = new UserRepository;
                             $reponse = $UserRepository->editProfileUser($idUserEdit, $lastnameUserEdit, $firstnameUserEdit, $emailUserEdit, $phoneUserEdit, $birthdateUserEdit, $addressUserEdit);
                             return json_encode($reponse);
-                            //     } else {
-                            //         $response = array(
-                            //             'status' => 'error',
-                            //             'message' => 'Merci de selectionner un niveau.'
-                            //         );
-                            //         return json_encode($response);
-                            //         die;
-                            //     }
-                            // } else {
-                            //     $response = array(
-                            //         'status' => 'error',
-                            //         'message' => 'Merci de séléctionner un role.'
-                            //     );
-                            //     return json_encode($response);
-                            //     die;
-                            // }
                         } else {
                             $response = array(
                                 'status' => 'error',

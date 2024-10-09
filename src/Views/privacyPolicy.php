@@ -4,10 +4,10 @@ include __DIR__ . '/Includes/headerWebsite.php';
 include __DIR__ . '/Includes/navBarre.php';
 
 ?>
-<section class="mx-24 mb-20 text-justify">
+<section class="mx-5 sm:mx-10 md:mx-24 mb-20 text-justify">
 
     <h1 class="text-6xl font-bold my-10" style='font-family: "Amatic SC", sans-serif;'>Privacy Policy</h1>
-    <section class="mx-10">
+    <section class="mx-5 md:mx-10">
 
         <p>Last updated: October 01, 2024</p>
         <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>

@@ -7,8 +7,6 @@ function getSoon() {
 }
 
 function displaySoonSite(data) {
-  console.log(data);
-
   data.forEach((element) => {
     if (element.element_site == "title_soon") {
       document.getElementById("SoonSiteTitle").innerHTML =

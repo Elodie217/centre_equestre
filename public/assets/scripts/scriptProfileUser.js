@@ -92,7 +92,6 @@ function displayProfileUser(user, role) {
 
 // Edit User
 function openEditProfileUser(User, role) {
-  console.log(User);
   let divEditProfileUser = document.querySelector(".divEditProfileUser");
 
   document.querySelector(".modalEditProfileUser").classList.remove("hidden");

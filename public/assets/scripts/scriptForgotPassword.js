@@ -1,6 +1,9 @@
 // Emailing change password
 
 function emailingForgetPassword() {
+  let loginForgetPassword = document.querySelector(
+    "#loginForgetPassword"
+  ).value;
   let emailForgetPassword = document.querySelector(
     "#emailForgetPassword"
   ).value;
@@ -9,21 +12,27 @@ function emailingForgetPassword() {
   );
   errorMessageEmailingForgetPassword.innerHTML = "";
 
-  if (emailForgetPassword !== "") {
-    if (checkEmail(emailForgetPassword)) {
-      sendEmailForgetPassword(emailForgetPassword);
+  if (loginForgetPassword !== "" && emailForgetPassword !== "") {
+    if (isValidLogin(loginForgetPassword)) {
+      if (checkEmail(emailForgetPassword)) {
+        sendEmailForgetPassword(loginForgetPassword, emailForgetPassword);
+      } else {
+        errorMessageEmailingForgetPassword.innerHTML =
+          "Merci de rentrer un email valide";
+      }
     } else {
       errorMessageEmailingForgetPassword.innerHTML =
-        "Merci de rentrer un email valide";
+        "Merci de rentrer un indentifiant valide";
     }
   } else {
     errorMessageEmailingForgetPassword.innerHTML =
-      "Merci de rentrer votre email";
+      "Merci de rentrer votre indentifiant et votre email";
   }
 }
 
-function sendEmailForgetPassword(emailForgetPassword) {
+function sendEmailForgetPassword(loginForgetPassword, emailForgetPassword) {
   let user = {
+    loginForgetPassword: loginForgetPassword,
     emailForgetPassword: emailForgetPassword,
   };
 
@@ -41,7 +50,6 @@ function sendEmailForgetPassword(emailForgetPassword) {
       let response = JSON.parse(data);
       if (response.status == "success") {
         openSuccessMessage(response.message);
-        console.log("dans le if");
       } else {
         document.getElementById(
           "errorMessageEmailingForgetPassword"
@@ -113,7 +121,6 @@ function getForgotPasswordUserById(idForgotPasswordUser, loginUser) {
   fetch(HOME_URL + "forgotPassword/user", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
       displayUserforgotPassword(JSON.parse(data), loginUser);
     });
 }

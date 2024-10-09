@@ -12,8 +12,11 @@ include __DIR__ . '/Includes/navBarre.php';
         </div>
         <div>
             <div class="formDiv">
-                <p class="italic mb-4 text-base">Veuillez entrer l'adresse e-mail associée à votre compte. <br>
+                <p class="italic mb-4 text-base">Veuillez entrer l'adresse l'identifiant et l'e-mail associée à votre compte. <br>
                     Nous vous enverrons un lien pour réinitialiser votre mot de passe.</p>
+
+                <label for="loginForgetPassword" class="">Votre identifiant :</label>
+                <input class="mb-4" type="text" name="loginForgetPassword" id="loginForgetPassword" />
 
                 <label for="emailForgetPassword" class="">Votre e-mail :</label>
                 <input class="" type="text" name="emailForgetPassword" id="emailForgetPassword" />

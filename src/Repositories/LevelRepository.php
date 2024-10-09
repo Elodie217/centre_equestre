@@ -37,7 +37,7 @@ class LevelRepository
 
     public function addLevel($nameLevel)
     {
-        $sql = "INSERT INTO " . PREFIXE . "Level (name_Level) VALUES (:nameLevel)";
+        $sql = "INSERT INTO " . PREFIXE . "level (name_level) VALUES (:nameLevel)";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':nameLevel', $nameLevel);
@@ -61,8 +61,8 @@ class LevelRepository
     public function deleteLevel($idLevel)
     {
         $sql = "UPDATE " . PREFIXE . "user SET id_level = null WHERE id_level = :id_Level;
-        DELETE FROM " . PREFIXE . "lesson_Level WHERE id_Level = :id_Level;
-        DELETE FROM " . PREFIXE . "level WHERE id_Level = :id_Level";
+        DELETE FROM " . PREFIXE . "lesson_level WHERE id_level = :id_Level;
+        DELETE FROM " . PREFIXE . "level WHERE id_level = :id_Level";
 
         $statement = $this->db->prepare($sql);
 

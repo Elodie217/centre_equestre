@@ -33,7 +33,6 @@ function displayContact(contacts) {
       let dateContact = new Date(contact.date_contact);
 
       let message = contact.message_contact;
-      console.log(contact.message_contact.length);
 
       if (contact.message_contact.length > 50) {
         message = contact.message_contact.slice(0, 50) + "...";

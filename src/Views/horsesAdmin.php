@@ -8,10 +8,10 @@ $buttonAdd = new Button('Ajouter', 'newHorseVerification()');
 include __DIR__ . '/Includes/dashboard.php';
 ?>
 
-<div class="flex justify-between items-center my-6 mx-6">
+<div class="flex flex-wrap justify-between items-center my-6 mx-6">
     <h1 class="text-6xl font-bold" style='font-family: "Amatic SC", sans-serif;'>La cavalerie</h1>
 
-    <div class="mr-10">
+    <div class="sm:mr-10 mt-8 sm:mt-0">
 
         <?= $buttonNew->create_btn() ?>
     </div>

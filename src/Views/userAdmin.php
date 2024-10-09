@@ -21,10 +21,8 @@ include __DIR__ . '/Includes/dashboard.php';
 <section class="flex flex-wrap justify-around">
     <div class="overflow-x-auto my-6 mx-2">
 
-        <!-- Table -->
         <table class="w-fit text-left text-md whitespace-nowrap">
 
-            <!-- Table head -->
             <thead class="uppercase tracking-wider border-b-2">
                 <tr>
                     <th scope="col" class="px-6 py-4">
@@ -54,7 +52,6 @@ include __DIR__ . '/Includes/dashboard.php';
                 </tr>
             </thead>
 
-            <!-- Table body -->
             <tbody class="tbodyUser">
 
             </tbody>

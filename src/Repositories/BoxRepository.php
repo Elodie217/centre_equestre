@@ -81,7 +81,6 @@ class BoxRepository
 
     public function editBox($idBox, $boxEdit)
     {
-        // , $boxHorseEdit
         $sql = "UPDATE " . PREFIXE . "box SET name_box = :boxEdit WHERE id_box = :idBox";
 
         $statement = $this->db->prepare($sql);
@@ -89,34 +88,7 @@ class BoxRepository
         $statement->bindParam(':boxEdit', $boxEdit);
 
         if ($statement->execute()) {
-            // if ($boxHorseEdit == 0) {
-            //     $reponse = array(
-            //         'status' => 'success',
-            //         'message' => $boxEdit . 'a bien été modifié !'
-            //     );
-            //     return $reponse;
-            // } else {
-            //     $sql = "UPDATE " . PREFIXE . "horse SET id_box = :idBox WHERE id_horse = :boxHorseEdit";
 
-            //     $statement = $this->db->prepare($sql);
-            //     $statement->bindParam(':idBox', $idBox);
-            //     $statement->bindParam(':boxHorseEdit', $boxHorseEdit);
-
-
-            //     if ($statement->execute()) {
-            //         $reponse = array(
-            //             'status' => 'success',
-            //             'message' => $boxEdit . ' a bien été modifié !'
-            //         );
-            //         return $reponse;
-            //     } else {
-            //         $reponse = array(
-            //             'status' => 'error',
-            //             'message' => "Une erreur est survenue."
-            //         );
-            //         return $reponse;
-            //     }
-            // }
             $reponse = array(
                 'status' => 'success',
                 'message' => $boxEdit . ' a bien été modifié !'

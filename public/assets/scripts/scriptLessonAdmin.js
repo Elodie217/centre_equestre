@@ -113,11 +113,6 @@ function newLessonVerification() {
   });
 
   let numberUsersLesson = usersLessonAdd.length;
-  console.log(
-    numberUsersLesson,
-    placeLessonAdd,
-    numberUsersLesson <= placeLessonAdd
-  );
 
   let errorMessageLessonAdd = document.getElementById("errorMessageLessonAdd");
 
@@ -140,17 +135,6 @@ function newLessonVerification() {
                 levelsLessonAdd,
                 usersLessonAdd
               );
-
-              // let dateHourLesson = dateLessonAdd + " T" + hourLessonAdd;
-
-              // let newLessonCalendar = {
-              //   date: dateHourLesson,
-              //   title: titleLesson(levelsLessonAdd),
-              //   // id: lesson.id_lesson,
-              //   place: placeLessonAdd,
-              //   users: usersLesson(usersLessonAdd),
-              // };
-              // calendar.addEvent(newLessonCalendar);
             } else {
               errorMessageLessonAdd.innerHTML =
                 "Vous avez sélectionné plus de participants que de places disponibles.";
@@ -217,8 +201,6 @@ function newLesson(
 function reponseAddLesson(data) {
   if (data.status == "success") {
     openSuccessMessage(data.message);
-    // getAllEvents();
-    // closeAddLessonModal();
     setTimeout(() => {
       location.reload();
     }, 2000);
@@ -308,7 +290,6 @@ function openViewLessonModal(infos) {
   document.querySelector(".divViewUsersLessons").innerHTML = "";
 
   if (usersArray == "") {
-    console.log(usersArray);
   } else {
     usersArray.forEach((user) => {
       if (user) {

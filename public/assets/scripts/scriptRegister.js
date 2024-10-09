@@ -56,7 +56,6 @@ function getNewUserById(idNewUser, loginUser) {
   fetch(HOME_URL + "register/user", params)
     .then((res) => res.text())
     .then((data) => {
-      console.log(JSON.parse(data));
       displayUserRegister(JSON.parse(data), loginUser);
     });
 }

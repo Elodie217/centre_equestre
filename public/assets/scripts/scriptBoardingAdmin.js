@@ -98,10 +98,6 @@ function service2Existe(data) {
   }
 }
 
-function getBoardingHorses(id, name, price) {
-  console.log(id, name, price);
-}
-
 function getBoardingHorses(idBoarding, nameBoarding) {
   let boarding = {
     idBoarding: idBoarding,
@@ -125,7 +121,6 @@ function getBoardingHorses(idBoarding, nameBoarding) {
         logout();
       } else {
         displayBoardingHorse(nameBoarding, JSON.parse(data));
-        console.log(JSON.parse(data));
       }
     });
 }
@@ -200,10 +195,6 @@ function openEditBoardingModal(boarding) {
   document.querySelector(".modalEditBoarding").classList.remove("hidden");
   document.querySelector(".blurred").classList.remove("hidden");
 
-  console.log("boarding", boarding.service2_boarding);
-
-  console.log("isNull", isNull(boarding.service2_boarding));
-
   document.querySelector(".divEditBoarding").innerHTML =
     `
  <h3 class="text-2xl text-center mb-8 mx-10">Modifier ` +
@@ -260,8 +251,6 @@ function editBoardingVerification(idBoarding) {
   let errorMessageBoardingsEdit = document.getElementById(
     "errorMessageBoardingsEdit"
   );
-
-  console.log(serviceBisBoardingEdit);
 
   if (
     nameBoardingEdit !== "" &&

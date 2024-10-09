@@ -61,11 +61,3 @@ class JWTService
         }
     }
 }
-
-
-    // public function decodeToken(string $token): array
-    // {
-    //     $decodedData = [];
-
-    //     return $decodedData;
-    // }

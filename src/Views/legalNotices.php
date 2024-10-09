@@ -5,14 +5,14 @@ include __DIR__ . '/Includes/navBarre.php';
 
 ?>
 
-<section class="mx-24 mb-20 text-justify">
+<section class="mx-5 sm:mx-10 md:mx-24 mb-20 text-justify">
 
 
     <h1 class="text-6xl font-bold my-10" style='font-family: "Amatic SC", sans-serif;'>
         Mentions légales
     </h1>
 
-    <section class="mx-10">
+    <section class="mx-5 md:mx-10">
         <p>
             Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site Les cavaliers des vallées l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
         </p>

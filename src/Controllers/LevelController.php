@@ -13,31 +13,12 @@ class LevelController
     use Reponse;
 
 
-    // public function horses(): void
-    // {
-    //     if (isset($_GET['erreur'])) {
-    //         $erreur = htmlspecialchars($_GET['erreur']);
-    //     } else {
-    //         $erreur = '';
-    //     }
-
-    //     $this->render("horses", ["erreur" => $erreur]);
-    // }
-
     public function allLevels()
     {
         $LevelRepository = new LevelRepository;
         $reponse = $LevelRepository->getAllLevels();
         return json_encode($reponse);
     }
-
-    // function horseById($idHorse)
-    // {
-    //     $HorseRepository = new HorseRepository;
-    //     $reponse = $HorseRepository->getHorsesById($idHorse);
-    //     return json_encode($reponse);
-    // }
-
 
     public function addLevel($nameLevel)
     {

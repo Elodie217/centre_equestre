@@ -100,26 +100,4 @@ class BoardingRepository
             return $reponse;
         }
     }
-
-    // public function deleteHorse($idHorse)
-    // {
-    //     $sql = "DELETE FROM " . PREFIXE . "horse WHERE id_horse = :id_horse";
-
-    //     $statement = $this->db->prepare($sql);
-
-    //     $statement->bindParam(':id_horse', $idHorse);
-
-    //     if ($statement->execute()) {
-    //         $reponse = array(
-    //             'status' => 'success',
-    //             'message' => "Cheval supprimé !"
-    //         );
-    //     } else {
-    //         $reponse = array(
-    //             'status' => 'error',
-    //             'message' => "Une erreur est survenue."
-    //         );
-    //     }
-    //     return $reponse;
-    // }
 }

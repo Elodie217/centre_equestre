@@ -448,7 +448,6 @@ function reponseAddUser(data) {
 
 // Edit User
 function openEditUserModal(User) {
-  console.log(User);
   getAllLevel(User.id_level);
   let divEditUser = document.querySelector(".divEditUser");
 

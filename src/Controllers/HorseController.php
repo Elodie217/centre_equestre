@@ -44,7 +44,6 @@ class HorseController
 
     public function addHorse($nameHorse, $imageHorse, $birthdateHorse, $heightHorse, $coatHorse, $horseUser, $horseBox, $boardingHorse)
     {
-        // var_dump($imageHorse);
         if (isset($nameHorse) && !empty($nameHorse) && isset($imageHorse) && !empty($imageHorse) && isset($birthdateHorse) && !empty($birthdateHorse) && isset($horseUser) && !empty($horseUser) && isset($horseBox) && !empty($horseBox) && isset($boardingHorse)) {
             if (strlen($nameHorse) <= 50) {
                 $nameHorse = htmlspecialchars($nameHorse);
@@ -341,11 +340,6 @@ class HorseController
                     move_uploaded_file($imageHorse['tmp_name'], $folder . $nameImage . '.' . $extension);
 
                     $linkImage = "/public/assets/images/horses/" . $nameImage . '.' . $extension;
-                    // $extension = strtolower(pathinfo($imageHorse['name'], PATHINFO_EXTENSION));
-
-                    // $folder = __DIR__ . "/../../public/assets/images/horses/";
-
-                    // move_uploaded_file($imageHorse['tmp_name'], $folder . $nameImageHorse . '.' . $extension);
                 } else {
                     $response = array(
                         'status' => 'error',

@@ -37,7 +37,7 @@
             </div>
         </section>
     </section>
-    <p class="text-xs w-fit m-auto mt-5 mb-1">© 2024 Centre équestre – Tous droits réservés – Site réalisé par Moi</p>
+    <p class="text-xs w-fit m-auto mt-5 mb-1">© 2024 Les cavaliers des vallées – Tous droits réservés – Site réalisé par Moi</p>
 </footer>
 
 <?php

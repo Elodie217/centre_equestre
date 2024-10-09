@@ -182,6 +182,7 @@ function reponseAddBox(data) {
   openSuccessMessage(data.message);
   getBoxHorse();
   closeAddBoxModal();
+  document.getElementById("boxAdd").value = "";
 }
 
 // Edit Box
