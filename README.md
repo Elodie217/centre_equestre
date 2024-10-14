@@ -24,4 +24,4 @@ Ce site a été développé dans le cadre de la certification Développeur Web e
   - Gestion de leurs chevaux.
   - Gestion de compte.
 
-##Lien du site : [Les cavaliers des vallées](https://elodie.les-cavaliers-des-vallees.simploncertif.fr/)
+## Lien du site : [Les cavaliers des vallées](https://elodie.les-cavaliers-des-vallees.simploncertif.fr/)
