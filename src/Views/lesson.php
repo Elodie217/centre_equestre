@@ -22,13 +22,9 @@ include __DIR__ . '/Includes/navBarre.php';
     </section>
     <section class="m-10">
         <h2 class="text-3xl">Planning</h2>
-
+        <img src="../../public/assets/images/planning.png" alt="planning des cours" class="p-2 sm:p-6">
     </section>
 
-    <section class="m-10">
-        <h2 class="text-3xl">Tarif</h2>
-
-    </section>
 </section>
 
 

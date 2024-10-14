@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     // allDayText: "Toute la journée",
     allDaySlot: false,
-    slotMinTime: "06:00:00",
+    slotMinTime: "08:00:00",
     slotMaxTime: "22:00:00",
     events: [],
     dateClick: openAddLessonModal,
@@ -78,7 +78,10 @@ function openAddLessonModal(info) {
 
   let hour = new Date(info.date).toTimeString().split(" ")[0];
 
-  document.querySelector("#dateLessonAdd").value = info.dateStr;
+  document.querySelector("#dateLessonAdd").value = info.dateStr.substring(
+    0,
+    10
+  );
   document.querySelector("#hourLessonAdd").value = hour;
 }
 

@@ -176,6 +176,10 @@ function registerUserVerification(idUser, loginUser) {
 
   errorMessageUserRegister.innerHTML = "";
 
+  let DateNow = Date.now();
+
+  let bDate = new Date(birthdateUserRegister);
+
   if (gdprRegister.checked) {
     if (
       lastnameUserRegister !== "" &&
@@ -195,7 +199,8 @@ function registerUserVerification(idUser, loginUser) {
               phoneUserRegister == null;
             }
             if (
-              isValidDateFormat(birthdateUserRegister) ||
+              (isValidDateFormat(birthdateUserRegister) &&
+                DateNow > bDate.getTime()) ||
               birthdateUserRegister == ""
             ) {
               if (birthdateUserRegister == "") {
